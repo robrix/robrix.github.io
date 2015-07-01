@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Pattern matching over recursive values in Swift"
-date:   2015-06-30 23:35:44
+date:   2015-07-01 02:29:44
 categories: swift
 ---
 
