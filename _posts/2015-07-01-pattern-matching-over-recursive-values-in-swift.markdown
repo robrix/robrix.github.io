@@ -247,7 +247,7 @@ extension Expression where Recur : FixpointType, Recur.Fixed == Expression<Recur
 There are two problems remaining with this implementation:
 
 1. We still don’t have a way to get an `Expression<Recur>` from a `Recur`.
- 2. `swiftc` crashes. ([rdar://21328632](http://openradar.appspot.com/21328632))
+2. `swiftc` crashes. ([rdar://21328632](http://openradar.appspot.com/21328632))
 
 Fortunately, we can resolve the former by adding a property to the protocol:
 
