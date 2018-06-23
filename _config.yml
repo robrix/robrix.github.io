@@ -9,9 +9,7 @@ twitter_username: rob_rix
 github_username:  robrix
 
 # Build settings
-markdown:     redcarpet
-redcarpet:
-  extensions: ['smart', 'tables', 'with_toc_data']
+markdown:     kramdown
 permalink:    pretty
 paginate:     3
 sass:
