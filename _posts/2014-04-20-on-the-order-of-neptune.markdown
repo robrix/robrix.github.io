@@ -15,7 +15,7 @@ At 32 bits of resolution, adjacent coordinates, e.g. …<code>0101</code> and �
 
 If we double the size of our integers, we now divide the square into a grid of 2⁶⁴ points.
 
-At 64 bits of resolution, still covering the _entire span of the orbit of Neptune_, adjacent coordinates are about 0.24µm apart, or about 1⁄400th the width of [an average human hair][].
+At 64 bits of resolution, still covering the _entire span of the orbit of Neptune_, adjacent coordinates are about 0.24µm apart, or about 1% of the width of [an average human hair][].
 
 And famously, populating a 128-bit address space would require us to [boil the oceans][].
 
