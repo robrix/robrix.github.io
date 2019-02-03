@@ -1,0 +1,72 @@
+==================================================================
+https://keybase.io/robrix
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://antitypical.com
+  * I am robrix (https://keybase.io/robrix) on keybase.
+  * I have a public key with fingerprint 2AEB 6307 C61D 3E0A E9DE  5BEB F188 A015 08EA 1CF7
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010179cae65cb31696cc2bf4a609cb960cf989e1632c2c038fa57881083a1e06dd190a",
+      "fingerprint": "2aeb6307c61d3e0ae9de5bebf188a01508ea1cf7",
+      "host": "keybase.io",
+      "key_id": "f188a01508ea1cf7",
+      "kid": "010179cae65cb31696cc2bf4a609cb960cf989e1632c2c038fa57881083a1e06dd190a",
+      "uid": "e59cfe282f1020db846e1d510c95b319",
+      "username": "robrix"
+    },
+    "service": {
+      "hostname": "antitypical.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1549209426,
+  "expire_in": 157680000,
+  "prev": "56701334a94be787d8fe27a4223e6ba045c9889fb3455db2996f00f68f206542",
+  "seqno": 4,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUm1QVFUYXj7Mda3BGHCHGVD2lg0q4Tn3a++FCcKc8IOaQIyRtdb7cS5cwb2w
+d4FlkRijRNGYhUH7GIpQQ20gIYvow1AZJWREcQxLg62RAgQVAiXxY7qX0X/97Pw5
+c573eZ7zvO+83qcCDEa/iZ2fhhqvh0/7dY/whk3pQa8XY7wiFmGxxVg2mr1QjohU
+lz1bFrFYDEAArazAIZoSeALSLC0IOC+RHA1YgWdpIEgswyJIE7iAC4BgJI6yMgwE
+DMFBBGhRhCzgsGhMkh2ZyJnrlB0uzRbnEE8TwCrQUCQQ4BArIopHvAQZhgOQAgzi
+oCBZNWGWouoKLRzPqShGVjRMe9hn4/0H/3/OnT9rhyhWkBDO4BIEOBB5hqQRFCkI
+BJbS7FmdqCKng9uKNLZT4Z2yGyuJxjSsQBaQPla9j0d1zuGSXUW5ssDlxAjKVk2c
+61RciqDkaMUslytXjdXFGkVnFyLe/sjHzssOURukpihATlVWHFgs1JiCS9aNIUWy
+OGBJnI7GkDtXdiK7rDMoK80A7ej/oALNkqKtABIbCZJjSR5ZGavIaN1ZORLHCUTz
+HCApgWUYVuIJkqJEHmdZWgJAohkJBzRF4pjeWp5DwWJJLSeXqXmqcqaDc+U7EVZi
+2uVPBBr8jIaIhZbAZaPC3DMR8aaRAdvo4+Wb469vnsE0b8FjZPePCwwHGiLnzTSV
+/lClPldVVxK2OSbg5fdvuFfu7u/3HsJjpsPzlsZ5Tno7vjY9LHpiuNw2lLc6LL7v
+BUONYWeQv3/l2MqeFVem0mpmvti7wpiyWIHjJ7aUDbbnrDM1vtlSmXm6Xhg+bPys
+sv9GBwxcdLNtx/0M//O+257jibUz7rWl6mTQ3PX7dw7te6aGu1/rujM+3JXy0oug
+8d3k6vT0S34bLNj4kuSyUIv3fC/43BIZddfW+k/VvYSHv0VOSKhkS+tE6t9p+Y5V
+0wP4z0GpV7Ay0zH5ve7wM4XHTp1eZfuV7LteEXe86yiaeaOi6dr328eSLKZtPQnG
+6rykYHcPncc29mZ+4m02X7gbvH5wpnsSDR+JOLiw055a7tn+XSQ5WSSfjWcGxs5u
+7Arbe2LPtTYlm1zuufwqrHra7YsK9WW0wfbJXlJtiroZGvFtB2f8BjZMPP/kV8mV
+SzPMe9Z48T98IXMufdjMZLT+UthONjTfS/QkpJs7b11OGVkc/eAtov4vi/lClq9v
+fqeH+PNqaUjIUOOi/qOWdcUfj1RW/J5UPXUweM3Y0Jf5t3FytKW1fNfbH2wbsByZ
+srC+i6d+ijOevHW4zlK7JNpWszq77+qyTWsD0+Bg8vDmDlWaPyp+tOO1Ay3mO690
+n7MFOEIPSWnEuQ0h+5wB79RfrOt+IDZXBDxrjkuc2r/8Xw==
+=vgVk
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/robrix
+
+==================================================================
