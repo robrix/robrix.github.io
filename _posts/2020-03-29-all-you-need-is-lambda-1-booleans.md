@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "All you need is λ, part one: booleans"
+date:   2020-03-29 20:17:26
 ---
 
 # All you need is λ, part one: booleans
