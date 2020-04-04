@@ -28,9 +28,13 @@ The lambda calculus’s austerity is extreme: you don’t even have booleans. Al
 
     The syntax is the same in Haskell; in JavaScript, we would write `x(y)` or `a(b, c)`. Note however that since lambda calculus functions are all single-argument functions, a more direct (tho less idiomatic) equivalent for the latter would be `a(b)(c)`.
 
-3. Variables (written as names; bound by enclosing lambdas; no `let` bindings, no globals; we will feel free to give variables names both great and small, and will include non-alphanumeric characters in names as we see fit, since the paucity of syntax means there’s little risk of ambiguity).
+3. Variables introduced by enclosing lambdas.
 
-Since a lambda is the only way to introduce a value—it’s the only “literal” syntax, and there are no predefined global definitions or standard library—we can also see that the only kinds of runtime values must be closures, perhaps consisting of the name of the introduced variable, body of the lambda, & values of any variables it closed over when made (again, we assume strict lexical scoping).
+    These are written as names, typically alphanumeric (e.g. `x` or `y0` or `thing`); however, we will feel free to include non-alphanumeric characters in names as we see fit, since the paucity of syntax means there’s little risk of ambiguity.
+
+    Since the only available variables are those bound by enclosing lambdas, we can also infer that there are no `let` bindings for local variables, and no globals of any sort; the lambda calculus doesn’t come with a standard library.
+
+Since a lambda is the only way to introduce a value—it’s the only “literal” syntax—we can also see that the only kinds of runtime values must be closures, perhaps consisting of the name of the introduced variable, body of the lambda, & values of any variables it closed over when constructed (again, we assume strict lexical scoping).
 
 How do you _do_ anything when you don’t even have `true` and `false`? Lambdas and variables don’t _do_, they merely _are_, so that leaves application. When all you have is lambda application, everything looks like a lambda abstraction, so we’ll represent booleans using lambdas.
 
