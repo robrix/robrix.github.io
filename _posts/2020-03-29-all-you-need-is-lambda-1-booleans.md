@@ -140,7 +140,7 @@ if = λ cond then else . ?
 
 We’ve introduced a definition for `if`, as a function of three parameters; now what do we do with them? The lambda calculus’s stark palette makes it easy to enumerate _all_ the things we can do with a variable:
 
-1. Ignore it, or shadow it with another lambda which binds the same name.
+1. Ignore it, whether by simply not mentioning it at all (as in `λ x . λ y . y`), or by shadowing it with another lambda which binds the same name (as in `λ x . λ x . x`).
 
 2. Mention it, whether on its own in the body of a lambda, somewhere within either side of an application, or both.
 
