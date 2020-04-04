@@ -12,7 +12,7 @@ Nearly a century ago, Alonzo Church invented the simple, elegant, and yet elusiv
 While it’s true that anything which can be computed, period, can be computed in the lambda calculus, you might not want to: it’s austere, to say the least, and was not designed with modern sensibilities regarding readability in mind. We developed all those languages and features for a reason! Still, Church demonstrated not just that it was possible to compute anything computable with the lambda calculus, but also _how_ one might do so.
 
 
-## Unconditional λ
+## λ is blind
 
 The lambda calculus’s austerity is extreme: you don’t even have booleans. All you have are:
 
@@ -58,7 +58,7 @@ Variable are written as more or less arbitrary names, typically alphanumeric (e.
 Since the only available variables are those bound by enclosing lambdas, we can also infer that there are no `let` bindings for local variables, and no globals of any sort; the lambda calculus doesn’t come with a standard library.
 
 
-## λ is blind
+## Unconditional λ
 
 Since a lambda is the only way to introduce a value—it’s the only “literal” syntax—we can also see that the only kinds of runtime values must be closures, perhaps consisting of the name of the introduced variable, body of the lambda, & values of any variables it closed over when constructed (again, we assume strict lexical scoping).
 
