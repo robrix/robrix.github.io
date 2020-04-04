@@ -14,7 +14,7 @@ While it’s true that anything which can be computed, period, can be computed i
 
 ## Unconditional λ
 
-The lambda calculus’ austerity is extreme: you don’t even have booleans. All you have are:
+The lambda calculus’s austerity is extreme: you don’t even have booleans. All you have are:
 
 1. Single-argument functions (“lambda abstractions,” but “lambdas,” “abstractions,” and “functions” will also be used interchangeably).
 
@@ -34,7 +34,7 @@ Since a lambda is the only way to introduce a value—it’s the only “literal
 
 How do you _do_ anything when you don’t even have `true` and `false`? Lambdas and variables don’t _do_, they merely _are_, so that leaves application. When all you have is lambda application, everything looks like a lambda abstraction, so we’ll represent booleans using lambdas.
 
-> Aside: Due to the lambda calculus’ terseness, I will be making free use of several notational conveniences:
+> Aside: Due to the lambda calculus’s terseness, I will be making free use of several notational conveniences:
 >
 > 1. writing `λ x y . z` as an abbreviation of `λ x . λ y . z`.
 > 2. writing `?` to stand for bits we don’t know yet, as tho we had an environment supporting holes.
@@ -79,7 +79,7 @@ if = λ cond then else . ?
 
 (Note: there aren’t any keywords in the lambda calculus, so there’s nothing stopping me from naming variables things like `if`, a fact which I will take free advantage of.)
 
-We’ve introduced a definition for `if`, as a function of three parameters; now what do we do with them? The lambda calculus’ stark palette makes it easy to enumerate _all_ the things we can do with a variable:
+We’ve introduced a definition for `if`, as a function of three parameters; now what do we do with them? The lambda calculus’s stark palette makes it easy to enumerate _all_ the things we can do with a variable:
 
 1. Ignore it, or shadow it with another lambda binding the same name.
 2. Mention it (perhaps nested), whether on its own in the body of a lambda, or somewhere on either side of an application (or both).
