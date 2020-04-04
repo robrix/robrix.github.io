@@ -138,11 +138,11 @@ if = λ cond then else . ?
 
 (Note: there aren’t any keywords in the lambda calculus, so there’s nothing stopping me from naming variables things like `if`, a fact which I will take free advantage of.)
 
-We’ve introduced a definition for `if`, as a function of three parameters; now what do we do with them? The lambda calculus’s stark palette makes it easy to enumerate _all_ the things we can do with a variable:
+We’ve introduced a definition for `if`, as a function of three parameters; now what do we do with them? The lambda calculus’s stark palette makes it easy to enumerate _all_ the things we can do with some variable `a`:
 
-1. Ignore it, whether by simply not mentioning it at all (as in `λ x . λ y . y`), or by shadowing it with another lambda which binds the same name (as in `λ x . λ x . x`).
+1. Ignore it, whether by simply not mentioning it at all (as in `λ a . λ b . b`), or by shadowing it with another lambda which binds the same name (as in `λ a . λ a . a`).
 
-2. Mention it, whether on its own in the body of a lambda (as in `λ x . x` or `λ x . λ y . x`), somewhere within either side of an application (as in `λ f . λ a . f a` or `λ a . λ f . f a`), or some combination of both (as in `λ a . (λ x . a) a`).
+2. Mention it, whether on its own in the body of a lambda (as in `λ a . a` or `λ a . λ b . a`), somewhere within either side of an application (as in `λ a . λ b . a b` or `λ a . λ b . b a`), or some combination of both (as in `λ a . (λ b . a) a`).
 
 We could for example simply return `then` or `else`:
 
