@@ -215,7 +215,7 @@ It’s frequently convenient to conflate booleans with bits, their minimal repre
 
 Mathematically, booleans are the values in propositional logic; the upper and lower bounds of a lattice; the zero and one of a semiring; the members of the set with cardinality 2; and many other things in many different contexts.
 
-Operationally, booleans represent choice, and this is a pattern that we’ll see repeated: encoding a datatype with lambdas means representing it with functions which can perform all the operations possible with the original datatype. All operations on booleans can be defined by selecting between two alternatives, which is precisely what our encoding does.
+Operationally, booleans represent choice, and this is a pattern that we’ll see repeated: _encoding_ a datatype with lambdas means _representing_ the datatype as _functions supporting all of its operations_. All operations on booleans can be defined by selecting between two alternatives, which is precisely what our encoding does.
 
 We can demonstrate this by defining some other operations on booleans, e.g. logical operators, using the encoding we’ve built thus far.
 
