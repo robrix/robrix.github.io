@@ -58,6 +58,36 @@ Variable are written as more or less arbitrary names, typically alphanumeric (e.
 Since the only available variables are those bound by enclosing lambdas, we can also infer that there are no `let` bindings for local variables, and no globals of any sort; the lambda calculus doesn’t come with a standard library.
 
 
+### Comparison
+
+<table>
+  <thead>
+    <td></td>
+    <td>Lambda calculus</td>
+    <td>Haskell</td>
+    <td>JavaScript</td>
+  </thead>
+  <tr>
+    <td>Abstraction</td>
+    <td><code>λ x . y</code></td>
+    <td><code>\ x -> y</code></td>
+    <td><code>(x) => y</code></td>
+  </tr>
+  <tr>
+    <td>Application</td>
+    <td><code>f x</code></td>
+    <td><code>f x</code></td>
+    <td><code>f(x)</code></td>
+  </tr>
+  <tr>
+    <td>Variable</td>
+    <td><code>x</code></td>
+    <td><code>x</code></td>
+    <td><code>x</code></td>
+  </tr>
+</table>
+
+
 ## Unconditional λ
 
 Since a lambda is the only way to introduce a value—it’s the only “literal” syntax—we can also see that the only kinds of runtime values must be closures, perhaps consisting of the name of the introduced variable, body of the lambda, & values of any variables it closed over when constructed (again, we assume strict lexical scoping).
