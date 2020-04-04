@@ -90,7 +90,7 @@ And finally, this table gives a side-by-side comparison of the syntax of the lam
 
 ## Unconditional λ
 
-Since a lambda is the only way to introduce a value—it’s the only “literal” syntax—we can also see that the only kinds of runtime values must be closures, perhaps consisting of the name of the introduced variable, body of the lambda, & values of any variables it closed over when constructed (again, we assume strict lexical scoping).
+Lambdas are the only way to introduce values—they’re the only “literal” syntax in the language. We can therefore infer that the only kinds of runtime values must be closures. In an interpreter for the lambda calculus, closures might consist of the name of the introduced variable, the body of the lambda, & a map relating the names and values of any variables it closed over when constructed (again, we assume strict lexical scoping).
 
 How do you _do_ anything when you don’t even have `true` and `false`? Lambdas and variables don’t _do_, they merely _are_, so that leaves application. When all you have is lambda application, everything looks like a lambda abstraction, so we’ll represent booleans using lambdas.
 
