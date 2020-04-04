@@ -201,7 +201,7 @@ true  = λ then else . then
 false = λ then else . else
 ```
 
-We didn’t move the problem around at all—we actually solved it (once we defined `true` and `false`, anyway). It’s simply that encoding booleans in this manner makes `if` largely pointless, since if we can apply `if` to a `Bool` and two arguments, we could equally apply the `Bool` to those arguments directly.
+We didn’t move the problem around after all; we solved it. What we noticed was a deeper insight: this encoding of booleans makes `if` redundant, since if we can apply `if` to a `Bool` and two arguments, we could equally apply the `Bool` to those arguments directly.
 
 > Aside: we chose to define `if` as applying the `Bool` to the other arguments in the same order it received them, but we could just as easily have swapped them:
 >
