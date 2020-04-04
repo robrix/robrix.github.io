@@ -317,6 +317,6 @@ and = λ x y . if x y    false
 
 ## Conclusion
 
-In this post, we’ve explored defining a ubiquitous programming language feature—booleans—using nothing more than the spartan trappings of the lambda calculus, and emerged with a language which can express not merely functions and their applications, but also fundamental metaphysical concepts such as truth.
+In this post, we’ve explored defining a ubiquitous programming language feature—booleans—using nothing more than the spartan trappings of the lambda calculus. We’ve emerged with a language which can express not merely functions and their applications, but also fundamental metaphysical concepts such as truth.
 
 In the next post, we’ll look at lambda-encodings of beauty: ML/Haskell-style algebraic datatypes.
