@@ -11,6 +11,8 @@ Nearly a century ago, Alonzo Church invented the simple, elegant, and yet elusiv
 
 While it’s true that anything which can be computed, period, can be computed in the lambda calculus, you might not want to: it’s austere, to say the least, and was not designed with modern sensibilities regarding readability in mind. We developed all those languages and features for a reason! Still, Church demonstrated not just that it was possible to compute anything computable with the lambda calculus, but also _how_ one might do so.
 
+In this series, we’ll examine some ways to express common programming language features using the minimalistic tools of the lambda calculus. We begin with perhaps the most ubiquitous type: booleans.
+
 
 ## λ is blind
 
