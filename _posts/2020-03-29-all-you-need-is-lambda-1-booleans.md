@@ -142,7 +142,7 @@ We’ve introduced a definition for `if`, as a function of three parameters; now
 
 1. Ignore it, whether by simply not mentioning it at all (as in `λ x . λ y . y`), or by shadowing it with another lambda which binds the same name (as in `λ x . λ x . x`).
 
-2. Mention it, whether on its own in the body of a lambda, somewhere within either side of an application, or both.
+2. Mention it, whether on its own in the body of a lambda (as in `λ x . x` or `λ x . λ y . x`), somewhere within either side of an application (as in `λ f . λ a . f a` or `λ a . λ f . f a`), or some combination of both (as in `λ a . (λ x . a) a`).
 
 We could for example simply return `then` or `else`:
 
