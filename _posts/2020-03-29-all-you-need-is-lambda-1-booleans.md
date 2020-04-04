@@ -105,7 +105,7 @@ How do you _do_ anything when you don’t even have `true` and `false`? Lambdas 
 > 7. using general recursion as though it made sense.
 > 8. ignoring application order, normalization, reduction, substitution, values, references, allocation, copying, space, time, entropy, and any and all other such details whenever I feel like it.
 >
-> Further, I will by convention name types in `TitleCase` and both term and (local) type variables in `camelCase`.
+> By convention, I will name types in `TitleCase` and both term and (local) type variables in `camelCase`.
 >
 > I will try to avoid pulling rabbits from hats too wantonly, but for now, I’ll ask you to suspend disbelief; I hope to revisit and justify some of these in later posts.
 
