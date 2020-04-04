@@ -38,6 +38,7 @@ main = hakyll $ do
         >>= relativizeUrls
 
   match "_layouts/*" $ compile templateBodyCompiler
+  match "_includes/*" $ compile templateBodyCompiler
 
 postCtx :: Context String
 postCtx
