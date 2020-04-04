@@ -16,23 +16,47 @@ While it’s true that anything which can be computed, period, can be computed i
 
 The lambda calculus’s austerity is extreme: you don’t even have booleans. All you have are:
 
-1. Single-argument functions (“lambda abstractions,” but “lambdas,” “abstractions,” and “functions” will also be used interchangeably).
+1. Lambda abstractions;
 
-    These are written `λ x . y`, for variable `x` and expression `y`, where `x` is now available as a bound variable in the body, and any enclosing definition of `x` is shadowed. (We shall assume strictly lexical scoping for the time being.)
+2. Applications; and
 
-    In Haskell, we would write `\ x -> y` instead; in JavaScript, `function (x) { return y }` or `(x) => y`.
+3. Variables.
 
-2. Function application (“lambda application,” or “application” or “function calls”).
 
-    Applications are written as `x y`, for expressions x and y, and left-associated, i.e. `a b c` = `(a b) c` ≠ `a (b c)`. Function application binds tighter than lambda abstraction, i.e. `λ x . λ y . y x` = `λ x . λ y . (y x)` ≠ `λ x . (λ y . y) x`.
+### Lambda abstractions
 
-    The syntax is the same in Haskell; in JavaScript, we would write `x(y)` or `a(b, c)`. Note however that since lambda calculus functions are all single-argument functions, a more direct (tho less idiomatic) equivalent for the latter would be `a(b)(c)`.
+Lambda abstractions (“lambdas,” “abstractions,” and “functions” will also be used interchangeably) introduce a function of a single variable.
 
-3. Variables introduced by enclosing lambdas.
+Abstractions are written `λ x . y`, for variable `x` and expression `y`, where `x` is now available as a bound variable in the body, and any enclosing definition of `x` is shadowed. (We shall assume strictly lexical scoping for the time being.) To illustrate:
 
-    These are written as names, typically alphanumeric (e.g. `x` or `y0` or `thing`); however, we will feel free to include non-alphanumeric characters in names as we see fit, since the paucity of syntax means there’s little risk of ambiguity.
+```
+λ x . λ x . x
+```
 
-    Since the only available variables are those bound by enclosing lambdas, we can also infer that there are no `let` bindings for local variables, and no globals of any sort; the lambda calculus doesn’t come with a standard library.
+Here, the variable `x` returned in the body of the inner lambda is that introduced by the inner lambda; the outer lambda’s variable is unused.
+
+In Haskell, we would write `\ x -> y` instead; in JavaScript, `function (x) { return y }` or `(x) => y`.
+
+
+### Applications
+
+Applications (“function application” and “function call” will be used interchangeably) apply the result of the expression on the left to the expression on the right.
+
+Applications are written as `x y`, for expressions x and y, and left-associated, i.e. `a b c` = `(a b) c` ≠ `a (b c)`. Function application binds tighter than lambda abstraction, i.e. `λ x . λ y . y x` = `λ x . λ y . (y x)` ≠ `λ x . (λ y . y) x`.
+
+The syntax is the same in Haskell; in JavaScript, we would write `x(y)` or `a(b, c)`. Note however that since lambda calculus functions are all single-argument functions, a more direct (tho less idiomatic) equivalent for the latter would be `a(b)(c)`.
+
+
+### Variables
+
+Variables introduced by enclosing lambdas.
+
+Variable are written as more or less arbitrary names, typically alphanumeric (e.g. `x` or `y0` or `thing`); however, we will feel free to include non-alphanumeric characters in names as we see fit, since the paucity of syntax means there’s little risk of ambiguity.
+
+Since the only available variables are those bound by enclosing lambdas, we can also infer that there are no `let` bindings for local variables, and no globals of any sort; the lambda calculus doesn’t come with a standard library.
+
+
+## λ is blind
 
 Since a lambda is the only way to introduce a value—it’s the only “literal” syntax—we can also see that the only kinds of runtime values must be closures, perhaps consisting of the name of the introduced variable, body of the lambda, & values of any variables it closed over when constructed (again, we assume strict lexical scoping).
 
@@ -52,9 +76,6 @@ How do you _do_ anything when you don’t even have `true` and `false`? Lambdas 
 > Further, I will by convention name types in `TitleCase` and both term and (local) type variables in `camelCase`.
 >
 > I will try to avoid pulling rabbits from hats too wantonly, but for now, I’ll ask you to suspend disbelief; I hope to revisit and justify some of these in later posts.
-
-
-## λ is blind
 
 Of course, it’s not _just_ booleans we’re after; `true` and `false` aren’t much use without `and`, `or`, `not`, `if`, and all the rest. To be useful, our representation of booleans should therefore suffice to define these, as well. But how do you define `if` without using `if`? In a lazy language like Haskell, we might define `if` as a function something like so:
 
