@@ -58,7 +58,13 @@ Variable are written as more or less arbitrary names, typically alphanumeric (e.
 Since the only available variables are those bound by enclosing lambdas, we can also infer that there are no `let` bindings for local variables, and no globals of any sort; the lambda calculus doesn’t come with a standard library.
 
 
-### Comparison
+### Summary
+
+In quasi-BNF, the grammar for the lambda calculus is extremely minimal:
+
+> _e_ **:=** `λ` _x_ `.` _e_ **|** _e_ _e_ **|** _x_ **|** (_e_)
+
+And finally, this table gives a side-by-side comparison of the syntax of the lambda calculus with the corresponding syntax in Haskell & JavaScript:
 
 <table>
   <thead>
