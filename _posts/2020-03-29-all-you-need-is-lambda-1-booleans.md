@@ -7,7 +7,7 @@ categories: ["lambda calculus", "plt"]
 
 # All you need is λ, part one: booleans
 
-Nearly a hundred years ago, Alonzo Church invented computation in the form of the simple, elegant, and utterly inscrutable lambda calculus. Along with Alan Turing, he then proved that anything computable can be computed in the lambda calculus. However, nearly as soon as we had digital computers, we started inventing programming languages, and with them a vast treasure of features, beautiful and terrible, many of which seem very hard to relate to the fundamental nature of computability, let alone the lambda calculus.
+Nearly a century ago, Alonzo Church invented the simple, elegant, and yet elusive lambda calculus. Along with Alan Turing, he then proved the Church-Turing thesis: that anything computable with a Turing machine can also be computed in the lambda calculus. However, nearly as soon as we had digital computers, we started inventing programming languages, and with them a vast treasure of features, beautiful and terrible, many of which seem very hard to relate to the fundamental nature of computability, let alone the lambda calculus specifically.
 
 While it’s true that anything which can be computed, period, can be computed in the lambda calculus, you might not want to: it’s austere, to say the least, and was not designed with modern sensibilities regarding readability in mind. We developed all those languages and features for a reason! Still, Church demonstrated not just that it was possible to compute anything computable with the lambda calculus, but also _how_ one might do so.
 
