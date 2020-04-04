@@ -46,7 +46,7 @@ Applications (“function application” and “function call” will be used in
 
 Applications are written as `x y`, for expressions x and y, and left-associated, i.e. `a b c` = `(a b) c` ≠ `a (b c)`. Function application binds tighter than lambda abstraction, i.e. `λ x . λ y . y x` = `λ x . λ y . (y x)` ≠ `λ x . (λ y . y) x`.
 
-The syntax is the same in Haskell; in JavaScript, we would write `x(y)` or `a(b, c)`. Note however that since lambda calculus functions are all single-argument functions, a more direct (tho less idiomatic) equivalent for the latter would be `a(b)(c)`.
+The syntax is the same in Haskell; in JavaScript, we would write `x(y)` or `a(b, c)`. Note however that since lambda calculus functions are all single-argument functions, a more direct (though less idiomatic) equivalent for the latter would be `a(b)(c)`.
 
 
 ### Variables
@@ -103,12 +103,12 @@ How do you _do_ anything when you don’t even have `true` and `false`? Lambdas 
 > Aside: Due to the lambda calculus’s terseness, I will be making free use of several notational conveniences:
 >
 > 1. writing `λ x y . z` as an abbreviation of `λ x . λ y . z`.
-> 2. writing `?` to stand for bits we don’t know yet, as tho we had an environment supporting holes.
-> 3. writing definitions as tho we had a metalanguage.
-> 4. referencing definitions elsewhere as tho we had globals.
-> 5. writing type signatures as tho we had a type system, and even a typechecker, with as much polymorphism and inference as is convenient at any particular moment.
-> 6. using syntactic recursion as tho it existed.
-> 7. using general recursion as tho it made sense.
+> 2. writing `?` to stand for bits we don’t know yet, as though we had an environment supporting holes.
+> 3. writing definitions as though we had a metalanguage.
+> 4. referencing definitions elsewhere as though we had globals.
+> 5. writing type signatures as though we had a type system, and even a typechecker, with as much polymorphism and inference as is convenient at any particular moment.
+> 6. using syntactic recursion as though it existed.
+> 7. using general recursion as though it made sense.
 > 8. ignoring application order, normalization, reduction, substitution, values, references, allocation, copying, space, time, entropy, and any and all other such details whenever I feel like it.
 >
 > Further, I will by convention name types in `TitleCase` and both term and (local) type variables in `camelCase`.
@@ -256,7 +256,7 @@ Which is precisely the meaning we intended `not` to have.
 
 > Aside: note that this is not the only way that we could have implemented `not`.
 >
-> `not`’s type is `Bool -> Bool`, which is equivalent to `(∀ a . a -> a -> a) -> ∀ a . a -> a -> a` Thus, we could also define `not` by taking the extra arguments that the _result_ `Bool` will be applied to, and using them directly, tho in the opposite order:
+> `not`’s type is `Bool -> Bool`, which is equivalent to `(∀ a . a -> a -> a) -> ∀ a . a -> a -> a` Thus, we could also define `not` by taking the extra arguments that the _result_ `Bool` will be applied to, and using them directly, though in the opposite order:
 >
 > ```
 > not = λ x then else . if x else then
