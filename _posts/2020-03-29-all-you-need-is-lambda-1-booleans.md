@@ -89,20 +89,24 @@ And finally, this table gives a side-by-side comparison of the syntax of the lam
   </tr>
 </table>
 
-> Aside: Due to the lambda calculus’s terseness, I will be making free use of several notational conveniences:
->
-> 1. writing `λ x y . z` as an abbreviation of `λ x . λ y . z`.
-> 2. writing `?` to stand for bits we don’t know yet, as though we had an environment supporting holes.
-> 3. writing definitions as though we had a metalanguage.
-> 4. referencing definitions elsewhere as though we had globals.
-> 5. writing type signatures as though we had a type system, and even a typechecker, with as much polymorphism and inference as is convenient at any particular moment.
-> 6. using syntactic recursion as though it existed.
-> 7. using general recursion as though it made sense.
-> 8. ignoring application order, normalization, reduction, substitution, values, references, allocation, copying, space, time, entropy, and any and all other such details whenever I feel like it.
->
-> By convention, I will name types in `TitleCase` and both term and (local) type variables in `camelCase`.
->
-> I will try to avoid pulling rabbits from hats too wantonly, but for now, I’ll ask you to suspend disbelief; I hope to revisit and justify some of these in later posts.
+<aside>
+
+Due to the lambda calculus’s terseness, I will be making free use of several notational conveniences:
+
+1. writing `λ x y . z` as an abbreviation of `λ x . λ y . z`.
+2. writing `?` to stand for bits we don’t know yet, as though we had an environment supporting holes.
+3. writing definitions as though we had a metalanguage.
+4. referencing definitions elsewhere as though we had globals.
+5. writing type signatures as though we had a type system, and even a typechecker, with as much polymorphism and inference as is convenient at any particular moment.
+6. using syntactic recursion as though it existed.
+7. using general recursion as though it made sense.
+8. ignoring application order, normalization, reduction, substitution, values, references, allocation, copying, space, time, entropy, and any and all other such details whenever I feel like it.
+
+By convention, I will name types in `TitleCase` and both term and (local) type variables in `camelCase`.
+
+I will try to avoid pulling rabbits from hats too wantonly, but for now, I’ll ask you to suspend disbelief; I hope to revisit and justify some of these in later posts.
+
+</aside>
 
 
 ## Unconditional λ
@@ -164,9 +168,13 @@ Thus, in the same way that our `if_` functions in Haskell & JavaScript employed 
 if = λ cond then else . cond then else
 ```
 
-> Aside: under standard semantics for the lambda calculus, we could simplify this definition further by “[η-reducing][η-reduction]” it, noting that `λ x . f x` behaves the same as `f` alone. Nevertheless, we will leave this and likely other definitions in their full, η-long forms for the sake of clarity.
->
-> [η-reduction]: https://en.wikipedia.org/wiki/Lambda_calculus#η-reduction
+<aside>
+
+Under standard semantics for the lambda calculus, we could simplify this definition further by “[η-reducing][η-reduction]” it, noting that `λ x . f x` behaves the same as `f` alone. Nevertheless, we will leave this and likely other definitions in their full, η-long forms for the sake of clarity.
+
+</aside>
+
+[η-reduction]: https://en.wikipedia.org/wiki/Lambda_calculus#η-reduction
 
 This feels strangely like cheating: surely we’ve only moved the problem around. Now instead of `if` making the decision about which argument to return, we’ve deferred it to `cond`. But `if` and `cond` aren’t the same, semantically; `if` takes a boolean and two other arguments and returns one of the latter, while `cond` _is_ a boolean—albeit evidently a boolean represented as a function. Let’s make that precise by writing down `if`’s type:
 
@@ -182,15 +190,19 @@ Working backwards from the type and definition of `if`, we see that `cond` is ap
 Bool = ∀ a . a -> a -> a
 ```
 
-> Aside: I’m making explicit use of the for-all quantifier here to drive home the point that any particular `Bool` value must be able to be applied to `then` and `else` values of any arbitrary type `a`, defined now or in the future.
->
-> By the same token, we could have written `if`’s type more explicitly as:
->
-> ```
-> if : ∀ a . Bool -> a -> a -> a
-> ```
->
-> Here and in future, local type variables can be assumed to be implicitly generalized in the same manner as Haskell if not otherwise quantified.
+<aside>
+
+I’m making explicit use of the for-all quantifier here to drive home the point that any particular `Bool` value must be able to be applied to `then` and `else` values of any arbitrary type `a`, defined now or in the future.
+
+By the same token, we could have written `if`’s type more explicitly as:
+
+```
+if : ∀ a . Bool -> a -> a -> a
+```
+
+Here and in future, local type variables can be assumed to be implicitly generalized in the same manner as Haskell if not otherwise quantified.
+
+</aside>
 
 If a given `Bool` is a function of two arguments of arbitrary type, returning the same type, it must therefore select one of its arguments to return. There are only two distinguishable inhabitants of `Bool`, `true` and `false`, so we can therefore deduce that since `if` defers the selection of the result to the `Bool`, for `true` and `false` to actually differ they must make opposite selections. In other words, `true` must return the `then` parameter, while `false` must return the `else` one:
 
@@ -203,13 +215,17 @@ false = λ then else . else
 
 We didn’t move the problem around after all; we solved it. What we noticed was a deeper insight: this encoding of booleans makes `if` redundant, since if we can apply `if` to a `Bool` and two arguments, we could equally apply the `Bool` to those arguments directly.
 
-> Aside: we chose to define `if` as applying the `Bool` to the other arguments in the same order it received them, but we could just as easily have swapped them:
->
-> ```
-> if = λ cond then else . cond else then
-> ```
->
-> In this case, `if` would be more useful since it would preserve our familiar argument ordering. As an exercise for the reader, consider what other effects this difference would have. What are the tradeoffs, syntactically and semantically? When would one or the other definition be more or less convenient?
+<aside>
+
+We chose to define `if` as applying the `Bool` to the other arguments in the same order it received them, but we could just as easily have swapped them:
+
+```
+if = λ cond then else . cond else then
+```
+
+In this case, `if` would be more useful since it would preserve our familiar argument ordering. As an exercise for the reader, consider what other effects this difference would have. What are the tradeoffs, syntactically and semantically? When would one or the other definition be more or less convenient?
+
+</aside>
 
 It’s frequently convenient to conflate booleans with bits, their minimal representation, but in truth they’re not the same at all. Practically, some programming languages define booleans as a byte in memory, perhaps clamping its values to 0 and 1; others define them as instances of some boolean class, or constructors of an algebraic datatype. Some provide no formal relationship between `true` and `false` at all, save for a common interface—duck typing.
 
@@ -232,7 +248,11 @@ As when defining `if`, all we can do with a `Bool` is branch on it:
 not = λ x . if x ? ?
 ```
 
-> Aside: as discussed in a previous aside, `if` is operationally redundant—i.e. `if x y z` is operationally equivalent to `x y z`—given the ordering of arguments to `Bool`s which we selected earlier. It is, however, pleasantly evocative, and so is used for clarity and so we can stop talking about that ordering decision.
+<aside>
+
+As discussed in a previous aside, `if` is operationally redundant—i.e. `if x y z` is operationally equivalent to `x y z`—given the ordering of arguments to `Bool`s which we selected earlier. It is, however, pleasantly evocative, and so is used for clarity and so we can stop talking about that ordering decision.
+
+</aside>
 
 But which arguments should we pass if we wish to return a `Bool` with the opposite value? Recall the definition of `Bool` from above:
 
@@ -255,21 +275,25 @@ not false = true
 
 Which is precisely the meaning we intended `not` to have.
 
-> Aside: note that this is not the only way that we could have implemented `not`.
->
-> `not`’s type is `Bool -> Bool`, which is equivalent to `(∀ a . a -> a -> a) -> ∀ a . a -> a -> a` Thus, we could also define `not` by taking the extra arguments that the _result_ `Bool` will be applied to, and using them directly, though in the opposite order:
->
-> ```
-> not = λ x then else . if x else then
-> ```
->
-> Or equivalently, but perhaps _slightly_ more familiar:
->
-> ```
-> not = λ x . λ then else . if x else then
-> ```
->
-> This style of definition can be surprising if you’re not used to so-called “curried functions” as commonly used in e.g. Haskell, but it’s operationally equivalent to the definition developed above. As an exercise, try to work out why that equivalence holds.
+<aside>
+
+Note that this is not the only way that we could have implemented `not`.
+
+`not`’s type is `Bool -> Bool`, which is equivalent to `(∀ a . a -> a -> a) -> ∀ a . a -> a -> a` Thus, we could also define `not` by taking the extra arguments that the _result_ `Bool` will be applied to, and using them directly, though in the opposite order:
+
+```
+not = λ x then else . if x else then
+```
+
+Or equivalently, but perhaps _slightly_ more familiar:
+
+```
+not = λ x . λ then else . if x else then
+```
+
+This style of definition can be surprising if you’re not used to so-called “curried functions” as commonly used in e.g. Haskell, but it’s operationally equivalent to the definition developed above. As an exercise, try to work out why that equivalence holds.
+
+</aside>
 
 `or` and `and` are closely related to one another, so we’ll define them simultaneously. Both take two `Bool`s and return a `Bool`:
 
@@ -314,7 +338,11 @@ or  = λ x y . if x true y
 and = λ x y . if x y    false
 ```
 
-> Aside: as an exercise, define `xor : Bool -> Bool -> Bool`.
+<aside>
+
+As an exercise, define `xor : Bool -> Bool -> Bool`.
+
+</aside>
 
 
 ## Conclusion
