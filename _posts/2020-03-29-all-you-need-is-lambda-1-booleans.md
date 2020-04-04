@@ -107,7 +107,9 @@ And finally, this table gives a side-by-side comparison of the syntax of the lam
 
 Lambdas are the only way to introduce values—they’re the only “literal” syntax in the language. We can therefore infer that the only kinds of runtime values must be closures. In an interpreter for the lambda calculus, closures might consist of the name of the introduced variable, the body of the lambda, & a map relating the names and values of any variables it closed over when constructed (again, we assume strict lexical scoping). There are no bits, bytes, words, pointers, or objects in the language’s semantics; only this runtime representation of lambdas.
 
-How do you _do_ anything when you don’t even have `true` and `false`? Lambdas and variables don’t _do_, they merely _are_, so that leaves application. When all you have is lambda application, everything looks like a lambda abstraction, so we’ll represent booleans using lambdas.
+Likewise, lambdas are also the only way to introduce variables—there’s no standard library, built-ins, primitives, prelude, or global environment to provide common definitions. We’re truly baking the apple pie from scratch.
+
+All of this raises the question: how do you _do_ anything when you don’t even have `true` and `false`? Lambdas and variables don’t _do_, they merely _are_, so that leaves application. When all you have is application, everything looks like a lambda abstraction, so we’ll represent booleans using lambdas.
 
 Of course, it’s not _just_ booleans we’re after; `true` and `false` aren’t much use without `and`, `or`, `not`, `if`, and all the rest. To be useful, our representation of booleans should therefore suffice to define these, as well. But how do you define `if` without using `if`? In a lazy language like Haskell, we might define `if` as a function something like so:
 
