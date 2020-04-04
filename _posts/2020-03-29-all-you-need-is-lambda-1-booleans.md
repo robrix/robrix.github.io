@@ -166,7 +166,7 @@ if = λ cond then else . cond then else
 >
 > [η-reduction]: https://en.wikipedia.org/wiki/Lambda_calculus#η-reduction
 
-This feels strangely like cheating: surely we’ve only moved the problem around. Now instead of `if` making the decision about which argument to return, we’ve deferred it to `cond`. But `if` and `cond` aren’t the same kind of thing, semantically; `if` takes a boolean and two other arguments and returns one of the latter, while `cond` _is_ a boolean—albeit evidently a boolean represented as a function. Let’s make that precise by writing down `if`’s type:
+This feels strangely like cheating: surely we’ve only moved the problem around. Now instead of `if` making the decision about which argument to return, we’ve deferred it to `cond`. But `if` and `cond` aren’t the same, semantically; `if` takes a boolean and two other arguments and returns one of the latter, while `cond` _is_ a boolean—albeit evidently a boolean represented as a function. Let’s make that precise by writing down `if`’s type:
 
 ```
 if : Bool -> a -> a -> a
