@@ -87,13 +87,6 @@ And finally, this table gives a side-by-side comparison of the syntax of the lam
   </tr>
 </table>
 
-
-## Unconditional λ
-
-Lambdas are the only way to introduce values—they’re the only “literal” syntax in the language. We can therefore infer that the only kinds of runtime values must be closures. In an interpreter for the lambda calculus, closures might consist of the name of the introduced variable, the body of the lambda, & a map relating the names and values of any variables it closed over when constructed (again, we assume strict lexical scoping).
-
-How do you _do_ anything when you don’t even have `true` and `false`? Lambdas and variables don’t _do_, they merely _are_, so that leaves application. When all you have is lambda application, everything looks like a lambda abstraction, so we’ll represent booleans using lambdas.
-
 > Aside: Due to the lambda calculus’s terseness, I will be making free use of several notational conveniences:
 >
 > 1. writing `λ x y . z` as an abbreviation of `λ x . λ y . z`.
@@ -108,6 +101,13 @@ How do you _do_ anything when you don’t even have `true` and `false`? Lambdas 
 > By convention, I will name types in `TitleCase` and both term and (local) type variables in `camelCase`.
 >
 > I will try to avoid pulling rabbits from hats too wantonly, but for now, I’ll ask you to suspend disbelief; I hope to revisit and justify some of these in later posts.
+
+
+## Unconditional λ
+
+Lambdas are the only way to introduce values—they’re the only “literal” syntax in the language. We can therefore infer that the only kinds of runtime values must be closures. In an interpreter for the lambda calculus, closures might consist of the name of the introduced variable, the body of the lambda, & a map relating the names and values of any variables it closed over when constructed (again, we assume strict lexical scoping).
+
+How do you _do_ anything when you don’t even have `true` and `false`? Lambdas and variables don’t _do_, they merely _are_, so that leaves application. When all you have is lambda application, everything looks like a lambda abstraction, so we’ll represent booleans using lambdas.
 
 Of course, it’s not _just_ booleans we’re after; `true` and `false` aren’t much use without `and`, `or`, `not`, `if`, and all the rest. To be useful, our representation of booleans should therefore suffice to define these, as well. But how do you define `if` without using `if`? In a lazy language like Haskell, we might define `if` as a function something like so:
 
