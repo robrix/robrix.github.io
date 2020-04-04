@@ -16,7 +16,7 @@ main = hakyll $ do
     route   idRoute
     compile compressCssCompiler
 
-  match "posts/*" $ do
+  match "_posts/*" $ do
     route $ setExtension "html"
     compile $ pandocCompiler
       >>= loadAndApplyTemplate "_layouts/post.html"    postCtx
