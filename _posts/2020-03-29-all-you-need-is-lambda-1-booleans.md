@@ -29,13 +29,7 @@ We’ll now review these in some detail; feel free to skip this section if you�
 
 Lambda abstractions (“lambdas,” “abstractions,” and “functions” will also be used interchangeably) introduce a function of a single variable.
 
-Abstractions are written `λ x . y`, for variable `x` and expression `y`, where `x` is now available as a bound variable in the body, and any enclosing definition of `x` is shadowed. (We shall assume strictly lexical scoping for the time being.) To illustrate:
-
-```
-λ x . λ x . x
-```
-
-Here, the variable `x` returned in the body of the inner lambda is that introduced by the inner lambda; the outer lambda’s variable is unused.
+Abstractions are written `λ x . y`, for variable `x` and expression `y`, where `x` is now available as a bound variable in the body, and any enclosing definition of `x` is shadowed (i.e. `λ x . λ x . x` = `λ x . λ y . y` ≠ `λ x . λ y . x`). (We shall assume strictly lexical scoping for the time being.)
 
 In Haskell, we would write `\ x -> y` instead; in JavaScript, `function (x) { return y }` or `(x) => y`.
 
