@@ -22,6 +22,8 @@ The lambda calculus’s austerity is extreme: you don’t even have booleans. Al
 
 3. Variables.
 
+We’ll now review these in some detail; feel free to skip this section if you’re already familiar with the lambda calculus.
+
 
 ### Lambda abstractions
 
