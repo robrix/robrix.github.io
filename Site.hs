@@ -48,5 +48,6 @@ postCtx
 defaultContext :: Context String
 defaultContext
   =  constField "siteTitle" "Antitypical"
+  <> constField "baseUrl" ""
   <> constField "siteUrl" "https://antitypical.com"
   <> Hakyll.defaultContext
