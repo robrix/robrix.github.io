@@ -49,6 +49,7 @@ postCtx :: Context String
 postCtx
   =  dateField "date" "%b %-d, %Y"
   <> teaserField "excerpt" "content"
+  <> field "minutes" (pure . show . max 1 . (`div` 180) . length . words . itemBody)
   <> defaultContext
 
 antitypicalContext :: Context String
