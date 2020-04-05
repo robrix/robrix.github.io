@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
-{% include head.html %}
-<body class="{% if site.animated %}animated fade-in-down{% endif %}">
+$partial("_includes/head.html")$
+<body>
   <div class="site-wrap">
-    {% include header.html %}
+    $partial("_includes/header.html")$
 
     <div class="post p2 p-responsive wrap" role="main">
       <div class="measure">
-        {{ content }}
+        $body$
       </div>
     </div>
   </div>
 
-  {% include footer.html %}
+  $partial("_includes/footer.html")$
 </body>
 </html>
