@@ -1,7 +1,8 @@
+cabal-version:      2.2
+
 name:               antitypical-com
 version:            0.1.0.0
 build-type:         Simple
-cabal-version:      >= 1.10
 
 executable site
   main-is:          Site.hs
