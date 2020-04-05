@@ -34,7 +34,8 @@ main = hakyll $ do
       posts <- recentFirst =<< loadAll "_posts/*"
       let indexCtx
             =  listField "posts" postCtx (return posts)
-            <> defaultContext
+            <> bodyField "body"
+            <> antitypicalContext
 
       getResourceBody
         >>= applyAsTemplate indexCtx
@@ -49,9 +50,13 @@ postCtx
   =  dateField "date" "%b %-d, %Y"
   <> defaultContext
 
-defaultContext :: Context String
-defaultContext
+antitypicalContext :: Context String
+antitypicalContext
   =  constField "siteTitle" "Antitypical"
   <> constField "baseUrl" ""
   <> constField "siteUrl" "https://antitypical.com"
+
+defaultContext :: Context String
+defaultContext
+  =  antitypicalContext
   <> Hakyll.defaultContext
