@@ -48,6 +48,16 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "_layouts/default.html" indexCtx
         >>= relativizeUrls
 
+  create ["feed.xml"] $ do
+    route idRoute
+    compile $ do
+      posts <- recentFirst =<< loadAllSnapshots "posts/*" "content"
+      let feedCtx
+            =  postCtx
+            <> bodyField "description"
+
+      renderAtom feedConfig feedCtx posts
+
   match "_layouts/*" $ compile templateBodyCompiler
   match "_includes/*" $ compile templateBodyCompiler
 
@@ -77,3 +87,12 @@ defaultContext :: Context String
 defaultContext
   =  antitypicalContext
   <> Hakyll.defaultContext
+
+feedConfig :: FeedConfiguration
+feedConfig = FeedConfiguration
+  { feedTitle       = "Antitypical"
+  , feedDescription = "Words by Rob Rix."
+  , feedAuthorName  = "Rob Rix"
+  , feedAuthorEmail = "rob.rix@me.com"
+  , feedRoot        = "https://antitypical.com"
+  }
