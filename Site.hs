@@ -72,6 +72,11 @@ main = hakyll $ do
       >>= relativizeUrls
       >>= cleanIndexUrls
 
+  version "redirects" $ createRedirects
+    [ ("swift/2015/07/01/pattern-matching-over-recursive-values-in-swift/index.html", "/posts/2015-07-01-pattern-matching-over-recursive-values-in-swift/")
+    , ("code/2014/04/20/on-the-order-of-neptune/index.html", "/posts/2014-04-20-on-the-order-of-neptune/")
+    ]
+
 postCtx :: Context String
 postCtx
   =  dateField "date" "%b %-d, %Y"
