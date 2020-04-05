@@ -3,8 +3,10 @@ module Main
 ( main
 ) where
 
+import           Data.List
 import           Hakyll hiding (defaultContext)
 import qualified Hakyll
+import           System.FilePath
 
 main :: IO ()
 main = hakyll $ do
@@ -26,12 +28,13 @@ main = hakyll $ do
       makeItem . unlines $ map itemBody csses
 
   match "posts/*" $ do
-    route $ setExtension "html"
+    route cleanRoute
     compile $ pandocCompiler
       >>= saveSnapshot "content"
       >>= loadAndApplyTemplate "_layouts/post.html"    postCtx
       >>= loadAndApplyTemplate "_layouts/default.html" postCtx
       >>= relativizeUrls
+      >>= cleanIndexUrls
 
   match "index.html" $ do
     route idRoute
@@ -46,6 +49,7 @@ main = hakyll $ do
         >>= applyAsTemplate indexCtx
         >>= loadAndApplyTemplate "_layouts/default.html" indexCtx
         >>= relativizeUrls
+        >>= cleanIndexUrls
 
   create ["feed.xml"] $ do
     route idRoute
@@ -66,6 +70,7 @@ main = hakyll $ do
       >>= applyAsTemplate defaultContext
       >>= loadAndApplyTemplate "_layouts/default.html" defaultContext
       >>= relativizeUrls
+      >>= cleanIndexUrls
 
 postCtx :: Context String
 postCtx
@@ -95,3 +100,24 @@ feedConfig = FeedConfiguration
   , feedAuthorEmail = "rob.rix@me.com"
   , feedRoot        = "https://antitypical.com"
   }
+
+cleanRoute :: Routes
+cleanRoute = customRoute (createIndexRoute . toFilePath)
+  where
+  createIndexRoute p = takeDirectory p </> takeBaseName p </> "index.html"
+
+cleanIndexUrls :: Item String -> Compiler (Item String)
+cleanIndexUrls = pure . fmap (withUrls cleanIndex)
+
+cleanIndexHtmls :: Item String -> Compiler (Item String)
+cleanIndexHtmls = pure . fmap (replaceAll pattern replacement)
+  where
+  pattern = "/index.html"
+  replacement = const "/"
+
+cleanIndex :: String -> String
+cleanIndex url
+  | idx `isSuffixOf` url = take (length url - length idx) url
+  | otherwise            = url
+  where
+  idx = "index.html"
