@@ -119,6 +119,7 @@ table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #333;
 }
+
 /* Remove top border from thead by default */
 table > caption + thead > tr:first-child > th,
 table > colgroup + thead > tr:first-child > th,
@@ -128,6 +129,7 @@ table > colgroup + thead > tr:first-child > td,
 table > thead:first-child > tr:first-child > td {
   border-top: 0;
 }
+
 /* Account for multiple tbody instances */
 table > tbody + tbody {
   border-top: 2px solid #333;
