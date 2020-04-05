@@ -27,7 +27,6 @@ main = hakyll $ do
       >>= loadAndApplyTemplate "_layouts/default.html" postCtx
       >>= relativizeUrls
 
-
   match "index.html" $ do
     route idRoute
     compile $ do
