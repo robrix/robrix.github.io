@@ -99,41 +99,40 @@ table {
   max-width: 100%;
   margin-bottom: 1.5;
   font-size: 1.125rem;
-  // Cells
-  > thead,
-  > tbody,
-  > tfoot {
-    > tr {
-      > th,
-      > td {
-        padding: 12px;
-        line-height: 1.2;
-        vertical-align: top;
-        border-top: 1px solid #333;
-      }
-    }
-  }
-  // Bottom align for column headings
-  > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #333;
-  }
-  // Remove top border from thead by default
-  > caption + thead,
-  > colgroup + thead,
-  > thead:first-child {
-    > tr:first-child {
-      > th,
-      > td {
-        border-top: 0;
-      }
-    }
-  }
-  // Account for multiple tbody instances
-  > tbody + tbody {
-    border-top: 2px solid #333;
-  }
 }
+
+/* Cells */
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+  padding: 12px;
+  line-height: 1.2;
+  vertical-align: top;
+  border-top: 1px solid #333;
+}
+
+/* Bottom align for column headings */
+table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #333;
+}
+/* Remove top border from thead by default */
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+/* Account for multiple tbody instances */
+table > tbody + tbody {
+  border-top: 2px solid #333;
+}
+
 
 .related-post-title {
   border-bottom: thin solid #f3f3f3;
@@ -162,7 +161,7 @@ table {
 }
 
 .post-footer {
-  @extend .italic;
+  font-style: italic;
 
   margin-top: .75rem;
   text-align: center;
