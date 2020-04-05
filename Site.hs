@@ -16,9 +16,15 @@ main = hakyll $ do
     route   idRoute
     compile copyFileCompiler
 
-  match "css/*" $ do
+  match "_css/*" $ do
     route   idRoute
     compile compressCssCompiler
+
+  create ["css/stylesheet.css"] $ do
+    route idRoute
+    compile $ do
+      csses <- loadAll "_css/*.css"
+      makeItem . unlines $ map itemBody csses
 
   match "posts/*" $ do
     route $ setExtension "html"
