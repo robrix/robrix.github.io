@@ -23,6 +23,7 @@ main = hakyll $ do
   match "_posts/*" $ do
     route $ setExtension "html"
     compile $ pandocCompiler
+      >>= saveSnapshot "content"
       >>= loadAndApplyTemplate "_layouts/post.html"    postCtx
       >>= loadAndApplyTemplate "_layouts/default.html" postCtx
       >>= relativizeUrls
@@ -47,6 +48,7 @@ main = hakyll $ do
 postCtx :: Context String
 postCtx
   =  dateField "date" "%b %-d, %Y"
+  <> teaserField "excerpt" "content"
   <> defaultContext
 
 antitypicalContext :: Context String
