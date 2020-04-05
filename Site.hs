@@ -27,6 +27,10 @@ main = hakyll $ do
       csses <- loadAll "_css/*.css"
       makeItem . unlines $ map itemBody csses
 
+  create ["CNAME"] $ do
+    route idRoute
+    compile $ makeItem "antitypical.com"
+
   match "posts/*" $ do
     route cleanRoute
     compile $ pandocCompiler
