@@ -20,7 +20,7 @@ main = hakyll $ do
     route   idRoute
     compile compressCssCompiler
 
-  match "_posts/*" $ do
+  match "posts/*" $ do
     route $ setExtension "html"
     compile $ pandocCompiler
       >>= saveSnapshot "content"
@@ -31,7 +31,7 @@ main = hakyll $ do
   match "index.html" $ do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll "_posts/*"
+      posts <- recentFirst =<< loadAll "posts/*"
       let indexCtx
             =  listField "posts" postCtx (return posts)
             <> bodyField "body"

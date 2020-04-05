@@ -7,6 +7,8 @@ categories: code
 
 [Inscribe][] the [orbit of Neptune][] in a square.
 
+<!--more-->
+
 Now, take a pair of integers as _x_ and _y_ coordinates across this square. Their size in bits determines the resolution at which they can measure this square.
 
 An integer of _n_ bits can hold any of 2_ⁿ_ distinct values. 32-bit integers, therefore, would divide the square into a grid of 2³² points.
