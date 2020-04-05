@@ -3,7 +3,8 @@ module Main
 ( main
 ) where
 
-import Hakyll
+import           Hakyll hiding (defaultContext)
+import qualified Hakyll
 
 main :: IO ()
 main = hakyll $ do
@@ -43,3 +44,9 @@ postCtx :: Context String
 postCtx
   =  dateField "date" "%B %e, %Y"
   <> defaultContext
+
+defaultContext :: Context String
+defaultContext
+  =  constField "siteTitle" "Antitypical"
+  <> constField "siteUrl" "https://antitypical.com"
+  <> Hakyll.defaultContext
