@@ -53,6 +53,8 @@ postCtx
 antitypicalContext :: Context String
 antitypicalContext
   =  constField "siteTitle" "Antitypical"
+  <> constField "siteAuthor" "Rob Rix"
+  <> constField "siteDescription" "Words by Rob Rix."
   <> constField "baseUrl" ""
   <> constField "siteUrl" "https://antitypical.com"
 
