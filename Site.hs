@@ -51,6 +51,13 @@ main = hakyll $ do
   match "_layouts/*" $ compile templateBodyCompiler
   match "_includes/*" $ compile templateBodyCompiler
 
+  match "404.html" $ do
+    route idRoute
+    compile $ getResourceBody
+      >>= applyAsTemplate defaultContext
+      >>= loadAndApplyTemplate "_layouts/default.html" defaultContext
+      >>= relativizeUrls
+
 postCtx :: Context String
 postCtx
   =  dateField "date" "%b %-d, %Y"
