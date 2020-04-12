@@ -67,30 +67,35 @@ _e_ **:=** `λ` _x_ `.` _e_ **|** _e_ _e_ **|** _x_ **|** (_e_)
 And finally, this table gives a side-by-side comparison of the syntax of the lambda calculus with the corresponding syntax in Haskell & JavaScript:
 
 <table>
+  <caption>Syntax of the lambda calculus, Haskell, & JavaScript</caption>
   <thead>
-    <td></td>
-    <td>Lambda calculus</td>
-    <td>Haskell</td>
-    <td>JavaScript</td>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Lambda calculus</th>
+      <th scope="col">Haskell</th>
+      <th scope="col">JavaScript</th>
+    </tr>
   </thead>
-  <tr>
-    <td>Abstraction</td>
-    <td><code>λ x . y</code></td>
-    <td><code>\ x -> y</code></td>
-    <td><code>(x) => y</code></td>
-  </tr>
-  <tr>
-    <td>Application</td>
-    <td><code>f x</code></td>
-    <td><code>f x</code></td>
-    <td><code>f(x)</code></td>
-  </tr>
-  <tr>
-    <td>Variable</td>
-    <td><code>x</code></td>
-    <td><code>x</code></td>
-    <td><code>x</code></td>
-  </tr>
+  <tbody>
+    <tr>
+      <th scope="row">Abstraction</th>
+      <td><code>λ x . y</code></td>
+      <td><code>\\ x -> y</code></td>
+      <td><code>(x) => y</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Application</th>
+      <td><code>f x</code></td>
+      <td><code>f x</code></td>
+      <td><code>f(x)</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Variable</th>
+      <td><code>x</code></td>
+      <td><code>x</code></td>
+      <td><code>x</code></td>
+    </tr>
+  </tbody>
 </table>
 
 <aside>
