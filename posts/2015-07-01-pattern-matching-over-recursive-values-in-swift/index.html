@@ -1,21 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <title>Antitypical</title>
-    <link href="https://antitypical.com/feed.xml" rel="self" />
-    <link href="https://antitypical.com" />
-    <id>https://antitypical.com/feed.xml</id>
-    <author>
-        <name>Rob Rix</name>
-        <email>rob.rix@me.com</email>
-    </author>
-    <updated>2015-07-01T02:29:44Z</updated>
-    <entry>
-    <title>Pattern matching over recursive values in Swift</title>
-    <link href="https://antitypical.com/posts/2015-07-01-pattern-matching-over-recursive-values-in-swift/index.html" />
-    <id>https://antitypical.com/posts/2015-07-01-pattern-matching-over-recursive-values-in-swift/index.html</id>
-    <published>2015-07-01T02:29:44Z</published>
-    <updated>2015-07-01T02:29:44Z</updated>
-    <summary type="html"><![CDATA[<p>Swift’s value types are <em>almost</em> able to represent algebraic data types. Unfortunately, they fall short of the mark when it comes to recursion, and while they’ve announced that their solution, indirect <code>case</code>s, will ship in a later build of Swift 2, there’s still reason to want them today.</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pattern matching over recursive values in Swift – Antitypical</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Words by Rob Rix.">
+    <meta name="author" content="Rob Rix">
+    <meta name="keywords" content="swift">
+    <link rel="canonical" href="https://antitypical.com/posts/2015-07-01-pattern-matching-over-recursive-values-in-swift/">
+    <link rel="alternate" type="application/rss+xml" title="Antitypical" href="https://antitypical.com/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/stylesheet.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css">
+
+    <link rel="mask-icon" type="image/svg+xml" href="https://antitypical.com/icon.svg">
+    <link rel="icon" type="image/svg+xml" href="https://antitypical.com/icon.svg" sizes="any">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="https://antitypical.com/icon-180.png" sizes="180x180">
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Pattern matching over recursive values in Swift">
+    <meta property="og:description" content="Words by Rob Rix.">
+    <meta property="og:url" content="https://antitypical.com/posts/2015-07-01-pattern-matching-over-recursive-values-in-swift/index.html">
+    <meta property="og:site_name" content="Antitypical">
+</head>
+
+<body>
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="https://antitypical.com" class="site-title">Antitypical</a>
+      <nav class="site-nav right">
+        <a href="https://github.com/robrix">GitHub</a>
+<a href="https://twitter.com/rob_rix">Twitter</a>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        <div class="post-header mb2">
+  <h1>Pattern matching over recursive values in Swift</h1>
+  <span class="post-meta">Jul 1, 2015</span><br>
+  
+  <span class="post-meta small">11 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>Swift’s value types are <em>almost</em> able to represent algebraic data types. Unfortunately, they fall short of the mark when it comes to recursion, and while they’ve announced that their solution, indirect <code>case</code>s, will ship in a later build of Swift 2, there’s still reason to want them today.</p>
 <!--more-->
 <p>The standard solution is to use <code>Box&lt;T&gt;</code>, a function, or some other reference type to manually force an indirection for the recursive cases:</p>
 <pre class="swift"><code>enum Expression {
@@ -77,12 +124,12 @@ struct Fix&lt;F: Fixable&gt; {
 struct Fix&lt;F: Fixable where F.Recur == Fix&gt; {
 	let body: F
 }
-// =&gt; fish: Job 1, &#39;swift boom.swift&#39; terminated by signal SIGSEGV (Address boundary error)</code></pre>
+// =&gt; fish: Job 1, 'swift boom.swift' terminated by signal SIGSEGV (Address boundary error)</code></pre>
 <p>Fortunately, while Swift can’t express a <em>generic</em> <code>Fix</code> over any arbitrary fixable type, it <em>can</em> express a fixed point of <code>Expression</code> <em>specifically</em>. Let’s call this new type <code>Term</code>. Once again, it’s a <code>struct</code>, and its body holds an <code>Expression</code> instantiated to itself. This one errors out, but it’s clear we’re getting closer:</p>
 <pre class="swift"><code>struct Term {
 	let body: Expression&lt;Term&gt;
 }
-// =&gt; error: recursive value type &#39;Term&#39; is not allowed</code></pre>
+// =&gt; error: recursive value type 'Term' is not allowed</code></pre>
 <p><code>Term</code> is recursive because it holds an <code>Expression</code> which in turn holds (in some of its cases) a <code>Recur</code>, which we’ve instantiated to <code>Term</code>. We need to reintroduce an indirection via a reference type like <code>Box&lt;T&gt;</code> or a function.</p>
 <p>Haven’t we just moved the problem around again? Well, sort of. Certainly we still need to box the values, but now we can do it in one and only one place—<code>Term</code>—and additionally we can make it <code>private</code>, avoiding exposing our implementation details to our consumers. Our constructor and getter can handle the boxing and unboxing for us:</p>
 <pre class="swift"><code>struct Term {
@@ -145,7 +192,7 @@ default:
 <p>…but we can’t! To implement a function of type <code>Expression&lt;Recur&gt; -&gt; Expression&lt;Expression&lt;Recur&gt;&gt;</code> using <code>map</code>, we’d need a function of type <code>Recur -&gt; Expression&lt;Recur&gt;</code> to pass to it. There is no useful function that can do this; without knowing a <em>specific</em> (and actually recursive) type for <code>Recur</code>, we have no way to recover the <code>Expression&lt;Recur&gt;</code> that we want to return.</p>
 <p>Instead, let’s use a constrained extension to limit ourselves to <code>Expression&lt;Term&gt;</code>. Unfortunately it’s not <em>quite</em> that simple, because Swift, for reasons beyond my knowledge (<a href="http://www.openradar.appspot.com/21512469">rdar://21512469</a>), forbids the obvious thing:</p>
 <pre class="swift"><code>extension Expression where Recur == Term { … }
-// =&gt; error: same-type requirement makes generic parameter &#39;Recur&#39; non-generic</code></pre>
+// =&gt; error: same-type requirement makes generic parameter 'Recur' non-generic</code></pre>
 <p>We’ll work around this using a protocol, <code>FixpointType</code>:</p>
 <pre class="swift"><code>protocol FixpointType {
 	typealias Fixed
@@ -185,22 +232,27 @@ case let .Application(.Abstraction(variable, body), argument):
 default:
 	// throw an error
 }</code></pre>
-<p><a href="https://gist.github.com/robrix/4696ec3c117aac97ef0b">Full code listing</a>.</p>]]></summary>
-</entry>
-<entry>
-    <title>On the Order of Neptune</title>
-    <link href="https://antitypical.com/posts/2014-04-20-on-the-order-of-neptune/index.html" />
-    <id>https://antitypical.com/posts/2014-04-20-on-the-order-of-neptune/index.html</id>
-    <published>2014-04-20T04:20:00Z</published>
-    <updated>2014-04-20T04:20:00Z</updated>
-    <summary type="html"><![CDATA[<p><a href="http://en.wikipedia.org/wiki/Inscribed_figure">Inscribe</a> the <a href="http://en.wikipedia.org/wiki/Neptune#Orbit_and_rotation">orbit of Neptune</a> in a square.</p>
-<!--more-->
-<p>Now, take a pair of integers as <em>x</em> and <em>y</em> coordinates across this square. Their size in bits determines the resolution at which they can measure this square.</p>
-<p>An integer of <em>n</em> bits can hold any of 2<em>ⁿ</em> distinct values. 32-bit integers, therefore, would divide the square into a grid of 2³² points.</p>
-<p>At 32 bits of resolution, adjacent coordinates, e.g. …<code>0101</code> and …<code>0110</code>, are about a kilometre apart on our square.</p>
-<p>If we double the size of our integers, we now divide the square into a grid of 2⁶⁴ points.</p>
-<p>At 64 bits of resolution, still covering the <em>entire span of the orbit of Neptune</em>, adjacent coordinates are about 0.24µm apart, or about 1% of the width of <a href="http://hypertextbook.com/facts/1999/BrianLey.shtml">an average human hair</a>.</p>
-<p>And famously, populating a 128-bit address space would require us to <a href="https://blogs.oracle.com/bonwick/entry/128_bit_storage_are_you">boil the oceans</a>.</p>]]></summary>
-</entry>
+<p><a href="https://gist.github.com/robrix/4696ec3c117aac97ef0b">Full code listing</a>.</p>
+</article>
 
-</feed>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure left">
+      <small>
+        Words by <a href="https://github.com/robrix">Rob Rix</a>
+      </small>
+    </div>
+    <div class="measure right">
+      <small>
+        Theme <a href="https://github.com/johnotander/pixyll">Pixyll</a> by <a href="http://johnotander.com">John Otander</a>
+      </small>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
