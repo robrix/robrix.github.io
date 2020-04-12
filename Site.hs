@@ -29,7 +29,7 @@ main = hakyll $ do
 
   create ["CNAME"] $ do
     route idRoute
-    compile $ makeItem "antitypical.com"
+    compile $ makeItem ("antitypical.com" :: String)
 
   match "posts/*" $ do
     route cleanRoute
