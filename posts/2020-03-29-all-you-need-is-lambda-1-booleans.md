@@ -58,7 +58,11 @@ Since the only available variables are those bound by enclosing lambdas, we can 
 
 In quasi-BNF, the grammar for the lambda calculus is extremely minimal:
 
-> _e_ **:=** `λ` _x_ `.` _e_ **|** _e_ _e_ **|** _x_ **|** (_e_)
+<figure class="center">
+
+_e_ **:=** `λ` _x_ `.` _e_ **|** _e_ _e_ **|** _x_ **|** (_e_)
+
+</figure>
 
 And finally, this table gives a side-by-side comparison of the syntax of the lambda calculus with the corresponding syntax in Haskell & JavaScript:
 
