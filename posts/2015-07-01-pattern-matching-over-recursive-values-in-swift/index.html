@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pattern matching over recursive values in Swift – Antitypical</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Words by Rob Rix.">
+    <meta name="author" content="Rob Rix">
+    <meta name="keywords" content="swift">
+    <link rel="canonical" href="https://antitypical.com/posts/2015-07-01-pattern-matching-over-recursive-values-in-swift/">
+    <link rel="alternate" type="application/rss+xml" title="Antitypical" href="https://antitypical.com/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/stylesheet.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css">
+
+    <link rel="mask-icon" type="image/svg+xml" href="https://antitypical.com/icon.svg">
+    <link rel="icon" type="image/svg+xml" href="https://antitypical.com/icon.svg" sizes="any">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="https://antitypical.com/icon-180.png" sizes="180x180">
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Pattern matching over recursive values in Swift">
+    <meta property="og:description" content="Words by Rob Rix.">
+    <meta property="og:url" content="https://antitypical.com/posts/2015-07-01-pattern-matching-over-recursive-values-in-swift/index.html">
+    <meta property="og:site_name" content="Antitypical">
+</head>
+
+<body>
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="https://antitypical.com" class="site-title">Antitypical</a>
+      <nav class="site-nav right">
+        <a href="https://github.com/robrix">GitHub</a>
+<a href="https://twitter.com/rob_rix">Twitter</a>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        <div class="post-header mb2">
+  <h1>Pattern matching over recursive values in Swift</h1>
+  <span class="post-meta">Jul 1, 2015</span><br>
+  
+  <span class="post-meta small">11 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>Swift’s value types are <em>almost</em> able to represent algebraic data types. Unfortunately, they fall short of the mark when it comes to recursion, and while they’ve announced that their solution, indirect <code>case</code>s, will ship in a later build of Swift 2, there’s still reason to want them today.</p>
+<!--more-->
+<p>The standard solution is to use <code>Box&lt;T&gt;</code>, a function, or some other reference type to manually force an indirection for the recursive cases:</p>
+<pre class="swift"><code>enum Expression {
+	case Variable(String)
+	case Abstraction(String, Box&lt;Expression&gt;)
+	case Application(Box&lt;Expression&gt;, Box&lt;Expression&gt;)
+}</code></pre>
+<p>Unfortunately, this has a few significant warts:</p>
+<ul>
+<li>Clients of the API have to know about <code>Box&lt;T&gt;</code>; it can’t be a private implementation detail. This can in turn lead to ambiguities if APIs aren’t using a common dependency to provide the <code>Box&lt;T&gt;</code> type. Further, they have to box and unbox the values themselves.</li>
+<li>Pattern matching cannot be performed recursively in a single step.</li>
+</ul>
+<p>Indirect cases will (I believe) resolve both of these issues, but there’s another solution we can apply today which solves both <em>and</em> provides a significant increase in the expressiveness of the type, at the expense of introducing a (useful) intermediary type.</p>
+<p>To begin with, note that in Swift 2, it’s no longer necessary to box elements of parameterized types in enum cases. This suggests a straightforward refactoring: replace <code>Expression</code>’s recursive instances with elements of a type parameter:</p>
+<pre class="swift"><code>enum Expression&lt;Recur&gt; {
+	case Variable(String)
+	case Abstraction(String, Recur)
+	case Application(Recur, Recur)
+}</code></pre>
+<p>Now we’ve got an <code>Expression</code> type that can be instantiated with a given type parameter to recur. But if we try to describe the type of a recursive instance of it, we immediately run into a wall:</p>
+<pre class="swift"><code>let expression: Expression&lt;Expression&lt;Expression&lt;…&gt;&gt;&gt;</code></pre>
+<p>It would seem we’ve simply moved the problem from the <code>case</code>s to the type, and can now see more clearly why Swift doesn’t allow <code>case</code>s to recur directly: it amounts to an infinite type. Some indirection is required, <em>somewhere</em>, and by allowing the programmer to place it (whether by explicit boxing or an <code>indirect</code> keyword), the performance implications are somewhat under their control, rather than the compiler’s.</p>
+<p>We need some way to tie <code>Expression</code> into a knot (as it were), looping back around into itself, but without requiring us to write out an infinite list of nested type parameters. If we were writing a function instead of a type, we could use the <a href="https://github.com/robrix/Prelude#fix"><code>fix</code></a> function, which computes the <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Strict_fixed_point_combinator">least fixed point</a> of a function, to lift a nonrecursive function into a recursive one:</p>
+<pre class="swift"><code>let factorial = fix { recur in
+    { n in n &gt; 0 ? n * recur(n - 1) : 1 }
+}</code></pre>
+<p>Instead of making a recursive function, we make a nonrecursive function taking a function as a parameter, and return an inner function which calls through it in order to recur. <code>fix</code> calls the outer function with a closure which calls back into <code>fix</code>, tying the knot. Is there an analogous fixed point for types? If there were, we would expect it to have the same overall shape: it would apply a type constructor like <code>Expression&lt;T&gt;</code> to a type which itself provides the connection back to <code>Expression&lt;T&gt;</code>.</p>
+<p>I’ll let you in on a secret: types are functions, too. <code>Expression&lt;T&gt;</code> is actually a function, abstracted over a parameter <code>T</code> to a concrete instance of <code>Expression</code> with <code>Recur</code> instantiated to <code>T</code>. And it turns out that, like other functions, types also have fixed points.</p>
+<p>In Haskell (the inevitable destination of any discussion of fixed points in programming languages), we could write this <code>Fix</code> type of a parameter type <code>f</code> like so:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">data</span> <span class="dt">Fix</span> f <span class="ot">=</span> <span class="dt">Fix</span> (f (<span class="dt">Fix</span> f))</span></code></pre></div>
+<p>This is Haskell notation approaching its densest form, so let’s compare it with how <code>fix</code> (the least fixed point of functions) is defined in Swift:</p>
+<pre class="swift"><code>public func fix&lt;A, B&gt;(f: (A -&gt; B) -&gt; A -&gt; B) -&gt; A -&gt; B {
+	return { f(fix(f))($0) }
+}</code></pre>
+<p>The <code>fix</code> function applies <code>f</code>, the function parameter passed to <code>fix</code>, to the result of applying <code>fix</code> recursively to <code>f</code> again. It wraps this up in another closure to avoid infinite looping.</p>
+<p>Analogously, the <code>Fix</code> type applies <code>f</code>, the type parameter passed to <code>fix</code>, to the result of applying <code>Fix</code> recursively to <code>f</code> again. Haskell is lazily-evaluated, so it doesn’t need to wrap the lot of it up again.</p>
+<p>Let’s try writing <code>Fix</code> in Swift. It only has one <code>case</code>, so it can be a struct instead of an <code>enum</code>.</p>
+<pre class="swift"><code>struct Fix {}</code></pre>
+<p>Now it needs to have a type parameter, <code>F</code>.</p>
+<pre class="swift"><code>struct Fix&lt;F&gt; {}</code></pre>
+<p>So far so good. Now we need to apply <code>F</code> to itself, recursively. But doesn’t that cause the infinite sequence of nested types again? <code>Fix&lt;F&lt;Fix&lt;F&lt;…&gt;&gt;&gt;&gt;</code> is no improvement on <code>Expression&lt;Expression&lt;Expression&lt;…&gt;&gt;&gt;</code>.</p>
+<p>Fortunately, Swift allows you to refer to a type without reference to its type parameters in its body:</p>
+<pre class="swift"><code>struct Fix&lt;F&gt; {
+	let body: F&lt;Fix&gt;
+}</code></pre>
+<p>Unfortunately, while <code>Fix</code> is a complete reference inside the body of this type, Swift doesn’t know that <code>F</code> can accept type parameters, and thus rejects this. We can be sneaky and use a <code>protocol</code> with a <code>typealias</code> to work around this:</p>
+<pre class="swift"><code>protocol Fixable {
+	typealias Recur
+}
+
+struct Fix&lt;F: Fixable&gt; {
+	let body: F
+}</code></pre>
+<p>But now when we add the constraint to tie <code>F</code> into a knot, we run into a new issue: <code>swiftc</code> crashes. (<a href="http://www.openradar.appspot.com/20000145">rdar://20000145</a>).</p>
+<pre class="swift"><code>protocol Fixable {
+	typealias Recur
+}
+
+struct Fix&lt;F: Fixable where F.Recur == Fix&gt; {
+	let body: F
+}
+// =&gt; fish: Job 1, 'swift boom.swift' terminated by signal SIGSEGV (Address boundary error)</code></pre>
+<p>Fortunately, while Swift can’t express a <em>generic</em> <code>Fix</code> over any arbitrary fixable type, it <em>can</em> express a fixed point of <code>Expression</code> <em>specifically</em>. Let’s call this new type <code>Term</code>. Once again, it’s a <code>struct</code>, and its body holds an <code>Expression</code> instantiated to itself. This one errors out, but it’s clear we’re getting closer:</p>
+<pre class="swift"><code>struct Term {
+	let body: Expression&lt;Term&gt;
+}
+// =&gt; error: recursive value type 'Term' is not allowed</code></pre>
+<p><code>Term</code> is recursive because it holds an <code>Expression</code> which in turn holds (in some of its cases) a <code>Recur</code>, which we’ve instantiated to <code>Term</code>. We need to reintroduce an indirection via a reference type like <code>Box&lt;T&gt;</code> or a function.</p>
+<p>Haven’t we just moved the problem around again? Well, sort of. Certainly we still need to box the values, but now we can do it in one and only one place—<code>Term</code>—and additionally we can make it <code>private</code>, avoiding exposing our implementation details to our consumers. Our constructor and getter can handle the boxing and unboxing for us:</p>
+<pre class="swift"><code>struct Term {
+	init(body: Expression&lt;Term&gt;) {
+		boxedBody = Box(body)
+	}
+
+	var body: Expression&lt;Term&gt; {
+		return boxedBody.value
+	}
+
+	private let boxedBody: Box&lt;Expression&lt;Term&gt;&gt;
+}</code></pre>
+<p>That’s a pretty decent reason to use this approach right now (if you can’t wait for indirect cases). But it only solves one of the problems we mentioned initially; we still can’t pattern match recursively. For example, if we wanted to evaluate application expressions, we would want to write something like this:</p>
+<pre class="swift"><code>switch expression {
+case let .Application(.Abstraction(variable, body), argument):
+	// substitute argument for variable in body
+default:
+	// throw an error
+}</code></pre>
+<p>But because of the <code>Term</code> and <code>Box</code>, neither of which can be matched through, we would have to write this instead:</p>
+<pre class="swift"><code>switch expression {
+case let .Application(abstraction, argument):
+	switch abstraction.body {
+	case let .Abstraction(variable, body):
+		// substitute argument for variable in body
+	default:
+		break
+	}
+	fallthrough
+default:
+	// throw an error
+}</code></pre>
+<p>If we could flatten out the type, we could pattern match. Flattening out the type would put us straight back into the infinite sequence of <code>Expression&lt;…&gt;</code>s; but maybe we can only <em>partially</em> flatten it?</p>
+<p>We don’t need to pattern match against arbitrarily-nested terms for this example; we just want to match against a single nested layer. Therefore, we really only need to flatten out a single step of the recursive type. We’d need to apply this for each appearance of <code>Recur</code> in <code>Expression</code>, replacing it with <code>Expression&lt;Recur&gt;</code>.</p>
+<p>Replacing each instance of a type parameter with an instance of another type parameter sounds like a job for a <code>map</code> function. In Haskell, this function is known as <code>fmap</code>, for functor map, where functors are a kind of mathematical object with some specific shape, and where map preserves this shape. For example, the <code>Array.map</code> method, given some function <code>transform</code>, produces a new array with the same number of elements and in the same order (i.e. preserving the structure of the array), but with each element replaced by applying <code>transform</code>. Array, then, is a functor; and it turns out, so is our <code>Expression</code> tree.</p>
+<p>In our case, <code>map</code> should replace the <code>Recur</code> instances with the result of applying some function to them. There are no instances of <code>Recur</code> in <code>Variable</code> cases, so it should just re-wrap the variable name in the resulting type; the <code>Abstraction</code> and <code>Application</code> cases will apply <code>transform</code>:</p>
+<pre class="swift"><code>enum Expression&lt;Recur&gt; {
+	…
+	func map&lt;Other&gt;(transform: Recur -&gt; Other) -&gt; Expression&lt;Other&gt; {
+		switch self {
+		case let .Variable(x):
+			return .Variable(x)
+		case let .Abstraction(x, body):
+			return .Abstraction(x, transform(body))
+		case let .Application(a, b):
+			return .Application(transform(a), transform(b))
+		}
+	}
+}</code></pre>
+<p>We can use this to implement <a href="http://patrickthomson.ghost.io/an-introduction-to-recursion-schemes/">recursion schemes</a>, improving our confidence in recursive functions over the type, but for now we’ll limit ourselves to enabling pattern matching. Given an <code>Expression&lt;Recur&gt;</code>, we want to replace each <code>Recur</code> with its recursive instantiation, <code>Expression&lt;Recur&gt;</code>. Otherwise put, we need a function of type <code>Expression&lt;Recur&gt; -&gt; Expression&lt;Expression&lt;Recur&gt;&gt;</code>. Let’s implement this as a method, and call it destructure (since it decomposes the structure of the type):</p>
+<pre class="swift"><code>enum Expression&lt;Recur&gt; {
+	…
+	func destructure() -&gt; Expression&lt;Expression&lt;Recur&gt;&gt; {
+		return map {
+			// what do we do here?
+		}
+	}
+}</code></pre>
+<p>…but we can’t! To implement a function of type <code>Expression&lt;Recur&gt; -&gt; Expression&lt;Expression&lt;Recur&gt;&gt;</code> using <code>map</code>, we’d need a function of type <code>Recur -&gt; Expression&lt;Recur&gt;</code> to pass to it. There is no useful function that can do this; without knowing a <em>specific</em> (and actually recursive) type for <code>Recur</code>, we have no way to recover the <code>Expression&lt;Recur&gt;</code> that we want to return.</p>
+<p>Instead, let’s use a constrained extension to limit ourselves to <code>Expression&lt;Term&gt;</code>. Unfortunately it’s not <em>quite</em> that simple, because Swift, for reasons beyond my knowledge (<a href="http://www.openradar.appspot.com/21512469">rdar://21512469</a>), forbids the obvious thing:</p>
+<pre class="swift"><code>extension Expression where Recur == Term { … }
+// =&gt; error: same-type requirement makes generic parameter 'Recur' non-generic</code></pre>
+<p>We’ll work around this using a protocol, <code>FixpointType</code>:</p>
+<pre class="swift"><code>protocol FixpointType {
+	typealias Fixed
+}
+
+extension Term: FixpointType {
+	typealias Fixed = Expression&lt;Term&gt;
+}</code></pre>
+<p>Now we can constrain the extension to <code>FixpointType</code> like we want:</p>
+<pre class="swift"><code>extension Expression where Recur : FixpointType, Recur.Fixed == Expression&lt;Recur&gt; {
+	func destructure() -&gt; Expression&lt;Expression&lt;Recur&gt;&gt; {
+		return map {
+			// what do we do here?
+		}
+	}
+}</code></pre>
+<p>There are two problems remaining with this implementation:</p>
+<ol type="1">
+<li>We still don’t have a way to get an <code>Expression&lt;Recur&gt;</code> from a <code>Recur</code>.</li>
+<li><code>swiftc</code> crashes. (<a href="http://openradar.appspot.com/21328632">rdar://21328632</a>)</li>
+</ol>
+<p>Fortunately, we can resolve the former by adding a property to the protocol:</p>
+<pre class="swift"><code>protocol FixpointType {
+	typealias Fixed
+	var body: Fixed { get }
+}</code></pre>
+<p>With that out of the way, we can work around the crash by loosening the constraints slightly; we don’t actually require that <code>Recur.Fixed</code> be recursive; we just need to be able to name it. Now we can give the return type of <code>destructure</code> as <code>Expression&lt;Recur.Fixed&gt;</code>, and implement it in the obvious way, mapping each term to its body:</p>
+<pre class="swift"><code>extension Expression where Recur : FixpointType {
+	func destructure() -&gt; Expression&lt;Recur.Fixed&gt; {
+		return map { term in term.body }
+	}
+}</code></pre>
+<p>Now we can use <code>destructure</code> to implement evaluation of well-formed <code>.Application</code> expressions, using exactly the pattern matching we wanted in the first place:</p>
+<pre class="swift"><code>switch expression.destructure() {
+case let .Application(.Abstraction(variable, body), argument):
+	// substitute argument for variable in body
+default:
+	// throw an error
+}</code></pre>
+<p><a href="https://gist.github.com/robrix/4696ec3c117aac97ef0b">Full code listing</a>.</p>
+</article>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure left">
+      <small>
+        Words by <a href="https://github.com/robrix">Rob Rix</a>
+      </small>
+    </div>
+    <div class="measure right">
+      <small>
+        Theme <a href="https://github.com/johnotander/pixyll">Pixyll</a> by <a href="http://johnotander.com">John Otander</a>
+      </small>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
