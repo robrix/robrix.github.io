@@ -130,7 +130,7 @@ Of course, it’s not _just_ booleans we’re after; `true` and `false` aren’t
 
 ```haskell
 if_ :: Bool -> a -> a -> a
-if_ cond  then_ else_ = if cond then then_ else else_
+if_ cond then_ else_ = if cond then then_ else else_
 ```
 
 In a strict language like JavaScript, we’d instead take functions for the alternatives:
