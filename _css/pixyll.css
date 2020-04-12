@@ -97,43 +97,45 @@ body {
 table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 1.5;
+  margin-bottom: 1em;
   font-size: 1.125rem;
-  // Cells
-  > thead,
-  > tbody,
-  > tfoot {
-    > tr {
-      > th,
-      > td {
-        padding: 12px;
-        line-height: 1.2;
-        vertical-align: top;
-        border-top: 1px solid #333;
-      }
-    }
-  }
-  // Bottom align for column headings
-  > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #333;
-  }
-  // Remove top border from thead by default
-  > caption + thead,
-  > colgroup + thead,
-  > thead:first-child {
-    > tr:first-child {
-      > th,
-      > td {
-        border-top: 0;
-      }
-    }
-  }
-  // Account for multiple tbody instances
-  > tbody + tbody {
-    border-top: 2px solid #333;
-  }
+  border-collapse: collapse;
 }
+
+/* Cells */
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+  padding: 12px;
+  line-height: 1.2;
+  vertical-align: top;
+  border-top: 1px solid #aaa;
+}
+
+/* Bottom align for column headings */
+table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #aaa;
+}
+
+/* Remove top border from thead by default */
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+
+/* Account for multiple tbody instances */
+table > tbody + tbody {
+  border-top: 2px solid #aaa;
+}
+
 
 .related-post-title {
   border-bottom: thin solid #f3f3f3;
@@ -162,7 +164,7 @@ table {
 }
 
 .post-footer {
-  @extend .italic;
+  font-style: italic;
 
   margin-top: .75rem;
   text-align: center;
@@ -487,7 +489,7 @@ h6,
 }
 
 .share-page {
-  font-size:  0.65em;  
+  font-size:  0.65em;
   padding: 2em 0 0 0;
 }
 
@@ -511,67 +513,4 @@ footer .wrap {
 footer:after {
   content: "";
   display: block;
-}
-
-@charset "UTF-8";
-
-/*!
-Animate.css - http://daneden.me/animate
-Licensed under the MIT license - http://opensource.org/licenses/MIT
-
-Copyright (c) 2014 Daniel Eden
-*/
-
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-.animated.infinite {
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-}
-
-.animated.hinge {
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-
-    -webkit-transform: translateY(-20px) translate3d(0, 0, 0);
-        -ms-transform: translateY(-20px) translate3d(0, 0, 0);
-            transform: translateY(-20px) translate3d(0, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-
-    -webkit-transform: translateY(0) translate3d(0, 0, 0);
-        -ms-transform: translateY(0) translate3d(0, 0, 0);
-            transform: translateY(0) translate3d(0, 0, 0);
-  }
-}
-
-.fade-in-down {
-  -webkit-animation-name: fadeInDown;
-          animation-name: fadeInDown;
 }
