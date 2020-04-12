@@ -1,0 +1,12 @@
+aside {
+  background: #f0f0f0;
+  padding: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+caption {
+  caption-side: bottom;
+  font-size: .875rem;
+  line-height: 1.5rem;
+}
