@@ -9,7 +9,7 @@ import qualified Hakyll
 import           System.FilePath
 
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith defaultConfiguration{ destinationDirectory = "docs" } $ do
   match "images/*" $ do
     route   idRoute
     compile copyFileCompiler
