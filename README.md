@@ -1,7 +1,7 @@
 # antitypical.com
 
-> This is my webblog.
-> There are many like it, but
+> This is my webblog.<br>
+> There are many like it, but<br>
 > this weblog is mine.
 
 
