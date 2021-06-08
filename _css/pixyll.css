@@ -207,7 +207,9 @@ table > tbody + tbody {
   background: #f7f7f7;
 }
 
-.wrap .measure {
+.wrap .measure,
+.wrap .measure-narrow,
+.wrap .measure-wide {
   margin: 0 auto;
 }
 
