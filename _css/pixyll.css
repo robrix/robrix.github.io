@@ -135,6 +135,14 @@ table.borderless>tbody>tr>th {
   border-top: 0;
 }
 
+table > thead > tr > th.caption,
+table > thead > tr > td.caption,
+table > tbody > tr > th.caption,
+table > tbody > tr > td.caption {
+  text-align: center;
+  font-style: italic;
+}
+
 /* Account for multiple tbody instances */
 table > tbody + tbody {
   border-top: 2px solid #aaa;
