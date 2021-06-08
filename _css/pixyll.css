@@ -111,7 +111,6 @@ table > tbody > tr > td,
 table > tfoot > tr > td {
   padding: 12px;
   line-height: 1.2;
-  vertical-align: top;
   border-top: 1px solid #aaa;
 }
 
