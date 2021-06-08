@@ -111,6 +111,7 @@ table > tbody > tr > td,
 table > tfoot > tr > td {
   padding: 12px;
   line-height: 1.2;
+  vertical-align: middle;
   border-top: 1px solid #aaa;
 }
 
@@ -126,7 +127,11 @@ table > colgroup + thead > tr:first-child > th,
 table > thead:first-child > tr:first-child > th,
 table > caption + thead > tr:first-child > td,
 table > colgroup + thead > tr:first-child > td,
-table > thead:first-child > tr:first-child > td {
+table > thead:first-child > tr:first-child > td,
+table.borderless>thead>tr>td,
+table.borderless>thead>tr>th,
+table.borderless>tbody>tr>td,
+table.borderless>tbody>tr>th {
   border-top: 0;
 }
 

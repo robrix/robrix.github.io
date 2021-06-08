@@ -10,17 +10,3 @@ caption {
   font-size: .875rem;
   line-height: 1.5rem;
 }
-
-table>tbody>tr>td,
-table>tbody>tr>th,
-table>tfoot>tr>td,
-table>tfoot>tr>th,
-table>thead>tr>td,
-table>thead>tr>th {
-  vertical-align: middle;
-}
-
-table.borderless>thead>tr>td,
-table.borderless>thead>tr>th {
-  border-top: 0;
-}
