@@ -142,6 +142,8 @@ table > tbody > tr > td.caption {
   text-align: center;
   font-style: italic;
   vertical-align: top;
+  font-size: .875rem;
+  line-height: 1.5rem;
 }
 
 /* Account for multiple tbody instances */
