@@ -95,6 +95,7 @@ antitypicalContext
   <> constField "siteDescription" "Words by Rob Rix."
   <> constField "baseUrl" ""
   <> constField "siteUrl" "https://antitypical.com"
+  <> constField "measure" "measure"
 
 defaultContext :: Context String
 defaultContext
