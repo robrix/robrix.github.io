@@ -677,7 +677,7 @@ body {
   background-color: #fff;
 }
 
-a {
+a:link {
   color: #0096cc;
   text-decoration: none;
 }
