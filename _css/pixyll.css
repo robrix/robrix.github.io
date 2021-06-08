@@ -141,6 +141,7 @@ table > tbody > tr > th.caption,
 table > tbody > tr > td.caption {
   text-align: center;
   font-style: italic;
+  vertical-align: top;
 }
 
 /* Account for multiple tbody instances */
