@@ -118,7 +118,7 @@ table > tfoot > tr > td {
 /* Bottom align for column headings */
 table > thead > tr > th {
   vertical-align: bottom;
-  border-bottom: 2px solid #aaa;
+  border-bottom: 1px solid #aaa;
 }
 
 /* Remove top border from thead by default */
@@ -148,7 +148,7 @@ table > tbody > tr > td.caption {
 
 /* Account for multiple tbody instances */
 table > tbody + tbody {
-  border-top: 2px solid #aaa;
+  border-top: 1px dotted #aaa;
 }
 
 
