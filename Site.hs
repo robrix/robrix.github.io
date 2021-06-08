@@ -47,7 +47,7 @@ main = hakyllWith defaultConfiguration{ destinationDirectory = "docs" } $ do
       let indexCtx
             =  listField "posts" postCtx (return posts)
             <> bodyField "body"
-            <> antitypicalContext
+            <> defaultContext
 
       getResourceBody
         >>= applyAsTemplate indexCtx
@@ -100,6 +100,7 @@ defaultContext :: Context String
 defaultContext
   =  antitypicalContext
   <> Hakyll.defaultContext
+  <> constField "measure" "measure"
 
 feedConfig :: FeedConfiguration
 feedConfig = FeedConfiguration

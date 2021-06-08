@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Duality – Antitypical</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Words by Rob Rix.">
+    <meta name="author" content="Rob Rix">
+    <meta name="keywords" content="logic, plt">
+    <link rel="canonical" href="https://antitypical.com/posts/2021-06-07-duality/">
+    <link rel="alternate" type="application/rss+xml" title="Antitypical" href="https://antitypical.com/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/stylesheet.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css">
+
+    <link rel="mask-icon" type="image/svg+xml" href="https://antitypical.com/icon.svg">
+    <link rel="icon" type="image/svg+xml" href="https://antitypical.com/icon.svg" sizes="any">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="https://antitypical.com/icon-180.png" sizes="180x180">
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Duality">
+    <meta property="og:description" content="Words by Rob Rix.">
+    <meta property="og:url" content="https://antitypical.com/posts/2021-06-07-duality/index.html">
+    <meta property="og:site_name" content="Antitypical">
+</head>
+
+
+<body>
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure-wide">
+      <a href="https://antitypical.com" class="site-title">Antitypical</a>
+      <nav class="site-nav right">
+        <a href="https://github.com/robrix">GitHub</a>
+<a href="https://twitter.com/rob_rix">Twitter</a>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure-wide">
+        <div class="post-header mb2">
+  <h1>Duality</h1>
+  <span class="post-meta">Jun 7, 2021</span><br>
+  
+  <span class="post-meta small">6 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>The rules for a variety of polarized classical connectives, in a focused sequent calculus presentation to reflect a variety of dualities.</p>
+<!--more-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+  "HTML-CSS": { linebreaks: { automatic: true } },
+  "SVG":      { linebreaks: { automatic: true } }
+});
+</script>
+<style type="text/css">
+td.absent {
+  text-align: center;
+}
+</style>
+<p><span class="math display">$$
+\require{bussproofs}
+$$</span></p>
+<table class="borderless">
+<colgroup>
+<col span="2">
+<col span="2">
+</colgroup>
+<tbody>
+<tr>
+<th colspan="4">
+<a name="additive">Additive</a>
+</th>
+</tr>
+<tr>
+<td class="absent">
+no rule for ⊤ ⊢
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ⊤$}
+        \AxiomC{}
+        \UnaryInfC{$Γ ⊢ Δ, ⊤$}
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$0 \kern1pt ⊢$}
+        \AxiomC{}
+        \UnaryInfC{$0, Γ ⊢ Δ$}
+        \end{prooftree}
+        $$</span>
+</td>
+<td class="absent">
+no rule for ⊢ 0
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \def\labelSpacing{8pt}
+        \LeftLabel{$\&amp; \kern1pt ⊢_1$}
+        \Axiom$[A^-] \fCenter Γ ⊢ Δ$
+        \UnaryInf$[A^- \&amp; B^-] \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        $$</span> <span class="math display">$$
+        \begin{prooftree}
+        \def\labelSpacing{8pt}
+        \LeftLabel{$\&amp; \kern1pt ⊢_2$}
+        \Axiom$[B^-] \fCenter Γ ⊢ Δ$
+        \UnaryInf$[A^- \&amp; B^-] \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt \&amp;$}
+        \AxiomC{$Γ ⊢ Δ, A^-$}
+        \AxiomC{$Γ ⊢ Δ, B^-$}
+        \BinaryInfC{$Γ ⊢ Δ, A^- \&amp; B^-$}
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \def\labelSpacing{8pt}
+        \LeftLabel{$⊕ \kern1pt ⊢$}
+        \AxiomC{$A^+, Γ ⊢ Δ$}
+        \AxiomC{$B^+, Γ ⊢ Δ$}
+        \BinaryInfC{$A^+ ⊕ B^+, Γ ⊢ Δ$}
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ⊕_1$}
+        \Axiom$\fCenter Γ ⊢ Δ [A^+]$
+        \UnaryInf$\fCenter Γ ⊢ Δ [A^+ ⊕ B^+]$
+        \end{prooftree}
+        $$</span> <span class="math display">$$
+        \begin{prooftree}
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ⊕_2$}
+        \Axiom$\fCenter Γ ⊢ Δ [B^+]$
+        \UnaryInf$\fCenter Γ ⊢ Δ [A^+ ⊕ B^+]$
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+with — conjunctive
+</td>
+<td colspan="2" class="caption">
+sum — disjunctive
+</td>
+</tr>
+<tr>
+<th colspan="4">
+<a name="multiplicative">Multiplicative</a>
+</th>
+</tr>
+<tr>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$⊥ \kern1pt ⊢$}
+        \AxiomC{}
+        \UnaryInfC{$[⊥] Γ ⊢ Δ$}
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ⊥$}
+        \Axiom$\fCenter Γ ⊢ Δ$
+        \UnaryInf$\fCenter Γ ⊢ Δ, ⊥$
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$1 \kern1pt ⊢$}
+        \Axiom$\fCenter Γ ⊢ Δ$
+        \UnaryInf$1, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt 1$}
+        \AxiomC{}
+        \UnaryInfC{$Γ ⊢ Δ [1]$}
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$⅋\ \ \kern1pt ⊢$}
+        \AxiomC{$[A^-] Γ ⊢ Δ$}
+        \AxiomC{$[B^-] Γ ⊢ Δ$}
+        \BinaryInfC{$[A^-\ ⅋\ \ \ B^-] Γ ⊢ Δ$}
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ⅋$}
+        \Axiom$\fCenter Γ ⊢ Δ, A^-, B^-$
+        \UnaryInf$\fCenter Γ ⊢ Δ, A^-\ ⅋\ \ \ B^-$
+        \end{prooftree}
+        $$</span>
+</td>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$⊗ \kern1pt ⊢$}
+        \Axiom$A^+, B^+, \fCenter Γ ⊢ Δ$
+        \UnaryInf$A^+ ⊗ B^+, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ⊗$}
+        \AxiomC{$Γ ⊢ Δ [A^+]$}
+        \AxiomC{$Γ ⊢ Δ [B^+]$}
+        \BinaryInfC{$Γ ⊢ Δ [A^+ ⊗ B^+]$}
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+par — disjunctive
+</td>
+<td colspan="2" class="caption">
+tensor — conjunctive
+</td>
+</tr>
+<tr>
+<th colspan="4">
+<a name="implicative">Implicative</a>
+</th>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$→ \kern1pt ⊢$}
+        \AxiomC{$\fCenter Γ ⊢ Δ [A^+]$}
+        \AxiomC{$[B^-] \fCenter Γ ⊢ Δ$}
+        \BinaryInfC{$[A^+ → B^-] \fCenter Γ ⊢ Δ$}
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt →$}
+        \Axiom$A^+, \fCenter Γ ⊢ Δ, B^-$
+        \UnaryInf$\fCenter Γ ⊢ Δ, A^+ → B^-$
+        \end{prooftree}
+        $$</span>
+</td>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$- \kern1pt ⊢$}
+        \Axiom$A^+, \fCenter Γ ⊢ Δ, B^-$
+        \UnaryInf$A^+ - B^-, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt -$}
+        \AxiomC{$\fCenter Γ ⊢ Δ [A^+]$}
+        \AxiomC{$[B^-] \fCenter Γ ⊢ Δ$}
+        \BinaryInfC{$\fCenter Γ ⊢ Δ [A^+ - B^-]$}
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+implication
+</td>
+<td colspan="2" class="caption">
+subtraction
+</td>
+</tr>
+<tr>
+<th colspan="4">
+<a name="negating">Negating</a>
+</th>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$¬ \kern1pt ⊢$}
+        \Axiom$\fCenter Γ ⊢ Δ [A^+]$
+        \UnaryInf$[¬A^+] \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ¬$}
+        \Axiom$A^+, \fCenter Γ ⊢ Δ$
+        \UnaryInf$\fCenter Γ ⊢ Δ, ¬A^+$
+        \end{prooftree}
+        $$</span>
+</td>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$\sim \kern1pt ⊢$}
+        \Axiom$\fCenter Γ ⊢ Δ, A^-$
+        \UnaryInf$\sim\kern -3pt A^-, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt \sim$}
+        \Axiom$[A^-] \fCenter Γ ⊢ Δ$
+        \UnaryInf$\fCenter Γ ⊢ Δ [\sim\kern -3pt A^-]$
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+positive-to-negative negation
+</td>
+<td colspan="2" class="caption">
+negative-to-positive negation
+</td>
+</tr>
+<tr>
+<th colspan="4">
+<a name="shifts">Shifts</a>
+</th>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$↑ \kern1pt ⊢$}
+        \Axiom$A^+, \fCenter Γ ⊢ Δ$
+        \UnaryInf$[↑A^+] \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ↑$}
+        \Axiom$\fCenter Γ ⊢ Δ, A^+$
+        \UnaryInf$\fCenter Γ ⊢ Δ, ↑A^+$
+        \end{prooftree}
+        $$</span>
+</td>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$↓ \kern1pt ⊢$}
+        \Axiom$A^-, \fCenter Γ ⊢ Δ$
+        \UnaryInf$↓A^-, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ↓$}
+        \Axiom$\fCenter Γ ⊢ Δ, A^-$
+        \UnaryInf$\fCenter Γ ⊢ Δ [↓A^-]$
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+positive-to-negative shift
+</td>
+<td colspan="2" class="caption">
+negative-to-positive shift
+</td>
+</tr>
+<tr>
+<th colspan="4">
+<a name="core">Core</a>
+</th>
+</tr>
+<tr>
+<td colspan="4">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \RightLabel{$\ init$}
+        \AxiomC{}
+        \UnaryInfC{$A ⊢ A$}
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \RightLabel{$\ cut$}
+        \AxiomC{$Γ ⊢ Δ, A$}
+        \AxiomC{$A, Γ ⊢ Δ$}
+        \BinaryInfC{$Γ ⊢ Δ$}
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<th colspan="4">
+<a name="structural">Structural</a>
+</th>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$weaken ⊢$}
+        \Axiom$\fCenter Γ ⊢ Δ$
+        \UnaryInf$A, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ weaken$}
+        \Axiom$\fCenter Γ ⊢ Δ$
+        \UnaryInf$\fCenter Γ ⊢ Δ, A$
+        \end{prooftree}
+        $$</span>
+</td>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$contract ⊢$}
+        \Axiom$A, A, \fCenter Γ ⊢ Δ$
+        \UnaryInf$A, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ contract$}
+        \Axiom$\fCenter Γ ⊢ Δ, A, A$
+        \UnaryInf$\fCenter Γ ⊢ Δ, A$
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td colspan="4" class="caption">
+note that the customary exchange rule is not required as this presentation’s contexts are unordered
+</td>
+</tr>
+<tr>
+<th colspan="4">
+<a name="algebraic-laws">Algebraic Laws</a>
+</th>
+</tr>
+<tr>
+<td>
+\[ \sim \kern -3pt (A^- \&amp; B^-) ≈\kern 3pt \sim \kern -3pt A^- ⊕ \sim \kern -3pt B^- \]
+</td>
+<td>
+\[ \sim \kern -3pt (A^- ⅋\ \ \ B^-) ≈\kern 3pt \sim \kern -3pt A^- ⊗ \sim \kern -3pt B^- \]
+</td>
+<td>
+\[ ¬(A^+ ⊕ B^+) ≈ ¬A^+ \&amp; ¬B^+ \]
+</td>
+<td>
+\[ ¬(A^+ ⊗ B^+) ≈ ¬A^+ ⅋\ \ \ ¬B^+ \]
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">$$
+        \sim \kern -1pt ⊥ ≈ 1
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \sim \kern -1pt ⊤ ≈ 0
+        $$</span>
+</td>
+<td>
+\[ ¬0 ≈ ⊤ \]
+</td>
+<td>
+\[ ¬1 ≈ ⊥ \]
+</td>
+</tr>
+<tr>
+<td>
+\[ \sim \kern -3pt ¬A^+ ≈ A^+ \]
+</td>
+<td>
+\[ \sim \kern -3pt (A^+ → B^-) ≈ A^+ - B^- \]
+</td>
+<td>
+\[ ¬(A^+ - B^-) ≈ A^+ → B^- \]
+</td>
+<td>
+\[ ¬\sim \kern -3pt A^- ≈ A^- \]
+</td>
+</tr>
+<tr>
+<td class="caption" colspan="4">
+de Morgan dualities
+</td>
+</tr>
+</tbody>
+</table>
+</article>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure left">
+      <small>
+        Words by <a href="https://github.com/robrix">Rob Rix</a>
+      </small>
+    </div>
+    <div class="measure right">
+      <small>
+        Theme <a href="https://github.com/johnotander/pixyll">Pixyll</a> by <a href="http://johnotander.com">John Otander</a>
+      </small>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>
