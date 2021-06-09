@@ -87,9 +87,6 @@ The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are 
 <p>
 ⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.
 </p>
-<p>
-Under Curry-Howard, negative types are lazy (call-by-name) while positive types are strict (call-by-value). A polarized type system, based on a polarized logic, paves the way for languages which naturally incorporate both, determined by the types. Call-by-push-value likewise polarizes types into values and computations; and we can further identify negative and positive types with codata and data respectively.
-</p>
 </td>
 </tr>
 <tr>
@@ -143,9 +140,6 @@ A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that i
 <p>
 Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.
 </p>
-<p>
-In a linear logic, these rules would require side conditions that both contexts be empty; since this logic is not linear, we enjoy simpler rules.
-</p>
 </td>
 <td class="absent">
 no rule for ⊤ ⊢
@@ -184,52 +178,6 @@ no rule for ⊢ 0
 </th>
 </tr>
 <tr>
-<td>
-<span class="math display">$$
-        \begin{prooftree}
-        \hskip 20pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$⊥ \kern1pt ⊢$}
-        \AxiomC{}
-        \UnaryInfC{$[⊥] Γ ⊢ Δ$}
-        \end{prooftree}
-        $$</span>
-</td>
-<td>
-<span class="math display">$$
-        \begin{prooftree}
-        \hskip 20pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt ⊥$}
-        \Axiom$\fCenter Γ ⊢ Δ$
-        \UnaryInf$\fCenter Γ ⊢ Δ, ⊥$
-        \end{prooftree}
-        $$</span>
-</td>
-<td>
-<span class="math display">$$
-        \begin{prooftree}
-        \hskip 20pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$1 \kern1pt ⊢$}
-        \Axiom$\fCenter Γ ⊢ Δ$
-        \UnaryInf$1, \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        $$</span>
-</td>
-<td>
-<span class="math display">$$
-        \begin{prooftree}
-        \hskip 20pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt 1$}
-        \AxiomC{}
-        \UnaryInfC{$Γ ⊢ Δ [1]$}
-        \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -249,6 +197,21 @@ no rule for ⊢ 0
         \end{prooftree}
         $$</span>
 </td>
+<td colspan="2" rowspan="4">
+<p>
+In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction, ⅋ (“par”) and ⊗ (“tensor”) are <em>multiplicative</em> disjunction and conjunction. The difference is more obvious in a linear logic, but for us the relevant distinction between &amp; and ⊗ is that we identify negative (resp. positive) types like &amp; (resp. ⊗) with call-by-name (resp. call-by-value).
+</p>
+<p>
+⅋, however, is stranger. It’s a disjunction, eliminated by using both halves (just like ⊕), but introduced using <em>two</em> things. Linear logic again offers one perspective, but another reading of Γ ⊢ Δ (via Curry-Howard) as “consume Γ to produce Δ” is salient: parallelism (hence “par”), or nondeterminism. The latter explains why ⅋ is disjunctive despite (at least notionally) containing two things; think of <code>&lt;|&gt;</code>. For <code>Maybe</code>, it selects the leftmost <code>Just</code>, acting as a choice; for <code>[]</code>, it instead selects <em>all</em> alternatives, acting as a union.
+</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+par — disjunctive
+</td>
+</tr>
+<tr>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -271,10 +234,59 @@ no rule for ⊢ 0
 </tr>
 <tr>
 <td colspan="2" class="caption">
-par — disjunctive
-</td>
-<td colspan="2" class="caption">
 tensor — conjunctive
+</td>
+</tr>
+<tr>
+<td colspan="2" rowspan="2">
+<p>
+</p>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$⊥ \kern1pt ⊢$}
+        \AxiomC{}
+        \UnaryInfC{$[⊥] Γ ⊢ Δ$}
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ⊥$}
+        \Axiom$\fCenter Γ ⊢ Δ$
+        \UnaryInf$\fCenter Γ ⊢ Δ, ⊥$
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$1 \kern1pt ⊢$}
+        \Axiom$\fCenter Γ ⊢ Δ$
+        \UnaryInf$1, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        $$</span>
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt 1$}
+        \AxiomC{}
+        \UnaryInfC{$Γ ⊢ Δ [1]$}
+        \end{prooftree}
+        $$</span>
 </td>
 </tr>
 <tr>
