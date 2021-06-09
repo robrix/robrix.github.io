@@ -158,7 +158,7 @@ no rule for ⊤ ⊢
 </tr>
 <tr>
 <td colspan="2" class="caption">
-⊤ (“top”): negative truth
+⊤ (“top”): negative truth ≈ unit
 </td>
 </tr>
 <tr>
@@ -179,7 +179,7 @@ no rule for ⊢ 0
 </tr>
 <tr>
 <td colspan="2" class="caption">
-0 — falsity
+0: positive falsity ≈ void
 </td>
 </tr>
 <tr>
