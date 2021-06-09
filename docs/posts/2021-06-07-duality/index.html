@@ -59,7 +59,7 @@
   <h1>Duality</h1>
   <span class="post-meta">Jun 7, 2021</span><br>
   
-  <span class="post-meta small">12 minute read</span>
+  <span class="post-meta small">13 minute read</span>
 </div>
 
 <article class="post-content">
@@ -468,10 +468,13 @@ This gives a vivid picture of the nature of duality: a subtraction is the negati
 <tr>
 <td colspan="2" rowspan="5">
 <p>
-Like → and –, negations have the interesting behaviour of moving propositions across the turnstile: from antecedents to succeedents. They are constructed (⊢¬ and ⊢~) from a premise with a hypothesis: to make a ¬A or ~A, we must have a premise which uses an A—rather like the premise of ⊢→. Thus, negations have long been given computational meaning as <em>continuations</em>, a representation of “the rest of the program” beginning at some program point.
+Like → and –, negations have the interesting behaviour of moving propositions across the turnstile: from antecedents to succeedents. They are constructed (⊢¬ and ⊢~) from a premise with a hypothesis: to make a ¬A or ~A, we must have a premise which uses an A—rather like the premise of ⊢→. Dually, their elimination (¬⊢ and ~⊢) requires an A to use as input. Thus, negations have long been given computational meaning as <em>continuations</em>, a representation of “the rest of the program” from some program point.
 </p>
 <p>
-Intuitionistic logics therefore often encode negation as implication of falsity, i.e. ¬A ≈ A → ⊥. Intuitively, “not A” and “A implies falsity” align. This encoding has the precise structure of a continuatin—and therefore double-negation ¬¬A becomes (A → ⊥) → ⊥, which has the structure of continuation-passing style.
+Intuitionistic logics therefore often encode negation as implication of falsity, i.e. ¬A ≈ A → ⊥. Intuitively, “not A” and “A implies falsity” align. This has the precise shape of a continuation. Further, double-negation like ¬¬A becomes (A → ⊥) → ⊥, which has the shape of continuation-passing style.
+</p>
+<p>
+Our negations are <em>involutive</em>, i.e. (mutual) self-inverses, due both to polarization (flipped from their argument) and focusing behaviour (remaining in the current phase).
 </p>
 </td>
 <td colspan="2">
