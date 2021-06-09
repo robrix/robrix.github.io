@@ -205,7 +205,7 @@ Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>
         \end{prooftree}
         $$</span>
 </td>
-<td colspan="2" rowspan="4">
+<td colspan="2" rowspan="5">
 <p>
 In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction, ⅋ (“par”) and ⊗ (“tensor”) are <em>multiplicative</em> disjunction and conjunction. The difference is more obvious in a linear logic, but for us the relevant distinction between &amp; and ⊗ is that we identify negative (resp. positive) types like &amp; (resp. ⊗) with call-by-name (resp. call-by-value).
 </p>
@@ -243,6 +243,13 @@ In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction,
 <tr>
 <td colspan="2" class="caption">
 ⊗ (“tensor”): positive conjunction ≈ strict pair
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \sim \kern -3pt (A^- ⅋\ \ \ B^-) ≈\kern 3pt \sim \kern -3pt A^- ⊗ \sim \kern -3pt B^- \hskip 1.5em ¬(A^+ ⊗ B^+) ≈ ¬A^+ ⅋\ \ \ ¬B^+
+        $$</span>
 </td>
 </tr>
 <tr>
