@@ -419,6 +419,12 @@ This gives a vivid picture of the nature of duality: a subtraction is the negati
 </tr>
 <tr>
 <td colspan="2" rowspan="5">
+<p>
+Like → and –, negations have the interesting behaviour of moving propositions across the turnstile: from antecedents to succeedents. They are constructed (⊢¬ and ⊢~) from a premise with a hypothesis: to make a ¬A or ~A, we must have a premise which uses an A—rather like the premise of ⊢→. Thus, negations have long been given computational meaning as <em>continuations</em>, a representation of “the rest of the program” beginning at some program point.
+</p>
+<p>
+Intuitionistic logics therefore often encode negation as implication of falsity, i.e. ¬A ≈ A → ⊥. Intuitively, “not A” and “A implies falsity” align. This encoding has the precise structure of a continuatin—and therefore double-negation ¬¬A becomes (A → ⊥) → ⊥, which has the structure of continuation-passing style.
+</p>
 </td>
 <td colspan="2">
 <span class="math display">$$
