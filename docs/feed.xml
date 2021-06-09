@@ -331,7 +331,7 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
         \end{prooftree}
         $$</span>
 </td>
-<td colspan="2" rowspan="4">
+<td colspan="2" rowspan="5">
 <p>
 Just as implication resembles the turnstile (as is evident in the premise of ⊢→), our computational reading of Γ ⊢ Δ as “consume Γ to produce Δ” indicates that functions do as well.
 </p>
@@ -375,6 +375,13 @@ This gives a vivid picture of the nature of duality: a subtraction is the negati
 <tr>
 <td colspan="2" class="caption">
 - (“subtraction”, sometimes ⤙, “co-implication”): positive implication ≈ calling context
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \sim \kern -3pt (A^+ → B^-) ≈ A^+ - B^- \hskip 1.5em ¬(A^+ - B^-) ≈ A^+ → B^-
+        $$</span>
 </td>
 </tr>
 <tr>
