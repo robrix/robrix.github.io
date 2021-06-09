@@ -246,7 +246,7 @@ In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction,
 </td>
 </tr>
 <tr>
-<td colspan="2" rowspan="4">
+<td colspan="2" rowspan="5">
 <p>
 Alongside multiplicative disjunction and conjunction are ⊥ (“bottom”), a negative falsity, and 1, a positive truth.
 </p>
@@ -304,6 +304,13 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
 <tr>
 <td colspan="2" class="caption">
 1: positive truth ≈ unit
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \sim \kern -1pt ⊥ ≈ 1 \hskip 1.5em ¬1 ≈ ⊥
+        $$</span>
 </td>
 </tr>
 <tr>
