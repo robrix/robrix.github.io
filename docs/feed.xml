@@ -130,7 +130,7 @@ sum — disjunctive
 </td>
 </tr>
 <tr>
-<td colspan="2" rowspan="2">
+<td colspan="2" rowspan="4">
 <p>
 The additive units, ⊤ (“top”) and 0, are a bit of a puzzle. Note that neither has a focusing rule: you can’t use a ⊤ once you have it, and you can’t get a 0 at all. On the other hand, both their invertible rules are axioms (i.e. have no premises).
 </p>
@@ -157,6 +157,11 @@ no rule for ⊤ ⊢
 </td>
 </tr>
 <tr>
+<td colspan="2" class="caption">
+⊤ (“top”): negative truth
+</td>
+</tr>
+<tr>
 <td>
 <span class="math display">$$
         \begin{prooftree}
@@ -170,6 +175,11 @@ no rule for ⊤ ⊢
 </td>
 <td class="absent">
 no rule for ⊢ 0
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+0 — falsity
 </td>
 </tr>
 <tr>
