@@ -600,7 +600,7 @@ This gives a vivid picture of the nature of duality: a subtraction is the negati
 <span class="math display">$$
         \begin{prooftree}
         \hskip -10pt
-        \RightLabel{$\ init$}
+        \LeftLabel{$init$}
         \AxiomC{}
         \UnaryInfC{$A ⊢ A$}
         \end{prooftree}
