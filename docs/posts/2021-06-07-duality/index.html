@@ -59,7 +59,7 @@
   <h1>Duality</h1>
   <span class="post-meta">Jun 7, 2021</span><br>
   
-  <span class="post-meta small">14 minute read</span>
+  <span class="post-meta small">15 minute read</span>
 </div>
 
 <article class="post-content">
@@ -623,6 +623,8 @@ translations of CBN and CBV function types into polarized calculi
 </tr>
 <tr>
 <td colspan="2" rowspan="4">
+<p>
+</p>
 </td>
 <td colspan="2">
 <span class="math display">$$
@@ -697,6 +699,18 @@ translations of CBN and CBV function types into polarized calculi
         $$</span>
 </td>
 <td colspan="2">
+<p>
+The init and cut rules are quite common to sequent (and other) calculi. This presentation clarifies a couple of useful properties.
+</p>
+<p>
+init allows us to begin a proof (or end one, working bottom-up as we often do, from goal to premise) with a proposition given to us. Under Curry-Howard’s interpretation of proofs as programs, we can understand this as the polymorphic identity function, <code>id</code>. (Sequent calculus proofs in particular correspond to higher-order programs, e.g. functions taking functions to functions.)
+</p>
+<p>
+cut instead allows us to prove a sequent by introducing and immediately eliminating a proposition in its premises. Again taking sequents as analogues of function types, we can think of it as the <em>composition</em> of proofs with compatible consequents and hypotheses.
+</p>
+<p>
+Furthermore, cut and init form a category, where the morphisms are sequents between contexts, joined by cuts. The Curry-Howard correspondence holds up here, too: <code>id</code> and function composition give a category of functions between types.
+</p>
 </td>
 </tr>
 <tr>
