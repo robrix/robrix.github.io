@@ -373,6 +373,8 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
 </th>
 </tr>
 <tr>
+<td colspan="2" rowspan="4">
+</td>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -391,6 +393,13 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
         \end{prooftree}
         $$</span>
 </td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+¬ (“not”): positive-to-negative negation ≈ lazy continuation
+</td>
+</tr>
+<tr>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -411,9 +420,6 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
 </td>
 </tr>
 <tr>
-<td colspan="2" class="caption">
-¬ (“not”): positive-to-negative negation ≈ lazy continuation
-</td>
 <td colspan="2" class="caption">
 ~ (“negate”): negative-to-positive negation ≈ strict continuation
 </td>
@@ -442,6 +448,15 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
         \end{prooftree}
         $$</span>
 </td>
+<td colspan="2" rowspan="4">
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+↑ (“up shift,” call-by-push-value’s <em>F</em>): positive-to-negative shift ≈ return
+</td>
+</tr>
+<tr>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -463,9 +478,6 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
 </tr>
 <tr>
 <td colspan="2" class="caption">
-↑ (“up shift,” call-by-push-value’s <em>F</em>): positive-to-negative shift ≈ return
-</td>
-<td colspan="2" class="caption">
 ↓ (“down shift”, call-by-push-value’s <em>U</em>): negative-to-positive shift ≈ thunk
 </td>
 </tr>
@@ -475,6 +487,8 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
 </th>
 </tr>
 <tr>
+<td colspan="2" rowspan="4">
+</td>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -493,6 +507,13 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
         \end{prooftree}
         $$</span>
 </td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+∀ (“for all”): universal quantification ≈ polymorphism
+</td>
+</tr>
+<tr>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -514,10 +535,7 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
 </tr>
 <tr>
 <td colspan="2" class="caption">
-universal quantification
-</td>
-<td colspan="2" class="caption">
-existential quantification
+∃ (“there exists”): existential quantification ≈ abstract data type
 </td>
 </tr>
 <tr>
@@ -526,7 +544,7 @@ existential quantification
 </th>
 </tr>
 <tr>
-<td colspan="4">
+<td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
         \hskip -10pt
@@ -543,6 +561,8 @@ existential quantification
         \end{prooftree}
         $$</span>
 </td>
+<td colspan="2">
+</td>
 </tr>
 <tr>
 <th colspan="4">
@@ -550,6 +570,11 @@ existential quantification
 </th>
 </tr>
 <tr>
+<td colspan="2" rowspan="2">
+<p>
+note that the customary exchange rule is not required as this presentation’s contexts are unordered
+</p>
+</td>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -568,6 +593,8 @@ existential quantification
         \end{prooftree}
         $$</span>
 </td>
+</tr>
+<tr>
 <td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
@@ -585,11 +612,6 @@ existential quantification
         \UnaryInf$\fCenter Γ ⊢ Δ, A$
         \end{prooftree}
         $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="4" class="caption">
-note that the customary exchange rule is not required as this presentation’s contexts are unordered
 </td>
 </tr>
 <tr>
