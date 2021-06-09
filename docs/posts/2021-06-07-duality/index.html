@@ -59,11 +59,11 @@
   <h1>Duality</h1>
   <span class="post-meta">Jun 7, 2021</span><br>
   
-  <span class="post-meta small">7 minute read</span>
+  <span class="post-meta small">9 minute read</span>
 </div>
 
 <article class="post-content">
-  <p>The rules for a variety of polarized classical connectives, in a focused sequent calculus presentation to reflect a variety of dualities.</p>
+  <p>The rules for a variety of polarized classical connectives, in a focused sequent calculus presentation to reflect a variety of dualities, and interpreted via Curry-Howard.</p>
 <!--more-->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
@@ -77,6 +77,9 @@ MathJax.Hub.Config({
 <style type="text/css">
 td.absent {
   text-align: center;
+}
+td p {
+  line-height: 1.2;
 }
 </style>
 <p><span class="math display">$$
@@ -92,36 +95,6 @@ $$</span></p>
 <th colspan="4">
 <a name="additive">Additive</a>
 </th>
-</tr>
-<tr>
-<td class="absent">
-no rule for ⊤ ⊢
-</td>
-<td>
-<span class="math display">$$
-        \begin{prooftree}
-        \hskip 20pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt ⊤$}
-        \AxiomC{}
-        \UnaryInfC{$Γ ⊢ Δ, ⊤$}
-        \end{prooftree}
-        $$</span>
-</td>
-<td>
-<span class="math display">$$
-        \begin{prooftree}
-        \hskip 20pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$0 \kern1pt ⊢$}
-        \AxiomC{}
-        \UnaryInfC{$0, Γ ⊢ Δ$}
-        \end{prooftree}
-        $$</span>
-</td>
-<td class="absent">
-no rule for ⊢ 0
-</td>
 </tr>
 <tr>
 <td>
@@ -152,6 +125,27 @@ no rule for ⊢ 0
         \end{prooftree}
         $$</span>
 </td>
+<td colspan="2" rowspan="4">
+<p>
+The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are unfamiliar symbols for familiar connectives: &amp; is conjunction (∧, “and”), while ⊕ is disjunction (∨, “or”).
+</p>
+<p>
+&amp; is negative, and thus focused on the left (indicated by the square brackets). In a polarized calculus, negative connectives are defined by their left rules, which are rules for how to use them. (Γ contains inputs, so left rules consume things.) &amp; has two left rules, which use it by projecting out the left and right parts, respectively. Its right rule builds it from its components: think pair/tuple literals.
+</p>
+<p>
+⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.
+</p>
+<p>
+Under Curry-Howard, negative types are lazy (call-by-name) while positive types are strict (call-by-value). A polarized type system, based on a polarized logic, paves the way for languages which naturally incorporate both, determined by the types. Call-by-push-value likewise polarizes types into values and computations; and we can further identify negative and positive types with codata and data respectively.
+</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+with — conjunctive
+</td>
+</tr>
+<tr>
 <td>
 <span class="math display">$$
         \begin{prooftree}
@@ -183,10 +177,53 @@ no rule for ⊢ 0
 </tr>
 <tr>
 <td colspan="2" class="caption">
-with — conjunctive
-</td>
-<td colspan="2" class="caption">
 sum — disjunctive
+</td>
+</tr>
+<tr>
+<td colspan="2" rowspan="2">
+<p>
+The additive units, ⊤ (“top”) and 0, are a bit of a puzzle. Note that neither has a focusing rule: you can’t use a ⊤ once you have it, and you can’t get a 0 at all. On the other hand, both their invertible rules are axioms (i.e. have no premises).
+</p>
+<p>
+A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that interpretation we can see that ⊤, which corresponds to logical truth, indeed satisfies that claim: once at least one thing on the right is proven, we’re done.
+</p>
+<p>
+Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.
+</p>
+<p>
+In a linear logic, these rules would require side conditions that both contexts be empty; since this logic is not linear, we enjoy simpler rules.
+</p>
+</td>
+<td class="absent">
+no rule for ⊤ ⊢
+</td>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ⊤$}
+        \AxiomC{}
+        \UnaryInfC{$Γ ⊢ Δ, ⊤$}
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip 20pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$0 \kern1pt ⊢$}
+        \AxiomC{}
+        \UnaryInfC{$0, Γ ⊢ Δ$}
+        \end{prooftree}
+        $$</span>
+</td>
+<td class="absent">
+no rule for ⊢ 0
 </td>
 </tr>
 <tr>
