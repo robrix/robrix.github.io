@@ -141,13 +141,12 @@ A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that i
 Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.
 </p>
 </td>
-<td class="absent">
-no rule for ⊤ ⊢
-</td>
-<td>
+<td colspan="2">
 <span class="math display">$$
+        \hskip -10pt
+        \textrm{no rule for} ⊤ ⊢
         \begin{prooftree}
-        \hskip 20pt
+        \hskip 10pt
         \def\labelSpacing{8pt}
         \RightLabel{$\ ⊢ \kern1pt ⊤$}
         \AxiomC{}
@@ -162,19 +161,18 @@ no rule for ⊤ ⊢
 </td>
 </tr>
 <tr>
-<td>
+<td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
-        \hskip 20pt
+        \hskip -10pt
         \def\labelSpacing{8pt}
         \LeftLabel{$0 \kern1pt ⊢$}
         \AxiomC{}
         \UnaryInfC{$0, Γ ⊢ Δ$}
         \end{prooftree}
+        \hskip 10pt
+        \textrm{no rule for} ⊢ 0
         $$</span>
-</td>
-<td class="absent">
-no rule for ⊢ 0
 </td>
 </tr>
 <tr>
@@ -259,21 +257,17 @@ Alongside multiplicative disjunction and conjunction are ⊥ (“bottom”), a n
 Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated freely (1⊢). Introducing it is likewise trivial (⊢1), just as for ⊤.
 </p>
 </td>
-<td>
+<td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
-        \hskip 20pt
+        \hskip -10pt
         \def\labelSpacing{8pt}
         \LeftLabel{$⊥ \kern1pt ⊢$}
         \AxiomC{}
         \UnaryInfC{$[⊥] Γ ⊢ Δ$}
         \end{prooftree}
-        $$</span>
-</td>
-<td>
-<span class="math display">$$
         \begin{prooftree}
-        \hskip 20pt
+        \hskip 10pt
         \def\labelSpacing{8pt}
         \RightLabel{$\ ⊢ \kern1pt ⊥$}
         \Axiom$\fCenter Γ ⊢ Δ$
@@ -283,21 +277,17 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
 </td>
 </tr>
 <tr>
-<td>
+<td colspan="2">
 <span class="math display">$$
         \begin{prooftree}
-        \hskip 20pt
+        \hskip -10pt
         \def\labelSpacing{8pt}
         \LeftLabel{$1 \kern1pt ⊢$}
         \Axiom$\fCenter Γ ⊢ Δ$
         \UnaryInf$1, \fCenter Γ ⊢ Δ$
         \end{prooftree}
-        $$</span>
-</td>
-<td>
-<span class="math display">$$
         \begin{prooftree}
-        \hskip 20pt
+        \hskip 10pt
         \def\labelSpacing{8pt}
         \RightLabel{$\ ⊢ \kern1pt 1$}
         \AxiomC{}
