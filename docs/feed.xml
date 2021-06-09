@@ -600,13 +600,13 @@ This gives a vivid picture of the nature of duality: a subtraction is the negati
 <span class="math display">$$
         \begin{prooftree}
         \hskip -10pt
-        \LeftLabel{$init$}
+        \LeftLabel{$\mathit{init}$}
         \AxiomC{}
         \UnaryInfC{$A ⊢ A$}
         \end{prooftree}
         \begin{prooftree}
         \hskip 10pt
-        \RightLabel{$\ cut$}
+        \RightLabel{$\ \mathit{cut}$}
         \AxiomC{$Γ ⊢ Δ, A$}
         \AxiomC{$A, Γ ⊢ Δ$}
         \BinaryInfC{$Γ ⊢ Δ$}
