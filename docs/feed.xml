@@ -574,8 +574,15 @@ translations of CBN and CBV function types into polarized calculi
 </th>
 </tr>
 <tr>
-<td colspan="2" rowspan="4">
+<td colspan="2" rowspan="5">
 <p>
+The rules for quantification are slightly unusual in this presentation in their use of both side conditions (checking that the variable does not occur free elsewhere within the sequent) and (capture-avoiding) substitution (A{B/X} substitutes the proposition B for the variable X within A, e.g. (X ⊕ Y){Z/X} = Z ⊕ Y).
+</p>
+<p>
+Quantified propositions—and thus, types—offer yet more dualities: both can be used to hide information, but from different perspectives. ∀ constrains its construction, but is used freely; ∃ constrains its uses, but is constructed freely. Universally-quantified types are used when folding polymorphically recursive data and a variety of encodings using functions. Existentials model abstraction in abstract data types, ML modules, open universes of exceptions, and GADTs.
+</p>
+<p>
+Here, the identification of negative = computation, positive = value is stretched. If computation in the CBPV sense is “something resident in code pages” then ∀ seems misplaced—why should ∀ be represented at runtime (absent dependent types)? On the other hand, the identification of positive = data, negative = codata fits: ∀ is defined by how it is used, and ∃ by how it is made.
 </p>
 </td>
 <td colspan="2">
@@ -625,6 +632,13 @@ translations of CBN and CBV function types into polarized calculi
 <tr>
 <td colspan="2" class="caption">
 ∃ (“there exists”): existential quantification ≈ abstract data type
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \sim \kern -3pt (∀X.A^-) ≈ ∃X.\sim \kern -3pt A^- \hskip 1.5em ¬(∃X.A^+) ≈ ∀X.¬A^+
+        $$</span>
 </td>
 </tr>
 <tr>
