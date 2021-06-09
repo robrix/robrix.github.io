@@ -59,7 +59,7 @@
   <h1>Duality</h1>
   <span class="post-meta">Jun 7, 2021</span><br>
   
-  <span class="post-meta small">6 minute read</span>
+  <span class="post-meta small">7 minute read</span>
 </div>
 
 <article class="post-content">
@@ -441,6 +441,57 @@ positive-to-negative shift
 </td>
 <td colspan="2" class="caption">
 negative-to-positive shift
+</td>
+</tr>
+<tr>
+<th colspan="4">
+<a name="shifts">Quantifiers</a>
+</th>
+</tr>
+<tr>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$∀ \kern1pt ⊢$}
+        \Axiom$[A^-\{B/X\}] \fCenter Γ ⊢ Δ$
+        \UnaryInf$[∀X.A^-] \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ ∀$}
+        \Axiom$\fCenter Γ ⊢ Δ, A^- \hskip 1.5em X ∉ fv(Γ ⊢ Δ)$
+        \UnaryInf$\fCenter Γ ⊢ Δ, ∀X.A^-$
+        \end{prooftree}
+        $$</span>
+</td>
+<td colspan="2">
+<span class="math display">$$
+        \begin{prooftree}
+        \hskip -10pt
+        \def\labelSpacing{8pt}
+        \LeftLabel{$∃ \kern1pt ⊢$}
+        \Axiom$X ∉ fv(Γ ⊢ Δ) \hskip 1.5em A^+, \fCenter Γ ⊢ Δ$
+        \UnaryInf$∃X.A^+, \fCenter Γ ⊢ Δ$
+        \end{prooftree}
+        \begin{prooftree}
+        \hskip 10pt
+        \def\labelSpacing{8pt}
+        \RightLabel{$\ ⊢ \kern1pt ∃$}
+        \Axiom$\fCenter Γ ⊢ Δ [A^+\{B/X\}]$
+        \UnaryInf$\fCenter Γ ⊢ Δ [∃X.A^+]$
+        \end{prooftree}
+        $$</span>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="caption">
+universal quantification
+</td>
+<td colspan="2" class="caption">
+existential quantification
 </td>
 </tr>
 <tr>
