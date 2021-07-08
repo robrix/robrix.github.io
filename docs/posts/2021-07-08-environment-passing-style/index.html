@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Environment-Passing Style – Antitypical</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Words by Rob Rix.">
+    <meta name="author" content="Rob Rix">
+    <meta name="keywords" content="logic, plt">
+    <link rel="canonical" href="https://antitypical.com/posts/2021-07-08-environment-passing-style/">
+    <link rel="alternate" type="application/rss+xml" title="Antitypical" href="https://antitypical.com/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/stylesheet.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css">
+
+    <link rel="mask-icon" type="image/svg+xml" href="https://antitypical.com/icon.svg">
+    <link rel="icon" type="image/svg+xml" href="https://antitypical.com/icon.svg" sizes="any">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="https://antitypical.com/icon-180.png" sizes="180x180">
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Environment-Passing Style">
+    <meta property="og:description" content="Words by Rob Rix.">
+    <meta property="og:url" content="https://antitypical.com/posts/2021-07-08-environment-passing-style/index.html">
+    <meta property="og:site_name" content="Antitypical">
+</head>
+
+
+<body>
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="https://antitypical.com" class="site-title">Antitypical</a>
+      <nav class="site-nav right">
+        <a href="https://github.com/robrix">GitHub</a>
+<a href="https://twitter.com/rob_rix">Twitter</a>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        <div class="post-header mb2">
+  <h1>Environment-Passing Style</h1>
+  <span class="post-meta">Jul 8, 2021</span><br>
+  
+  <span class="post-meta small">5 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>Functions of type A → B can be translated into corresponding functions of type ¬B → ¬A in continuation-passng style (CPS), where ¬A is logically negation but computationally a continuation from A.</p>
+<!--more-->
+<p>This widens the view of functions as value transformers, taking values of type A to values of type B, to include an alternative perspective of them as continuation transformers (as noted by Andrzej Filinski in <em>Declarative Continuations and Categorical Duality</em>.)</p>
+<p>Logic and computation are <a href="../../posts/2021-06-07-duality/">rife with dualities</a>, leading one to wonder: what’s the dual of CPS?</p>
+<p>Logically, ¬A is often regarded as equivalent to, or even synonymous with, A → ⊥. Computationally, ⊥ corresponds under Curry-Howard to the empty type (sometimes written 0; named <code>Void</code> in ghc Haskell). This is a perfectly reasonable choice when the entire program will be under this translation, but we often want only part of the program to undergo translation and thus a type more tractable than <code>Void</code> would be welcome.</p>
+<p>Fortunately, it’s entirely acceptable to choose some <em>other</em> type to substitute for ⊥, so lng as we’re consistent. Somewhat arbitrarily, we’ll call R the result type. Now our CPS translation yields:</p>
+<p>(B → R) → (A → R)</p>
+<p>As a quick aside: this representation is just a flip away from being the composition of the <code>ReaderT</code> monad transformer on <code>ContT</code>.</p>
+<p>As Filinski notes, functions-as-continuation-transformers map continuation contravariantly from the return type to the argument type. Otherwise put, applying a function f : A -&gt; B to a continuation k : ¬B (an operation which Filinski writes as k ↓ f) yields a continuation of type ¬A. Thinking of continuations as functions to some specially-chosen return type maks this look rather more like composition than application, but Filinski further stresses the importance of understanding continuations as their own kind of thing.</p>
+<p>That said, it raises another question: why are continuations written with a type constructor, while values just sort of <em>are</em>? Why the asymmetry?</p>
+<p>As noted before, ¬B → ¬A is equivalent to (B → ⊥) → (A → ⊥). One way to approach the question of duality is to dualize the logical propositions. We’re going to use the polarized logic from the previous post, but we won’t worry <em>too</em> much about the polarities, simply acknowledging that some quantity of shifts will be necessary.</p>
+<p>Implication dualizes to subtraction: (A → B)<sup>⊥</sup> = A - B. Note that this is dual all by itself—A and B aren’t negated. So one answer could be: the dual of ¬B → ¬A is ¬B - ¬A. This is true; the latter represents precisely the negative space (as it were) around the former. But it’s somwhat unsatisfying just the same; that’s the dual of the function type, not the dual of CPS as a mechanism.</p>
+<p>We can also negate the argument and return types, in which case the dual of ¬B → ¬A could be taken to be either B → A (classically) or ¬¬B → ¬¬A. And since A → B is equivalent to ¬B → ¬A, that means that we can further replace ¬¬B → ¬¬A with ¬¬¬A → ¬¬¬B, and then apply triple negation elimination (both classically and intuitionistically valid) to obtain (¬B → ¬A)<sup>⊥</sup> = ¬A → ¬B. Also true; also unsatisfying. What’s missing?</p>
+<p>One of the great benefits of programmer-accessible CPS is the availability of delimited continuations, which are a generalization of regular, no-return continuations to return to one or more chosen places in a computation (typically in an outer scope). They furthermore allow the code there to return back into the inner scope, and thus enable inner scopes to communicate with outer ones—exactly what’s needed for effect handlers. ¬A <em>represents</em> a continuation from A, in that we interpret it as one, but if we want the dual of CPS we need to dualize continuations, too.</p>
+<p>As one further bit of inspiration, just as ¬A, the negative negation of a positive proposition A, is equivalent to A → ⊥, ~A, the positive negation of a negative proposition A, is equivalent to 1 - A. The data of a subtraction consists of an argument on the left and a continuation from the proposition on the right—the argument to and continuation from the result of the dual function type, precisely—so using subtractions themselves would be moving the problem around, to some degree. But note that 1 and ⊥ are de Morgan duals; so clearly there’s something here.</p>
+<p>Thus, modulo a bit of hand-waving, we arrive at:</p>
+<p>((B → ⊥) → (A → ⊥))<sup>⊥</sup> = (1 → A) → (1 → B)</p>
+<p>And just as we were justified in replacing ⊥ with R, we can now feel justified in replacing 1 with S, yielding:</p>
+<p>((B → R) → (A → R))<sup>⊥</sup> = (S → A) → (S → B)</p>
+<p>(The justification being that S abstracts 1 just as R abstracts ⊥.)</p>
+<p>I’m describing this pattern of function as environment-passing style (tho I’m hoping someone has already described this in detail under a rather better name). I don’t have good idioms for its use, no handy APIs, nor best practices, but I am hopeful that it will prove useful in exploring the relationships between profunctor optics and CPS, and in describing a program’s context-awareness à la coeffects, just like continuations have done for effects. Programmable continuations have been marvellously handy; perhaps programmable values will be as well. And the composition(s) of the two styles is especially intruiging given that values and continuations can each wrap the other.</p>
+<p>Finally, a vivid analogy keeps popping into my head, of a piece of twine or wire with 1 at one end and ⊥ at the other, and a program’s interpreter either pulling itself along generating values, or pushing itself along satisfying continuations. Good luck, little program.</p>
+</article>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure left">
+      <small>
+        Words by <a href="https://github.com/robrix">Rob Rix</a>
+      </small>
+    </div>
+    <div class="measure right">
+      <small>
+        Theme <a href="https://github.com/johnotander/pixyll">Pixyll</a> by <a href="http://johnotander.com">John Otander</a>
+      </small>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>
