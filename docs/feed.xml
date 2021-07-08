@@ -511,7 +511,7 @@ Our negations are <em>involutive</em>, i.e. (mutual) self-inverses, due both to
 </td>
 <td colspan="2" rowspan="6">
 <p>
-Shifts serve two pragmatic purposes: like negations, they have the opposite polarity of whatever they shift; and they end the focusing phase of proof search and begin the focusing phase.
+Shifts serve two pragmatic purposes: like negations, they have the opposite polarity of whatever they shift; and they end the focusing phase of proof search and begin the inversion phase.
 </p>
 <p>
 Up shifts may be unfamiliar in terms of types, but at the term level are something like a <code>return</code>, particularly in monadic code: they embed a value (positive) within a computation (negative). In CBPV (call-by-push-value), this is the left adjoint, F.
