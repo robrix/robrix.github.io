@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sequent Calculi and Metacircularity – Antitypical</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Words by Rob Rix.">
+    <meta name="author" content="Rob Rix">
+    <meta name="keywords" content="logic, plt">
+    <link rel="canonical" href="https://antitypical.com/posts/2021-07-16-sequent-calculi-and-metacircularity/">
+    <link rel="alternate" type="application/rss+xml" title="Antitypical" href="https://antitypical.com/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/stylesheet.css" type="text/css">
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css">
+
+    <link rel="mask-icon" type="image/svg+xml" href="https://antitypical.com/icon.svg">
+    <link rel="icon" type="image/svg+xml" href="https://antitypical.com/icon.svg" sizes="any">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://antitypical.com/icon-96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="https://antitypical.com/icon-180.png" sizes="180x180">
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Sequent Calculi and Metacircularity">
+    <meta property="og:description" content="Words by Rob Rix.">
+    <meta property="og:url" content="https://antitypical.com/posts/2021-07-16-sequent-calculi-and-metacircularity/index.html">
+    <meta property="og:site_name" content="Antitypical">
+</head>
+
+
+<body>
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="https://antitypical.com" class="site-title">Antitypical</a>
+      <nav class="site-nav right">
+        <a href="https://github.com/robrix">GitHub</a>
+<a href="https://twitter.com/rob_rix">Twitter</a>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        <div class="post-header mb2">
+  <h1>Sequent Calculi and Metacircularity</h1>
+  <span class="post-meta">Jul 16, 2021</span><br>
+  
+  <span class="post-meta small">3 minute read</span>
+</div>
+
+<article class="post-content">
+  <style type="text/css">
+table.rule.left td {
+  text-align: right;
+}
+table.rule.right td {
+  text-align: left;
+}
+</style>
+<p>(Some) sequent calculi offer a few simple primitives organized around the eponymous <em>sequent</em>, comprised of two contexts—collections of zero or more propositions—named Γ (comprising the antecedents, or hypotheses) and Δ (comprising the consequents), separated by the ⊢ symbol, called “the turnstile” and pronounced variously as “proves,” “supports,” “entails,” and so forth. Interpreted computationally, ⊢ can also be understood as “constructs” or “returns.” Put together, we write:</p>
+<blockquote>
+<p>Γ ⊢ Δ</p>
+</blockquote>
+<!--more-->
+<p>or, instantiating the contexts with a proposition A:</p>
+<blockquote>
+<p>A ⊢ A</p>
+</blockquote>
+<p>Propositions are automatically coerced to contexts, and the comma operator serves as concatenation on contexts, so we can also have multiple propositions/contexts interleaved however we like:</p>
+<blockquote>
+<p>Γ<sub>1</sub>, A, Γ<sub>2</sub> ⊢ Δ<sub>1</sub>, A, Δ<sub>2</sub></p>
+</blockquote>
+<p>Γ is interpreted conjunctively and Δ disjunctively, so we can read the above as “all of Γ<sub>1</sub>, A, and Γ<sub>2</sub> prove some of Δ<sub>1</sub>, A, Δ<sub>2</sub>”, or more generally, “all of Γ proves some of Δ.”</p>
+<p>When the contexts are empty, they’re interpreted as the identity elements of their respective interpretations, i.e. an empty Γ is interpreted the same as a true proposition, and an empty Δ the same as a false one.</p>
+<p>Combined, these properties offer straightforward means to discuss logical constants and operators:</p>
+<ul>
+<li>Δ behaves like ⊥ when empty.</li>
+<li>Δ behaves like ∨ when non-empty.</li>
+<li>Γ behaves like ⊤ when empty.</li>
+<li>Γ behaves like ∧ when non-empty.</li>
+<li>⊢ behaves like →.</li>
+<li>When both contexts are empty, ⊢ on its own is a contradiction. (Intuitively, this is because the empty Γ is truth and the empty Δ is falsity—“truth proves falsity.”)</li>
+</ul>
+<p>This is reflected in the rules for various logical operators.</p>
+<table class="connective">
+<tbody>
+<tr>
+<td>
+<table class="rule left">
+<tbody>
+<tr>
+<td rowspan="2">
+<p>
+∨ ⊢
+</p>
+</td>
+<td class="premise">
+<p>
+A, Γ ⊢ Δ
+</p>
+</td>
+<td class="premise">
+<p>
+B, Γ ⊢ Δ
+</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p>
+A ∨ B, Γ ⊢ Δ
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="rule right">
+<tbody>
+<tr>
+<td>
+<p>
+Γ ⊢ Δ, A
+</p>
+</td>
+<td rowspan="2">
+<p>
+⊢ ∨<sub>1</sub>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Γ ⊢ Δ, A ∨ B
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="rule right">
+<tbody>
+<tr>
+<td>
+<p>
+Γ ⊢ Δ, B
+</p>
+</td>
+<td rowspan="2">
+<p>
+⊢ ∨<sub>2</sub>
+</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Γ ⊢ Δ, A ∨ B
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="connective">
+<tbody>
+<tr>
+<td>
+<table class="rule left">
+<tbody>
+<tr>
+<td rowspan="2">
+<p>
+∧ ⊢<sub>1</sub>
+</p>
+</td>
+<td class="premise">
+<p>
+A, Γ ⊢ Δ
+</p>
+</td>
+</tr>
+<tr>
+<td class="conclusion">
+<p>
+A ∧ B, Γ ⊢ Δ
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="rule left">
+<tbody>
+<tr>
+<td rowspan="2">
+<p>
+∧ ⊢<sub>2</sub>
+</p>
+</td>
+<td class="premise">
+<p>
+B, Γ ⊢ Δ
+</p>
+</td>
+</tr>
+<tr>
+<td class="conclusion">
+<p>
+A ∧ B, Γ ⊢ Δ
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="rule right">
+<tbody>
+<tr>
+<td class="premise">
+<p>
+Γ ⊢ Δ, A
+</p>
+</td>
+<td class="premise">
+<p>
+Γ ⊢ Δ, B
+</p>
+</td>
+<td rowspan="2">
+<p>
+⊢ ∧
+</p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p>
+Γ ⊢ Δ, A ∧ B
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</article>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure left">
+      <small>
+        Words by <a href="https://github.com/robrix">Rob Rix</a>
+      </small>
+    </div>
+    <div class="measure right">
+      <small>
+        Theme <a href="https://github.com/johnotander/pixyll">Pixyll</a> by <a href="http://johnotander.com">John Otander</a>
+      </small>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>
