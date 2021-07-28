@@ -5,7 +5,7 @@ date:   2021-07-08 10:08:54
 categories: logic, plt
 ---
 
-Functions of type A → B can be translated into corresponding functions of type ¬B → ¬A in continuation-passng style (CPS), where ¬A is logically negation but computationally a continuation from A.
+Functions of type A → B can be translated into corresponding functions of type ¬B → ¬A in continuation-passing style (CPS), where ¬A is logically negation but computationally a continuation from A.
 
 <!--more-->
 
