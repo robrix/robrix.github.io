@@ -84,3 +84,72 @@ table.connective td.right {
   text-align: left;
   float: none;
 }
+
+/* thank you, CSS hero: https://twitter.com/ptrfrncsmrph/status/1420749056125685762 */
+div.connective {
+  float: none;
+  width: auto;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 24px;
+  width: max-content;
+  margin-bottom: 1em;
+}
+
+div.rule {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 2px;
+  width: max-content;
+  font-size: 1.25rem;
+  line-height: 1.8rem;
+  align-items: center;
+}
+
+div.rule div.label {
+  font-size: 75%;
+  padding: 6px;
+}
+
+div.rule sub {
+  font-size: 60%;
+  line-height: 0;
+}
+
+div.inference {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 2px;
+  width: max-content;
+}
+
+div.axiom {
+  grid-column: 1 / -1;
+  height: 1.75rem;
+  line-height: 1.8rem;
+}
+
+div.rule div.axiom,
+div.rule div.premise,
+div.rule div.conclusion {
+  padding: 2px;
+}
+
+div.rule .line-of-inference {
+  grid-column: 1 / -1;
+  background: #666;
+  height: 1px;
+}
+
+div.rule div.Γ {
+  text-align: right;
+}
+
+div.rule div.turnstile {
+  text-align: center;
+}
+
+div.rule div.Δ {
+  text-align: left;
+}

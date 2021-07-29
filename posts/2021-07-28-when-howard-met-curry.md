@@ -65,234 +65,133 @@ Earlier, we judged `r` a fitting substitute for `Void` because it behaved compat
 
 `r`’s abstraction of `Void` is determined entirely by Curry-Howard: `r` abstracts `Void` insofar as `Void` corresponds to ⊥ and its logical rules. The left rule has this sequent as an axiom:
 
-<table class="rule left">
-  <tbody>
-    <tr>
-      <td class="label" rowspan="2">
-        ⊥⊢
-      </td>
-      <td class="premise">
-        &nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td class="conclusion">
-        ⊥, Γ ⊢ Δ
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="connective">
+<div class="rule">
+  <div class="label">⊥⊢</div>
+  <div class="inference">
+  <div class="axiom"></div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">⊥, Γ</div>
+  <div class="conclusion turnstile">⊢</div>
+  <div class="conclusion Δ">Δ, ⊥</div>
+  </div>
+</div>
+</div>
 
 This gives us ex falso quodlibet: ⊥ on the left suffices to prove _any_ sequent. As we saw, `Void` provides this via `absurd`. For `r`, imagine a type representing sequents implemented using `Cont`. If your arguments contain an `r`, there’s no need to consider any other arguments or what values you could compute and return; in fact, you don’t need the continuation at all. Just return the argument of type `r` and you’re done.
 
 The right rule is instead:
 
-<table class="rule right">
-  <tbody>
-    <tr>
-      <td class="premise">
-        Γ ⊢ Δ
-      </td>
-      <td class="label" rowspan="2">
-        ⊢⊥
-      </td>
-    </tr>
-    <tr>
-      <td class="conclusion">
-        Γ ⊢ Δ, ⊥
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="connective">
+<div class="rule">
+  <div class="inference">
+  <div class="premise Γ">Γ</div>
+  <div class="premise turnstile">⊢</div>
+  <div class="premise Δ">Δ</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">Γ</div>
+  <div class="conclusion turnstile">⊢</div>
+  <div class="conclusion Δ">Δ, ⊥</div>
+  </div>
+  <div class="label">⊢⊥</div>
+</div>
+</div>
 
 This instead says that you can construct it along any sequent which was provable anyway; or, working bottom-up, ⊥ adds no information to a proof, and so can be discarded at any time. This one is a little stranger; we can’t construct a `Void`, period; but if we could, it certainly wouldn’t add any information. On the other hand, `r` _is_ inhabited, so we can certainly follow the analogy: we can construct an `r` if we can return without it anyway; in fact, we do, by applying the return continuation.
 
 For `e` we instead need to trace its relationships with 1. 1’s rules are dual, mirror images of the ones for ⊥. Again, we start with the left rule, which corresponds closely to the right rule for ⊥:
 
-<table class="rule left">
-  <tbody>
-    <tr>
-      <td class="label" rowspan="2">
-        1⊢
-      </td>
-      <td class="premise">
-        Γ ⊢ Δ
-      </td>
-    </tr>
-    <tr>
-      <td class="conclusion">
-        1, Γ ⊢ Δ
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="connective">
+<div class="rule">
+  <div class="label">1⊢</div>
+  <div class="inference">
+  <div class="premise Γ">Γ</div>
+  <div class="premise turnstile">⊢</div>
+  <div class="premise Δ">Δ</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">1, Γ</div>
+  <div class="conclusion turnstile">⊢</div>
+  <div class="conclusion Δ">Δ</div>
+  </div>
+</div>
+</div>
 
 Left rules can be read by recalling that a sequent is sort of like a function: we can build a function to eliminate 1 and Γ into Δ by means of a funciton eliminating Γ into Δ. Put another way, 1 doesn’t give us any power to prove things that we didn’t have without it, and so we can always introduce it as a hypothetical. `()` works much the same way: adding an argument of type `()` won’t help you construct anything, since you could have just introduced it as a literal. `e` therefore must work the same way, but we’re going to weaken our informal restatement of this down to: you are free to ignore an argument of type `e`. Of course, we aren’t in an e.g. linear setting, so we’re free to ignore _every_ argument. But even if we were in a linear setting, `e` should still be discardable.
 
 On the right:
 
-<table class="rule right">
-  <tbody>
-    <tr>
-      <td class="premise">
-        &nbsp;
-      </td>
-      <td class="label" rowspan="2">
-        ⊢1
-      </td>
-    </tr>
-    <tr>
-      <td class="conclusion">
-        Γ ⊢ Δ, 1
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="connective">
+<div class="rule">
+  <div class="inference">
+  <div class="axiom"></div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">Γ</div>
+  <div class="conclusion turnstile">⊢</div>
+  <div class="conclusion Δ">Δ, 1</div>
+  </div>
+  <div class="label">⊢1</div>
+</div>
+</div>
 
 You can always make a 1. Ditto `()`; it’s what makes it discardable. (1, a positive connective, is indeed defined by its right rule.) `e`, then, must also be freely introduced, ambiently, ubiquitously.
 
 Considering that we started with the humble ⊥ and 1, the combined consequences of these rules and equivalences for our purposes are surprisingly useful. Expressed as derived rules, on the ⊥ side, if we have an A, we can use it to eliminate an A → ⊥<sub>R</sub>—a continuation—at any time; likwise, we can introduce a continuation from A to satisfy a demand for a A:
 
-<table class="connective">
-  <tbody>
-    <tr>
-      <td class="left">
-        <table class="rule left">
-          <tbody>
-            <tr>
-              <td class="label" rowspan="2">
-                →⊥<sub>R</sub>⊢
-              </td>
-              <td class="premise Γ">
-                Γ
-              </td>
-              <td class="premise turnstile">
-                ⊢<sub>R</sub>
-              </td>
-              <td class="premise Δ">
-                Δ, A
-              </td>
-            </tr>
-            <tr>
-              <td class="conclusion Γ">
-                A → ⊥<sub>R</sub>, Γ
-              </td>
-              <td class="conclusion turnstile">
-                ⊢<sub>R</sub>
-              </td>
-              <td class="conclusion Δ">
-                Δ
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-      <td class="right">
-        <table class="rule right">
-          <tbody>
-            <tr>
-              <td class="premise Γ">
-                A, Γ
-              </td>
-              <td class="premise turnstile">
-                ⊢<sub>R</sub>
-              </td>
-              <td class="premise Δ">
-                Δ
-              </td>
-              <td class="label" rowspan="2">
-                ⊢→⊥<sub>R</sub>
-              </td>
-            </tr>
-            <tr>
-              <td class="conclusion Γ">
-                Γ
-              </td>
-              <td class="conclusion turnstile">
-                ⊢<sub>R</sub>
-              </td>
-              <td class="conclusion Δ">
-                Δ, A → ⊥<sub>R</sub>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="connective">
+<div class="rule">
+  <div class="label">→⊥<sub>R</sub>⊢</div>
+  <div class="inference">
+  <div class="premise Γ">Γ</div>
+  <div class="premise turnstile">⊢<sub>R</sub></div>
+  <div class="premise Δ">Δ, A</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">A → ⊥<sub>R</sub>, Γ</div>
+  <div class="conclusion turnstile">⊢<sub>R</sub></div>
+  <div class="conclusion Δ">Δ</div>
+  </div>
+</div>
+<div class="rule">
+  <div class="inference">
+  <div class="premise Γ">A, Γ</div>
+  <div class="premise turnstile">⊢<sub>R</sub></div>
+  <div class="premise Δ">Δ</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">Γ</div>
+  <div class="conclusion turnstile">⊢<sub>R</sub></div>
+  <div class="conclusion Δ">Δ, A → ⊥<sub>R</sub></div>
+  </div>
+  <div class="label">⊢→⊥<sub>R</sub></div>
+</div>
+</div>
 
 Dually, demand for 1<sub>E</sub> → A is satisfied by demand for A; and we can always turn A into 1<sub>E</sub> → A:
 
-<table class="connective">
-  <tbody>
-    <tr>
-      <td class="left">
-        <table class="rule left">
-          <tbody>
-            <tr>
-              <td class="label" rowspan="2">
-                1<sub>E</sub>→⊢
-              </td>
-              <td class="premise Γ">
-                A, Γ
-              </td>
-              <td class="premise turnstile">
-                ⊢<sub>E</sub>
-              </td>
-              <td class="premise Δ">
-                Δ
-              </td>
-            </tr>
-            <tr>
-              <td class="conclusion Γ">
-                1<sub>E</sub> → A, Γ
-              </td>
-              <td class="conclusion turnstile">
-                ⊢<sub>E</sub>
-              </td>
-              <td class="conclusion Δ">
-                Δ
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-      <td class="right">
-        <table class="rule right">
-          <tbody>
-            <tr>
-              <td class="premise Γ">
-                Γ
-              </td>
-              <td class="premise turnstile">
-                ⊢<sub>E</sub>
-              </td>
-              <td class="premise Δ">
-                Δ, A
-              </td>
-              <td class="label" rowspan="2">
-                ⊢1<sub>E</sub>→
-              </td>
-            </tr>
-            <tr>
-              <td class="conclusion Γ">
-                Γ
-              </td>
-              <td class="conclusion turnstile">
-                ⊢<sub>E</sub>
-              </td>
-              <td class="conclusion Δ">
-                Δ, 1<sub>E</sub> → A
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="connective">
+<div class="rule">
+  <div class="label">1<sub>E</sub>→⊢</div>
+  <div class="inference">
+  <div class="premise Γ">A, Γ</div>
+  <div class="premise turnstile">⊢<sub>E</sub></div>
+  <div class="premise Δ">Δ</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">1<sub>E</sub> → A, Γ</div>
+  <div class="conclusion turnstile">⊢<sub>E</sub></div>
+  <div class="conclusion Δ">Δ</div>
+  </div>
+</div>
+<div class="rule">
+  <div class="inference">
+  <div class="premise Γ">Γ</div>
+  <div class="premise turnstile">⊢<sub>E</sub></div>
+  <div class="premise Δ">Δ, A</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">Γ</div>
+  <div class="conclusion turnstile">⊢<sub>E</sub></div>
+  <div class="conclusion Δ">Δ, 1<sub>E</sub> → A</div>
+  </div>
+  <div class="label">⊢1<sub>E</sub>→</div>
+</div>
+</div>
 
 
 ## Assertive negativity
@@ -305,74 +204,32 @@ In much the same way, the dual structure—probably a comonad—gives us local e
 
 If `Cont r a` is ¬¬A, thnn what is this dual structure? Following the thread backwards, `Cont r a` is ¬¬A because `Cont r a` is (A → ⊥<sub>R</sub>) → ⊥<sub>R</sub>, which is an encoding of ¬¬A. Our encoding of 1<sub>E</sub> → A, on the other hand, doesn’t correspond to any connective—yet. So let’s introduce one: ¬̷, pronounced “not untrue,” is an _assertion_ (some relation to the logical notion, no relation to the computational one), dual to a negation, and works just like our encoding above:
 
-<table class="connective">
-  <tbody>
-    <tr>
-      <td class="left">
-        <table class="rule left">
-          <tbody>
-            <tr>
-              <td class="label" rowspan="2">
-                ¬̷⊢
-              </td>
-              <td class="premise Γ">
-                A, Γ
-              </td>
-              <td class="premise turnstile">
-                ⊢
-              </td>
-              <td class="premise Δ">
-                Δ
-              </td>
-            </tr>
-            <tr>
-              <td class="conclusion Γ">
-                ¬̷A, Γ
-              </td>
-              <td class="conclusion turnstile">
-                ⊢
-              </td>
-              <td class="conclusion Δ">
-                Δ
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-      <td class="right">
-        <table class="rule right">
-          <tbody>
-            <tr>
-              <td class="premise Γ">
-                Γ
-              </td>
-              <td class="premise turnstile">
-                ⊢
-              </td>
-              <td class="premise Δ">
-                Δ, A
-              </td>
-              <td class="label" rowspan="2">
-                ⊢¬̷
-              </td>
-            </tr>
-            <tr>
-              <td class="conclusion Γ">
-                Γ
-              </td>
-              <td class="conclusion turnstile">
-                ⊢
-              </td>
-              <td class="conclusion Δ">
-                Δ, ¬̷A
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="connective">
+<div class="rule left">
+  <div class="label">¬̷⊢</div>
+  <div class="inference">
+  <div class="premise Γ">A, Γ</div>
+  <div class="premise turnstile">⊢</div>
+  <div class="premise Δ">Δ</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">¬̷A, Γ</div>
+  <div class="conclusion turnstile">⊢</div>
+  <div class="conclusion Δ">Δ</div>
+  </div>
+</div>
+<div class="rule right">
+  <div class="inference">
+  <div class="premise Γ">Γ</div>
+  <div class="premise turnstile">⊢</div>
+  <div class="premise Δ">Δ, A</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">Γ</div>
+  <div class="conclusion turnstile">⊢</div>
+  <div class="conclusion Δ">Δ, ¬̷A</div>
+  </div>
+  <div class="label">⊢¬̷</div>
+</div>
+</div>
 
 Unlike ¬, the composition of ¬̷ on itself is surprisingly boring. If ¬̷ encodes as 1 → A, then all we’ve got is 1 → 1 → A, which gives us nothing the single instance didn’t. I thought these things were supposed to be dual; what gives?
 
@@ -479,74 +336,32 @@ The negations both invert polarity, whereas ¬̷ maintains it. Further, the nega
 
 ✓, pronounced “true,” is truly dual to ¬, and ¬̷ is dual to ~. ✓’s encoding gives us the following rules:
 
-<table class="connective">
-  <tbody>
-    <tr>
-      <td class="left">
-        <table class="rule left">
-          <tbody>
-            <tr>
-              <td class="label" rowspan="2">
-                ✓⊢
-              </td>
-              <td class="premise Γ">
-                A, Γ
-              </td>
-              <td class="premise turnstile">
-                ⊢
-              </td>
-              <td class="premise Δ">
-                Δ
-              </td>
-            </tr>
-            <tr>
-              <td class="conclusion Γ">
-                ✓A, Γ
-              </td>
-              <td class="conclusion turnstile">
-                ⊢
-              </td>
-              <td class="conclusion Δ">
-                Δ
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-      <td class="right">
-        <table class="rule right">
-          <tbody>
-            <tr>
-              <td class="premise Γ">
-                Γ
-              </td>
-              <td class="premise turnstile">
-                ⊢
-              </td>
-              <td class="premise Δ">
-                Δ, A
-              </td>
-              <td class="label" rowspan="2">
-                ⊢✓
-              </td>
-            </tr>
-            <tr>
-              <td class="conclusion Γ">
-                Γ
-              </td>
-              <td class="conclusion turnstile">
-                ⊢
-              </td>
-              <td class="conclusion Δ">
-                Δ, ✓A
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="connective">
+<div class="rule">
+<div class="label">✓⊢</div>
+<div class="inference">
+  <div class="premise Γ">A, Γ</div>
+  <div class="premise turnstile">⊢</div>
+  <div class="premise Δ">Δ</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">✓A, Γ</div>
+  <div class="conclusion turnstile">⊢</div>
+  <div class="conclusion Δ">Δ</div>
+</div>
+</div>
+<div class="rule">
+<div class="inference">
+  <div class="premise Γ">Γ</div>
+  <div class="premise turnstile">⊢</div>
+  <div class="premise Δ">Δ, A</div>
+  <span class="line-of-inference"></span>
+  <div class="conclusion Γ">Γ</div>
+  <div class="conclusion turnstile">⊢</div>
+  <div class="conclusion Δ">Δ, ✓A</div>
+</div>
+<div class="label">⊢✓</div>
+</div>
+</div>
 
 So far, so… disappointing. These are precisely the same rules as we found for ¬̷; only the symbols and the polarities have been swapped. And what’s worse, the same was already true of the rules for the negations.
 
