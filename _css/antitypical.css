@@ -10,3 +10,155 @@ caption {
   font-size: .875rem;
   line-height: 1.5rem;
 }
+
+/* inference rule presentations */
+
+table.rule {
+  float: none;
+  width: auto;
+}
+
+table.rule td sub {
+  font-size: 60%;
+  /* vertical-align: text-bottom; */
+  line-height: 0;
+}
+
+table.rule td.label {
+  font-size: 75%;
+  padding: 6px;
+}
+
+table.rule.left td.turnstile,
+table.rule.right td.turnstile {
+  text-align: center;
+}
+
+
+
+table.connective > tbody:first-child > tr:first-child > td,
+table.rule > tbody:first-child > tr:first-child > td {
+  border-top: 0;
+}
+
+table.rule td {
+  line-height: 1em;
+  padding: 6px 0;
+  border-color: #666;
+  vertical-align: middle;
+}
+
+table.rule.left td {
+  text-align: right;
+}
+
+table.rule.right td {
+  text-align: left;
+}
+
+table.rule td.turnstile {
+  padding: 6px;
+}
+
+table.rule.left td.Δ {
+  text-align: left;
+}
+
+table.rule.right td.Γ {
+  text-align: right;
+}
+
+
+table.connective {
+  float: none;
+  width: auto;
+  margin: 0 auto;
+}
+
+table.connective td.left {
+  text-align: right;
+  float: none;
+}
+
+table.connective td.right {
+  text-align: left;
+  float: none;
+}
+
+/* thank you, CSS hero: https://twitter.com/ptrfrncsmrph/status/1420749056125685762 */
+div.connective {
+  float: none;
+  width: auto;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 24px;
+  width: max-content;
+  margin-bottom: 1em;
+}
+
+div.rule {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 2px;
+  width: max-content;
+  font-size: 1.25rem;
+  line-height: 1.8rem;
+  align-items: center;
+}
+
+div.rule div.label {
+  font-size: 75%;
+  padding: 6px;
+}
+
+div.rule sub {
+  font-size: 60%;
+  line-height: 0;
+}
+
+div.inference {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 2px;
+  width: max-content;
+}
+
+div.axiom {
+  grid-column: 1 / -1;
+  height: 1.75rem;
+  line-height: 1.8rem;
+}
+
+div.rule div.axiom,
+div.rule div.premise,
+div.rule div.conclusion {
+  padding: 2px;
+}
+
+div.rule .line-of-inference {
+  grid-column: 1 / -1;
+  background: #666;
+  height: 1px;
+}
+
+div.rule div.Γ {
+  text-align: right;
+}
+
+div.rule div.turnstile {
+  text-align: center;
+}
+
+div.rule div.Δ {
+  text-align: left;
+}
+
+cite {
+  font-style: italic;
+}
+
+figcaption {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
