@@ -426,7 +426,13 @@ I set out to understand continuation-passing style better, and whatever its oppo
 
 For now, I mostly just wanted to share how wonderful it is what sort of things we can discover as we follow the road back and forth across the Curry-Howard correspondence.
 
+<aside>
+
+Thanks to Peter Murphy, [CSS Hero][], for help with the CSS for the sequent calculus rules.
+
+</aside>
 
 [`sequoia`]: https://github.com/robrix/sequoia
 [Compiling with Classical Connectives]: https://lmcs.episciences.org/6740
 [environment-passing style]: /posts/2021-07-08-environment-passing-style/
+[CSS Hero]: https://twitter.com/ptrfrncsmrph/status/1420749056125685762
