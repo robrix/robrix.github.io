@@ -321,9 +321,9 @@ A, Γ
 <h2 id="polarization">Polarization</h2>
 <p>I mentioned before that <code>sequoia</code> embeds <em>polarized</em> classical logic. Thus, the above tells only half the story, because we have two different negations: the negative negation ¬ (“not”), and the positive negation ~ (“negate”). They further accept propositions of the opposite polarity, i.e. ¬ takes a positive proposition and ~ takes a negative one, and are involutive, cancelling each other out. ¬~A<sup>-</sup> ≈ A<sup>-</sup>, and ~¬A<sup>+</sup> ≈ A<sup>+</sup>.</p>
 <p>Likewise, there are actually two different assertions. ¬̷, which we saw above, is the negative one, while the positive one is stranger still. We arrived at the negative assertion by considering the negative negation, maybe we can find the positive one by a similar route.</p>
-<p>The encoding of ¬A as A → ⊥ which we saw earlier wouldn’t be well-polarized for the positive negation ~A. Instead, ~A is encoded as 1 - A, where A - B (“A without B”) is (categorically) a coexponential, (logically) a coimplicaiton or subtraction, and (computationally) a calling context. (Downen has called it a call stack, but I dislike that name, as it’s more like a single frame than an entire stack.)</p>
-<p>While the logical rules for its introduction and elimination offer some insight into what its representation must hold, it’s perhaps clearest under a different set of encodings: this time, encoding → and - in terms of disjunction/conjunction and negations. Classically, A → B can be encoded as ¬A ∨ B, while A - B can be encoded as A ∧ ¬B (i.e. “A and not B,” hence the pronunciation of - as “without”). If A - B could be encoded as a conjunction of A and the negation of B, then what does Curry-Howard have to say about that? Conjunctions are product types; negations are still continuations; A - B is isomorphic to a pair of an A and a continuation from B.</p>
-<p>We can see now that A → B and A - B are dual: A - B holds both the argument to and continuation from A → B. I sometimes imagine A - B as a pipeline, with a section missing; A → B is precisely the missing section that fits and completes it.</p>
+<p>The encoding of ¬A as A → ⊥ which we saw earlier wouldn’t be well-polarized for the positive negation ~A. Instead, ~A is encoded as 1 − A, where A − B (“A without B”) is (categorically) a coexponential, (logically) a coimplicaiton or subtraction, and (computationally) a calling context. (Downen has called it a call stack, but I dislike that name, as it’s more like a single frame than an entire stack.)</p>
+<p>While the logical rules for its introduction and elimination offer some insight into what its representation must hold, it’s perhaps clearest under a different set of encodings: this time, encoding → and − in terms of disjunction/conjunction and negations. Classically, A → B can be encoded as ¬A ∨ B, while A − B can be encoded as A ∧ ¬B (i.e. “A and not B,” hence the pronunciation of − as “without”). If A − B could be encoded as a conjunction of A and the negation of B, then what does Curry-Howard have to say about that? Conjunctions are product types; negations are still continuations; A − B is isomorphic to a pair of an A and a continuation from B.</p>
+<p>We can see now that A → B and A - B are dual: A − B holds both the argument to and continuation from A → B. I sometimes imagine A − B as a pipeline, with a section missing; A → B is precisely the missing section that fits and completes it.</p>
 <p>Thus far our encodings of the two negations and our single assertion are:</p>
 <ul>
 <li>¬A ≈ A → ⊥</li>
@@ -369,7 +369,7 @@ assertion
 </tr>
 </tbody>
 </table>
-<p>The negations both invert polarity, whereas ¬̷ maintains it. Further, the negative connectives both employ →, whereas ~ uses -. Putting it together, we can expect the positive assertin to encode as -, and to maintain polarity, and that gives us:</p>
+<p>The negations both invert polarity, whereas ¬̷ maintains it. Further, the negative connectives both employ →, whereas ~ uses −. Putting it together, we can expect the positive assertion to encode as −, and to maintain polarity, and that gives us:</p>
 <table>
 <thead>
 <tr>
@@ -392,7 +392,7 @@ negation
 ¬A ≈ A → ⊥
 </td>
 <td>
-~A ≈ 1 - A
+~A ≈ 1 − A
 </td>
 </tr>
 <tr>
@@ -403,7 +403,7 @@ assertion
 ¬̷A = 1 → A
 </td>
 <td>
-✓A ≈ A - ⊥
+✓A ≈ A − ⊥
 </td>
 </tr>
 </tbody>
@@ -464,7 +464,7 @@ A, Γ
 </div>
 </div>
 <p>So far, so… disappointing. These are precisely the same rules as we found for ¬̷; only the symbols and the polarities have been swapped. And what’s worse, the same was already true of the rules for the negations.</p>
-<p>Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as 1 - A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive <em>negation</em> ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?</p>
+<p>Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as 1 − A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive <em>negation</em> ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?</p>
 <p>It was in precisely such a mood that I happened to open Paul Downen &amp; Zena Ariola’s recent paper <em><a href="https://lmcs.episciences.org/6740">Compiling with Classical Connectives</a></em> to where I’d last left off, on a page starting with this paragraph:</p>
 <blockquote>
 <p>The two negation types can be thought of as two dual way for representing first-class continuations in a programming language. One way to formulate a continuation is by capturing the context as a first class value. This corresponds to the data type ⊖A which packages up a covalue F as the value ⊖F, which can be later unpacked by pattern-matching in λ⊖α.c. Another way to formulate continuations is through functions that never return. This corresponds to the codata type ¬A which has values of the form λ¬x.c, which is analogous to a function abstraction that does not bind a return pointer, and covalues of the form ¬W, which is analogous to throwing a value to a continuation without waiting for a returned result.</p>

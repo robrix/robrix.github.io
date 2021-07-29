@@ -240,11 +240,11 @@ I mentioned before that `sequoia` embeds _polarized_ classical logic. Thus, the 
 
 Likewise, there are actually two different assertions. ¬̷, which we saw above, is the negative one, while the positive one is stranger still. We arrived at the negative assertion by considering the negative negation, maybe we can find the positive one by a similar route.
 
-The encoding of ¬A as A → ⊥ which we saw earlier wouldn’t be well-polarized for the positive negation ~A. Instead, ~A is encoded as 1 - A, where A - B (“A without B”) is (categorically) a coexponential, (logically) a coimplicaiton or subtraction, and (computationally) a calling context. (Downen has called it a call stack, but I dislike that name, as it’s more like a single frame than an entire stack.)
+The encoding of ¬A as A → ⊥ which we saw earlier wouldn’t be well-polarized for the positive negation ~A. Instead, ~A is encoded as 1 − A, where A − B (“A without B”) is (categorically) a coexponential, (logically) a coimplicaiton or subtraction, and (computationally) a calling context. (Downen has called it a call stack, but I dislike that name, as it’s more like a single frame than an entire stack.)
 
-While the logical rules for its introduction and elimination offer some insight into what its representation must hold, it’s perhaps clearest under a different set of encodings: this time, encoding → and - in terms of disjunction/conjunction and negations. Classically, A → B can be encoded as ¬A ∨ B, while A - B can be encoded as A ∧ ¬B (i.e. “A and not B,” hence the pronunciation of - as “without”). If A - B could be encoded as a conjunction of A and the negation of B, then what does Curry-Howard have to say about that? Conjunctions are product types; negations are still continuations; A - B is isomorphic to a pair of an A and a continuation from B.
+While the logical rules for its introduction and elimination offer some insight into what its representation must hold, it’s perhaps clearest under a different set of encodings: this time, encoding → and − in terms of disjunction/conjunction and negations. Classically, A → B can be encoded as ¬A ∨ B, while A − B can be encoded as A ∧ ¬B (i.e. “A and not B,” hence the pronunciation of − as “without”). If A − B could be encoded as a conjunction of A and the negation of B, then what does Curry-Howard have to say about that? Conjunctions are product types; negations are still continuations; A − B is isomorphic to a pair of an A and a continuation from B.
 
-We can see now that A → B and A - B are dual: A - B holds both the argument to and continuation from A → B. I sometimes imagine A - B as a pipeline, with a section missing; A → B is precisely the missing section that fits and completes it.
+We can see now that A → B and A - B are dual: A − B holds both the argument to and continuation from A → B. I sometimes imagine A − B as a pipeline, with a section missing; A → B is precisely the missing section that fits and completes it.
 
 Thus far our encodings of the two negations and our single assertion are:
 
@@ -293,7 +293,7 @@ We can further organize these by polarity and purpose:
   </tbody>
 </table>
 
-The negations both invert polarity, whereas ¬̷ maintains it. Further, the negative connectives both employ →, whereas ~ uses -. Putting it together, we can expect the positive assertin to encode as -, and to maintain polarity, and that gives us:
+The negations both invert polarity, whereas ¬̷ maintains it. Further, the negative connectives both employ →, whereas ~ uses −. Putting it together, we can expect the positive assertion to encode as −, and to maintain polarity, and that gives us:
 
 <table>
   <thead>
@@ -317,7 +317,7 @@ The negations both invert polarity, whereas ¬̷ maintains it. Further, the nega
         ¬A ≈ A → ⊥
       </td>
       <td>
-        ~A ≈ 1 - A
+        ~A ≈ 1 − A
       </td>
     </tr>
     <tr>
@@ -328,7 +328,7 @@ The negations both invert polarity, whereas ¬̷ maintains it. Further, the nega
         ¬̷A = 1 → A
       </td>
       <td>
-        ✓A ≈ A - ⊥
+        ✓A ≈ A − ⊥
       </td>
     </tr>
   </tbody>
@@ -365,7 +365,7 @@ The negations both invert polarity, whereas ¬̷ maintains it. Further, the nega
 
 So far, so… disappointing. These are precisely the same rules as we found for ¬̷; only the symbols and the polarities have been swapped. And what’s worse, the same was already true of the rules for the negations.
 
-Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as 1 - A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive _negation_ ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?
+Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as 1 − A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive _negation_ ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?
 
 It was in precisely such a mood that I happened to open Paul Downen & Zena Ariola’s recent paper _[Compiling with Classical Connectives][]_ to where I’d last left off, on a page starting with this paragraph:
 
