@@ -153,3 +153,12 @@ div.rule div.turnstile {
 div.rule div.Δ {
   text-align: left;
 }
+
+cite {
+  font-style: italic;
+}
+
+figcaption {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}

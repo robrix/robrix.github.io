@@ -514,9 +514,16 @@ A, Γ
 <p>So far, so… disappointing. These are precisely the same rules as we found for ¬̷; only the symbols and the polarities have been swapped. And what’s worse, the same was already true of the rules for the negations.</p>
 <p>Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as 1 − A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive <em>negation</em> ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?</p>
 <p>It was in precisely such a mood that I happened to open Paul Downen &amp; Zena Ariola’s recent paper <em><a href="https://lmcs.episciences.org/6740">Compiling with Classical Connectives</a></em> to where I’d last left off, on a page starting with this paragraph:</p>
+<figure>
 <blockquote>
-<p>The two negation types can be thought of as two dual way for representing first-class continuations in a programming language. One way to formulate a continuation is by capturing the context as a first class value. This corresponds to the data type ⊖A which packages up a covalue F as the value ⊖F, which can be later unpacked by pattern-matching in λ⊖α.c. Another way to formulate continuations is through functions that never return. This corresponds to the codata type ¬A which has values of the form λ¬x.c, which is analogous to a function abstraction that does not bind a return pointer, and covalues of the form ¬W, which is analogous to throwing a value to a continuation without waiting for a returned result.</p>
+<p>
+The two negation types can be thought of as two dual way for representing first-class continuations in a programming language. One way to formulate a continuation is by capturing the context as a first class value. This corresponds to the data type ⊖A which packages up a covalue F as the value ⊖F, which can be later unpacked by pattern-matching in λ⊖α.c. Another way to formulate continuations is through functions that never return. This corresponds to the codata type ¬A which has values of the form λ¬x.c, which is analogous to a function abstraction that does not bind a return pointer, and covalues of the form ¬W, which is analogous to throwing a value to a continuation without waiting for a returned result.
+</p>
 </blockquote>
+<figcaption>
+<cite><a href="https://lmcs.episciences.org/6740">Compiling with Classical Connectives</a></cite>, Paul Downen, Zena M. Ariola
+</figcaption>
+</figure>
 <p>In short, you don’t use the same representation of continuations under two different names; you use two different representations, each with their own strengths. I was delighted to read this, because it reflects something about ~ that I’d only just noticed a day or two prior: the reason representing ¬A with continuations <code>a -&gt; r</code> <em>works</em> is that we’re consistent about it. Shouldn’t we be consistent about our treatment of 1, too? In which case, we should revisit our table:</p>
 <table>
 <thead>
