@@ -541,23 +541,31 @@ $$</span></p>
     </tr>
     <tr>
       <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$⅋\ \ \kern1pt ⊢$}
-        \AxiomC{$[A^-] Γ ⊢ Δ$}
-        \AxiomC{$[B^-] Γ ⊢ Δ$}
-        \BinaryInfC{$[A^-\ ⅋\ \ \ B^-] Γ ⊢ Δ$}
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt ⅋$}
-        \Axiom$\fCenter Γ ⊢ Δ, A^-, B^-$
-        \UnaryInf$\fCenter Γ ⊢ Δ, A^-\ ⅋\ \ \ B^-$
-        \end{prooftree}
-        $$
+        <div class="connective">
+          <div class="rule">
+            <div class="label">⅋⊢</div>
+            <div class="inference">
+              <div class="premises">
+                <div class="premise">[A<sup>−</sup>] Γ ⊢ Δ</div>
+                <div class="premise">[B<sup>−</sup>] Γ ⊢ Δ</div>
+              </div>
+              <span class="line-of-inference"></span>
+              <div class="conclusion">[A<sup>−</sup> ⅋ B<sup>−</sup>] Γ ⊢ Δ</div>
+            </div>
+          </div>
+          <div class="rule">
+            <div class="inference">
+              <div class="premise Γ">Γ</div>
+              <div class="premise turnstile">⊢</div>
+              <div class="premise Δ">Δ, A<sup>−</sup>, B<sup>−</sup></div>
+              <span class="line-of-inference"></span>
+              <div class="conclusion Γ">Γ</div>
+              <div class="conclusion turnstile">⊢</div>
+              <div class="conclusion Δ">Δ, A<sup>−</sup> ⅋ B<sup>−</sup></div>
+            </div>
+            <div class="label">⊢⅋</div>
+          </div>
+        </div>
       </td>
       <td colspan="2" rowspan="5">
         <p>In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction, ⅋ (“par”) and ⊗ (“tensor”) are <em>multiplicative</em> disjunction and conjunction. The difference is more obvious in a linear logic, but for us the relevant distinction between &amp; and ⊗ is that we identify negative (resp. positive) types like &amp; (resp. ⊗) with call-by-name (resp. call-by-value).</p>
@@ -571,23 +579,31 @@ $$</span></p>
     </tr>
     <tr>
       <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$⊗ \kern1pt ⊢$}
-        \Axiom$A^+, B^+, \fCenter Γ ⊢ Δ$
-        \UnaryInf$A^+ ⊗ B^+, \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt ⊗$}
-        \AxiomC{$Γ ⊢ Δ [A^+]$}
-        \AxiomC{$Γ ⊢ Δ [B^+]$}
-        \BinaryInfC{$Γ ⊢ Δ [A^+ ⊗ B^+]$}
-        \end{prooftree}
-        $$
+        <div class="connective">
+          <div class="rule">
+            <div class="label">⊗⊢</div>
+            <div class="inference">
+              <div class="premise Γ">A<sup>+</sup>, B<sup>+</sup>, Γ</div>
+              <div class="premise turnstile">⊢</div>
+              <div class="premise Δ">Δ</div>
+              <span class="line-of-inference"></span>
+              <div class="conclusion Γ">A<sup>+</sup> ⊗ B<sup>+</sup>, Γ</div>
+              <div class="conclusion turnstile">⊢</div>
+              <div class="conclusion Δ">Δ</div>
+            </div>
+          </div>
+          <div class="rule">
+            <div class="inference">
+              <div class="premises">
+                <div class="premise">Γ ⊢ Δ [A<sup>+</sup>]</div>
+                <div class="premise">Γ ⊢ Δ [B<sup>+</sup>]</div>
+              </div>
+              <span class="line-of-inference"></span>
+              <div class="conclusion">Γ ⊢ Δ [A<sup>+</sup> ⊗ B<sup>+</sup>]</div>
+            </div>
+            <div class="label">⊢⊗</div>
+          </div>
+        </div>
       </td>
     </tr>
     <tr>
