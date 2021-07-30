@@ -107,6 +107,10 @@ div.rule {
   align-items: center;
 }
 
+div.rule+div.rule {
+  margin-top: 1em;
+}
+
 div.rule div.label {
   font-size: 75%;
   padding: 6px;
