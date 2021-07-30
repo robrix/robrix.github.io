@@ -11,6 +11,14 @@ caption {
   line-height: 1.5rem;
 }
 
+figcaption {
+  text-align: center;
+  font-style: italic;
+  vertical-align: top;
+  font-size: .875rem;
+  line-height: 1.5rem;
+}
+
 /* inference rule presentations */
 
 table.rule {
@@ -171,11 +179,6 @@ div.rule div.Δ {
 
 cite {
   font-style: italic;
-}
-
-figcaption {
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 
 

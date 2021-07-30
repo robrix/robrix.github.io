@@ -96,107 +96,94 @@ $$</span></p>
     </tr>
     <tr>
       <td colspan="2">
-        <div class="connective">
-          <div class="column">
-            <div class="rule">
-              <div class="label">&amp;⊢<sub>1</sub></div>
-              <div class="inference">
-                <div class="premise Γ">[A<sup>−</sup>] Γ</div>
-                <div class="premise turnstile">⊢</div>
-                <div class="premise Δ">Δ</div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
-                <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ">Δ</div>
+        <figure>
+          <div class="connective">
+            <div class="column">
+              <div class="rule">
+                <div class="label">&amp;⊢<sub>1</sub></div>
+                <div class="inference">
+                  <div class="premise Γ">[A<sup>−</sup>] Γ</div>
+                  <div class="premise turnstile">⊢</div>
+                  <div class="premise Δ">Δ</div>
+                  <span class="line-of-inference"></span>
+                  <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
+                  <div class="conclusion turnstile">⊢</div>
+                  <div class="conclusion Δ">Δ</div>
+                </div>
+              </div>
+              <div class="rule">
+                <div class="label">&amp;⊢<sub>2</sub></div>
+                <div class="inference">
+                  <div class="premise Γ">[B<sup>−</sup>] Γ</div>
+                  <div class="premise turnstile">⊢</div>
+                  <div class="premise Δ">Δ</div>
+                  <span class="line-of-inference"></span>
+                  <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
+                  <div class="conclusion turnstile">⊢</div>
+                  <div class="conclusion Δ">Δ</div>
+                </div>
               </div>
             </div>
             <div class="rule">
-              <div class="label">&amp;⊢<sub>2</sub></div>
               <div class="inference">
-                <div class="premise Γ">[B<sup>−</sup>] Γ</div>
-                <div class="premise turnstile">⊢</div>
-                <div class="premise Δ">Δ</div>
+                <div class="premises">
+                  <div class="premise">Γ ⊢ Δ, A<sup>−</sup></div>
+                  <div class="premise">Γ ⊢ Δ, B<sup>−</sup></div>
+                </div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
-                <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ">Δ</div>
+                <div class="conclusion">Γ ⊢ Δ, A<sup>−</sup> &amp; B<sup>−</sup></div>
               </div>
+              <div class="label">⊢&amp;</div>
             </div>
           </div>
-          <div class="rule">
-            <div class="inference">
-              <div class="premises">
-                <div class="premise">Γ ⊢ Δ, A<sup>−</sup></div>
-                <div class="premise">Γ ⊢ Δ, B<sup>−</sup></div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion">Γ ⊢ Δ, A<sup>−</sup> &amp; B<sup>−</sup></div>
-            </div>
-            <div class="label">⊢&amp;</div>
-          </div>
-        </div>
-      </td>
-      <td colspan="2" rowspan="5">
-        <p>The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are unfamiliar symbols for familiar connectives: &amp; is conjunction (∧, “and”), while ⊕ is disjunction (∨, “or”).</p>
-        <p>&amp; is negative, and thus focused on the left (indicated by the square brackets). In a polarized calculus, negative connectives are defined by their left rules, which are rules for how to use them. (Γ contains inputs, so left rules consume things.) &amp; has two left rules, which use it by projecting out the left and right parts, respectively. Its right rule builds it from its components: think pair/tuple literals.</p>
-        <p>⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        &amp; (“with”): negative conjunction ≈ lazy pair
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div class="connective">
-          <div class="rule">
-            <div class="label">⊕⊢</div>
-            <div class="inference">
-              <div class="premises">
-                <div class="premise">A<sup>+</sup>, Γ ⊢ Δ</div>
-                <div class="premise">B<sup>+</sup>, Γ ⊢ Δ</div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion">A<sup>+</sup> ⊕ B<sup>+</sup>, Γ ⊢ Δ</div>
-            </div>
-          </div>
-          <div class="column">
+          <figcaption>
+            &amp; (“with”): negative conjunction ≈ lazy pair
+          </figcaption>
+        </figure>
+        <figure>
+          <div class="connective">
             <div class="rule">
+              <div class="label">⊕⊢</div>
               <div class="inference">
-                <div class="premise Γ">Γ</div>
-                <div class="premise turnstile">⊢</div>
-                <div class="premise Δ">Δ [A<sup>+</sup>]</div>
+                <div class="premises">
+                  <div class="premise">A<sup>+</sup>, Γ ⊢ Δ</div>
+                  <div class="premise">B<sup>+</sup>, Γ ⊢ Δ</div>
+                </div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ">Γ</div>
-                <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
+                <div class="conclusion">A<sup>+</sup> ⊕ B<sup>+</sup>, Γ ⊢ Δ</div>
               </div>
-              <div class="label">⊢⊕<sub>1</sub></div>
             </div>
-            <div class="rule">
-              <div class="inference">
-                <div class="premise Γ">Γ</div>
-                <div class="premise turnstile">⊢</div>
-                <div class="premise Δ">Δ [B<sup>+</sup>]</div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion Γ">Γ</div>
-                <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
+            <div class="column">
+              <div class="rule">
+                <div class="inference">
+                  <div class="premise Γ">Γ</div>
+                  <div class="premise turnstile">⊢</div>
+                  <div class="premise Δ">Δ [A<sup>+</sup>]</div>
+                  <span class="line-of-inference"></span>
+                  <div class="conclusion Γ">Γ</div>
+                  <div class="conclusion turnstile">⊢</div>
+                  <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
+                </div>
+                <div class="label">⊢⊕<sub>1</sub></div>
               </div>
-              <div class="label">⊢⊕<sub>2</sub></div>
+              <div class="rule">
+                <div class="inference">
+                  <div class="premise Γ">Γ</div>
+                  <div class="premise turnstile">⊢</div>
+                  <div class="premise Δ">Δ [B<sup>+</sup>]</div>
+                  <span class="line-of-inference"></span>
+                  <div class="conclusion Γ">Γ</div>
+                  <div class="conclusion turnstile">⊢</div>
+                  <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
+                </div>
+                <div class="label">⊢⊕<sub>2</sub></div>
+              </div>
             </div>
           </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        ⊕ (“sum”): positive disjunction ≈ either
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
+          <figcaption>
+            ⊕ (“sum”): positive disjunction ≈ either
+          </figcaption>
+        </figure>
         <div class="connective">
           <div class="rule">
             <p>~(A<sup>−</sup> &amp; B<sup>−</sup>) ≈ ~A<sup>−</sup> ⊕ ~B<sup>−</sup></p>
@@ -205,6 +192,11 @@ $$</span></p>
             <p>¬(A<sup>+</sup> ⊕ B<sup>+</sup>) ≈ ~A<sup>+</sup> &amp; ~B<sup>+</sup></p>
           </div>
         </div>
+      </td>
+      <td colspan="2">
+        <p>The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are unfamiliar symbols for familiar connectives: &amp; is conjunction (∧, “and”), while ⊕ is disjunction (∨, “or”).</p>
+        <p>&amp; is negative, and thus focused on the left (indicated by the square brackets). In a polarized calculus, negative connectives are defined by their left rules, which are rules for how to use them. (Γ contains inputs, so left rules consume things.) &amp; has two left rules, which use it by projecting out the left and right parts, respectively. Its right rule builds it from its components: think pair/tuple literals.</p>
+        <p>⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.</p>
       </td>
     </tr>
     <tr>
