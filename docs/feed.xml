@@ -885,77 +885,92 @@ $$</span></p>
     <p>The translations of function types from CBN and CBV into polarized calculi (left) model evaluation orders using shifts. The CBN translation treats arguments as thunks around lazy computations, while the CBV translation explicitly wraps the result in a computation.</p>
   </figcaption>
 </figure>
+<h2 id="quantifiers">Quantifiers</h2>
+<figure class="section">
+  <figcaption>
+    <p>The rules for quantification are slightly unusual in this presentation in their use of both side conditions (checking that the variable does not occur free elsewhere within the sequent) and (capture-avoiding) substitution (A{B/X} substitutes the proposition B for the variable X within A, e.g. (X ⊕ Y){Z/X} = Z ⊕ Y).</p>
+    <p>Quantified propositions—and thus, types—offer yet more dualities: both can be used to hide information, but from different perspectives. ∀ constrains its construction, but is used freely; ∃ constrains its uses, but is constructed freely. Universally-quantified types are used when folding polymorphically recursive data and a variety of encodings using functions. Existentials model abstraction in abstract data types, ML modules, open universes of exceptions, and GADTs.</p>
+    <p>Here, the identification of negative = computation, positive = value is stretched. If computation in the CBPV sense is “something resident in code pages” then ∀ seems misplaced—why should ∀ be represented at runtime (absent dependent types)? On the other hand, the identification of positive = data, negative = codata fits: ∀ is defined by how it is used, and ∃ by how it is made.</p>
+  </figcaption>
+  <div>
+    <figure class="connective">
+      <div class="rule">
+        <div class="label">∀⊢</div>
+        <div class="inference">
+          <div class="premise Γ">[A<sup>−</sup>{B/X}] Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">[∀X.A<sup>−</sup>] Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ, A<sup>−</sup></div>
+          <div class="side-condition">X ∉ <span class="function">fv</span>(Γ ⊢ Δ)</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ, ∀X.A<sup>−</sup></div>
+        </div>
+        <div class="label">⊢∀</div>
+      </div>
+      <figcaption>
+        ∀ (“for all”): universal quantification ≈ polymorphism
+      </figcaption>
+    </figure>
+    <figure class="connective">
+      <div class="rule">
+        <div class="label">∃⊢</div>
+        <div class="inference">
+          <div class="premise Γ">A<sup>+</sup>, Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">∃A<sup>+</sup>, Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ, A<sup>+</sup></div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ [∃A<sup>+</sup>]</div>
+        </div>
+        <div class="label">⊢∃</div>
+      </div>
+      <figcaption>
+        ∃ (“there exists”): existential quantification ≈ abstract data type
+      </figcaption>
+    </figure>
+    <figure class="connective">
+      <div class="rule">
+        <p>~(∀X.A<sup>−</sup>) ≈ ∃X.~A<sup>−</sup></p>
+      </div>
+      <div class="rule">
+        <p>¬(∃X.A<sup>+</sup>) ≈ ∀X.¬A<sup>+</sup></p>
+      </div>
+      <figcaption>
+        translations of CBN and CBV function types into polarized calculi
+      </figcaption>
+    </figure>
+  </div>
+</figure>
 <table class="borderless">
   <colgroup>
     <col span="2">
     <col span="2">
   </colgroup>
   <tbody>
-    <tr>
-      <th colspan="4"><a name="shifts">Quantifiers</a></th>
-    </tr>
-    <tr>
-      <td colspan="2" rowspan="5">
-        <p>The rules for quantification are slightly unusual in this presentation in their use of both side conditions (checking that the variable does not occur free elsewhere within the sequent) and (capture-avoiding) substitution (A{B/X} substitutes the proposition B for the variable X within A, e.g. (X ⊕ Y){Z/X} = Z ⊕ Y).</p>
-        <p>Quantified propositions—and thus, types—offer yet more dualities: both can be used to hide information, but from different perspectives. ∀ constrains its construction, but is used freely; ∃ constrains its uses, but is constructed freely. Universally-quantified types are used when folding polymorphically recursive data and a variety of encodings using functions. Existentials model abstraction in abstract data types, ML modules, open universes of exceptions, and GADTs.</p>
-        <p>Here, the identification of negative = computation, positive = value is stretched. If computation in the CBPV sense is “something resident in code pages” then ∀ seems misplaced—why should ∀ be represented at runtime (absent dependent types)? On the other hand, the identification of positive = data, negative = codata fits: ∀ is defined by how it is used, and ∃ by how it is made.</p>
-      </td>
-      <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$∀ \kern1pt ⊢$}
-        \Axiom$[A^-\{B/X\}] \fCenter Γ ⊢ Δ$
-        \UnaryInf$[∀X.A^-] \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ ∀$}
-        \Axiom$\fCenter Γ ⊢ Δ, A^- \hskip 1.5em X ∉ fv(Γ ⊢ Δ)$
-        \UnaryInf$\fCenter Γ ⊢ Δ, ∀X.A^-$
-        \end{prooftree}
-        $$
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        ∀ (“for all”): universal quantification ≈ polymorphism
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$∃ \kern1pt ⊢$}
-        \Axiom$X ∉ fv(Γ ⊢ Δ) \hskip 1.5em A^+, \fCenter Γ ⊢ Δ$
-        \UnaryInf$∃X.A^+, \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt ∃$}
-        \Axiom$\fCenter Γ ⊢ Δ [A^+\{B/X\}]$
-        \UnaryInf$\fCenter Γ ⊢ Δ [∃X.A^+]$
-        \end{prooftree}
-        $$
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        ∃ (“there exists”): existential quantification ≈ abstract data type
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        $$
-        \sim \kern -3pt (∀X.A^-) ≈ ∃X.\sim \kern -3pt A^- \hskip 1.5em ¬(∃X.A^+) ≈ ∀X.¬A^+
-        $$
-      </td>
-    </tr>
     <tr>
       <th colspan="4"><a name="core">Core</a></th>
     </tr>

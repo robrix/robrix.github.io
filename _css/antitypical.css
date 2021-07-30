@@ -197,3 +197,7 @@ figure.section {
   /* width: 50%; */
   align-items: center;
 }
+
+span.function {
+  font-style: italic;
+}
