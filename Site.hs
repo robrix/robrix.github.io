@@ -7,6 +7,7 @@ import           Data.List
 import           Hakyll hiding (defaultContext)
 import qualified Hakyll
 import           System.FilePath
+import           Text.Pandoc.Options
 
 main :: IO ()
 main = hakyllWith defaultConfiguration{ destinationDirectory = "docs" } $ do
@@ -33,7 +34,7 @@ main = hakyllWith defaultConfiguration{ destinationDirectory = "docs" } $ do
 
   match "posts/*" $ do
     route cleanRoute
-    compile $ pandocCompiler
+    compile $ pandocCompilerWith readerOptions defaultHakyllWriterOptions
       >>= saveSnapshot "content"
       >>= loadAndApplyTemplate "_layouts/post.html"    postCtx
       >>= loadAndApplyTemplate "_layouts/default.html" postCtx
@@ -80,6 +81,9 @@ main = hakyllWith defaultConfiguration{ destinationDirectory = "docs" } $ do
     [ ("swift/2015/07/01/pattern-matching-over-recursive-values-in-swift/index.html", "/posts/2015-07-01-pattern-matching-over-recursive-values-in-swift/")
     , ("code/2014/04/20/on-the-order-of-neptune/index.html", "/posts/2014-04-20-on-the-order-of-neptune/")
     ]
+
+readerOptions :: ReaderOptions
+readerOptions = let opts = defaultHakyllReaderOptions in opts{ readerExtensions = disableExtension Ext_markdown_in_html_blocks (enableExtension Ext_raw_html (readerExtensions opts)) }
 
 postCtx :: Context String
 postCtx
