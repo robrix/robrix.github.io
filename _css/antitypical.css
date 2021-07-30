@@ -103,6 +103,7 @@ figure.connective {
   grid-template-columns: repeat(2, auto);
   gap: 24px;
   width: max-content;
+  justify-items: center;
   margin-bottom: 1em;
 }
 
