@@ -375,7 +375,7 @@ $$</span></p>
     <tr>
       <td colspan="2">
         <div class="connective">
-          <div>
+          <div class="column">
             <div class="rule">
               <div class="label">&amp;⊢<sub>1</sub></div>
               <div class="inference">
@@ -439,7 +439,7 @@ $$</span></p>
               <div class="conclusion">A<sup>+</sup> ⊕ B<sup>+</sup>, Γ ⊢ Δ</div>
             </div>
           </div>
-          <div>
+          <div class="column">
             <div class="rule">
               <div class="inference">
                 <div class="premise Γ">Γ</div>
@@ -487,17 +487,19 @@ $$</span></p>
         <p>Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.</p>
       </td>
       <td colspan="2">
-        $$
-        \hskip -10pt
-        \textrm{no rule for} ⊤ ⊢
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt ⊤$}
-        \AxiomC{}
-        \UnaryInfC{$Γ ⊢ Δ, ⊤$}
-        \end{prooftree}
-        $$
+        <div class="connective">
+          <div class="rule">
+            <p>no rule for ⊤⊢</p>
+          </div>
+          <div class="rule">
+            <div class="inference">
+              <div class="axiom"></div>
+              <span class="line-of-inference"></span>
+              <div class="conclusion">Γ ⊢ Δ, ⊤</div>
+            </div>
+            <div class="label">⊢⊤</div>
+          </div>
+        </div>
       </td>
     </tr>
     <tr>
@@ -507,17 +509,19 @@ $$</span></p>
     </tr>
     <tr>
       <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$0 \kern1pt ⊢$}
-        \AxiomC{}
-        \UnaryInfC{$0, Γ ⊢ Δ$}
-        \end{prooftree}
-        \hskip 10pt
-        \textrm{no rule for} ⊢ 0
-        $$
+        <div class="connective">
+          <div class="rule">
+            <div class="label">0⊢</div>
+            <div class="inference">
+              <div class="axiom"></div>
+              <span class="line-of-inference"></span>
+              <div class="conclusion">0, Γ ⊢ Δ</div>
+            </div>
+          </div>
+          <div class="rule">
+            <p>no rule for ⊢0</p>
+          </div>
+        </div>
       </td>
     </tr>
     <tr>
