@@ -121,6 +121,13 @@ div.rule sub, div.rule sup {
   line-height: 0;
 }
 
+div.premises {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 24px;
+  width: max-content;
+}
+
 div.inference {
   display: grid;
   grid-template-columns: repeat(3, auto);
