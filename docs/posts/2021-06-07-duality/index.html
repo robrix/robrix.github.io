@@ -85,173 +85,159 @@ td p {
 <p><span class="math display">$$
 \require{bussproofs}
 $$</span></p>
+<h2 id="additive">Additive</h2>
+<figure class="section">
+  <figcaption>
+    <p>The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are unfamiliar symbols for familiar connectives: &amp; is conjunction (∧, “and”), while ⊕ is disjunction (∨, “or”).</p>
+    <p>&amp; is negative, and thus focused on the left (indicated by the square brackets). In a polarized calculus, negative connectives are defined by their left rules, which are rules for how to use them. (Γ contains inputs, so left rules consume things.) &amp; has two left rules, which use it by projecting out the left and right parts, respectively. Its right rule builds it from its components: think pair/tuple literals.</p>
+    <p>⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.</p>
+  </figcaption>
+  <figure class="connective">
+    <div class="column">
+      <div class="rule">
+        <div class="label">&amp;⊢<sub>1</sub></div>
+        <div class="inference">
+          <div class="premise Γ">[A<sup>−</sup>] Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="label">&amp;⊢<sub>2</sub></div>
+        <div class="inference">
+          <div class="premise Γ">[B<sup>−</sup>] Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ</div>
+        </div>
+      </div>
+    </div>
+    <div class="rule">
+      <div class="inference">
+        <div class="premises">
+          <div class="premise">Γ ⊢ Δ, A<sup>−</sup></div>
+          <div class="premise">Γ ⊢ Δ, B<sup>−</sup></div>
+        </div>
+        <span class="line-of-inference"></span>
+        <div class="conclusion">Γ ⊢ Δ, A<sup>−</sup> &amp; B<sup>−</sup></div>
+      </div>
+      <div class="label">⊢&amp;</div>
+    </div>
+    <figcaption>
+      &amp; (“with”): negative conjunction ≈ lazy pair
+    </figcaption>
+  </figure>
+  <figure class="connective">
+    <div class="rule">
+      <div class="label">⊕⊢</div>
+      <div class="inference">
+        <div class="premises">
+          <div class="premise">A<sup>+</sup>, Γ ⊢ Δ</div>
+          <div class="premise">B<sup>+</sup>, Γ ⊢ Δ</div>
+        </div>
+        <span class="line-of-inference"></span>
+        <div class="conclusion">A<sup>+</sup> ⊕ B<sup>+</sup>, Γ ⊢ Δ</div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="rule">
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ [A<sup>+</sup>]</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
+        </div>
+        <div class="label">⊢⊕<sub>1</sub></div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ [B<sup>+</sup>]</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
+        </div>
+        <div class="label">⊢⊕<sub>2</sub></div>
+      </div>
+    </div>
+    <figcaption>
+      ⊕ (“sum”): positive disjunction ≈ either
+    </figcaption>
+  </figure>
+  <div class="connective">
+    <div class="rule">
+      <p>~(A<sup>−</sup> &amp; B<sup>−</sup>) ≈ ~A<sup>−</sup> ⊕ ~B<sup>−</sup></p>
+    </div>
+    <div class="rule">
+      <p>¬(A<sup>+</sup> ⊕ B<sup>+</sup>) ≈ ~A<sup>+</sup> &amp; ~B<sup>+</sup></p>
+    </div>
+  </div>
+</figure>
+<figure class="section">
+  <figcaption>
+    <p>The additive units, ⊤ (“top”) and 0, are a bit of a puzzle. Note that neither has a focusing rule: you can’t use a ⊤ once you have it, and you can’t get a 0 at all. On the other hand, both their invertible rules are axioms (i.e. have no premises).</p>
+    <p>A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that interpretation we can see that ⊤, which corresponds to logical truth, indeed satisfies that claim: once at least one thing on the right is proven, we’re done.</p>
+    <p>Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.</p>
+  </figcaption>
+  <figure class="connective">
+    <div class="rule">
+      <p>no rule for ⊤⊢</p>
+    </div>
+    <div class="rule">
+      <div class="inference">
+        <div class="axiom"></div>
+        <span class="line-of-inference"></span>
+        <div class="conclusion">Γ ⊢ Δ, ⊤</div>
+      </div>
+      <div class="label">⊢⊤</div>
+    </div>
+    <figcaption>
+      ⊤ (“top”): negative truth ≈ unit
+    </figcaption>
+  </figure>
+  <figure class="connective">
+    <div class="rule">
+      <div class="label">0⊢</div>
+      <div class="inference">
+        <div class="axiom"></div>
+        <span class="line-of-inference"></span>
+        <div class="conclusion">0, Γ ⊢ Δ</div>
+      </div>
+    </div>
+    <div class="rule">
+      <p>no rule for ⊢0</p>
+    </div>
+    <figcaption>
+      0: positive falsity ≈ void
+    </figcaption>
+  </figure>
+  <div class="connective">
+    <div class="rule">
+      <p>~⊤ ≈ 0</p>
+    </div>
+    <div class="rule">
+      <p>¬0 ≈ ⊤</p>
+    </div>
+  </div>
+</figure>
 <table class="borderless">
   <colgroup>
     <col span="2">
     <col span="2">
   </colgroup>
   <tbody>
-    <tr>
-      <th colspan="4"><a name="additive">Additive</a></th>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <figure>
-          <div class="connective">
-            <div class="column">
-              <div class="rule">
-                <div class="label">&amp;⊢<sub>1</sub></div>
-                <div class="inference">
-                  <div class="premise Γ">[A<sup>−</sup>] Γ</div>
-                  <div class="premise turnstile">⊢</div>
-                  <div class="premise Δ">Δ</div>
-                  <span class="line-of-inference"></span>
-                  <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
-                  <div class="conclusion turnstile">⊢</div>
-                  <div class="conclusion Δ">Δ</div>
-                </div>
-              </div>
-              <div class="rule">
-                <div class="label">&amp;⊢<sub>2</sub></div>
-                <div class="inference">
-                  <div class="premise Γ">[B<sup>−</sup>] Γ</div>
-                  <div class="premise turnstile">⊢</div>
-                  <div class="premise Δ">Δ</div>
-                  <span class="line-of-inference"></span>
-                  <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
-                  <div class="conclusion turnstile">⊢</div>
-                  <div class="conclusion Δ">Δ</div>
-                </div>
-              </div>
-            </div>
-            <div class="rule">
-              <div class="inference">
-                <div class="premises">
-                  <div class="premise">Γ ⊢ Δ, A<sup>−</sup></div>
-                  <div class="premise">Γ ⊢ Δ, B<sup>−</sup></div>
-                </div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion">Γ ⊢ Δ, A<sup>−</sup> &amp; B<sup>−</sup></div>
-              </div>
-              <div class="label">⊢&amp;</div>
-            </div>
-          </div>
-          <figcaption>
-            &amp; (“with”): negative conjunction ≈ lazy pair
-          </figcaption>
-        </figure>
-        <figure>
-          <div class="connective">
-            <div class="rule">
-              <div class="label">⊕⊢</div>
-              <div class="inference">
-                <div class="premises">
-                  <div class="premise">A<sup>+</sup>, Γ ⊢ Δ</div>
-                  <div class="premise">B<sup>+</sup>, Γ ⊢ Δ</div>
-                </div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion">A<sup>+</sup> ⊕ B<sup>+</sup>, Γ ⊢ Δ</div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="rule">
-                <div class="inference">
-                  <div class="premise Γ">Γ</div>
-                  <div class="premise turnstile">⊢</div>
-                  <div class="premise Δ">Δ [A<sup>+</sup>]</div>
-                  <span class="line-of-inference"></span>
-                  <div class="conclusion Γ">Γ</div>
-                  <div class="conclusion turnstile">⊢</div>
-                  <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
-                </div>
-                <div class="label">⊢⊕<sub>1</sub></div>
-              </div>
-              <div class="rule">
-                <div class="inference">
-                  <div class="premise Γ">Γ</div>
-                  <div class="premise turnstile">⊢</div>
-                  <div class="premise Δ">Δ [B<sup>+</sup>]</div>
-                  <span class="line-of-inference"></span>
-                  <div class="conclusion Γ">Γ</div>
-                  <div class="conclusion turnstile">⊢</div>
-                  <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
-                </div>
-                <div class="label">⊢⊕<sub>2</sub></div>
-              </div>
-            </div>
-          </div>
-          <figcaption>
-            ⊕ (“sum”): positive disjunction ≈ either
-          </figcaption>
-        </figure>
-        <div class="connective">
-          <div class="rule">
-            <p>~(A<sup>−</sup> &amp; B<sup>−</sup>) ≈ ~A<sup>−</sup> ⊕ ~B<sup>−</sup></p>
-          </div>
-          <div class="rule">
-            <p>¬(A<sup>+</sup> ⊕ B<sup>+</sup>) ≈ ~A<sup>+</sup> &amp; ~B<sup>+</sup></p>
-          </div>
-        </div>
-      </td>
-      <td colspan="2">
-        <p>The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are unfamiliar symbols for familiar connectives: &amp; is conjunction (∧, “and”), while ⊕ is disjunction (∨, “or”).</p>
-        <p>&amp; is negative, and thus focused on the left (indicated by the square brackets). In a polarized calculus, negative connectives are defined by their left rules, which are rules for how to use them. (Γ contains inputs, so left rules consume things.) &amp; has two left rules, which use it by projecting out the left and right parts, respectively. Its right rule builds it from its components: think pair/tuple literals.</p>
-        <p>⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <p>The additive units, ⊤ (“top”) and 0, are a bit of a puzzle. Note that neither has a focusing rule: you can’t use a ⊤ once you have it, and you can’t get a 0 at all. On the other hand, both their invertible rules are axioms (i.e. have no premises).</p>
-        <p>A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that interpretation we can see that ⊤, which corresponds to logical truth, indeed satisfies that claim: once at least one thing on the right is proven, we’re done.</p>
-        <p>Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.</p>
-      </td>
-      <td colspan="2">
-        <figure>
-          <div class="connective">
-            <div class="rule">
-              <p>no rule for ⊤⊢</p>
-            </div>
-            <div class="rule">
-              <div class="inference">
-                <div class="axiom"></div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion">Γ ⊢ Δ, ⊤</div>
-              </div>
-              <div class="label">⊢⊤</div>
-            </div>
-          </div>
-          <figcaption>
-            ⊤ (“top”): negative truth ≈ unit
-          </figcaption>
-        </figure>
-        <figure>
-          <div class="connective">
-            <div class="rule">
-              <div class="label">0⊢</div>
-              <div class="inference">
-                <div class="axiom"></div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion">0, Γ ⊢ Δ</div>
-              </div>
-            </div>
-            <div class="rule">
-              <p>no rule for ⊢0</p>
-            </div>
-          </div>
-          <figcaption>
-            0: positive falsity ≈ void
-          </figcaption>
-        </figure>
-        <div class="connective">
-          <div class="rule">
-            <p>~⊤ ≈ 0</p>
-          </div>
-          <div class="rule">
-            <p>¬0 ≈ ⊤</p>
-          </div>
-        </div>
-      </td>
-    </tr>
     <tr>
       <th colspan="4"><a name="multiplicative">Multiplicative</a></th>
     </tr>

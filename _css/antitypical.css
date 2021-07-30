@@ -11,12 +11,13 @@ caption {
   line-height: 1.5rem;
 }
 
-figcaption {
+figure.connective figcaption {
   text-align: center;
   font-style: italic;
   vertical-align: top;
   font-size: .875rem;
   line-height: 1.5rem;
+  grid-column: 1 / -1;
 }
 
 /* inference rule presentations */
@@ -94,7 +95,8 @@ table.connective td.right {
 }
 
 /* thank you, CSS hero: https://twitter.com/ptrfrncsmrph/status/1420749056125685762 */
-div.connective {
+div.connective,
+figure.connective {
   float: none;
   width: auto;
   margin: 0 auto;
@@ -184,4 +186,21 @@ cite {
 
 p:last-child {
   margin-bottom: 0;
+}
+
+
+figure.section {
+  margin-bottom: 3em;
+}
+
+figure.section>figcaption {
+  width: 50%;
+}
+
+figure.section:nth-of-type(2n + 1)>figcaption {
+  float: right;
+}
+
+figure.section:nth-of-type(2n)>figcaption {
+  float: left;
 }
