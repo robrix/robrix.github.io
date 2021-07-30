@@ -43,219 +43,47 @@
 <p><code>r</code>’s abstraction of <code>Void</code> is determined entirely by Curry-Howard: <code>r</code> abstracts <code>Void</code> insofar as <code>Void</code> corresponds to ⊥ and its logical rules. The left rule has this sequent as an axiom:</p>
 <div class="connective">
 <div class="rule">
-<div class="label">
-⊥⊢
-</div>
-<div class="inference">
-<div class="axiom">
-
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-⊥, Γ
-</div>
-<div class="conclusion turnstile">
-⊢
-</div>
-<div class="conclusion Δ">
-Δ, ⊥
-</div>
-</div>
+<p><div class="label">⊥⊢</div> <div class="inference"> <div class="axiom"></div> <span class="line-of-inference"></span> <div class="conclusion Γ">⊥, Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ, ⊥</div> </div></p>
 </div>
 </div>
 <p>This gives us ex falso quodlibet: ⊥ on the left suffices to prove <em>any</em> sequent. As we saw, <code>Void</code> provides this via <code>absurd</code>. For <code>r</code>, imagine a type representing sequents implemented using <code>Cont</code>. If your arguments contain an <code>r</code>, there’s no need to consider any other arguments or what values you could compute and return; in fact, you don’t need the continuation at all. Just return the argument of type <code>r</code> and you’re done.</p>
 <p>The right rule is instead:</p>
 <div class="connective">
 <div class="rule">
-<div class="inference">
-<div class="premise Γ">
-Γ
-</div>
-<div class="premise turnstile">
-⊢
-</div>
-<div class="premise Δ">
-Δ
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-Γ
-</div>
-<div class="conclusion turnstile">
-⊢
-</div>
-<div class="conclusion Δ">
-Δ, ⊥
-</div>
-</div>
-<div class="label">
-⊢⊥
-</div>
+<p><div class="inference"> <div class="premise Γ">Γ</div> <div class="premise turnstile">⊢</div> <div class="premise Δ">Δ</div> <span class="line-of-inference"></span> <div class="conclusion Γ">Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ, ⊥</div> </div> <div class="label">⊢⊥</div></p>
 </div>
 </div>
 <p>This instead says that you can construct it along any sequent which was provable anyway; or, working bottom-up, ⊥ adds no information to a proof, and so can be discarded at any time. This one is a little stranger; we can’t construct a <code>Void</code>, period; but if we could, it certainly wouldn’t add any information. On the other hand, <code>r</code> <em>is</em> inhabited, so we can certainly follow the analogy: we can construct an <code>r</code> if we can return without it anyway; in fact, we do, by applying the return continuation.</p>
 <p>For <code>e</code> we instead need to trace its relationships with 1. 1’s rules are dual, mirror images of the ones for ⊥. Again, we start with the left rule, which corresponds closely to the right rule for ⊥:</p>
 <div class="connective">
 <div class="rule">
-<div class="label">
-1⊢
-</div>
-<div class="inference">
-<div class="premise Γ">
-Γ
-</div>
-<div class="premise turnstile">
-⊢
-</div>
-<div class="premise Δ">
-Δ
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-1, Γ
-</div>
-<div class="conclusion turnstile">
-⊢
-</div>
-<div class="conclusion Δ">
-Δ
-</div>
-</div>
+<p><div class="label">1⊢</div> <div class="inference"> <div class="premise Γ">Γ</div> <div class="premise turnstile">⊢</div> <div class="premise Δ">Δ</div> <span class="line-of-inference"></span> <div class="conclusion Γ">1, Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ</div> </div></p>
 </div>
 </div>
 <p>Left rules can be read by recalling that a sequent is sort of like a function: we can build a function to eliminate 1 and Γ into Δ by means of a funciton eliminating Γ into Δ. Put another way, 1 doesn’t give us any power to prove things that we didn’t have without it, and so we can always introduce it as a hypothetical. <code>()</code> works much the same way: adding an argument of type <code>()</code> won’t help you construct anything, since you could have just introduced it as a literal. <code>e</code> therefore must work the same way, but we’re going to weaken our informal restatement of this down to: you are free to ignore an argument of type <code>e</code>. Of course, we aren’t in an e.g. linear setting, so we’re free to ignore <em>every</em> argument. But even if we were in a linear setting, <code>e</code> should still be discardable.</p>
 <p>On the right:</p>
 <div class="connective">
 <div class="rule">
-<div class="inference">
-<div class="axiom">
-
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-Γ
-</div>
-<div class="conclusion turnstile">
-⊢
-</div>
-<div class="conclusion Δ">
-Δ, 1
-</div>
-</div>
-<div class="label">
-⊢1
-</div>
+<p><div class="inference"> <div class="axiom"></div> <span class="line-of-inference"></span> <div class="conclusion Γ">Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ, 1</div> </div> <div class="label">⊢1</div></p>
 </div>
 </div>
 <p>You can always make a 1. Ditto <code>()</code>; it’s what makes it discardable. (1, a positive connective, is indeed defined by its right rule.) <code>e</code>, then, must also be freely introduced, ambiently, ubiquitously.</p>
 <p>Considering that we started with the humble ⊥ and 1, the combined consequences of these rules and equivalences for our purposes are surprisingly useful. Expressed as derived rules, on the ⊥ side, if we have an A, we can use it to eliminate an A → ⊥<sub>R</sub>—a continuation—at any time; likwise, we can introduce a continuation from A to satisfy a demand for a A:</p>
 <div class="connective">
 <div class="rule">
-<div class="label">
-→⊥<sub>R</sub>⊢
-</div>
-<div class="inference">
-<div class="premise Γ">
-Γ
-</div>
-<div class="premise turnstile">
-⊢<sub>R</sub>
-</div>
-<div class="premise Δ">
-Δ, A
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-A → ⊥<sub>R</sub>, Γ
-</div>
-<div class="conclusion turnstile">
-⊢<sub>R</sub>
-</div>
-<div class="conclusion Δ">
-Δ
-</div>
-</div>
+<p><div class="label">→⊥<sub>R</sub>⊢</div> <div class="inference"> <div class="premise Γ">Γ</div> <div class="premise turnstile">⊢<sub>R</sub></div> <div class="premise Δ">Δ, A</div> <span class="line-of-inference"></span> <div class="conclusion Γ">A → ⊥<sub>R</sub>, Γ</div> <div class="conclusion turnstile">⊢<sub>R</sub></div> <div class="conclusion Δ">Δ</div> </div></p>
 </div>
 <div class="rule">
-<div class="inference">
-<div class="premise Γ">
-A, Γ
-</div>
-<div class="premise turnstile">
-⊢<sub>R</sub>
-</div>
-<div class="premise Δ">
-Δ
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-Γ
-</div>
-<div class="conclusion turnstile">
-⊢<sub>R</sub>
-</div>
-<div class="conclusion Δ">
-Δ, A → ⊥<sub>R</sub>
-</div>
-</div>
-<div class="label">
-⊢→⊥<sub>R</sub>
-</div>
+<p><div class="inference"> <div class="premise Γ">A, Γ</div> <div class="premise turnstile">⊢<sub>R</sub></div> <div class="premise Δ">Δ</div> <span class="line-of-inference"></span> <div class="conclusion Γ">Γ</div> <div class="conclusion turnstile">⊢<sub>R</sub></div> <div class="conclusion Δ">Δ, A → ⊥<sub>R</sub></div> </div> <div class="label">⊢→⊥<sub>R</sub></div></p>
 </div>
 </div>
 <p>Dually, demand for 1<sub>E</sub> → A is satisfied by demand for A; and we can always turn A into 1<sub>E</sub> → A:</p>
 <div class="connective">
 <div class="rule">
-<div class="label">
-1<sub>E</sub>→⊢
-</div>
-<div class="inference">
-<div class="premise Γ">
-A, Γ
-</div>
-<div class="premise turnstile">
-⊢<sub>E</sub>
-</div>
-<div class="premise Δ">
-Δ
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-1<sub>E</sub> → A, Γ
-</div>
-<div class="conclusion turnstile">
-⊢<sub>E</sub>
-</div>
-<div class="conclusion Δ">
-Δ
-</div>
-</div>
+<p><div class="label">1<sub>E</sub>→⊢</div> <div class="inference"> <div class="premise Γ">A, Γ</div> <div class="premise turnstile">⊢<sub>E</sub></div> <div class="premise Δ">Δ</div> <span class="line-of-inference"></span> <div class="conclusion Γ">1<sub>E</sub> → A, Γ</div> <div class="conclusion turnstile">⊢<sub>E</sub></div> <div class="conclusion Δ">Δ</div> </div></p>
 </div>
 <div class="rule">
-<div class="inference">
-<div class="premise Γ">
-Γ
-</div>
-<div class="premise turnstile">
-⊢<sub>E</sub>
-</div>
-<div class="premise Δ">
-Δ, A
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-Γ
-</div>
-<div class="conclusion turnstile">
-⊢<sub>E</sub>
-</div>
-<div class="conclusion Δ">
-Δ, 1<sub>E</sub> → A
-</div>
-</div>
-<div class="label">
-⊢1<sub>E</sub>→
-</div>
+<p><div class="inference"> <div class="premise Γ">Γ</div> <div class="premise turnstile">⊢<sub>E</sub></div> <div class="premise Δ">Δ, A</div> <span class="line-of-inference"></span> <div class="conclusion Γ">Γ</div> <div class="conclusion turnstile">⊢<sub>E</sub></div> <div class="conclusion Δ">Δ, 1<sub>E</sub> → A</div> </div> <div class="label">⊢1<sub>E</sub>→</div></p>
 </div>
 </div>
 <h2 id="assertive-negativity">Assertive negativity</h2>
@@ -265,56 +93,10 @@ A, Γ
 <p>If <code>Cont r a</code> is ¬¬A, thnn what is this dual structure? Following the thread backwards, <code>Cont r a</code> is ¬¬A because <code>Cont r a</code> is (A → ⊥<sub>R</sub>) → ⊥<sub>R</sub>, which is an encoding of ¬¬A. Our encoding of 1<sub>E</sub> → A, on the other hand, doesn’t correspond to any connective—yet. So let’s introduce one: ¬̷, pronounced “not untrue,” is an <em>assertion</em> (some relation to the logical notion, no relation to the computational one), dual to a negation, and works just like our encoding above:</p>
 <div class="connective">
 <div class="rule left">
-<div class="label">
-¬̷⊢
-</div>
-<div class="inference">
-<div class="premise Γ">
-A, Γ
-</div>
-<div class="premise turnstile">
-⊢
-</div>
-<div class="premise Δ">
-Δ
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-¬̷A, Γ
-</div>
-<div class="conclusion turnstile">
-⊢
-</div>
-<div class="conclusion Δ">
-Δ
-</div>
-</div>
+<p><div class="label">¬̷⊢</div> <div class="inference"> <div class="premise Γ">A, Γ</div> <div class="premise turnstile">⊢</div> <div class="premise Δ">Δ</div> <span class="line-of-inference"></span> <div class="conclusion Γ">¬̷A, Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ</div> </div></p>
 </div>
 <div class="rule right">
-<div class="inference">
-<div class="premise Γ">
-Γ
-</div>
-<div class="premise turnstile">
-⊢
-</div>
-<div class="premise Δ">
-Δ, A
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-Γ
-</div>
-<div class="conclusion turnstile">
-⊢
-</div>
-<div class="conclusion Δ">
-Δ, ¬̷A
-</div>
-</div>
-<div class="label">
-⊢¬̷
-</div>
+<p><div class="inference"> <div class="premise Γ">Γ</div> <div class="premise turnstile">⊢</div> <div class="premise Δ">Δ, A</div> <span class="line-of-inference"></span> <div class="conclusion Γ">Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ, ¬̷A</div> </div> <div class="label">⊢¬̷</div></p>
 </div>
 </div>
 <p>Unlike ¬, the composition of ¬̷ on itself is surprisingly boring. If ¬̷ encodes as 1 → A, then all we’ve got is 1 → 1 → A, which gives us nothing the single instance didn’t. I thought these things were supposed to be dual; what gives?</p>
@@ -332,188 +114,142 @@ A, Γ
 </ul>
 <p>We can further organize these by polarity and purpose:</p>
 <table>
-<thead>
-<tr>
-<th>
-</th>
-<th>
-negative
-</th>
-<th>
-positive
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>
-negation
-</th>
-<td>
-¬A ≈ A → ⊥
-</td>
-<td>
-~A ≈ 1 - A
-</td>
-</tr>
-<tr>
-<th>
-assertion
-</th>
-<td>
-¬̷A = 1 → A
-</td>
-<td>
-…?
-</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th>
+        negative
+      </th>
+      <th>
+        positive
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        negation
+      </th>
+      <td>
+        ¬A ≈ A → ⊥
+      </td>
+      <td>
+        ~A ≈ 1 - A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        assertion
+      </th>
+      <td>
+        ¬̷A = 1 → A
+      </td>
+      <td>
+        …?
+      </td>
+    </tr>
+  </tbody>
 </table>
 <p>The negations both invert polarity, whereas ¬̷ maintains it. Further, the negative connectives both employ →, whereas ~ uses −. Putting it together, we can expect the positive assertion to encode as −, and to maintain polarity, and that gives us:</p>
 <table>
-<thead>
-<tr>
-<th>
-</th>
-<th>
-negative
-</th>
-<th>
-positive
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>
-negation
-</th>
-<td>
-¬A ≈ A → ⊥
-</td>
-<td>
-~A ≈ 1 − A
-</td>
-</tr>
-<tr>
-<th>
-assertion
-</th>
-<td>
-¬̷A = 1 → A
-</td>
-<td>
-✓A ≈ A − ⊥
-</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th>
+        negative
+      </th>
+      <th>
+        positive
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        negation
+      </th>
+      <td>
+        ¬A ≈ A → ⊥
+      </td>
+      <td>
+        ~A ≈ 1 − A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        assertion
+      </th>
+      <td>
+        ¬̷A = 1 → A
+      </td>
+      <td>
+        ✓A ≈ A − ⊥
+      </td>
+    </tr>
+  </tbody>
 </table>
 <p>✓, pronounced “true,” is truly dual to ¬, and ¬̷ is dual to ~. ✓’s encoding gives us the following rules:</p>
 <div class="connective">
 <div class="rule">
 <div class="label">
-✓⊢
-</div>
-<div class="inference">
-<div class="premise Γ">
-A, Γ
-</div>
-<div class="premise turnstile">
-⊢
-</div>
-<div class="premise Δ">
-Δ
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-✓A, Γ
-</div>
-<div class="conclusion turnstile">
-⊢
-</div>
-<div class="conclusion Δ">
-Δ
-</div>
+<p>✓⊢</div> <div class="inference"> <div class="premise Γ">A, Γ</div> <div class="premise turnstile">⊢</div> <div class="premise Δ">Δ</div> <span class="line-of-inference"></span> <div class="conclusion Γ">✓A, Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ</div></p>
 </div>
 </div>
 <div class="rule">
 <div class="inference">
-<div class="premise Γ">
-Γ
-</div>
-<div class="premise turnstile">
-⊢
-</div>
-<div class="premise Δ">
-Δ, A
-</div>
-<span class="line-of-inference"></span>
-<div class="conclusion Γ">
-Γ
-</div>
-<div class="conclusion turnstile">
-⊢
-</div>
-<div class="conclusion Δ">
-Δ, ✓A
-</div>
+<p><div class="premise Γ">Γ</div> <div class="premise turnstile">⊢</div> <div class="premise Δ">Δ, A</div> <span class="line-of-inference"></span> <div class="conclusion Γ">Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ, ✓A</div></p>
 </div>
 <div class="label">
-⊢✓
-</div>
+<p>⊢✓</div></p>
 </div>
 </div>
 <p>So far, so… disappointing. These are precisely the same rules as we found for ¬̷; only the symbols and the polarities have been swapped. And what’s worse, the same was already true of the rules for the negations.</p>
 <p>Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as 1 − A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive <em>negation</em> ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?</p>
 <p>It was in precisely such a mood that I happened to open Paul Downen &amp; Zena Ariola’s recent paper <em><a href="https://lmcs.episciences.org/6740">Compiling with Classical Connectives</a></em> to where I’d last left off, on a page starting with this paragraph:</p>
 <figure>
-<blockquote cite="https://lmcs.episciences.org/6740">
-<p>
-The two negation types can be thought of as two dual way for representing first-class continuations in a programming language. One way to formulate a continuation is by capturing the context as a first class value. This corresponds to the data type ⊖A which packages up a covalue F as the value ⊖F, which can be later unpacked by pattern-matching in λ⊖α.c. Another way to formulate continuations is through functions that never return. This corresponds to the codata type ¬A which has values of the form λ¬x.c, which is analogous to a function abstraction that does not bind a return pointer, and covalues of the form ¬W, which is analogous to throwing a value to a continuation without waiting for a returned result.
-</p>
-</blockquote>
-<figcaption>
-<cite><a href="https://lmcs.episciences.org/6740">Compiling with Classical Connectives</a></cite>, Paul Downen, Zena M. Ariola
-</figcaption>
+  <blockquote cite="https://lmcs.episciences.org/6740"><p>The two negation types can be thought of as two dual way for representing first-class continuations in a programming language. One way to formulate a continuation is by capturing the context as a first class value. This corresponds to the data type ⊖A which packages up a covalue F as the value ⊖F, which can be later unpacked by pattern-matching in λ⊖α.c. Another way to formulate continuations is through functions that never return. This corresponds to the codata type ¬A which has values of the form λ¬x.c, which is analogous to a function abstraction that does not bind a return pointer, and covalues of the form ¬W, which is analogous to throwing a value to a continuation without waiting for a returned result.</p></blockquote>
+  <figcaption><cite><a href="https://lmcs.episciences.org/6740">Compiling with Classical Connectives</a></cite>, Paul Downen, Zena M. Ariola</figcaption>
 </figure>
 <p>In short, you don’t use the same representation of continuations under two different names; you use two different representations, each with their own strengths. I was delighted to read this, because it reflects something about ~ that I’d only just noticed a day or two prior: the reason representing ¬A with continuations <code>a -&gt; r</code> <em>works</em> is that we’re consistent about it. Shouldn’t we be consistent about our treatment of 1, too? In which case, we should revisit our table:</p>
 <table>
-<thead>
-<tr>
-<th>
-</th>
-<th>
-negative
-</th>
-<th>
-positive
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>
-negation
-</th>
-<td>
-¬A ≈ A → ⊥<sub>R</sub>
-</td>
-<td>
-~A ≈ 1<sub>E</sub> - A
-</td>
-</tr>
-<tr>
-<th>
-assertion
-</th>
-<td>
-¬̷A = 1<sub>E</sub> → A
-</td>
-<td>
-✓A ≈ A - ⊥<sub>R</sub>
-</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>
+      </th>
+      <th>
+        negative
+      </th>
+      <th>
+        positive
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        negation
+      </th>
+      <td>
+        ¬A ≈ A → ⊥<sub>R</sub>
+      </td>
+      <td>
+        ~A ≈ 1<sub>E</sub> - A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        assertion
+      </th>
+      <td>
+        ¬̷A = 1<sub>E</sub> → A
+      </td>
+      <td>
+        ✓A ≈ A - ⊥<sub>R</sub>
+      </td>
+    </tr>
+  </tbody>
 </table>
 <p>In other words, ~A is defined to hold the environment in which it was constructed. It’s a lot like a closure, and precisely the kind of thing Downen &amp; Ariola describe.</p>
 <p>This also sheds some light on the contrast between the two assertions. ✓A holds an A, along with a continuation from R. (I’m not exactly certain what that means, just yet.) ¬̷A, on the other hand, may close over an A, or it may <em>construct</em> one from E. In other words, ¬̷A models dynamically-scoped variables, and ✓A models lexically-scoped ones. And while ¬̷A may look partial at first blush, it‘s important to remember that while the logical rules don’t (currently) encode this fact, E needn’t be the same for every sequent any more than R need be. (<code>reset</code>, for example, allows the conclusion’s R to vary from the premise’s.)</p>
@@ -628,65 +364,70 @@ td p {
 \require{bussproofs}
 $$</span></p>
 <table class="borderless">
-<colgroup>
-<col span="2">
-<col span="2">
-</colgroup>
-<tbody>
-<tr>
-<th colspan="4">
-<a name="additive">Additive</a>
-</th>
-</tr>
-<tr>
-<td>
-<span class="math display">$$
-        \begin{prooftree}
-        \def\labelSpacing{8pt}
-        \LeftLabel{$\&amp; \kern1pt ⊢_1$}
-        \Axiom$[A^-] \fCenter Γ ⊢ Δ$
-        \UnaryInf$[A^- \&amp; B^-] \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        $$</span> <span class="math display">$$
-        \begin{prooftree}
-        \def\labelSpacing{8pt}
-        \LeftLabel{$\&amp; \kern1pt ⊢_2$}
-        \Axiom$[B^-] \fCenter Γ ⊢ Δ$
-        \UnaryInf$[A^- \&amp; B^-] \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        $$</span>
-</td>
-<td>
-<span class="math display">$$
-        \begin{prooftree}
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt \&amp;$}
-        \AxiomC{$Γ ⊢ Δ, A^-$}
-        \AxiomC{$Γ ⊢ Δ, B^-$}
-        \BinaryInfC{$Γ ⊢ Δ, A^- \&amp; B^-$}
-        \end{prooftree}
-        $$</span>
-</td>
-<td colspan="2" rowspan="5">
-<p>
-The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are unfamiliar symbols for familiar connectives: &amp; is conjunction (∧, “and”), while ⊕ is disjunction (∨, “or”).
-</p>
-<p>
-&amp; is negative, and thus focused on the left (indicated by the square brackets). In a polarized calculus, negative connectives are defined by their left rules, which are rules for how to use them. (Γ contains inputs, so left rules consume things.) &amp; has two left rules, which use it by projecting out the left and right parts, respectively. Its right rule builds it from its components: think pair/tuple literals.
-</p>
-<p>
-⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.
-</p>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-&amp; (“with”): negative conjunction ≈ lazy pair
-</td>
-</tr>
-<tr>
-<td>
-<span class="math display">$$
+  <colgroup>
+    <col span="2">
+    <col span="2">
+  </colgroup>
+  <tbody>
+    <tr>
+      <th colspan="4"><a name="additive">Additive</a></th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class="connective">
+          <div>
+            <div class="rule grid">
+              <div class="label">&amp;⊢<sub>1</sub></div>
+              <div class="inference">
+                <div class="premise Γ">[A<sup>−</sup>] Γ</div>
+                <div class="premise turnstile">⊢</div>
+                <div class="premise Δ">Δ</div>
+                <span class="line-of-inference"></span>
+                <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
+                <div class="conclusion turnstile">⊢</div>
+                <div class="conclusion Δ">Δ</div>
+              </div>
+            </div>
+            <div class="rule grid">
+              <div class="label">&amp;⊢<sub>2</sub></div>
+              <div class="inference">
+                <div class="premise Γ">[B<sup>−</sup>] Γ</div>
+                <div class="premise turnstile">⊢</div>
+                <div class="premise Δ">Δ</div>
+                <span class="line-of-inference"></span>
+                <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
+                <div class="conclusion turnstile">⊢</div>
+                <div class="conclusion Δ">Δ</div>
+              </div>
+            </div>
+          </div>
+          <div class="rule">
+            <div class="inference">
+              <div class="premises">
+                <div class="premise">Γ ⊢ Δ, A<sup>−</sup></div>
+                <div class="premise">Γ ⊢ Δ, B<sup>−</sup></div>
+              </div>
+              <span class="line-of-inference"></span>
+              <div class="conclusion">Γ ⊢ Δ, A<sup>−</sup> &amp; B<sup>−</sup></div>
+            </div>
+            <div class="label">⊢_</div>
+          </div>
+        </div>
+      </td>
+      <td colspan="2" rowspan="5">
+        <p>The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are unfamiliar symbols for familiar connectives: &amp; is conjunction (∧, “and”), while ⊕ is disjunction (∨, “or”).</p>
+        <p>&amp; is negative, and thus focused on the left (indicated by the square brackets). In a polarized calculus, negative connectives are defined by their left rules, which are rules for how to use them. (Γ contains inputs, so left rules consume things.) &amp; has two left rules, which use it by projecting out the left and right parts, respectively. Its right rule builds it from its components: think pair/tuple literals.</p>
+        <p>⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        &amp; (“with”): negative conjunction ≈ lazy pair
+      </td>
+    </tr>
+    <tr>
+      <td>
+        $$
         \begin{prooftree}
         \def\labelSpacing{8pt}
         \LeftLabel{$⊕ \kern1pt ⊢$}
@@ -694,52 +435,47 @@ The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are 
         \AxiomC{$B^+, Γ ⊢ Δ$}
         \BinaryInfC{$A^+ ⊕ B^+, Γ ⊢ Δ$}
         \end{prooftree}
-        $$</span>
-</td>
-<td>
-<span class="math display">$$
+        $$
+      </td>
+      <td>
+        $$
         \begin{prooftree}
         \def\labelSpacing{8pt}
         \RightLabel{$\ ⊢ \kern1pt ⊕_1$}
         \Axiom$\fCenter Γ ⊢ Δ [A^+]$
         \UnaryInf$\fCenter Γ ⊢ Δ [A^+ ⊕ B^+]$
         \end{prooftree}
-        $$</span> <span class="math display">$$
+        $$
+        $$
         \begin{prooftree}
         \def\labelSpacing{8pt}
         \RightLabel{$\ ⊢ \kern1pt ⊕_2$}
         \Axiom$\fCenter Γ ⊢ Δ [B^+]$
         \UnaryInf$\fCenter Γ ⊢ Δ [A^+ ⊕ B^+]$
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-⊕ (“sum”): positive disjunction ≈ either
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
-        \sim \kern -3pt (A^- \&amp; B^-) ≈\kern 3pt \sim \kern -3pt A^- ⊕ \sim \kern -3pt B^- \hskip 1.5em ¬(A^+ ⊕ B^+) ≈ ¬A^+ \&amp; ¬B^+
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" rowspan="5">
-<p>
-The additive units, ⊤ (“top”) and 0, are a bit of a puzzle. Note that neither has a focusing rule: you can’t use a ⊤ once you have it, and you can’t get a 0 at all. On the other hand, both their invertible rules are axioms (i.e. have no premises).
-</p>
-<p>
-A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that interpretation we can see that ⊤, which corresponds to logical truth, indeed satisfies that claim: once at least one thing on the right is proven, we’re done.
-</p>
-<p>
-Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.
-</p>
-</td>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ⊕ (“sum”): positive disjunction ≈ either
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
+        \sim \kern -3pt (A^- \& B^-) ≈\kern 3pt \sim \kern -3pt A^- ⊕ \sim \kern -3pt B^- \hskip 1.5em ¬(A^+ ⊕ B^+) ≈ ¬A^+ \& ¬B^+
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="5">
+        <p>The additive units, ⊤ (“top”) and 0, are a bit of a puzzle. Note that neither has a focusing rule: you can’t use a ⊤ once you have it, and you can’t get a 0 at all. On the other hand, both their invertible rules are axioms (i.e. have no premises).</p>
+        <p>A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that interpretation we can see that ⊤, which corresponds to logical truth, indeed satisfies that claim: once at least one thing on the right is proven, we’re done.</p>
+        <p>Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.</p>
+      </td>
+      <td colspan="2">
+        $$
         \hskip -10pt
         \textrm{no rule for} ⊤ ⊢
         \begin{prooftree}
@@ -749,17 +485,17 @@ Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>
         \AxiomC{}
         \UnaryInfC{$Γ ⊢ Δ, ⊤$}
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-⊤ (“top”): negative truth ≈ unit
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ⊤ (“top”): negative truth ≈ unit
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -769,29 +505,27 @@ Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>
         \end{prooftree}
         \hskip 10pt
         \textrm{no rule for} ⊢ 0
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-0: positive falsity ≈ void
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        0: positive falsity ≈ void
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \sim \kern -1pt ⊤ ≈ 0 \hskip 1.5em ¬0 ≈ ⊤
-        $$</span>
-</td>
-</tr>
-<tr>
-<th colspan="4">
-<a name="multiplicative">Multiplicative</a>
-</th>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <th colspan="4"><a name="multiplicative">Multiplicative</a></th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -807,25 +541,21 @@ Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>
         \Axiom$\fCenter Γ ⊢ Δ, A^-, B^-$
         \UnaryInf$\fCenter Γ ⊢ Δ, A^-\ ⅋\ \ \ B^-$
         \end{prooftree}
-        $$</span>
-</td>
-<td colspan="2" rowspan="5">
-<p>
-In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction, ⅋ (“par”) and ⊗ (“tensor”) are <em>multiplicative</em> disjunction and conjunction. The difference is more obvious in a linear logic, but for us the relevant distinction between &amp; and ⊗ is that we identify negative (resp. positive) types like &amp; (resp. ⊗) with call-by-name (resp. call-by-value).
-</p>
-<p>
-⅋, however, is stranger. It’s a disjunction, eliminated by using both halves (just like ⊕), but introduced using <em>two</em> things. Linear logic again offers one perspective, but another reading of Γ ⊢ Δ (via Curry-Howard) as “consume Γ to produce Δ” is salient: parallelism (hence “par”), or nondeterminism. The latter explains why ⅋ is disjunctive despite (at least notionally) containing two things; think of <code>&lt;|&gt;</code>. For <code>Maybe</code>, it selects the leftmost <code>Just</code>, acting as a choice; for <code>[]</code>, it instead selects <em>all</em> alternatives, acting as a union.
-</p>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-⅋ (“par”): negative disjunction ≈ parallel/nondeterministic choice
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+      <td colspan="2" rowspan="5">
+        <p>In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction, ⅋ (“par”) and ⊗ (“tensor”) are <em>multiplicative</em> disjunction and conjunction. The difference is more obvious in a linear logic, but for us the relevant distinction between &amp; and ⊗ is that we identify negative (resp. positive) types like &amp; (resp. ⊗) with call-by-name (resp. call-by-value).</p>
+        <p>⅋, however, is stranger. It’s a disjunction, eliminated by using both halves (just like ⊕), but introduced using <em>two</em> things. Linear logic again offers one perspective, but another reading of Γ ⊢ Δ (via Curry-Howard) as “consume Γ to produce Δ” is salient: parallelism (hence “par”), or nondeterminism. The latter explains why ⅋ is disjunctive despite (at least notionally) containing two things; think of <code>&lt;|&gt;</code>. For <code>Maybe</code>, it selects the leftmost <code>Just</code>, acting as a choice; for <code>[]</code>, it instead selects <em>all</em> alternatives, acting as a union.</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ⅋ (“par”): negative disjunction ≈ parallel/nondeterministic choice
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -841,35 +571,29 @@ In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction,
         \AxiomC{$Γ ⊢ Δ [B^+]$}
         \BinaryInfC{$Γ ⊢ Δ [A^+ ⊗ B^+]$}
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-⊗ (“tensor”): positive conjunction ≈ strict pair
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ⊗ (“tensor”): positive conjunction ≈ strict pair
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \sim \kern -3pt (A^- ⅋\ \ \ B^-) ≈\kern 3pt \sim \kern -3pt A^- ⊗ \sim \kern -3pt B^- \hskip 1.5em ¬(A^+ ⊗ B^+) ≈ ¬A^+ ⅋\ \ \ ¬B^+
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" rowspan="5">
-<p>
-Alongside multiplicative disjunction and conjunction are ⊥ (“bottom”), a negative falsity, and 1, a positive truth.
-</p>
-<p>
-⊥, like positive falsity (0), proves anything if you’ve already got one (⊥⊢). Surprisingly, we can introduce one when we can prove the rest of the sequent (⊢⊥). Logically, falsity can’t change Δ’s provability, so this rule is justified.
-</p>
-<p>
-Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated freely (1⊢). Introducing it is likewise trivial (⊢1), just as for ⊤.
-</p>
-</td>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="5">
+        <p>Alongside multiplicative disjunction and conjunction are ⊥ (“bottom”), a negative falsity, and 1, a positive truth.</p>
+        <p>⊥, like positive falsity (0), proves anything if you’ve already got one (⊥⊢). Surprisingly, we can introduce one when we can prove the rest of the sequent (⊢⊥). Logically, falsity can’t change Δ’s provability, so this rule is justified.</p>
+        <p>Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated freely (1⊢). Introducing it is likewise trivial (⊢1), just as for ⊤.</p>
+      </td>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -884,17 +608,17 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
         \Axiom$\fCenter Γ ⊢ Δ$
         \UnaryInf$\fCenter Γ ⊢ Δ, ⊥$
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-⊥ (“bottom”): negative falsity ≈ void
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ⊥ (“bottom”): negative falsity ≈ void
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -909,29 +633,27 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
         \AxiomC{}
         \UnaryInfC{$Γ ⊢ Δ [1]$}
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-1: positive truth ≈ unit
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        1: positive truth ≈ unit
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \sim \kern -1pt ⊥ ≈ 1 \hskip 1.5em ¬1 ≈ ⊥
-        $$</span>
-</td>
-</tr>
-<tr>
-<th colspan="4">
-<a name="implicative">Implicative</a>
-</th>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <th colspan="4"><a name="implicative">Implicative</a></th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -947,31 +669,23 @@ Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated fre
         \Axiom$A^+, \fCenter Γ ⊢ Δ, B^-$
         \UnaryInf$\fCenter Γ ⊢ Δ, A^+ → B^-$
         \end{prooftree}
-        $$</span>
-</td>
-<td colspan="2" rowspan="5">
-<p>
-Just as implication resembles the turnstile (as is evident in the premise of ⊢→), our computational reading of Γ ⊢ Δ as “consume Γ to produce Δ” indicates that functions do as well.
-</p>
-<p>
-A – B can be read as “A without B” (both arithmetically and logically), but insight into its computational interpretation can be gained by its relationship to functions.
-</p>
-<p>
-The premises for →⊢ and ⊢– are the same, as are the ones for ⊢→ and –⊢: duality <em>means</em> “each eliminates the other.” → eliminations are function calls, so – has an argument: the A in the first premise of ⊢–. B is a hypothesis, meaning that the derivation must <em>provide</em> it. Therefore, it also has a <em>continuation from B</em>—and thus, everything you need to call a function: both input, and output destination.
-</p>
-<p>
-This gives a vivid picture of the nature of duality: a subtraction is the negative space around an implication, and an implication is therefore also the negative space around a subtraction. A complete view of either requires both.
-</p>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-→: negative implication ≈ function
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+      <td colspan="2" rowspan="5">
+        <p>Just as implication resembles the turnstile (as is evident in the premise of ⊢→), our computational reading of Γ ⊢ Δ as “consume Γ to produce Δ” indicates that functions do as well.</p>
+        <p>A – B can be read as “A without B” (both arithmetically and logically), but insight into its computational interpretation can be gained by its relationship to functions.</p>
+        <p>The premises for →⊢ and ⊢– are the same, as are the ones for ⊢→ and –⊢: duality <em>means</em> “each eliminates the other.” → eliminations are function calls, so – has an argument: the A in the first premise of ⊢–. B is a hypothesis, meaning that the derivation must <em>provide</em> it. Therefore, it also has a <em>continuation from B</em>—and thus, everything you need to call a function: both input, and output destination.</p>
+        <p>This gives a vivid picture of the nature of duality: a subtraction is the negative space around an implication, and an implication is therefore also the negative space around a subtraction. A complete view of either requires both.</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        →: negative implication ≈ function
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -987,40 +701,32 @@ This gives a vivid picture of the nature of duality: a subtraction is the negati
         \AxiomC{$[B^-] \fCenter Γ ⊢ Δ$}
         \BinaryInfC{$\fCenter Γ ⊢ Δ [A^+ - B^-]$}
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-– (“subtraction”, sometimes ⤙, “co-implication”): positive implication ≈ calling context
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        – (“subtraction”, sometimes ⤙, “co-implication”): positive implication ≈ calling context
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \sim \kern -3pt (A^+ → B^-) ≈ A^+ - B^- \hskip 1.5em ¬(A^+ - B^-) ≈ A^+ → B^-
-        $$</span>
-</td>
-</tr>
-<tr>
-<th colspan="4">
-<a name="negating">Negating</a>
-</th>
-</tr>
-<tr>
-<td colspan="2" rowspan="5">
-<p>
-Like → and –, negations have the interesting behaviour of moving propositions across the turnstile: from antecedents to succeedents. They are constructed (⊢¬ and ⊢~) from a premise with a hypothesis: to make a ¬A or ~A, we must have a premise which uses an A—rather like the premise of ⊢→. Dually, their elimination (¬⊢ and ~⊢) requires an A to use as input. Thus, negations have long been given computational meaning as <em>continuations</em>, a representation of “the rest of the program” from some program point.
-</p>
-<p>
-Intuitionistic logics therefore often encode negation as implication of falsity, i.e. ¬A ≈ A → ⊥. Intuitively, “not A” and “A implies falsity” align. This has the precise shape of a continuation. Further, double-negation like ¬¬A becomes (A → ⊥) → ⊥, which has the shape of continuation-passing style.
-</p>
-<p>
-Our negations are <em>involutive</em>, i.e. (mutual) self-inverses, due both to polarization (flipped from their argument) and focusing behaviour (remaining in the current phase).
-</p>
-</td>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <th colspan="4"><a name="negating">Negating</a></th>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="5">
+        <p>Like → and –, negations have the interesting behaviour of moving propositions across the turnstile: from antecedents to succeedents. They are constructed (⊢¬ and ⊢~) from a premise with a hypothesis: to make a ¬A or ~A, we must have a premise which uses an A—rather like the premise of ⊢→. Dually, their elimination (¬⊢ and ~⊢) requires an A to use as input. Thus, negations have long been given computational meaning as <em>continuations</em>, a representation of “the rest of the program” from some program point.</p>
+        <p>Intuitionistic logics therefore often encode negation as implication of falsity, i.e. ¬A ≈ A → ⊥. Intuitively, “not A” and “A implies falsity” align. This has the precise shape of a continuation. Further, double-negation like ¬¬A becomes (A → ⊥) → ⊥, which has the shape of continuation-passing style.</p>
+        <p>Our negations are <em>involutive</em>, i.e. (mutual) self-inverses, due both to polarization (flipped from their argument) and focusing behaviour (remaining in the current phase).</p>
+      </td>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -1035,17 +741,17 @@ Our negations are <em>involutive</em>, i.e. (mutual) self-inverses, due both to
         \Axiom$A^+, \fCenter Γ ⊢ Δ$
         \UnaryInf$\fCenter Γ ⊢ Δ, ¬A^+$
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-¬ (“not”): positive-within-negative negation ≈ lazy continuation
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ¬ (“not”): positive-within-negative negation ≈ lazy continuation
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -1060,29 +766,27 @@ Our negations are <em>involutive</em>, i.e. (mutual) self-inverses, due both to
         \Axiom$[A^-] \fCenter Γ ⊢ Δ$
         \UnaryInf$\fCenter Γ ⊢ Δ [\sim\kern -3pt A^-]$
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-~ (“negate”): negative-within-positive negation ≈ strict continuation
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ~ (“negate”): negative-within-positive negation ≈ strict continuation
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \sim \kern -3pt ¬A^+ ≈ A^+ \hskip 1.5em ¬\sim \kern -3pt A^- ≈ A^-
-        $$</span>
-</td>
-</tr>
-<tr>
-<th colspan="4">
-<a name="shifts">Shifts</a>
-</th>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <th colspan="4"><a name="shifts">Shifts</a></th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -1097,31 +801,23 @@ Our negations are <em>involutive</em>, i.e. (mutual) self-inverses, due both to
         \Axiom$\fCenter Γ ⊢ Δ, A^+$
         \UnaryInf$\fCenter Γ ⊢ Δ, ↑A^+$
         \end{prooftree}
-        $$</span>
-</td>
-<td colspan="2" rowspan="6">
-<p>
-Shifts serve two pragmatic purposes: like negations, they have the opposite polarity of whatever they shift; and they end the focusing phase of proof search and begin the inversion phase.
-</p>
-<p>
-Up shifts may be unfamiliar in terms of types, but at the term level are something like a <code>return</code>, particularly in monadic code: they embed a value (positive) within a computation (negative). In CBPV (call-by-push-value), this is the left adjoint, F.
-</p>
-<p>
-Down shifts, meanwhile, may be more familiar as thunks: they wrap a computation (negative) up into a value (positive). In CBPV, this is the right adjoint, U.
-</p>
-<p>
-The translations of function types from CBN and CBV into polarized calculi (left) model evaluation orders using shifts. The CBN translation treats arguments as thunks around lazy computations, while the CBV translation explicitly wraps the result in a computation.
-</p>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-↑ (“up shift,” call-by-push-value’s <em>F</em>): positive-within-negative shift ≈ return
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+      <td colspan="2" rowspan="6">
+        <p>Shifts serve two pragmatic purposes: like negations, they have the opposite polarity of whatever they shift; and they end the focusing phase of proof search and begin the inversion phase.</p>
+        <p>Up shifts may be unfamiliar in terms of types, but at the term level are something like a <code>return</code>, particularly in monadic code: they embed a value (positive) within a computation (negative). In CBPV (call-by-push-value), this is the left adjoint, F.</p>
+        <p>Down shifts, meanwhile, may be more familiar as thunks: they wrap a computation (negative) up into a value (positive). In CBPV, this is the right adjoint, U.</p>
+        <p>The translations of function types from CBN and CBV into polarized calculi (left) model evaluation orders using shifts. The CBN translation treats arguments as thunks around lazy computations, while the CBV translation explicitly wraps the result in a computation.</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ↑ (“up shift,” call-by-push-value’s <em>F</em>): positive-within-negative shift ≈ return
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -1136,47 +832,40 @@ The translations of function types from CBN and CBV into polarized calculi (left
         \Axiom$\fCenter Γ ⊢ Δ, A^-$
         \UnaryInf$\fCenter Γ ⊢ Δ [↓A^-]$
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-↓ (“down shift”, call-by-push-value’s <em>U</em>): negative-within-positive shift ≈ thunk
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ↓ (“down shift”, call-by-push-value’s <em>U</em>): negative-within-positive shift ≈ thunk
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      $$
       \hskip 0em (A → B)^N\ =\ ↓(A^N) → B
-      $$</span> <span class="math display">$$
+      $$
+      $$
       \hskip 0em (A → B)^V\ =\ ↓(A^V →\kern 3pt ↑(B^V))
-      $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-translations of CBN and CBV function types into polarized calculi
-</td>
-</tr>
-<tr>
-<th colspan="4">
-<a name="shifts">Quantifiers</a>
-</th>
-</tr>
-<tr>
-<td colspan="2" rowspan="5">
-<p>
-The rules for quantification are slightly unusual in this presentation in their use of both side conditions (checking that the variable does not occur free elsewhere within the sequent) and (capture-avoiding) substitution (A{B/X} substitutes the proposition B for the variable X within A, e.g. (X ⊕ Y){Z/X} = Z ⊕ Y).
-</p>
-<p>
-Quantified propositions—and thus, types—offer yet more dualities: both can be used to hide information, but from different perspectives. ∀ constrains its construction, but is used freely; ∃ constrains its uses, but is constructed freely. Universally-quantified types are used when folding polymorphically recursive data and a variety of encodings using functions. Existentials model abstraction in abstract data types, ML modules, open universes of exceptions, and GADTs.
-</p>
-<p>
-Here, the identification of negative = computation, positive = value is stretched. If computation in the CBPV sense is “something resident in code pages” then ∀ seems misplaced—why should ∀ be represented at runtime (absent dependent types)? On the other hand, the identification of positive = data, negative = codata fits: ∀ is defined by how it is used, and ∃ by how it is made.
-</p>
-</td>
-<td colspan="2">
-<span class="math display">$$
+      $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        translations of CBN and CBV function types into polarized calculi
+      </td>
+    </tr>
+    <tr>
+      <th colspan="4"><a name="shifts">Quantifiers</a></th>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="5">
+        <p>The rules for quantification are slightly unusual in this presentation in their use of both side conditions (checking that the variable does not occur free elsewhere within the sequent) and (capture-avoiding) substitution (A{B/X} substitutes the proposition B for the variable X within A, e.g. (X ⊕ Y){Z/X} = Z ⊕ Y).</p>
+        <p>Quantified propositions—and thus, types—offer yet more dualities: both can be used to hide information, but from different perspectives. ∀ constrains its construction, but is used freely; ∃ constrains its uses, but is constructed freely. Universally-quantified types are used when folding polymorphically recursive data and a variety of encodings using functions. Existentials model abstraction in abstract data types, ML modules, open universes of exceptions, and GADTs.</p>
+        <p>Here, the identification of negative = computation, positive = value is stretched. If computation in the CBPV sense is “something resident in code pages” then ∀ seems misplaced—why should ∀ be represented at runtime (absent dependent types)? On the other hand, the identification of positive = data, negative = codata fits: ∀ is defined by how it is used, and ∃ by how it is made.</p>
+      </td>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -1191,17 +880,17 @@ Here, the identification of negative = computation, positive = value is stretche
         \Axiom$\fCenter Γ ⊢ Δ, A^- \hskip 1.5em X ∉ fv(Γ ⊢ Δ)$
         \UnaryInf$\fCenter Γ ⊢ Δ, ∀X.A^-$
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-∀ (“for all”): universal quantification ≈ polymorphism
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ∀ (“for all”): universal quantification ≈ polymorphism
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -1216,29 +905,27 @@ Here, the identification of negative = computation, positive = value is stretche
         \Axiom$\fCenter Γ ⊢ Δ [A^+\{B/X\}]$
         \UnaryInf$\fCenter Γ ⊢ Δ [∃X.A^+]$
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-<tr>
-<td colspan="2" class="caption">
-∃ (“there exists”): existential quantification ≈ abstract data type
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption">
+        ∃ (“there exists”): existential quantification ≈ abstract data type
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \sim \kern -3pt (∀X.A^-) ≈ ∃X.\sim \kern -3pt A^- \hskip 1.5em ¬(∃X.A^+) ≈ ∀X.¬A^+
-        $$</span>
-</td>
-</tr>
-<tr>
-<th colspan="4">
-<a name="core">Core</a>
-</th>
-</tr>
-<tr>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+    </tr>
+    <tr>
+      <th colspan="4"><a name="core">Core</a></th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \LeftLabel{$\mathit{init}$}
@@ -1252,45 +939,27 @@ Here, the identification of negative = computation, positive = value is stretche
         \AxiomC{$A, Γ ⊢ Δ$}
         \BinaryInfC{$Γ ⊢ Δ$}
         \end{prooftree}
-        $$</span>
-</td>
-<td colspan="2">
-<p>
-The init and cut rules are quite common to sequent (and other) calculi. This presentation clarifies a couple of useful properties.
-</p>
-<p>
-init allows us to begin a proof (or end one, working bottom-up as we often do, from goal to premise) with a proposition given to us. Under Curry-Howard’s interpretation of proofs as programs, we can understand this as the polymorphic identity function, <code>id</code>. (Sequent calculus proofs in particular correspond to higher-order programs, e.g. functions taking functions to functions.)
-</p>
-<p>
-cut instead allows us to prove a sequent by introducing and immediately eliminating a proposition in its premises. Again taking sequents as analogues of function types, we can think of it as the <em>composition</em> of proofs with compatible consequents and hypotheses.
-</p>
-<p>
-Furthermore, cut and init form a category, where the morphisms are sequents between contexts, joined by cuts. The Curry-Howard correspondence holds up here, too: <code>id</code> and function composition give a category of functions between types.
-</p>
-</td>
-</tr>
-<tr>
-<th colspan="4">
-<a name="structural">Structural</a>
-</th>
-</tr>
-<tr>
-<td colspan="2">
-<p>
-Structural rules governing our use of the context. Without these, our logic would be classical <em>linear</em> logic (and would have to adjust the multiplicative and cut rules to split the context between premises). The rules are given their traditional names here, but since we mostly operate bottom-up, starting with the goal given by the syntax of a program, they actually have the exact opposite sense for us.
-</p>
-<p>
-Top-down, weaken introduces an arbitrary hypothesis or consequent. An extra hypothesis weakens the proof because more information must be provided to prove the same conclusion. An extra conclusion instead weakens what we can learn from it. Contraction, meanwhile, eliminates redundant information from the context.
-</p>
-<p>
-Bottom-up, weakening instead <em>strengthens</em> a premise, tightening its requirements and guarantees. In reality, however, this mostly amounts to bookkeeping, removing propositions that are in the way of some goal. Contraction, meanwhile, allows us to duplicate information we already know, again primarily as a way of getting one’s ducks in a row for the benefit of proof search. e.g. init proves a minimalistic A ⊢ A. Weakening is often required to whittle sequents down for init to apply.
-</p>
-<p>
-Note that the customary exchange rule is not required as this presentation’s contexts are unordered.
-</p>
-</td>
-<td colspan="2">
-<span class="math display">$$
+        $$
+      </td>
+      <td colspan="2">
+        <p>The init and cut rules are quite common to sequent (and other) calculi. This presentation clarifies a couple of useful properties.</p>
+        <p>init allows us to begin a proof (or end one, working bottom-up as we often do, from goal to premise) with a proposition given to us. Under Curry-Howard’s interpretation of proofs as programs, we can understand this as the polymorphic identity function, <code>id</code>. (Sequent calculus proofs in particular correspond to higher-order programs, e.g. functions taking functions to functions.)</p>
+        <p>cut instead allows us to prove a sequent by introducing and immediately eliminating a proposition in its premises. Again taking sequents as analogues of function types, we can think of it as the <em>composition</em> of proofs with compatible consequents and hypotheses.</p>
+        <p>Furthermore, cut and init form a category, where the morphisms are sequents between contexts, joined by cuts. The Curry-Howard correspondence holds up here, too: <code>id</code> and function composition give a category of functions between types.</p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="4"><a name="structural">Structural</a></th>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p>Structural rules governing our use of the context. Without these, our logic would be classical <em>linear</em> logic (and would have to adjust the multiplicative and cut rules to split the context between premises). The rules are given their traditional names here, but since we mostly operate bottom-up, starting with the goal given by the syntax of a program, they actually have the exact opposite sense for us.</p>
+        <p>Top-down, weaken introduces an arbitrary hypothesis or consequent. An extra hypothesis weakens the proof because more information must be provided to prove the same conclusion. An extra conclusion instead weakens what we can learn from it. Contraction, meanwhile, eliminates redundant information from the context.</p>
+        <p>Bottom-up, weakening instead <em>strengthens</em> a premise, tightening its requirements and guarantees. In reality, however, this mostly amounts to bookkeeping, removing propositions that are in the way of some goal. Contraction, meanwhile, allows us to duplicate information we already know, again primarily as a way of getting one’s ducks in a row for the benefit of proof search. e.g. init proves a minimalistic A ⊢ A. Weakening is often required to whittle sequents down for init to apply.</p>
+        <p>Note that the customary exchange rule is not required as this presentation’s contexts are unordered.</p>
+      </td>
+      <td colspan="2">
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -1305,7 +974,8 @@ Note that the customary exchange rule is not required as this presentation’s c
         \Axiom$\fCenter Γ ⊢ Δ$
         \UnaryInf$\fCenter Γ ⊢ Δ, A$
         \end{prooftree}
-        $$</span> <span class="math display">$$
+        $$
+        $$
         \begin{prooftree}
         \hskip -10pt
         \def\labelSpacing{8pt}
@@ -1320,10 +990,10 @@ Note that the customary exchange rule is not required as this presentation’s c
         \Axiom$\fCenter Γ ⊢ Δ, A, A$
         \UnaryInf$\fCenter Γ ⊢ Δ, A$
         \end{prooftree}
-        $$</span>
-</td>
-</tr>
-</tbody>
+        $$
+      </td>
+    </tr>
+  </tbody>
 </table>]]></summary>
 </entry>
 <entry>
