@@ -107,7 +107,7 @@ div.rule {
   align-items: center;
 }
 
-div.rule+div.rule {
+div.column div.rule+div.rule {
   margin-top: 1em;
 }
 
