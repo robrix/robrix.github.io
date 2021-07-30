@@ -973,7 +973,7 @@ $$</span></p>
         <div class="conclusion turnstile">⊢</div>
         <div class="conclusion Δ">A</div>
       </div>
-      <div class="label">init</div>
+      <div class="label"><span class="function">init</span></div>
     </div>
     <div class="rule">
       <div class="inference">
@@ -984,7 +984,7 @@ $$</span></p>
         <span class="line-of-inference"></span>
         <div class="conclusion">Γ ⊢ Δ</div>
       </div>
-      <div class="label">cut</div>
+      <div class="label"><span class="function">cut</span></div>
     </div>
   </div>
   <figcaption>
@@ -994,80 +994,69 @@ $$</span></p>
     <p>Furthermore, cut and init form a category, where the morphisms are sequents between contexts, joined by cuts. The Curry-Howard correspondence holds up here, too: <code>id</code> and function composition give a category of functions between types.</p>
   </figcaption>
 </figure>
-<table class="borderless">
-  <colgroup>
-    <col span="2">
-    <col span="2">
-  </colgroup>
-  <tbody>
-    <tr>
-      <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \LeftLabel{$\mathit{init}$}
-        \AxiomC{}
-        \UnaryInfC{$A ⊢ A$}
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \RightLabel{$\ \mathit{cut}$}
-        \AxiomC{$Γ ⊢ Δ, A$}
-        \AxiomC{$A, Γ ⊢ Δ$}
-        \BinaryInfC{$Γ ⊢ Δ$}
-        \end{prooftree}
-        $$
-      </td>
-      <td colspan="2">
-      </td>
-    </tr>
-    <tr>
-      <th colspan="4"><a name="structural">Structural</a></th>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <p>Structural rules governing our use of the context. Without these, our logic would be classical <em>linear</em> logic (and would have to adjust the multiplicative and cut rules to split the context between premises). The rules are given their traditional names here, but since we mostly operate bottom-up, starting with the goal given by the syntax of a program, they actually have the exact opposite sense for us.</p>
-        <p>Top-down, weaken introduces an arbitrary hypothesis or consequent. An extra hypothesis weakens the proof because more information must be provided to prove the same conclusion. An extra conclusion instead weakens what we can learn from it. Contraction, meanwhile, eliminates redundant information from the context.</p>
-        <p>Bottom-up, weakening instead <em>strengthens</em> a premise, tightening its requirements and guarantees. In reality, however, this mostly amounts to bookkeeping, removing propositions that are in the way of some goal. Contraction, meanwhile, allows us to duplicate information we already know, again primarily as a way of getting one’s ducks in a row for the benefit of proof search. e.g. init proves a minimalistic A ⊢ A. Weakening is often required to whittle sequents down for init to apply.</p>
-        <p>Note that the customary exchange rule is not required as this presentation’s contexts are unordered.</p>
-      </td>
-      <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$\mathit{weaken} ⊢$}
-        \Axiom$\fCenter Γ ⊢ Δ$
-        \UnaryInf$A, \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \mathit{weaken}$}
-        \Axiom$\fCenter Γ ⊢ Δ$
-        \UnaryInf$\fCenter Γ ⊢ Δ, A$
-        \end{prooftree}
-        $$
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$\mathit{contract} ⊢$}
-        \Axiom$A, A, \fCenter Γ ⊢ Δ$
-        \UnaryInf$A, \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \mathit{contract}$}
-        \Axiom$\fCenter Γ ⊢ Δ, A, A$
-        \UnaryInf$\fCenter Γ ⊢ Δ, A$
-        \end{prooftree}
-        $$
-      </td>
-    </tr>
-  </tbody>
-</table>]]></summary>
+<h2 id="structural">Structural</h2>
+<figure class="section">
+  <figcaption>
+    <p>Structural rules governing our use of the context. Without these, our logic would be classical <em>linear</em> logic (and would have to adjust the multiplicative and cut rules to split the context between premises). The rules are given their traditional names here, but since we mostly operate bottom-up, starting with the goal given by the syntax of a program, they actually have the exact opposite sense for us.</p>
+    <p>Top-down, weaken introduces an arbitrary hypothesis or consequent. An extra hypothesis weakens the proof because more information must be provided to prove the same conclusion. An extra conclusion instead weakens what we can learn from it. Contraction, meanwhile, eliminates redundant information from the context.</p>
+    <p>Bottom-up, weakening instead <em>strengthens</em> a premise, tightening its requirements and guarantees. In reality, however, this mostly amounts to bookkeeping, removing propositions that are in the way of some goal. Contraction, meanwhile, allows us to duplicate information we already know, again primarily as a way of getting one’s ducks in a row for the benefit of proof search. e.g. init proves a minimalistic A ⊢ A. Weakening is often required to whittle sequents down for init to apply.</p>
+    <p>Note that the customary exchange rule is not required as this presentation’s contexts are unordered.</p>
+  </figcaption>
+  <div>
+    <div class="connective">
+      <div class="rule">
+        <div class="label"><span class="function">weaken</span> ⊢</div>
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">A, Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ, A</div>
+        </div>
+        <div class="label">⊢ <span class="function">weaken</span></div>
+      </div>
+    </div>
+    <div class="connective">
+      <div class="rule">
+        <div class="label"><span class="function">contract</span> ⊢</div>
+        <div class="inference">
+          <div class="premise Γ">A, A, Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">A, Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ, A, A</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ, A</div>
+        </div>
+        <div class="label">⊢ <span class="function">contract</span></div>
+      </div>
+    </div>
+  </div>
+</figure>]]></summary>
 </entry>
 <entry>
     <title>All you need is λ, part one: booleans</title>
