@@ -18,6 +18,7 @@ figure.connective figcaption {
   font-size: .875rem;
   line-height: 1.5rem;
   grid-column: 1 / -1;
+  margin-bottom: 1em;
 }
 
 /* inference rule presentations */
@@ -97,8 +98,6 @@ table.connective td.right {
 /* thank you, CSS hero: https://twitter.com/ptrfrncsmrph/status/1420749056125685762 */
 div.connective,
 figure.connective {
-  float: none;
-  width: auto;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -190,17 +189,10 @@ p:last-child {
 
 
 figure.section {
-  margin-bottom: 3em;
-}
-
-figure.section>figcaption {
-  width: 50%;
-}
-
-figure.section:nth-of-type(2n + 1)>figcaption {
-  float: right;
-}
-
-figure.section:nth-of-type(2n)>figcaption {
-  float: left;
+  margin-bottom: 2em;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  gap: 20px;
+  /* width: 50%; */
+  align-items: center;
 }

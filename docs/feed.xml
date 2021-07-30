@@ -365,103 +365,105 @@ td p {
 $$</span></p>
 <h2 id="additive">Additive</h2>
 <figure class="section">
+  <div>
+    <figure class="connective">
+      <div class="column">
+        <div class="rule">
+          <div class="label">&amp;⊢<sub>1</sub></div>
+          <div class="inference">
+            <div class="premise Γ">[A<sup>−</sup>] Γ</div>
+            <div class="premise turnstile">⊢</div>
+            <div class="premise Δ">Δ</div>
+            <span class="line-of-inference"></span>
+            <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
+            <div class="conclusion turnstile">⊢</div>
+            <div class="conclusion Δ">Δ</div>
+          </div>
+        </div>
+        <div class="rule">
+          <div class="label">&amp;⊢<sub>2</sub></div>
+          <div class="inference">
+            <div class="premise Γ">[B<sup>−</sup>] Γ</div>
+            <div class="premise turnstile">⊢</div>
+            <div class="premise Δ">Δ</div>
+            <span class="line-of-inference"></span>
+            <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
+            <div class="conclusion turnstile">⊢</div>
+            <div class="conclusion Δ">Δ</div>
+          </div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premises">
+            <div class="premise">Γ ⊢ Δ, A<sup>−</sup></div>
+            <div class="premise">Γ ⊢ Δ, B<sup>−</sup></div>
+          </div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion">Γ ⊢ Δ, A<sup>−</sup> &amp; B<sup>−</sup></div>
+        </div>
+        <div class="label">⊢&amp;</div>
+      </div>
+      <figcaption>
+        &amp; (“with”): negative conjunction ≈ lazy pair
+      </figcaption>
+    </figure>
+    <figure class="connective">
+      <div class="rule">
+        <div class="label">⊕⊢</div>
+        <div class="inference">
+          <div class="premises">
+            <div class="premise">A<sup>+</sup>, Γ ⊢ Δ</div>
+            <div class="premise">B<sup>+</sup>, Γ ⊢ Δ</div>
+          </div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion">A<sup>+</sup> ⊕ B<sup>+</sup>, Γ ⊢ Δ</div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="rule">
+          <div class="inference">
+            <div class="premise Γ">Γ</div>
+            <div class="premise turnstile">⊢</div>
+            <div class="premise Δ">Δ [A<sup>+</sup>]</div>
+            <span class="line-of-inference"></span>
+            <div class="conclusion Γ">Γ</div>
+            <div class="conclusion turnstile">⊢</div>
+            <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
+          </div>
+          <div class="label">⊢⊕<sub>1</sub></div>
+        </div>
+        <div class="rule">
+          <div class="inference">
+            <div class="premise Γ">Γ</div>
+            <div class="premise turnstile">⊢</div>
+            <div class="premise Δ">Δ [B<sup>+</sup>]</div>
+            <span class="line-of-inference"></span>
+            <div class="conclusion Γ">Γ</div>
+            <div class="conclusion turnstile">⊢</div>
+            <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
+          </div>
+          <div class="label">⊢⊕<sub>2</sub></div>
+        </div>
+      </div>
+      <figcaption>
+        ⊕ (“sum”): positive disjunction ≈ either
+      </figcaption>
+    </figure>
+    <div class="connective">
+      <div class="rule">
+        <p>~(A<sup>−</sup> &amp; B<sup>−</sup>) ≈ ~A<sup>−</sup> ⊕ ~B<sup>−</sup></p>
+      </div>
+      <div class="rule">
+        <p>¬(A<sup>+</sup> ⊕ B<sup>+</sup>) ≈ ~A<sup>+</sup> &amp; ~B<sup>+</sup></p>
+      </div>
+    </div>
+  </div>
   <figcaption>
     <p>The additive connectives, &amp; (pronounced “with”) and ⊕ (“sum”) are unfamiliar symbols for familiar connectives: &amp; is conjunction (∧, “and”), while ⊕ is disjunction (∨, “or”).</p>
     <p>&amp; is negative, and thus focused on the left (indicated by the square brackets). In a polarized calculus, negative connectives are defined by their left rules, which are rules for how to use them. (Γ contains inputs, so left rules consume things.) &amp; has two left rules, which use it by projecting out the left and right parts, respectively. Its right rule builds it from its components: think pair/tuple literals.</p>
     <p>⊕ is positive, and thus focused on the right. Positive connectives are defined by their right rules, which are rules for how to make them. (Δ contains outputs, so right rules produce things.) Its left rule consumes the sum by handling each alternative separately; think <code>case</code> expressions over an <code>Either</code>.</p>
   </figcaption>
-  <figure class="connective">
-    <div class="column">
-      <div class="rule">
-        <div class="label">&amp;⊢<sub>1</sub></div>
-        <div class="inference">
-          <div class="premise Γ">[A<sup>−</sup>] Γ</div>
-          <div class="premise turnstile">⊢</div>
-          <div class="premise Δ">Δ</div>
-          <span class="line-of-inference"></span>
-          <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
-          <div class="conclusion turnstile">⊢</div>
-          <div class="conclusion Δ">Δ</div>
-        </div>
-      </div>
-      <div class="rule">
-        <div class="label">&amp;⊢<sub>2</sub></div>
-        <div class="inference">
-          <div class="premise Γ">[B<sup>−</sup>] Γ</div>
-          <div class="premise turnstile">⊢</div>
-          <div class="premise Δ">Δ</div>
-          <span class="line-of-inference"></span>
-          <div class="conclusion Γ">[A<sup>−</sup> &amp; B<sup>−</sup>] Γ</div>
-          <div class="conclusion turnstile">⊢</div>
-          <div class="conclusion Δ">Δ</div>
-        </div>
-      </div>
-    </div>
-    <div class="rule">
-      <div class="inference">
-        <div class="premises">
-          <div class="premise">Γ ⊢ Δ, A<sup>−</sup></div>
-          <div class="premise">Γ ⊢ Δ, B<sup>−</sup></div>
-        </div>
-        <span class="line-of-inference"></span>
-        <div class="conclusion">Γ ⊢ Δ, A<sup>−</sup> &amp; B<sup>−</sup></div>
-      </div>
-      <div class="label">⊢&amp;</div>
-    </div>
-    <figcaption>
-      &amp; (“with”): negative conjunction ≈ lazy pair
-    </figcaption>
-  </figure>
-  <figure class="connective">
-    <div class="rule">
-      <div class="label">⊕⊢</div>
-      <div class="inference">
-        <div class="premises">
-          <div class="premise">A<sup>+</sup>, Γ ⊢ Δ</div>
-          <div class="premise">B<sup>+</sup>, Γ ⊢ Δ</div>
-        </div>
-        <span class="line-of-inference"></span>
-        <div class="conclusion">A<sup>+</sup> ⊕ B<sup>+</sup>, Γ ⊢ Δ</div>
-      </div>
-    </div>
-    <div class="column">
-      <div class="rule">
-        <div class="inference">
-          <div class="premise Γ">Γ</div>
-          <div class="premise turnstile">⊢</div>
-          <div class="premise Δ">Δ [A<sup>+</sup>]</div>
-          <span class="line-of-inference"></span>
-          <div class="conclusion Γ">Γ</div>
-          <div class="conclusion turnstile">⊢</div>
-          <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
-        </div>
-        <div class="label">⊢⊕<sub>1</sub></div>
-      </div>
-      <div class="rule">
-        <div class="inference">
-          <div class="premise Γ">Γ</div>
-          <div class="premise turnstile">⊢</div>
-          <div class="premise Δ">Δ [B<sup>+</sup>]</div>
-          <span class="line-of-inference"></span>
-          <div class="conclusion Γ">Γ</div>
-          <div class="conclusion turnstile">⊢</div>
-          <div class="conclusion Δ">Δ [A<sup>+</sup> ⊕ B<sup>+</sup>]</div>
-        </div>
-        <div class="label">⊢⊕<sub>2</sub></div>
-      </div>
-    </div>
-    <figcaption>
-      ⊕ (“sum”): positive disjunction ≈ either
-    </figcaption>
-  </figure>
-  <div class="connective">
-    <div class="rule">
-      <p>~(A<sup>−</sup> &amp; B<sup>−</sup>) ≈ ~A<sup>−</sup> ⊕ ~B<sup>−</sup></p>
-    </div>
-    <div class="rule">
-      <p>¬(A<sup>+</sup> ⊕ B<sup>+</sup>) ≈ ~A<sup>+</sup> &amp; ~B<sup>+</sup></p>
-    </div>
-  </div>
 </figure>
 <figure class="section">
   <figcaption>
@@ -469,200 +471,196 @@ $$</span></p>
     <p>A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that interpretation we can see that ⊤, which corresponds to logical truth, indeed satisfies that claim: once at least one thing on the right is proven, we’re done.</p>
     <p>Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.</p>
   </figcaption>
-  <figure class="connective">
-    <div class="rule">
-      <p>no rule for ⊤⊢</p>
-    </div>
-    <div class="rule">
-      <div class="inference">
-        <div class="axiom"></div>
-        <span class="line-of-inference"></span>
-        <div class="conclusion">Γ ⊢ Δ, ⊤</div>
+  <div>
+    <figure class="connective">
+      <div class="rule">
+        <p>no rule for ⊤⊢</p>
       </div>
-      <div class="label">⊢⊤</div>
-    </div>
-    <figcaption>
-      ⊤ (“top”): negative truth ≈ unit
-    </figcaption>
-  </figure>
-  <figure class="connective">
-    <div class="rule">
-      <div class="label">0⊢</div>
-      <div class="inference">
-        <div class="axiom"></div>
-        <span class="line-of-inference"></span>
-        <div class="conclusion">0, Γ ⊢ Δ</div>
+      <div class="rule">
+        <div class="inference">
+          <div class="axiom"></div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion">Γ ⊢ Δ, ⊤</div>
+        </div>
+        <div class="label">⊢⊤</div>
       </div>
-    </div>
-    <div class="rule">
-      <p>no rule for ⊢0</p>
-    </div>
-    <figcaption>
-      0: positive falsity ≈ void
-    </figcaption>
-  </figure>
-  <div class="connective">
-    <div class="rule">
-      <p>~⊤ ≈ 0</p>
-    </div>
-    <div class="rule">
-      <p>¬0 ≈ ⊤</p>
+      <figcaption>
+        ⊤ (“top”): negative truth ≈ unit
+      </figcaption>
+    </figure>
+    <figure class="connective">
+      <div class="rule">
+        <div class="label">0⊢</div>
+        <div class="inference">
+          <div class="axiom"></div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion">0, Γ ⊢ Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <p>no rule for ⊢0</p>
+      </div>
+      <figcaption>
+        0: positive falsity ≈ void
+      </figcaption>
+    </figure>
+    <div class="connective">
+      <div class="rule">
+        <p>~⊤ ≈ 0</p>
+      </div>
+      <div class="rule">
+        <p>¬0 ≈ ⊤</p>
+      </div>
     </div>
   </div>
 </figure>
+<h2 id="multiplicative">Multiplicative</h2>
+<figure class="section">
+  <div>
+    <figure class="connective">
+      <div class="rule">
+        <div class="label">⅋⊢</div>
+        <div class="inference">
+          <div class="premises">
+            <div class="premise">[A<sup>−</sup>] Γ ⊢ Δ</div>
+            <div class="premise">[B<sup>−</sup>] Γ ⊢ Δ</div>
+          </div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion">[A<sup>−</sup> ⅋ B<sup>−</sup>] Γ ⊢ Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ, A<sup>−</sup>, B<sup>−</sup></div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ, A<sup>−</sup> ⅋ B<sup>−</sup></div>
+        </div>
+        <div class="label">⊢⅋</div>
+      </div>
+      <figcaption>
+        ⅋ (“par”): negative disjunction ≈ parallel/nondeterministic choice
+      </figcaption>
+    </figure>
+    <figure class="connective">
+      <div class="rule">
+        <div class="label">⊗⊢</div>
+        <div class="inference">
+          <div class="premise Γ">A<sup>+</sup>, B<sup>+</sup>, Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">A<sup>+</sup> ⊗ B<sup>+</sup>, Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premises">
+            <div class="premise">Γ ⊢ Δ [A<sup>+</sup>]</div>
+            <div class="premise">Γ ⊢ Δ [B<sup>+</sup>]</div>
+          </div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion">Γ ⊢ Δ [A<sup>+</sup> ⊗ B<sup>+</sup>]</div>
+        </div>
+        <div class="label">⊢⊗</div>
+      </div>
+      <figcaption>
+        ⊗ (“tensor”): positive conjunction ≈ strict pair
+      </figcaption>
+    </figure>
+    <div class="connective">
+      <div class="rule">
+        <p>~(A<sup>−</sup> ⅋ B<sup>−</sup>) ≈ ~A<sup>−</sup> ⊗ ~B<sup>−</sup></p>
+      </div>
+      <div class="rule">
+        <p>¬(A<sup>+</sup> ⊗ B<sup>+</sup>) ≈ ~A<sup>+</sup> ⅋ ~B<sup>+</sup></p>
+      </div>
+    </div>
+  </div>
+  <figcaption>
+    <p>In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction, ⅋ (“par”) and ⊗ (“tensor”) are <em>multiplicative</em> disjunction and conjunction. The difference is more obvious in a linear logic, but for us the relevant distinction between &amp; and ⊗ is that we identify negative (resp. positive) types like &amp; (resp. ⊗) with call-by-name (resp. call-by-value).</p>
+    <p>⅋, however, is stranger. It’s a disjunction, eliminated by using both halves (just like ⊕), but introduced using <em>two</em> things. Linear logic again offers one perspective, but another reading of Γ ⊢ Δ (via Curry-Howard) as “consume Γ to produce Δ” is salient: parallelism (hence “par”), or nondeterminism. The latter explains why ⅋ is disjunctive despite (at least notionally) containing two things; think of <code>&lt;|&gt;</code>. For <code>Maybe</code>, it selects the leftmost <code>Just</code>, acting as a choice; for <code>[]</code>, it instead selects <em>all</em> alternatives, acting as a union.</p>
+  </figcaption>
+</figure>
+<figure class="section">
+  <figcaption>
+    <p>Alongside multiplicative disjunction and conjunction are ⊥ (“bottom”), a negative falsity, and 1, a positive truth.</p>
+    <p>⊥, like positive falsity (0), proves anything if you’ve already got one (⊥⊢). Surprisingly, we can introduce one when we can prove the rest of the sequent (⊢⊥). Logically, falsity can’t change Δ’s provability, so this rule is justified.</p>
+    <p>Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated freely (1⊢). Introducing it is likewise trivial (⊢1), just as for ⊤.</p>
+  </figcaption>
+  <div>
+    <figure class="connective">
+      <div class="rule">
+        <div class="label">⊥⊢</div>
+        <div class="inference">
+          <div class="axiom"></div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion">[⊥] Γ ⊢ Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ, ⊥</div>
+        </div>
+        <div class="label">⊢⊥</div>
+      </div>
+      <figcaption>
+        ⊥ (“bottom”): negative falsity ≈ void
+      </figcaption>
+    </figure>
+    <figure class="connective">
+      <div class="rule">
+        <div class="label">1⊢</div>
+        <div class="inference">
+          <div class="premise Γ">Γ</div>
+          <div class="premise turnstile">⊢</div>
+          <div class="premise Δ">Δ</div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion Γ">1, Γ</div>
+          <div class="conclusion turnstile">⊢</div>
+          <div class="conclusion Δ">Δ</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="inference">
+          <div class="axiom"></div>
+          <span class="line-of-inference"></span>
+          <div class="conclusion">Γ ⊢ Δ [1]</div>
+        </div>
+        <div class="label">⊢1</div>
+      </div>
+      <figcaption>
+        1: positive truth ≈ unit
+      </figcaption>
+    </figure>
+    <div class="connective">
+      <div class="rule">
+        <p>~⊥ ≈ 1</p>
+      </div>
+      <div class="rule">
+        <p>¬1 ≈ ⊥</p>
+      </div>
+    </div>
+  </div>
+</figure>
+<h2 id="implicative">Implicative</h2>
 <table class="borderless">
   <colgroup>
     <col span="2">
     <col span="2">
   </colgroup>
   <tbody>
-    <tr>
-      <th colspan="4"><a name="multiplicative">Multiplicative</a></th>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div class="connective">
-          <div class="rule">
-            <div class="label">⅋⊢</div>
-            <div class="inference">
-              <div class="premises">
-                <div class="premise">[A<sup>−</sup>] Γ ⊢ Δ</div>
-                <div class="premise">[B<sup>−</sup>] Γ ⊢ Δ</div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion">[A<sup>−</sup> ⅋ B<sup>−</sup>] Γ ⊢ Δ</div>
-            </div>
-          </div>
-          <div class="rule">
-            <div class="inference">
-              <div class="premise Γ">Γ</div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ">Δ, A<sup>−</sup>, B<sup>−</sup></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ">Γ</div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ">Δ, A<sup>−</sup> ⅋ B<sup>−</sup></div>
-            </div>
-            <div class="label">⊢⅋</div>
-          </div>
-        </div>
-      </td>
-      <td colspan="2" rowspan="5">
-        <p>In addition to &amp; and ⊕, the <em>additive</em> conjunction and disjunction, ⅋ (“par”) and ⊗ (“tensor”) are <em>multiplicative</em> disjunction and conjunction. The difference is more obvious in a linear logic, but for us the relevant distinction between &amp; and ⊗ is that we identify negative (resp. positive) types like &amp; (resp. ⊗) with call-by-name (resp. call-by-value).</p>
-        <p>⅋, however, is stranger. It’s a disjunction, eliminated by using both halves (just like ⊕), but introduced using <em>two</em> things. Linear logic again offers one perspective, but another reading of Γ ⊢ Δ (via Curry-Howard) as “consume Γ to produce Δ” is salient: parallelism (hence “par”), or nondeterminism. The latter explains why ⅋ is disjunctive despite (at least notionally) containing two things; think of <code>&lt;|&gt;</code>. For <code>Maybe</code>, it selects the leftmost <code>Just</code>, acting as a choice; for <code>[]</code>, it instead selects <em>all</em> alternatives, acting as a union.</p>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        ⅋ (“par”): negative disjunction ≈ parallel/nondeterministic choice
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div class="connective">
-          <div class="rule">
-            <div class="label">⊗⊢</div>
-            <div class="inference">
-              <div class="premise Γ">A<sup>+</sup>, B<sup>+</sup>, Γ</div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ">Δ</div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ">A<sup>+</sup> ⊗ B<sup>+</sup>, Γ</div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ">Δ</div>
-            </div>
-          </div>
-          <div class="rule">
-            <div class="inference">
-              <div class="premises">
-                <div class="premise">Γ ⊢ Δ [A<sup>+</sup>]</div>
-                <div class="premise">Γ ⊢ Δ [B<sup>+</sup>]</div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion">Γ ⊢ Δ [A<sup>+</sup> ⊗ B<sup>+</sup>]</div>
-            </div>
-            <div class="label">⊢⊗</div>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        ⊗ (“tensor”): positive conjunction ≈ strict pair
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        $$
-        \sim \kern -3pt (A^- ⅋\ \ \ B^-) ≈\kern 3pt \sim \kern -3pt A^- ⊗ \sim \kern -3pt B^- \hskip 1.5em ¬(A^+ ⊗ B^+) ≈ ¬A^+ ⅋\ \ \ ¬B^+
-        $$
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" rowspan="5">
-        <p>Alongside multiplicative disjunction and conjunction are ⊥ (“bottom”), a negative falsity, and 1, a positive truth.</p>
-        <p>⊥, like positive falsity (0), proves anything if you’ve already got one (⊥⊢). Surprisingly, we can introduce one when we can prove the rest of the sequent (⊢⊥). Logically, falsity can’t change Δ’s provability, so this rule is justified.</p>
-        <p>Dually, we can’t learn anything from vacuous truth, so 1 can be eliminated freely (1⊢). Introducing it is likewise trivial (⊢1), just as for ⊤.</p>
-      </td>
-      <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$⊥ \kern1pt ⊢$}
-        \AxiomC{}
-        \UnaryInfC{$[⊥] Γ ⊢ Δ$}
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt ⊥$}
-        \Axiom$\fCenter Γ ⊢ Δ$
-        \UnaryInf$\fCenter Γ ⊢ Δ, ⊥$
-        \end{prooftree}
-        $$
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        ⊥ (“bottom”): negative falsity ≈ void
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        $$
-        \begin{prooftree}
-        \hskip -10pt
-        \def\labelSpacing{8pt}
-        \LeftLabel{$1 \kern1pt ⊢$}
-        \Axiom$\fCenter Γ ⊢ Δ$
-        \UnaryInf$1, \fCenter Γ ⊢ Δ$
-        \end{prooftree}
-        \begin{prooftree}
-        \hskip 10pt
-        \def\labelSpacing{8pt}
-        \RightLabel{$\ ⊢ \kern1pt 1$}
-        \AxiomC{}
-        \UnaryInfC{$Γ ⊢ Δ [1]$}
-        \end{prooftree}
-        $$
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        1: positive truth ≈ unit
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        $$
-        \sim \kern -1pt ⊥ ≈ 1 \hskip 1.5em ¬1 ≈ ⊥
-        $$
-      </td>
-    </tr>
-    <tr>
-      <th colspan="4"><a name="implicative">Implicative</a></th>
-    </tr>
     <tr>
       <td colspan="2">
         $$
