@@ -59,7 +59,7 @@
   <h1>Duality</h1>
   <span class="post-meta">Jun 7, 2021</span><br>
   
-  <span class="post-meta small">17 minute read</span>
+  <span class="post-meta small">16 minute read</span>
 </div>
 
 <article class="post-content">
@@ -200,59 +200,56 @@ $$</span></p>
       </td>
     </tr>
     <tr>
-      <td colspan="2" rowspan="5">
+      <td colspan="2">
         <p>The additive units, ⊤ (“top”) and 0, are a bit of a puzzle. Note that neither has a focusing rule: you can’t use a ⊤ once you have it, and you can’t get a 0 at all. On the other hand, both their invertible rules are axioms (i.e. have no premises).</p>
         <p>A sequent Γ ⊢ Δ can be read as “all of Γ prove any of Δ;” under that interpretation we can see that ⊤, which corresponds to logical truth, indeed satisfies that claim: once at least one thing on the right is proven, we’re done.</p>
         <p>Likewise, the left rule for 0, falsity, is recognizable as the principle of <em>ex falso quodlibet</em>: you can prove anything at all from a contradiction.</p>
       </td>
       <td colspan="2">
-        <div class="connective">
-          <div class="rule">
-            <p>no rule for ⊤⊢</p>
-          </div>
-          <div class="rule">
-            <div class="inference">
-              <div class="axiom"></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion">Γ ⊢ Δ, ⊤</div>
+        <figure>
+          <div class="connective">
+            <div class="rule">
+              <p>no rule for ⊤⊢</p>
             </div>
-            <div class="label">⊢⊤</div>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        ⊤ (“top”): negative truth ≈ unit
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <div class="connective">
-          <div class="rule">
-            <div class="label">0⊢</div>
-            <div class="inference">
-              <div class="axiom"></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion">0, Γ ⊢ Δ</div>
+            <div class="rule">
+              <div class="inference">
+                <div class="axiom"></div>
+                <span class="line-of-inference"></span>
+                <div class="conclusion">Γ ⊢ Δ, ⊤</div>
+              </div>
+              <div class="label">⊢⊤</div>
             </div>
           </div>
+          <figcaption>
+            ⊤ (“top”): negative truth ≈ unit
+          </figcaption>
+        </figure>
+        <figure>
+          <div class="connective">
+            <div class="rule">
+              <div class="label">0⊢</div>
+              <div class="inference">
+                <div class="axiom"></div>
+                <span class="line-of-inference"></span>
+                <div class="conclusion">0, Γ ⊢ Δ</div>
+              </div>
+            </div>
+            <div class="rule">
+              <p>no rule for ⊢0</p>
+            </div>
+          </div>
+          <figcaption>
+            0: positive falsity ≈ void
+          </figcaption>
+        </figure>
+        <div class="connective">
           <div class="rule">
-            <p>no rule for ⊢0</p>
+            <p>~⊤ ≈ 0</p>
+          </div>
+          <div class="rule">
+            <p>¬0 ≈ ⊤</p>
           </div>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="caption">
-        0: positive falsity ≈ void
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        $$
-        \sim \kern -1pt ⊤ ≈ 0 \hskip 1.5em ¬0 ≈ ⊤
-        $$
       </td>
     </tr>
     <tr>
