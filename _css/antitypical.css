@@ -112,7 +112,7 @@ div.rule div.label {
   padding: 6px;
 }
 
-div.rule sub {
+div.rule sub, div.rule sup {
   font-size: 60%;
   line-height: 0;
 }
