@@ -201,3 +201,11 @@ figure.section {
 span.function {
   font-style: italic;
 }
+
+div.column {
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  gap: 1em;
+  width: 100%;
+  justify-items: center;
+}

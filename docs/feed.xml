@@ -952,18 +952,47 @@ $$</span></p>
         ∃ (“there exists”): existential quantification ≈ abstract data type
       </figcaption>
     </figure>
-    <figure class="connective">
+    <div class="connective">
       <div class="rule">
         <p>~(∀X.A<sup>−</sup>) ≈ ∃X.~A<sup>−</sup></p>
       </div>
       <div class="rule">
         <p>¬(∃X.A<sup>+</sup>) ≈ ∀X.¬A<sup>+</sup></p>
       </div>
-      <figcaption>
-        translations of CBN and CBV function types into polarized calculi
-      </figcaption>
-    </figure>
+    </div>
   </div>
+</figure>
+<h2 id="core">Core</h2>
+<figure class="section">
+  <div class="column">
+    <div class="rule">
+      <div class="inference">
+        <div class="axiom"></div>
+        <span class="line-of-inference"></span>
+        <div class="conclusion Γ">A</div>
+        <div class="conclusion turnstile">⊢</div>
+        <div class="conclusion Δ">A</div>
+      </div>
+      <div class="label">init</div>
+    </div>
+    <div class="rule">
+      <div class="inference">
+        <div class="premises">
+          <div class="premise">Γ ⊢ Δ, A</div>
+          <div class="premise">A, Γ ⊢ Δ</div>
+        </div>
+        <span class="line-of-inference"></span>
+        <div class="conclusion">Γ ⊢ Δ</div>
+      </div>
+      <div class="label">cut</div>
+    </div>
+  </div>
+  <figcaption>
+    <p>The init and cut rules are quite common to sequent (and other) calculi. This presentation clarifies a couple of useful properties.</p>
+    <p>init allows us to begin a proof (or end one, working bottom-up as we often do, from goal to premise) with a proposition given to us. Under Curry-Howard’s interpretation of proofs as programs, we can understand this as the polymorphic identity function, <code>id</code>. (Sequent calculus proofs in particular correspond to higher-order programs, e.g. functions taking functions to functions.)</p>
+    <p>cut instead allows us to prove a sequent by introducing and immediately eliminating a proposition in its premises. Again taking sequents as analogues of function types, we can think of it as the <em>composition</em> of proofs with compatible consequents and hypotheses.</p>
+    <p>Furthermore, cut and init form a category, where the morphisms are sequents between contexts, joined by cuts. The Curry-Howard correspondence holds up here, too: <code>id</code> and function composition give a category of functions between types.</p>
+  </figcaption>
 </figure>
 <table class="borderless">
   <colgroup>
@@ -971,9 +1000,6 @@ $$</span></p>
     <col span="2">
   </colgroup>
   <tbody>
-    <tr>
-      <th colspan="4"><a name="core">Core</a></th>
-    </tr>
     <tr>
       <td colspan="2">
         $$
@@ -993,10 +1019,6 @@ $$</span></p>
         $$
       </td>
       <td colspan="2">
-        <p>The init and cut rules are quite common to sequent (and other) calculi. This presentation clarifies a couple of useful properties.</p>
-        <p>init allows us to begin a proof (or end one, working bottom-up as we often do, from goal to premise) with a proposition given to us. Under Curry-Howard’s interpretation of proofs as programs, we can understand this as the polymorphic identity function, <code>id</code>. (Sequent calculus proofs in particular correspond to higher-order programs, e.g. functions taking functions to functions.)</p>
-        <p>cut instead allows us to prove a sequent by introducing and immediately eliminating a proposition in its premises. Again taking sequents as analogues of function types, we can think of it as the <em>composition</em> of proofs with compatible consequents and hypotheses.</p>
-        <p>Furthermore, cut and init form a category, where the morphisms are sequents between contexts, joined by cuts. The Curry-Howard correspondence holds up here, too: <code>id</code> and function composition give a category of functions between types.</p>
       </td>
     </tr>
     <tr>
