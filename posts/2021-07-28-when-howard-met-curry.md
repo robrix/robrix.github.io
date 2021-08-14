@@ -202,7 +202,7 @@ Further, `Cont r a` gives us some tools that ¬¬A alone does not, including del
 
 In much the same way, the dual structure—probably a comonad—gives us local environments, sandboxing, and coeffects.
 
-If `Cont r a` is ¬¬A, thnn what is this dual structure? Following the thread backwards, `Cont r a` is ¬¬A because `Cont r a` is (A → ⊥<sub>R</sub>) → ⊥<sub>R</sub>, which is an encoding of ¬¬A. Our encoding of 1<sub>E</sub> → A, on the other hand, doesn’t correspond to any connective—yet. So let’s introduce one: ¬̷, pronounced “not untrue,” is an _assertion_ (some relation to the logical notion, no relation to the computational one), dual to a negation, and works just like our encoding above:
+If `Cont r a` is ¬¬A, then what is this dual structure? Following the thread backwards, `Cont r a` is ¬¬A because `Cont r a` is (A → ⊥<sub>R</sub>) → ⊥<sub>R</sub>, which is an encoding of ¬¬A. Our encoding of 1<sub>E</sub> → A, on the other hand, doesn’t correspond to any connective—yet. So let’s introduce one: ¬̷, pronounced “not untrue,” is an _assertion_ (some relation to the logical notion, no relation to the computational one), dual to a negation, and works just like our encoding above:
 
 <div class="connective">
   <div class="rule left">
