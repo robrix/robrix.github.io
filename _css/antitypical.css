@@ -179,6 +179,12 @@ div.rule div.Δ {
   text-align: left;
 }
 
+/* Hack to workaround pandoc’s insistence on inserting unwanted empty paragraph tags despite being told never to mess with HTML blocks. */
+div.rule p:empty,
+div.connective p:empty {
+  display: none;
+}
+
 cite {
   font-style: italic;
 }
