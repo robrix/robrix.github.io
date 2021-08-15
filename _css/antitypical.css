@@ -238,12 +238,15 @@ div.column {
   justify-items: center;
 }
 
-sup.neg {
-  color: var(--negative-color);
-  font-weight: bold;
+.neg {
+  color: rgb(150, 150, 255);;
 }
+.pos {
+  color: rgb(255, 150, 150);
+}
+
+sup.neg,
 sup.pos {
-  color: var(--positive-color);
   font-weight: bold;
 }
 
@@ -253,9 +256,4 @@ table>tbody>tr>th>h3 {
   text-align: right;
   margin-left: -100%;
   width: 100%;
-}
-
-:root {
-  --positive-color: rgb(255, 150, 150);
-  --negative-color: rgb(150, 150, 255);
 }
