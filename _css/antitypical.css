@@ -241,11 +241,32 @@ div.column {
   justify-items: center;
 }
 
-.neg, .R {
+.neg,
+.neg>sup,
+.with,
+.top,
+.par,
+.bottom,
+.implication,
+.not,
+.not-untrue,
+.up-shift,
+.for-all,
+.R {
   color: rgb(150, 150, 255);;
   font-weight: bold;
 }
-.pos, .E {
+.pos,
+.pos>sup,
+.sum,
+.zero,
+.tensor,
+.one,
+.negate,
+.true,
+.down-shift,
+.there-exists,
+.E {
   color: rgb(255, 150, 150);
   font-weight: bold;
 }
