@@ -230,6 +230,7 @@ table > tbody + tbody {
 
 .wrap .measure,
 .wrap .measure-narrow,
+.wrap .measure-medium,
 .wrap .measure-wide {
   margin: 0 auto;
 }

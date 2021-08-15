@@ -127,6 +127,10 @@ strong, .bold {
   max-width: 32rem;
 }
 
+.measure-medium {
+  max-width: 60rem;
+}
+
 .measure-wide {
   max-width: 80rem;
 }

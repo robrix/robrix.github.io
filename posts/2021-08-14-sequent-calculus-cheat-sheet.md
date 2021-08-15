@@ -1,5 +1,5 @@
 ---
-measure: measure-wide
+measure: measure-medium
 title:  "Sequent calculus cheat sheet"
 date:   2<span class="zero">0</span>21-<span class="zero">0</span>8-14 23:<span class="zero">0</span>1:<span class="zero">0</span>2
 categories: logic, plt
