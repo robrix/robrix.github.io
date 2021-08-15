@@ -254,7 +254,6 @@ div.column {
 .for-all,
 .R {
   color: rgb(150, 150, 255);;
-  font-weight: bold;
 }
 .pos,
 .pos>sup,
@@ -268,13 +267,10 @@ div.column {
 .there-exists,
 .E {
   color: rgb(255, 150, 150);
-  font-weight: bold;
 }
 
-.var.neg,
-.var.pos,
-.E,
-.R {
+.neg>sup,
+.pos>sup {
   font-weight: normal;
 }
 
