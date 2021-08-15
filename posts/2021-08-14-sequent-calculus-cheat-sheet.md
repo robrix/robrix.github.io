@@ -1,7 +1,7 @@
 ---
 measure: measure-wide
 title:  "Sequent calculus cheat sheet"
-date:   2021-06-07 19:49:02
+date:   2021-08-14 23:01:02
 categories: logic, plt
 ---
 
