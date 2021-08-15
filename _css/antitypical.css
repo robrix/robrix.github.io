@@ -224,11 +224,12 @@ figure.section {
 
 span.function,
 span.var,
-span.context {
+span.Γ,
+span.Δ {
   font-style: italic;
 }
 
-span.context {
+span.Γ, span.Δ {
   color: rgb(100, 100, 100);
 }
 
