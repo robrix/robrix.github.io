@@ -238,11 +238,11 @@ div.column {
   justify-items: center;
 }
 
-.neg {
+.neg, .R {
   color: rgb(150, 150, 255);;
   font-weight: bold;
 }
-.pos {
+.pos, .E {
   color: rgb(255, 150, 150);
   font-weight: bold;
 }
