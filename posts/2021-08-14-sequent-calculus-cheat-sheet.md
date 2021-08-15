@@ -16,8 +16,8 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
   </colgroup>
   <thead>
     <tr>
-      <th>-</th>
-      <th>+</th>
+      <th class="neg">-</th>
+      <th class="pos">+</th>
     </tr>
   </thead>
   <tbody>
@@ -31,25 +31,25 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
         <div class="connective">
           <div class="column">
             <div class="rule">
-              <div class="label">&amp;⊢<sub>1</sub></div>
+              <div class="label"><span class="neg">&amp;</span>⊢<sub>1</sub></div>
               <div class="inference">
-                <div class="premise Γ">[<span class="var">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
+                <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
                 <div class="premise turnstile">⊢</div>
                 <div class="premise Δ"><span class="context Δ">Δ</span></div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ">[<span class="var">A</span><sup class="neg">−</sup> &amp; <span class="var">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
+                <div class="conclusion Γ">[<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">&amp;</span> <span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
                 <div class="conclusion turnstile">⊢</div>
                 <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
               </div>
             </div>
             <div class="rule">
-              <div class="label">&amp;⊢<sub>2</sub></div>
+              <div class="label"><span class="neg">&amp;</span>⊢<sub>2</sub></div>
               <div class="inference">
-                <div class="premise Γ">[<span class="var">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
+                <div class="premise Γ">[<span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
                 <div class="premise turnstile">⊢</div>
                 <div class="premise Δ"><span class="context Δ">Δ</span></div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ">[<span class="var">A</span><sup class="neg">−</sup> &amp; <span class="var">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
+                <div class="conclusion Γ">[<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">&amp;</span> <span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
                 <div class="conclusion turnstile">⊢</div>
                 <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
               </div>
@@ -58,17 +58,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           <div class="rule">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var">A</span><sup class="neg">−</sup></div>
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var">B</span><sup class="neg">−</sup></div>
+                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
+                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var neg">B</span><sup class="neg">−</sup></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var">A</span><sup class="neg">−</sup> &amp; <span class="var">B</span><sup class="neg">−</sup></div>
+              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">&amp;</span> <span class="var neg">B</span><sup class="neg">−</sup></div>
             </div>
-            <div class="label">⊢&amp;</div>
+            <div class="label">⊢<span class="neg">&amp;</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~(<span class="var">A</span><sup class="neg">−</sup> &amp; <span class="var">B</span><sup class="neg">−</sup>) ≈ ~<span class="var">A</span><sup class="neg">−</sup> ⊕ ~<span class="var">B</span><sup class="neg">−</sup></p>
+              <p><span class="pos">~</span>(<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">&amp;</span> <span class="var neg">B</span><sup class="neg">−</sup>) ≈ <span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup> <span class="pos">⊕</span> <span class="pos">~</span><span class="var neg">B</span><sup class="neg">−</sup></p>
             </div>
           </div>
         </div>
@@ -76,14 +76,14 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">⊕⊢</div>
+            <div class="label"><span class="pos">⊕</span>⊢</div>
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
-                <div class="premise"><span class="var">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="var pos">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="var">A</span><sup class="pos">+</sup> ⊕ <span class="var">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊕</span> <span class="var pos">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="column">
@@ -91,30 +91,30 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="inference">
                 <div class="premise Γ"><span class="context Γ">Γ</span></div>
                 <div class="premise turnstile">⊢</div>
-                <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup>]</div>
+                <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
                 <span class="line-of-inference"></span>
                 <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
                 <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup> ⊕ <span class="var">B</span><sup class="pos">+</sup>]</div>
+                <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊕</span> <span class="var pos">B</span><sup class="pos">+</sup>]</div>
               </div>
-              <div class="label">⊢⊕<sub>1</sub></div>
+              <div class="label">⊢<span class="pos">⊕</span><sub>1</sub></div>
             </div>
             <div class="rule">
               <div class="inference">
                 <div class="premise Γ"><span class="context Γ">Γ</span></div>
                 <div class="premise turnstile">⊢</div>
-                <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var">B</span><sup class="pos">+</sup>]</div>
+                <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">B</span><sup class="pos">+</sup>]</div>
                 <span class="line-of-inference"></span>
                 <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
                 <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup> ⊕ <span class="var">B</span><sup class="pos">+</sup>]</div>
+                <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊕</span> <span class="var pos">B</span><sup class="pos">+</sup>]</div>
               </div>
-              <div class="label">⊢⊕<sub>2</sub></div>
+              <div class="label">⊢<span class="pos">⊕</span><sub>2</sub></div>
             </div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>¬(<span class="var">A</span><sup class="pos">+</sup> ⊕ <span class="var">B</span><sup class="pos">+</sup>) ≈ ~<span class="var">A</span><sup class="pos">+</sup> &amp; ~<span class="var">B</span><sup class="pos">+</sup></p>
+              <p><span class="neg">¬</span>(<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊕</span> <span class="var pos">B</span><sup class="pos">+</sup>) ≈ <span class="pos">~</span><span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">&amp;</span> <span class="pos">~</span><span class="var pos">B</span><sup class="pos">+</sup></p>
             </div>
           </div>
         </div>
@@ -136,7 +136,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~⊤ ≈ 0</p>
+              <p><span class="pos">~</span>⊤ ≈ 0</p>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~⊤ ≈ 0</p>
+              <p><span class="pos">~</span>⊤ ≈ 0</p>
             </div>
           </div>
         </div>
@@ -173,31 +173,31 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">⅋⊢</div>
+            <div class="label"><span class="neg">⅋</span>⊢</div>
             <div class="inference">
               <div class="premises">
-                <div class="premise">[<span class="var">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
-                <div class="premise">[<span class="var">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise">[<span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">[<span class="var">A</span><sup class="neg">−</sup> ⅋ <span class="var">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion">[<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">⅋</span> <span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var">A</span><sup class="neg">−</sup>, <span class="var">B</span><sup class="neg">−</sup></div>
+              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup>, <span class="var neg">B</span><sup class="neg">−</sup></div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="var">A</span><sup class="neg">−</sup> ⅋ <span class="var">B</span><sup class="neg">−</sup></div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">⅋</span> <span class="var neg">B</span><sup class="neg">−</sup></div>
             </div>
-            <div class="label">⊢⅋</div>
+            <div class="label">⊢<span class="neg">⅋</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~(<span class="var">A</span><sup class="neg">−</sup> ⅋ <span class="var">B</span><sup class="neg">−</sup>) ≈ ~<span class="var">A</span><sup class="neg">−</sup> ⊗ ~<span class="var">B</span><sup class="neg">−</sup></p>
+              <p><span class="pos">~</span>(<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">⅋</span> <span class="var neg">B</span><sup class="neg">−</sup>) ≈ <span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup> <span class="pos">⊗</span> <span class="pos">~</span><span class="var neg">B</span><sup class="neg">−</sup></p>
             </div>
           </div>
         </div>
@@ -205,13 +205,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">⊗⊢</div>
+            <div class="label"><span class="pos">⊗</span>⊢</div>
             <div class="inference">
-              <div class="premise Γ"><span class="var">A</span><sup class="pos">+</sup>, <span class="var">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="var pos">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="var">A</span><sup class="pos">+</sup> ⊗ <span class="var">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊗</span> <span class="var pos">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -219,17 +219,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           <div class="rule">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup>]</div>
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var">B</span><sup class="pos">+</sup>]</div>
+                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
+                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">B</span><sup class="pos">+</sup>]</div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup> ⊗ <span class="var">B</span><sup class="pos">+</sup>]</div>
+              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊗</span> <span class="var pos">B</span><sup class="pos">+</sup>]</div>
             </div>
-            <div class="label">⊢⊗</div>
+            <div class="label">⊢<span class="pos">⊗</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>¬(<span class="var">A</span><sup class="pos">+</sup> ⊗ <span class="var">B</span><sup class="pos">+</sup>) ≈ ~<span class="var">A</span><sup class="pos">+</sup> ⅋ ~<span class="var">B</span><sup class="pos">+</sup></p>
+              <p><span class="neg">¬</span>(<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊗</span> <span class="var pos">B</span><sup class="pos">+</sup>) ≈ <span class="pos">~</span><span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">⅋</span> <span class="pos">~</span><span class="var pos">B</span><sup class="pos">+</sup></p>
             </div>
           </div>
         </div>
@@ -239,11 +239,11 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">⊥<sub class="R">R</sub>⊢<sub class="R">R</sub></div>
+            <div class="label"><span class="neg">⊥</span><sub class="R">R</sub>⊢<sub class="R">R</sub></div>
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">[⊥<sub class="R">R</sub>] <span class="context Γ">Γ</span> ⊢<sub class="R">R</sub> <span class="context Δ">Δ</span></div>
+              <div class="conclusion">[<span class="neg">⊥</span><sub class="R">R</sub>] <span class="context Γ">Γ</span> ⊢<sub class="R">R</sub> <span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
@@ -254,13 +254,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢<sub class="R">R</sub></div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, ⊥<sub class="R">R</sub></div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">⊥</span><sub class="R">R</sub></div>
             </div>
-            <div class="label">⊢⊥<sub class="R">R</sub></div>
+            <div class="label">⊢<span class="neg">⊥</span><sub class="R">R</sub></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~⊥<sub class="R">R</sub> ≈ 1<sub class="E">E</sub></p>
+              <p><span class="pos">~</span><span class="neg">⊥</span><sub class="R">R</sub> ≈ <span class="pos">1</span><sub class="E">E</sub></p>
             </div>
           </div>
         </div>
@@ -268,13 +268,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">1<sub class="E">E</sub>⊢<sub class="E">E</sub></div>
+            <div class="label"><span class="pos">1</span><sub class="E">E</sub>⊢<sub class="E">E</sub></div>
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢<sub class="E">E</sub></div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">1<sub class="E">E</sub>, <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="pos">1</span><sub class="E">E</sub>, <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢<sub class="E">E</sub></div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -283,13 +283,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢<sub class="E">E</sub> <span class="context Δ">Δ</span> [1<sub class="E">E</sub>]</div>
+              <div class="conclusion"><span class="context Γ">Γ</span> ⊢<sub class="E">E</sub> <span class="context Δ">Δ</span> [<span class="pos">1</span><sub class="E">E</sub>]</div>
             </div>
-            <div class="label">⊢<sub class="E">E</sub>1<sub class="E">E</sub></div>
+            <div class="label">⊢<sub class="E">E</sub><span class="pos">1</span><sub class="E">E</sub></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>¬1<sub class="E">E</sub> ≈ ⊥<sub class="R">R</sub></p>
+              <p><span class="neg">¬</span><span class="pos">1</span><sub class="E">E</sub> ≈ <span class="neg">⊥</span><sub class="R">R</sub></p>
             </div>
           </div>
         </div>
@@ -306,31 +306,31 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">→⊢</div>
+            <div class="label"><span class="neg">→</span>⊢</div>
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup>]</div>
-                <div class="premise">[<span class="var">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
+                <div class="premise">[<span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">[<span class="var">A</span><sup class="pos">+</sup> → <span class="var">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion">[<span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var">B</span><sup class="neg">−</sup></div>
+              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">B</span><sup class="neg">−</sup></div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="var">A</span><sup class="pos">+</sup> → <span class="var">B</span><sup class="neg">−</sup></div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup></div>
             </div>
-            <div class="label">⊢→</div>
+            <div class="label">⊢<span class="neg">→</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~(<span class="var">A</span><sup class="pos">+</sup> → <span class="var">B</span><sup class="neg">−</sup>) ≈ <span class="var">B</span><sup class="neg">−</sup> ⤚ <span class="var">A</span><sup class="pos">+</sup></p>
+              <p><span class="pos">~</span>(<span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup>) ≈ <span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup></p>
             </div>
           </div>
         </div>
@@ -338,13 +338,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">⤚⊢</div>
+            <div class="label"><span class="pos">⤚</span>⊢</div>
             <div class="inference">
-              <div class="premise Γ"><span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var">B</span><sup class="neg">−</sup></div>
+              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">B</span><sup class="neg">−</sup></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="var">B</span><sup class="neg">−</sup> ⤚ <span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -352,17 +352,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           <div class="rule">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup>]</div>
-                <div class="premise">[<span class="var">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
+                <div class="premise">[<span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var">B</span><sup class="neg">−</sup> ⤚ <span class="var">A</span><sup class="pos">+</sup>]</div>
+              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup>]</div>
             </div>
-            <div class="label">⊢⤚</div>
+            <div class="label">⊢<span class="pos">⤚</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>¬(<span class="var">B</span><sup class="neg">−</sup> ⤚ <span class="var">A</span><sup class="pos">+</sup>) ≈ <span class="var">A</span><sup class="pos">+</sup> → <span class="var">B</span><sup class="neg">−</sup></p>
+              <p><span class="neg">¬</span>(<span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup>) ≈ <span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup></p>
             </div>
           </div>
         </div>
@@ -379,32 +379,32 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">¬⊢</div>
+            <div class="label"><span class="neg">¬</span>⊢</div>
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup>]</div>
+              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[¬<span class="var">A</span><sup class="pos">+</sup>] <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ">[<span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup>] <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, ¬<span class="var">A</span><sup class="pos">+</sup></div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup></div>
             </div>
-            <div class="label">⊢¬</div>
+            <div class="label">⊢<span class="neg">¬</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~¬<span class="var">A</span><sup class="pos">+</sup> ≈ <span class="var">A</span><sup class="pos">+</sup></p>
+              <p><span class="pos">~</span><span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup> ≈ <span class="var pos">A</span><sup class="pos">+</sup></p>
             </div>
           </div>
         </div>
@@ -412,32 +412,32 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">~⊢</div>
+            <div class="label"><span class="pos">~</span>⊢</div>
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var">A</span><sup class="neg">−</sup></div>
+              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">~<span class="var">A</span><sup class="neg">−</sup>, <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup>, <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ">[<span class="var">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
+              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span> [~<span class="var">A</span><sup class="neg">−</sup>]</div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup>]</div>
             </div>
-            <div class="label">⊢~</div>
+            <div class="label">⊢<span class="pos">~</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>¬~<span class="var">A</span><sup class="neg">−</sup> ≈ <span class="var">A</span><sup class="neg">−</sup></p>
+              <p><span class="neg">¬</span><span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup> ≈ <span class="var neg">A</span><sup class="neg">−</sup></p>
             </div>
           </div>
         </div>
@@ -454,13 +454,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">¬̷⊢</div>
+            <div class="label"><span class="neg">¬̷</span>⊢</div>
             <div class="inference">
-              <div class="premise Γ">[<span class="var">A</span><sup>-</sup>] <span class="context Γ">Γ</span></div>
+              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">-</sup>] <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[¬̷<span class="var">A</span><sup>-</sup>] <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ">[<span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">-</sup>] <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -469,17 +469,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var">A</span><sup class="pos">+</sup></div>
+              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">-</sup></div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, ¬̷<span class="var">A</span><sup class="pos">+</sup></div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">-</sup></div>
             </div>
-            <div class="label">⊢¬̷</div>
+            <div class="label">⊢<span class="neg">¬̷</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~¬̷<span class="var">A</span><sup>-</sup> ≈ <span class="var">A</span><sup>-</sup></p>
+              <p><span class="pos">~</span><span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">-</sup> ≈ <span class="var neg">A</span><sup class="neg">-</sup></p>
             </div>
           </div>
         </div>
@@ -487,13 +487,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">✓⊢</div>
+            <div class="label"><span class="pos">✓</span>⊢</div>
             <div class="inference">
-              <div class="premise Γ"><span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">✓<span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="pos">✓</span><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -502,17 +502,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup>]</div>
+              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span> [✓<span class="var">A</span><sup class="pos">+</sup>]</div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="pos">✓</span><span class="var pos">A</span><sup class="pos">+</sup>]</div>
             </div>
-            <div class="label">⊢✓</div>
+            <div class="label">⊢<span class="pos">✓</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>¬✓<span class="var">A</span><sup class="pos">+</sup> ≈ <span class="var">A</span><sup class="pos">+</sup></p>
+              <p><span class="neg">¬</span><span class="pos">✓</span><span class="var pos">A</span><sup class="pos">+</sup> ≈ <span class="var pos">A</span><sup class="pos">+</sup></p>
             </div>
           </div>
         </div>
@@ -529,13 +529,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">↑⊢</div>
+            <div class="label"><span class="neg">↑</span>⊢</div>
             <div class="inference">
-              <div class="premise Γ"><span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[↑<span class="var">A</span><sup class="pos">+</sup>] <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ">[<span class="neg">↑</span><span class="var pos">A</span><sup class="pos">+</sup>] <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -544,17 +544,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup>]</div>
+              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, ↑<span class="var">A</span><sup class="pos">+</sup></div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">↑</span><span class="var pos">A</span><sup class="pos">+</sup></div>
             </div>
-            <div class="label">⊢↑</div>
+            <div class="label">⊢<span class="neg">↑</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>(<span class="var">A</span> → <span class="var">B</span>)<sup>N</sup> = ↓(<span class="var">A</span><sup>N</sup>) → <span class="var">B</span></p>
+              <p>(<span class="var">A</span> <span class="neg">→</span> <span class="var">B</span>)<sup>N</sup> = <span class="pos">↓</span>(<span class="var">A</span><sup>N</sup>) <span class="neg">→</span> <span class="var">B</span></p>
             </div>
           </div>
         </div>
@@ -562,13 +562,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">↓⊢</div>
+            <div class="label"><span class="pos">↓</span>⊢</div>
             <div class="inference">
-              <div class="premise Γ">[<span class="var">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
+              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">↓<span class="var">A</span><sup class="neg">−</sup>, <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="pos">↓</span><span class="var neg">A</span><sup class="neg">−</sup>, <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -577,17 +577,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var">A</span><sup class="neg">−</sup></div>
+              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span> [↓<span class="var">A</span><sup class="neg">−</sup>]</div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="pos">↓</span><span class="var neg">A</span><sup class="neg">−</sup>]</div>
             </div>
-            <div class="label">⊢↓</div>
+            <div class="label">⊢<span class="pos">↓</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>(<span class="var">A</span> → <span class="var">B</span>)<sup>V</sup> = ↓(<span class="var">A</span><sup>V</sup> → ↑(<span class="var">B</span><sup>V</sup>))</p>
+              <p>(<span class="var">A</span> <span class="neg">→</span> <span class="var">B</span>)<sup>V</sup> = <span class="pos">↓</span>(<span class="var">A</span><sup>V</sup> <span class="neg">→</span> <span class="neg">↑</span>(<span class="var">B</span><sup>V</sup>))</p>
             </div>
           </div>
         </div>
@@ -604,13 +604,13 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">∀⊢</div>
+            <div class="label"><span class="neg">∀</span>⊢</div>
             <div class="inference">
-              <div class="premise Γ">[<span class="var">A</span><sup class="neg">−</sup>{<span class="var">B</span>/<span class="var">X</span>}] <span class="context Γ">Γ</span></div>
+              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>{<span class="var">B</span>/<span class="var">X</span>}] <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[∀<span class="var">X</span>.<span class="var">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ">[<span class="neg">∀</span><span class="var">X</span>.<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -618,17 +618,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           <div class="rule right">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var">A</span><sup class="neg">−</sup></div>
+                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
                 <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>)</div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, ∀<span class="var">X</span>.<span class="var">A</span><sup class="neg">−</sup></div>
+              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="neg">∀</span><span class="var">X</span>.<span class="var neg">A</span><sup class="neg">−</sup></div>
             </div>
-            <div class="label">⊢∀</div>
+            <div class="label">⊢<span class="neg">∀</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>~(∀<span class="var">X</span>.<span class="var">A</span><sup class="neg">−</sup>) ≈ ∃<span class="var">X</span>.~<span class="var">A</span><sup class="neg">−</sup></p>
+              <p><span class="pos">~</span>(<span class="neg">∀</span><span class="var">X</span>.<span class="var neg">A</span><sup class="neg">−</sup>) ≈ <span class="pos">∃</span><span class="var">X</span>.<span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup></p>
             </div>
           </div>
         </div>
@@ -636,31 +636,31 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule left">
-            <div class="label">∃⊢</div>
+            <div class="label"><span class="pos">∃</span>⊢</div>
             <div class="inference">
               <div class="premises">
                 <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>)</div>
-                <div class="premise"><span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">∃<span class="var">X</span>.<span class="var">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="pos">∃</span><span class="var">X</span>.<span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var">A</span><sup class="pos">+</sup>{<span class="var">B</span>/<span class="var">X</span>}]</div>
+              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>{<span class="var">B</span>/<span class="var">X</span>}]</div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span> [∃<span class="var">X</span>.<span class="var">A</span><sup class="pos">+</sup>]</div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="pos">∃</span><span class="var">X</span>.<span class="var pos">A</span><sup class="pos">+</sup>]</div>
             </div>
-            <div class="label">⊢∃</div>
+            <div class="label">⊢<span class="pos">∃</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p>¬(∃<span class="var">X</span>.<span class="var">A</span><sup class="pos">+</sup>) ≈ ∀<span class="var">X</span>.¬<span class="var">A</span><sup class="pos">+</sup></p>
+              <p><span class="neg">¬</span>(<span class="pos">∃</span><span class="var">X</span>.<span class="var pos">A</span><sup class="pos">+</sup>) ≈ <span class="neg">∀</span><span class="var">X</span>.<span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup></p>
             </div>
           </div>
         </div>

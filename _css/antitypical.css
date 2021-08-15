@@ -247,6 +247,11 @@ div.column {
   font-weight: bold;
 }
 
+.var.neg,
+.var.pos {
+  font-weight: normal;
+}
+
 table>tbody>tr>th>h3 {
   position: absolute;
   float: left;
