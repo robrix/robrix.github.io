@@ -1,7 +1,7 @@
 ---
 measure: measure-wide
 title:  "Sequent calculus cheat sheet"
-date:   2021-08-14 23:01:02
+date:   2<span class="pos">0</span>21-<span class="pos">0</span>8-14 23:<span class="pos">0</span>1:<span class="pos">0</span>2
 categories: logic, plt
 ---
 
@@ -124,19 +124,19 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <p>no rule for ⊤⊢</p>
+            <p>no rule for <span class="neg">⊤</span>⊢</p>
           </div>
           <div class="rule">
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, ⊤</div>
+              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="neg">⊤</span></div>
             </div>
-            <div class="label">⊢⊤</div>
+            <div class="label">⊢<span class="neg">⊤</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p><span class="pos">~</span>⊤ ≈ 0</p>
+              <p><span class="pos">~</span><span class="neg">⊤</span> ≈ <span class="pos">0</span></p>
             </div>
           </div>
         </div>
@@ -144,19 +144,19 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">0⊢</div>
+            <div class="label"><span class="pos">0</span>⊢</div>
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">0, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="pos">0</span>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
-            <p>no rule for ⊢0</p>
+            <p>no rule for ⊢<span class="pos">0</span></p>
           </div>
           <div class="connective">
             <div class="rule">
-              <p><span class="pos">~</span>⊤ ≈ 0</p>
+              <p><span class="pos">~</span><span class="neg">⊤</span> ≈ <span class="pos">0</span></p>
             </div>
           </div>
         </div>
