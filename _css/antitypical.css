@@ -124,6 +124,7 @@ figure.connective {
   line-height: 1.8rem;
   align-items: center;
   font-weight: 100;
+  font-family: "Computer Modern Serif", sans-serif;
 }
 
 div.column .rule+.rule {
