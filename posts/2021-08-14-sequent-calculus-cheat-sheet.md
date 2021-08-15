@@ -39,32 +39,32 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
                 <div class="premise turnstile"><span class="turnstile">⊢</span></div>
                 <div class="premise Δ"><span class="Δ">Δ</span></div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ"><span class="focus">[<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+                <div class="conclusion Γ"><span class="focus">[<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
                 <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
                 <div class="conclusion Δ"><span class="Δ">Δ</span></div>
               </div>
             </div>
-            <div class="rule right">
+            <div class="rule left">
               <div class="label"><span class="with op">&amp;</span><sub>2</sub></div>
               <div class="inference">
                 <div class="premise Γ"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
                 <div class="premise turnstile"><span class="turnstile">⊢</span></div>
                 <div class="premise Δ"><span class="Δ">Δ</span></div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ"><span class="focus">[<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+                <div class="conclusion Γ"><span class="focus">[<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
                 <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
                 <div class="conclusion Δ"><span class="Δ">Δ</span></div>
               </div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premises">
                 <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
                 <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span></div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="with"><span class="var neg">A<sup>−</sup></span> <span class="op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span></div>
             </div>
             <div class="label"><span class="with op">&amp;</span></div>
           </div>
@@ -77,7 +77,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="sum op">⊕</span></div>
             <div class="inference">
               <div class="premises">
@@ -85,11 +85,11 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
                 <div class="premise"><span class="var pos">B<sup>+</sup></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="sum op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="column">
-            <div class="rule">
+            <div class="rule right">
               <div class="inference">
                 <div class="premise Γ"><span class="Γ">Γ</span></div>
                 <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -97,11 +97,11 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
                 <span class="line-of-inference"></span>
                 <div class="conclusion Γ"><span class="Γ">Γ</span></div>
                 <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-                <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="sum op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
+                <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
               </div>
               <div class="label"><span class="sum op">⊕</span><sub>1</sub></div>
             </div>
-            <div class="rule">
+            <div class="rule right">
               <div class="inference">
                 <div class="premise Γ"><span class="Γ">Γ</span></div>
                 <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -109,7 +109,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
                 <span class="line-of-inference"></span>
                 <div class="conclusion Γ"><span class="Γ">Γ</span></div>
                 <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-                <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="sum op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
+                <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
               </div>
               <div class="label"><span class="sum op">⊕</span><sub>2</sub></div>
             </div>
@@ -125,10 +125,10 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <p>no left rule for <span class="top">⊤</span></p>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
@@ -137,15 +137,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             <div class="label"><span class="top">⊤</span></div>
           </div>
           <div class="connective">
-            <d iv class="equivalence">
-              <span class="negate"><span class="op">∼</span></span><span class="top">⊤</span> ≈ <span class="zero">0</span>
+            <div class="equivalence">
+              <span class="negate"><span class="op">∼</span><span class="top">⊤</span></span> ≈ <span class="zero">0</span>
             </div>
           </div>
         </div>
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="zero">0</span></div>
             <div class="inference">
               <div class="axiom"></div>
@@ -153,7 +153,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion"><span class="zero">0</span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <p>no right rule for <span class="zero">0</span></p>
           </div>
           <div class="connective">
@@ -174,7 +174,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="par op">⅋</span></div>
             <div class="inference">
               <div class="premises">
@@ -185,7 +185,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion"><span class="focus">[<span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -206,7 +206,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="tensor op">⊗</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="var pos">B<sup>+</sup></span>, <span class="Γ">Γ</span></div>
@@ -218,7 +218,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premises">
                 <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
@@ -240,15 +240,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
-            <div class="label"><span class="bottom R">⊥</span></div>
+          <div class="rule left">
+            <div class="label"><span class="bottom op R">⊥</span></div>
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="focus">[<span class="bottom R">⊥</span>]</span> <span class="Γ">Γ</span> <span class="turnstile R">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="focus">[<span class="bottom op R">⊥</span>]</span> <span class="Γ">Γ</span> <span class="turnstile R">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile R">⊢</span></div>
@@ -256,42 +256,42 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="Γ">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile R">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="bottom R">⊥</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="bottom op R">⊥</span></div>
             </div>
-            <div class="label"><span class="bottom R">⊥</span></div>
+            <div class="label"><span class="bottom op R">⊥</span></div>
           </div>
           <div class="connective">
             <div class="equivalence">
-              <span class="negate"><span class="op">∼</span><span class="bottom R">⊥</span></span> ≈ <span class="one E">1</span>
+              <span class="negate"><span class="op">∼</span><span class="bottom op R">⊥</span></span> ≈ <span class="one op E">1</span>
             </div>
           </div>
         </div>
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
-            <div class="label"><span class="one E">1</span></div>
+          <div class="rule left">
+            <div class="label"><span class="one op E">1</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile E">⊢</span></div>
               <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="one E">1</span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="one op E">1</span>, <span class="Γ">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile E">⊢</span></div>
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile E">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="one E">1</span>]</span></div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile E">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="one op E">1</span>]</span></div>
             </div>
-            <div class="label"><span class="one E">1</span></div>
+            <div class="label"><span class="one op E">1</span></div>
           </div>
           <div class="connective">
             <div class="equivalence">
-              <span class="not"><span class="op">¬</span></span><span class="one E">1</span> ≈ <span class="bottom R">⊥</span>
+              <span class="not"><span class="op">¬</span></span><span class="one op E">1</span> ≈ <span class="bottom op R">⊥</span>
             </div>
           </div>
         </div>
@@ -307,7 +307,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="implication op">→</span></div>
             <div class="inference">
               <div class="premises">
@@ -318,7 +318,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion"><span class="focus">[<span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -342,7 +342,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="coimplication op">⤚</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
@@ -354,7 +354,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premises">
                 <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
@@ -386,7 +386,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="not op">¬</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
@@ -398,7 +398,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -419,7 +419,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="negate"><span class="op">∼</span></span></div>
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
@@ -431,7 +431,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -461,7 +461,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="not-untrue op">¬̷</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
@@ -473,7 +473,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -494,7 +494,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="true op">✓</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
@@ -506,7 +506,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -536,7 +536,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="up-shift op">↑</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
@@ -548,7 +548,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -569,7 +569,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="down-shift op">↓</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
@@ -581,7 +581,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -611,7 +611,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="for-all"><span class="op">∀</span></span></div>
             <div class="inference">
               <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>{<span class="var">B</span>/<span class="var">X</span>}]</span> <span class="Γ">Γ</span></div>
@@ -654,7 +654,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion"><span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -722,7 +722,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="function">weaken</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
@@ -734,7 +734,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -750,7 +750,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
+          <div class="rule left">
             <div class="label"><span class="function">contract</span></div>
             <div class="inference">
               <div class="premise Γ"><span class="var">A</span>, <span class="var">A</span>, <span class="Γ">Γ</span></div>
@@ -762,7 +762,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="rule">
+          <div class="rule right">
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
