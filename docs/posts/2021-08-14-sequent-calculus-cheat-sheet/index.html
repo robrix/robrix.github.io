@@ -65,6 +65,7 @@
 <article class="post-content">
   <p>Rules for sequent calculus connectives, formatted as a cheat sheet.</p>
 <!--more-->
+<p><link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css"></p>
 <table class="borderless">
   <colgroup>
     <col class="negative">
@@ -86,45 +87,45 @@
       <td>
         <div class="connective">
           <div class="column">
-            <div class="rule">
-              <div class="label"><span class="neg">&amp;</span>⊢<sub>1</sub></div>
+            <div class="rule left">
+              <div class="label"><span class="with op">&amp;</span><sub>1</sub></div>
               <div class="inference">
-                <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-                <div class="premise turnstile">⊢</div>
-                <div class="premise Δ"><span class="context Δ">Δ</span></div>
+                <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
+                <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+                <div class="premise Δ"><span class="Δ">Δ</span></div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ">[<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">&amp;</span> <span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-                <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+                <div class="conclusion Γ"><span class="focus">[<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+                <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+                <div class="conclusion Δ"><span class="Δ">Δ</span></div>
               </div>
             </div>
-            <div class="rule">
-              <div class="label"><span class="neg">&amp;</span>⊢<sub>2</sub></div>
+            <div class="rule right">
+              <div class="label"><span class="with op">&amp;</span><sub>2</sub></div>
               <div class="inference">
-                <div class="premise Γ">[<span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-                <div class="premise turnstile">⊢</div>
-                <div class="premise Δ"><span class="context Δ">Δ</span></div>
+                <div class="premise Γ"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
+                <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+                <div class="premise Δ"><span class="Δ">Δ</span></div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ">[<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">&amp;</span> <span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-                <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+                <div class="conclusion Γ"><span class="focus">[<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+                <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+                <div class="conclusion Δ"><span class="Δ">Δ</span></div>
               </div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var neg">B</span><sup class="neg">−</sup></div>
+                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
+                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">&amp;</span> <span class="var neg">B</span><sup class="neg">−</sup></div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span></div>
             </div>
-            <div class="label">⊢<span class="neg">&amp;</span></div>
+            <div class="label"><span class="with op">&amp;</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span>(<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">&amp;</span> <span class="var neg">B</span><sup class="neg">−</sup>) ≈ <span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup> <span class="pos">⊕</span> <span class="pos">~</span><span class="var neg">B</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              <span class="negate"><span class="op">∼</span>(<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="sum op">⊕</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span>
             </div>
           </div>
         </div>
@@ -132,45 +133,45 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="pos">⊕</span>⊢</div>
+            <div class="label"><span class="sum op">⊕</span></div>
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
-                <div class="premise"><span class="var pos">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+                <div class="premise"><span class="var pos">B<sup>+</sup></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊕</span> <span class="var pos">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="sum op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="column">
             <div class="rule">
               <div class="inference">
-                <div class="premise Γ"><span class="context Γ">Γ</span></div>
-                <div class="premise turnstile">⊢</div>
-                <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
+                <div class="premise Γ"><span class="Γ">Γ</span></div>
+                <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+                <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-                <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊕</span> <span class="var pos">B</span><sup class="pos">+</sup>]</div>
+                <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+                <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+                <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="sum op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
               </div>
-              <div class="label">⊢<span class="pos">⊕</span><sub>1</sub></div>
+              <div class="label"><span class="sum op">⊕</span><sub>1</sub></div>
             </div>
             <div class="rule">
               <div class="inference">
-                <div class="premise Γ"><span class="context Γ">Γ</span></div>
-                <div class="premise turnstile">⊢</div>
-                <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">B</span><sup class="pos">+</sup>]</div>
+                <div class="premise Γ"><span class="Γ">Γ</span></div>
+                <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+                <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">B<sup>+</sup></span>]</span></div>
                 <span class="line-of-inference"></span>
-                <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-                <div class="conclusion turnstile">⊢</div>
-                <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊕</span> <span class="var pos">B</span><sup class="pos">+</sup>]</div>
+                <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+                <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+                <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="sum op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
               </div>
-              <div class="label">⊢<span class="pos">⊕</span><sub>2</sub></div>
+              <div class="label"><span class="sum op">⊕</span><sub>2</sub></div>
             </div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="neg">¬</span>(<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊕</span> <span class="var pos">B</span><sup class="pos">+</sup>) ≈ <span class="pos">~</span><span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">&amp;</span> <span class="pos">~</span><span class="var pos">B</span><sup class="pos">+</sup></p>
+            <div class="equivalence">
+              <span class="not"><span class="op">¬</span>(<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>)</span> ≈ <span class="with"><span class="negate"><span class="op">∼</span><span class="var pos">A<sup>+</sup></span></span> <span class="op">&amp;</span> <span class="negate"><span class="op">∼</span><span class="var pos">B<sup>+</sup></span></span></span>
             </div>
           </div>
         </div>
@@ -180,19 +181,19 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <p>no rule for <span class="neg">⊤</span>⊢</p>
+            <p>no left rule for <span class="top">⊤</span></p>
           </div>
           <div class="rule">
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="neg">⊤</span></div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="top">⊤</span></div>
             </div>
-            <div class="label">⊢<span class="neg">⊤</span></div>
+            <div class="label"><span class="top">⊤</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span><span class="neg">⊤</span> ≈ <span class="pos">0</span></p>
+            <d iv class="equivalence">
+              <span class="negate"><span class="op">∼</span></span><span class="top">⊤</span> ≈ <span class="zero">0</span>
             </div>
           </div>
         </div>
@@ -200,19 +201,19 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="pos">0</span>⊢</div>
+            <div class="label"><span class="zero">0</span></div>
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="pos">0</span>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="zero">0</span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
-            <p>no rule for ⊢<span class="pos">0</span></p>
+            <p>no right rule for <span class="zero">0</span></p>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span><span class="neg">⊤</span> ≈ <span class="pos">0</span></p>
+            <div class="equivalence">
+              <span class="not"><span class="op">¬</span><span class="zero">0</span></span> ≈ <span class="top">⊤</span>
             </div>
           </div>
         </div>
@@ -229,31 +230,31 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="neg">⅋</span>⊢</div>
+            <div class="label"><span class="par op">⅋</span></div>
             <div class="inference">
               <div class="premises">
-                <div class="premise">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
-                <div class="premise">[<span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">[<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">⅋</span> <span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="focus">[<span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup>, <span class="var neg">B</span><sup class="neg">−</sup></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span>, <span class="var neg">B<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">⅋</span> <span class="var neg">B</span><sup class="neg">−</sup></div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span></div>
             </div>
-            <div class="label">⊢<span class="neg">⅋</span></div>
+            <div class="label"><span class="par op">⅋</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span>(<span class="var neg">A</span><sup class="neg">−</sup> <span class="neg">⅋</span> <span class="var neg">B</span><sup class="neg">−</sup>) ≈ <span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup> <span class="pos">⊗</span> <span class="pos">~</span><span class="var neg">B</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              <span class="negate"><span class="op">∼</span>(<span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="tensor"><span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="op">⊗</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span></span>
             </div>
           </div>
         </div>
@@ -261,31 +262,31 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="pos">⊗</span>⊢</div>
+            <div class="label"><span class="tensor op">⊗</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="var pos">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="var pos">B<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊗</span> <span class="var pos">B</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">B</span><sup class="pos">+</sup>]</div>
+                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">B<sup>+</sup></span>]</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊗</span> <span class="var pos">B</span><sup class="pos">+</sup>]</div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
             </div>
-            <div class="label">⊢<span class="pos">⊗</span></div>
+            <div class="label"><span class="tensor op">⊗</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="neg">¬</span>(<span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊗</span> <span class="var pos">B</span><sup class="pos">+</sup>) ≈ <span class="pos">~</span><span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">⅋</span> <span class="pos">~</span><span class="var pos">B</span><sup class="pos">+</sup></p>
+            <div class="equivalence">
+              <span class="not"><span class="op">¬</span></span>(<span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>) ≈ <span class="par"><span class="not op">∼</span><span class="var pos">A<sup>+</sup></span> <span class="op">⅋</span> <span class="not op">∼</span><span class="var pos">B<sup>+</sup></span></span>
             </div>
           </div>
         </div>
@@ -295,28 +296,28 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="neg">⊥</span><sub class="R">R</sub>⊢<sub class="R">R</sub></div>
+            <div class="label"><span class="bottom R">⊥</span></div>
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">[<span class="neg">⊥</span><sub class="R">R</sub>] <span class="context Γ">Γ</span> ⊢<sub class="R">R</sub> <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="focus">[<span class="bottom R">⊥</span>]</span> <span class="Γ">Γ</span> <span class="turnstile R">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢<sub class="R">R</sub></div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile R">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢<sub class="R">R</sub></div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">⊥</span><sub class="R">R</sub></div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile R">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="bottom R">⊥</span></div>
             </div>
-            <div class="label">⊢<span class="neg">⊥</span><sub class="R">R</sub></div>
+            <div class="label"><span class="bottom R">⊥</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span><span class="neg">⊥</span><sub class="R">R</sub> ≈ <span class="pos">1</span><sub class="E">E</sub></p>
+            <div class="equivalence">
+              <span class="negate"><span class="op">∼</span><span class="bottom R">⊥</span></span> ≈ <span class="one E">1</span>
             </div>
           </div>
         </div>
@@ -324,28 +325,28 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="pos">1</span><sub class="E">E</sub>⊢<sub class="E">E</sub></div>
+            <div class="label"><span class="one E">1</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢<sub class="E">E</sub></div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile E">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="pos">1</span><sub class="E">E</sub>, <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢<sub class="E">E</sub></div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="one E">1</span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile E">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢<sub class="E">E</sub> <span class="context Δ">Δ</span> [<span class="pos">1</span><sub class="E">E</sub>]</div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile E">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="one E">1</span>]</span></div>
             </div>
-            <div class="label">⊢<sub class="E">E</sub><span class="pos">1</span><sub class="E">E</sub></div>
+            <div class="label"><span class="one E">1</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="neg">¬</span><span class="pos">1</span><sub class="E">E</sub> ≈ <span class="neg">⊥</span><sub class="R">R</sub></p>
+            <div class="equivalence">
+              <span class="not"><span class="op">¬</span></span><span class="one E">1</span> ≈ <span class="bottom R">⊥</span>
             </div>
           </div>
         </div>
@@ -362,34 +363,34 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="neg">→</span>⊢</div>
+            <div class="label"><span class="implication op">→</span></div>
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
-                <div class="premise">[<span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">[<span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="focus">[<span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">B</span><sup class="neg">−</sup></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup></div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span></div>
             </div>
-            <div class="label">⊢<span class="neg">→</span></div>
+            <div class="label"><span class="implication op">→</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span>(<span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup>) ≈ <span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup></p>
+            <div class="equivalence">
+              <span class="negate"><span class="op">∼</span></span>(<span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>) ≈ <span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>
             </div>
-            <div class="rule">
-              <p><span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup> ≈ <span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">⅋</span> <span class="var neg">B</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span> ≈ <span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span> <span class="par op">⅋</span> <span class="var neg">B<sup>−</sup></span>
             </div>
           </div>
         </div>
@@ -397,34 +398,34 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="pos">⤚</span>⊢</div>
+            <div class="label"><span class="coimplication op">⤚</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">B</span><sup class="neg">−</sup></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
-                <div class="premise">[<span class="var neg">B</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span> [<span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup>]</div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>]</span></div>
             </div>
-            <div class="label">⊢<span class="pos">⤚</span></div>
+            <div class="label"><span class="coimplication op">⤚</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="neg">¬</span>(<span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup>) ≈ <span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              <span class="not"><span class="op">¬</span></span>(<span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>) ≈ <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>
             </div>
-            <div class="rule">
-              <p><span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup> ≈ <span class="pos">~</span><span class="var pos">A</span><sup class="pos">+</sup> <span class="pos">⊗</span> <span class="var neg">B</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              <span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var pos">A<sup>+</sup></span> <span class="tensor op">⊗</span> <span class="var neg">B<sup>−</sup></span>
             </div>
           </div>
         </div>
@@ -441,32 +442,32 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="neg">¬</span>⊢</div>
+            <div class="label"><span class="not op">¬</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[<span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup>] <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="focus">[<span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup></div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></div>
             </div>
-            <div class="label">⊢<span class="neg">¬</span></div>
+            <div class="label"><span class="not"><span class="op">¬</span></span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span><span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup> ≈ <span class="var pos">A</span><sup class="pos">+</sup></p>
+            <div class="equivalence">
+              <span class="negate"><span class="op">∼</span><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span>
             </div>
           </div>
         </div>
@@ -474,32 +475,32 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="pos">~</span>⊢</div>
+            <div class="label"><span class="negate"><span class="op">∼</span></span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup>, <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup>]</div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span>]</span></div>
             </div>
-            <div class="label">⊢<span class="pos">~</span></div>
+            <div class="label"><span class="negate"><span class="op">∼</span></span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="neg">¬</span><span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup> ≈ <span class="var neg">A</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              <span class="not"><span class="op">¬</span><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span>
             </div>
           </div>
         </div>
@@ -516,32 +517,32 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="neg">¬̷</span>⊢</div>
+            <div class="label"><span class="not-untrue op">¬̷</span></div>
             <div class="inference">
-              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[<span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="focus">[<span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">−</sup></div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span></div>
             </div>
-            <div class="label">⊢<span class="neg">¬̷</span></div>
+            <div class="label"><span class="not-untrue op">¬̷</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span><span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">−</sup> ≈ <span class="var neg">A</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              <span class="negate"><span class="op">∼</span><span class="not-untrue"><span class="op">¬̷<span class="var neg">A<sup>−</sup></span></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span>
             </div>
           </div>
         </div>
@@ -549,32 +550,32 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="pos">✓</span>⊢</div>
+            <div class="label"><span class="true op">✓</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="pos">✓</span><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="pos">✓</span><span class="var pos">A</span><sup class="pos">+</sup>]</div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span>]</span></div>
             </div>
-            <div class="label">⊢<span class="pos">✓</span></div>
+            <div class="label"><span class="true op">✓</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="neg">¬</span><span class="pos">✓</span><span class="var pos">A</span><sup class="pos">+</sup> ≈ <span class="var pos">A</span><sup class="pos">+</sup></p>
+            <div class="equivalence">
+              <span class="not"><span class="op">¬</span><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span>
             </div>
           </div>
         </div>
@@ -591,32 +592,32 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="neg">↑</span>⊢</div>
+            <div class="label"><span class="up-shift op">↑</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[<span class="neg">↑</span><span class="var pos">A</span><sup class="pos">+</sup>] <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="focus">[<span class="up-shift"><span class="op">↑</span><span class="var pos">A<sup>+</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>]</div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">↑</span><span class="var pos">A</span><sup class="pos">+</sup></div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="up-shift"><span class="op">↑</span><span class="var pos">A<sup>+</sup></span></span></div>
             </div>
-            <div class="label">⊢<span class="neg">↑</span></div>
+            <div class="label"><span class="up-shift op">↑</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p>(<span class="var">A</span> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup>)<sup class="neg">N</sup> = <span class="pos">↓</span>(<span class="var">A</span><sup class="neg">N</sup>) <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              (<span class="implication"><span class="var">A</span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>)<sup class="N">N</sup> = <span class="implication"><span class="down-shift"><span class="op">↓</span>(<span class="var">A</span><sup class="N">N</sup>)</span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>
             </div>
           </div>
         </div>
@@ -624,32 +625,32 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="pos">↓</span>⊢</div>
+            <div class="label"><span class="down-shift op">↓</span></div>
             <div class="inference">
-              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="pos">↓</span><span class="var neg">A</span><sup class="neg">−</sup>, <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="down-shift"><span class="op">↓</span><span class="var neg">A<sup>−</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="pos">↓</span><span class="var neg">A</span><sup class="neg">−</sup>]</div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="down-shift"><span class="op">↓</span><span class="var neg">A<sup>−</sup></span></span>]</span></div>
             </div>
-            <div class="label">⊢<span class="pos">↓</span></div>
+            <div class="label"><span class="down-shift op">↓</span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p>(<span class="var">A</span> <span class="neg">→</span> <span class="var">B</span>)<sup class="pos">V</sup> = <span class="pos">↓</span>(<span class="var">A</span><sup class="pos">V</sup> <span class="neg">→</span> <span class="neg">↑</span>(<span class="var">B</span><sup class="pos">V</sup>))</p>
+            <div class="equivalence">
+              (<span class="implication"><span class="var">A</span> <span class="op">→</span> <span class="var">B</span></span>)<sup class="V">V</sup> = <span class="implication"><span class="down-shift"><span class="op">↓</span>(<span class="var">A</span><sup class="V">V</sup> <span class="op">→</span> <span class="up-shift"><span class="op">↑</span>(<span class="var">B</span><sup class="V">V</sup>)</span>)</span></span>
             </div>
           </div>
         </div>
@@ -666,31 +667,31 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="neg">∀</span>⊢</div>
+            <div class="label"><span class="for-all"><span class="op">∀</span></span></div>
             <div class="inference">
-              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>{<span class="var">B</span>/<span class="var">X</span>}] <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>{<span class="var">B</span>/<span class="var">X</span>}]</span> <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[<span class="neg">∀</span><span class="var">X</span>.<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="focus">[<span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
-                <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>)</div>
+                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
+                <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>)</div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="neg">∀</span><span class="var">X</span>.<span class="var neg">A</span><sup class="neg">−</sup></div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span></div>
             </div>
-            <div class="label">⊢<span class="neg">∀</span></div>
+            <div class="label"><span class="for-all"><span class="op">∀</span></span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="pos">~</span>(<span class="neg">∀</span><span class="var">X</span>.<span class="var neg">A</span><sup class="neg">−</sup>) ≈ <span class="pos">∃</span><span class="var">X</span>.<span class="pos">~</span><span class="var neg">A</span><sup class="neg">−</sup></p>
+            <div class="equivalence">
+              <span class="negate"><span class="op">∼</span>(<span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span>)</span> ≈ <span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span>
             </div>
           </div>
         </div>
@@ -698,31 +699,31 @@
       <td>
         <div class="connective">
           <div class="rule left">
-            <div class="label"><span class="pos">∃</span>⊢</div>
+            <div class="label"><span class="there-exists"><span class="op">∃</span></span></div>
             <div class="inference">
               <div class="premises">
-                <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>)</div>
-                <div class="premise"><span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>)</div>
+                <div class="premise"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="pos">∃</span><span class="var">X</span>.<span class="var pos">A</span><sup class="pos">+</sup>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span> [<span class="var pos">A</span><sup class="pos">+</sup>{<span class="var">B</span>/<span class="var">X</span>}]</div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>{<span class="var">B</span>/<span class="var">X</span>}]</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span> [<span class="pos">∃</span><span class="var">X</span>.<span class="var pos">A</span><sup class="pos">+</sup>]</div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>]</span></div>
             </div>
-            <div class="label">⊢<span class="pos">∃</span></div>
+            <div class="label"><span class="there-exists"><span class="op">∃</span></span></div>
           </div>
           <div class="connective">
-            <div class="rule">
-              <p><span class="neg">¬</span>(<span class="pos">∃</span><span class="var">X</span>.<span class="var pos">A</span><sup class="pos">+</sup>) ≈ <span class="neg">∀</span><span class="var">X</span>.<span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup></p>
+            <div class="equivalence">
+              <span class="not"><span class="op">¬</span>(<span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>)</span> ≈ <span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span>
             </div>
           </div>
         </div>
@@ -743,7 +744,7 @@
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="var">A</span></div>
-              <div class="conclusion turnstile">⊢</div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
               <div class="conclusion Δ"><span class="var">A</span></div>
             </div>
             <div class="label"><span class="function">init</span></div>
@@ -755,11 +756,11 @@
           <div class="rule">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span>, <span class="var">A</span></div>
-                <div class="premise"><span class="var">A</span>, <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var">A</span></div>
+                <div class="premise"><span class="var">A</span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
             <div class="label"><span class="function">cut</span></div>
           </div>
@@ -777,56 +778,56 @@
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="function">weaken</span> ⊢</div>
+            <div class="label"><span class="function">weaken</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="var">A</span>, <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="var">A</span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="var">A</span></div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="var">A</span></div>
             </div>
-            <div class="label">⊢ <span class="function">weaken</span></div>
+            <div class="label"><span class="function">weaken</span></div>
           </div>
         </div>
       </td>
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label"><span class="function">contract</span> ⊢</div>
+            <div class="label"><span class="function">contract</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var">A</span>, <span class="var">A</span>, <span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span></div>
+              <div class="premise Γ"><span class="var">A</span>, <span class="var">A</span>, <span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="var">A</span>, <span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
+              <div class="conclusion Γ"><span class="var">A</span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
             <div class="inference">
-              <div class="premise Γ"><span class="context Γ">Γ</span></div>
-              <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var">A</span>, <span class="var">A</span></div>
+              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
+              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var">A</span>, <span class="var">A</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
-              <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="var">A</span></div>
+              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="var">A</span></div>
             </div>
-            <div class="label">⊢ <span class="function">contract</span></div>
+            <div class="label"><span class="function">contract</span></div>
           </div>
         </div>
       </td>

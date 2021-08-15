@@ -120,11 +120,18 @@ figure.connective {
   grid-template-columns: repeat(2, auto);
   gap: 2px;
   width: max-content;
+  align-items: center;
+}
+
+.rule, .equivalence {
   font-size: 1.25rem;
   line-height: 1.8rem;
-  align-items: center;
   font-weight: 100;
   font-family: "Computer Modern Serif", sans-serif;
+}
+
+.rule.left, .rule.right {
+  float: none;
 }
 
 div.column .rule+.rule {
@@ -136,7 +143,7 @@ div.column .rule+.rule {
   padding: 6px;
 }
 
-.rule sub, .rule sup {
+.rule sub, .rule sup, .equivalence sub, .equivalence sup {
   font-size: 60%;
   line-height: 0;
 }
@@ -193,6 +200,23 @@ div.axiom {
   text-align: center;
 }
 
+.turnstile.E::after,
+.one.E::after {
+  content: "E";
+}
+.turnstile.R::after,
+.bottom.R::after {
+  content: "R";
+}
+.turnstile.E::after,
+.turnstile.R::after,
+.one.E::after,
+.bottom.R::after {
+  vertical-align: sub;
+  font-size: 60%;
+  line-height: 0;
+}
+
 .rule div.Δ {
   text-align: left;
 }
@@ -229,6 +253,10 @@ span.Δ {
   font-style: italic;
 }
 
+.var>sup {
+  font-style: normal;
+}
+
 span.Γ, span.Δ {
   color: rgb(100, 100, 100);
 }
@@ -243,35 +271,37 @@ div.column {
 
 .neg,
 .neg>sup,
-.with,
+.with.op, .with>.op,
 .top,
-.par,
+.par.op, .par>.op,
 .bottom,
-.implication,
-.not,
-.not-untrue,
-.up-shift,
-.for-all,
-.R {
+.bottom.R::after,
+.implication.op, .implication>.op,
+.not.op, .not>.op,
+.not-untrue.op, .not-untrue>.op,
+.up-shift.op, .up-shift>.op,
+.for-all.op, .for-all>.op,
+.turnstile.R::after,
+sub.R,
+sup.N {
   color: rgb(150, 150, 255);;
 }
 .pos,
 .pos>sup,
-.sum,
+.sum.op, .sum>.op,
 .zero,
-.tensor,
+.tensor.op, .tensor>.op,
 .one,
-.negate,
-.true,
-.down-shift,
-.there-exists,
-.E {
+.one.E::after,
+.coimplication.op, .coimplication>.op,
+.negate.op, .negate>.op,
+.true.op, .true>.op,
+.down-shift.op, .down-shift>.op,
+.there-exists.op, .there-exists>.op,
+.turnstile.E::after,
+sub.E,
+sup.V {
   color: rgb(255, 150, 150);
-}
-
-.neg>sup,
-.pos>sup {
-  font-weight: bold;
 }
 
 table>tbody>tr>th>h3 {
