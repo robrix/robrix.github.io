@@ -239,11 +239,11 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
       <td>
         <div class="connective">
           <div class="rule">
-            <div class="label">⊥⊢</div>
+            <div class="label">⊥<sub class="R">R</sub>⊢</div>
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion">[⊥] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
+              <div class="conclusion">[⊥<sub class="R">R</sub>] <span class="context Γ">Γ</span> ⊢ <span class="context Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule">
@@ -254,9 +254,9 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, ⊥</div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span>, ⊥<sub class="R">R</sub></div>
             </div>
-            <div class="label">⊢⊥</div>
+            <div class="label">⊢⊥<sub class="R">R</sub></div>
           </div>
           <div class="connective">
             <div class="rule">
@@ -289,7 +289,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           </div>
           <div class="connective">
             <div class="rule">
-              <p>¬1<sub class="E">E</sub> ≈ ⊥</p>
+              <p>¬1<sub class="E">E</sub> ≈ ⊥<sub class="R">R</sub></p>
             </div>
           </div>
         </div>
