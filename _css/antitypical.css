@@ -239,11 +239,11 @@ div.column {
 }
 
 sup.neg {
-  color: rgb(150, 150, 255);
+  color: var(--negative-color);
   font-weight: bold;
 }
 sup.pos {
-  color: rgb(255, 150, 150);
+  color: var(--positive-color);
   font-weight: bold;
 }
 
@@ -253,4 +253,9 @@ table>tbody>tr>th>h3 {
   text-align: right;
   margin-left: -100%;
   width: 100%;
+}
+
+:root {
+  --positive-color: rgb(255, 150, 150);
+  --negative-color: rgb(150, 150, 255);
 }
