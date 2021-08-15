@@ -95,6 +95,10 @@ table.connective td.right {
   float: none;
 }
 
+table>tbody>tr>th {
+  vertical-align: top;
+}
+
 /* thank you, CSS hero: https://twitter.com/ptrfrncsmrph/status/1420749056125685762 */
 div.connective,
 figure.connective {
@@ -111,7 +115,7 @@ figure.connective {
   grid-column: 1 / -1;
 }
 
-div.rule {
+.rule {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 2px;
@@ -121,16 +125,16 @@ div.rule {
   align-items: center;
 }
 
-div.column div.rule+div.rule {
+div.column .rule+.rule {
   margin-top: 1em;
 }
 
-div.rule div.label {
+.rule div.label {
   font-size: 75%;
   padding: 6px;
 }
 
-div.rule sub, div.rule sup {
+.rule sub, .rule sup {
   font-size: 60%;
   line-height: 0;
 }
@@ -146,6 +150,13 @@ div.premises~div.conclusion {
   text-align: center;
 }
 
+.left div.premises~div.conclusion {
+  text-align: right;
+}
+.right div.premises~div.conclusion {
+  text-align: left;
+}
+
 div.inference {
   display: grid;
   grid-template-columns: repeat(3, auto);
@@ -159,33 +170,34 @@ div.axiom {
   line-height: 1.8rem;
 }
 
-div.rule div.axiom,
-div.rule div.premise,
-div.rule div.conclusion {
+.rule div.axiom,
+.rule div.premise,
+.rule div.side-condition,
+.rule div.conclusion {
   padding: 2px;
 }
 
-div.rule .line-of-inference {
+.rule .line-of-inference {
   grid-column: 1 / -1;
   background: #666;
   height: 1px;
 }
 
-div.rule div.Γ {
+.rule div.Γ {
   text-align: right;
 }
 
-div.rule div.turnstile {
+.rule div.turnstile {
   text-align: center;
 }
 
-div.rule div.Δ {
+.rule div.Δ {
   text-align: left;
 }
 
 /* Hack to workaround pandoc’s insistence on inserting unwanted empty paragraph tags despite being told never to mess with HTML blocks. */
-div.rule p:empty,
-div.connective p:empty {
+.rule p:empty,
+.connective p:empty {
   display: none;
 }
 
@@ -208,8 +220,14 @@ figure.section {
   align-items: center;
 }
 
-span.function {
+span.function,
+span.var,
+span.context {
   font-style: italic;
+}
+
+span.context {
+  color: rgb(100, 100, 100);
 }
 
 div.column {
@@ -218,4 +236,21 @@ div.column {
   gap: 1em;
   width: 100%;
   justify-items: center;
+}
+
+sup.neg {
+  color: rgb(150, 150, 255);
+  font-weight: bold;
+}
+sup.pos {
+  color: rgb(255, 150, 150);
+  font-weight: bold;
+}
+
+table>tbody>tr>th>h3 {
+  position: absolute;
+  float: left;
+  text-align: right;
+  margin-left: -100%;
+  width: 100%;
 }

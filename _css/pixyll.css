@@ -115,6 +115,11 @@ table > tfoot > tr > td {
   border-top: 1px solid #aaa;
 }
 
+table > tbody > tr > th {
+  vertical-align: top;
+  text-align: left;
+}
+
 /* Bottom align for column headings */
 table > thead > tr > th {
   vertical-align: bottom;

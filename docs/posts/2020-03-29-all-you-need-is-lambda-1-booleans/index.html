@@ -90,87 +90,59 @@
 <h3 id="summary">Summary</h3>
 <p>In quasi-BNF, the grammar for the lambda calculus is extremely minimal:</p>
 <figure class="center">
-<p><em>e</em> <strong>:=</strong> <code>λ</code> <em>x</em> <code>.</code> <em>e</em> <strong>|</strong> <em>e</em> <em>e</em> <strong>|</strong> <em>x</em> <strong>|</strong> (<em>e</em>)</p>
+
+_e_ **:=** `λ` _x_ `.` _e_ **|** _e_ _e_ **|** _x_ **|** (_e_)
+
 </figure>
 <p>And finally, this table gives a side-by-side comparison of the syntax of the lambda calculus with the corresponding syntax in Haskell &amp; JavaScript:</p>
 <table>
-<caption>
-Syntax of the lambda calculus, Haskell, &amp; JavaScript
-</caption>
-<thead>
-<tr>
-<th scope="col">
-</th>
-<th scope="col">
-Lambda calculus
-</th>
-<th scope="col">
-Haskell
-</th>
-<th scope="col">
-JavaScript
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">
-Abstraction
-</th>
-<td>
-<code>λ x . y</code>
-</td>
-<td>
-<code>\ x -&gt; y</code>
-</td>
-<td>
-<code>(x) =&gt; y</code>
-</td>
-</tr>
-<tr>
-<th scope="row">
-Application
-</th>
-<td>
-<code>f x</code>
-</td>
-<td>
-<code>f x</code>
-</td>
-<td>
-<code>f(x)</code>
-</td>
-</tr>
-<tr>
-<th scope="row">
-Variable
-</th>
-<td>
-<code>x</code>
-</td>
-<td>
-<code>x</code>
-</td>
-<td>
-<code>x</code>
-</td>
-</tr>
-</tbody>
+  <caption>Syntax of the lambda calculus, Haskell, & JavaScript</caption>
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Lambda calculus</th>
+      <th scope="col">Haskell</th>
+      <th scope="col">JavaScript</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Abstraction</th>
+      <td><code>λ x . y</code></td>
+      <td><code>\\ x -> y</code></td>
+      <td><code>(x) => y</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Application</th>
+      <td><code>f x</code></td>
+      <td><code>f x</code></td>
+      <td><code>f(x)</code></td>
+    </tr>
+    <tr>
+      <th scope="row">Variable</th>
+      <td><code>x</code></td>
+      <td><code>x</code></td>
+      <td><code>x</code></td>
+    </tr>
+  </tbody>
 </table>
 <aside>
-<p>Due to the lambda calculus’s terseness, I will be making free use of several notational conveniences:</p>
-<ol type="1">
-<li>writing <code>λ x y . z</code> as an abbreviation of <code>λ x . λ y . z</code>.</li>
-<li>writing <code>?</code> to stand for bits we don’t know yet, as though we had an environment supporting holes.</li>
-<li>writing definitions as though we had a metalanguage.</li>
-<li>referencing definitions elsewhere as though we had globals.</li>
-<li>writing type signatures as though we had a type system, and even a typechecker, with as much polymorphism and inference as is convenient at any particular moment.</li>
-<li>using syntactic recursion as though it existed.</li>
-<li>using general recursion as though it made sense.</li>
-<li>ignoring application order, normalization, reduction, substitution, values, references, allocation, copying, space, time, entropy, and any and all other such details whenever I feel like it.</li>
-</ol>
-<p>By convention, I will name types in <code>TitleCase</code> and both term and (local) type variables in <code>camelCase</code>.</p>
-<p>I will try to avoid pulling rabbits from hats too wantonly, but for now, I’ll ask you to suspend disbelief; I hope to revisit and justify some of these in later posts.</p>
+
+Due to the lambda calculus’s terseness, I will be making free use of several notational conveniences:
+
+1. writing `λ x y . z` as an abbreviation of `λ x . λ y . z`.
+2. writing `?` to stand for bits we don’t know yet, as though we had an environment supporting holes.
+3. writing definitions as though we had a metalanguage.
+4. referencing definitions elsewhere as though we had globals.
+5. writing type signatures as though we had a type system, and even a typechecker, with as much polymorphism and inference as is convenient at any particular moment.
+6. using syntactic recursion as though it existed.
+7. using general recursion as though it made sense.
+8. ignoring application order, normalization, reduction, substitution, values, references, allocation, copying, space, time, entropy, and any and all other such details whenever I feel like it.
+
+By convention, I will name types in `TitleCase` and both term and (local) type variables in `camelCase`.
+
+I will try to avoid pulling rabbits from hats too wantonly, but for now, I’ll ask you to suspend disbelief; I hope to revisit and justify some of these in later posts.
+
 </aside>
 <h2 id="unconditional-λ">Unconditional λ</h2>
 <p>Lambdas are the only way to introduce values—they’re the only “literal” syntax in the language. We can therefore infer that the only kinds of runtime values must be closures. In an interpreter for the lambda calculus, closures might consist of the name of the introduced variable, the body of the lambda, &amp; a map relating the names and values of any variables it closed over when constructed (again, we assume strict lexical scoping). There are no bits, bytes, words, pointers, or objects in the language’s semantics; only this runtime representation of lambdas.</p>
@@ -203,7 +175,9 @@ if = λ cond then else . else</code></pre>
 <p>Thus, in the same way that our <code>if_</code> functions in Haskell &amp; JavaScript employed those language’s features to implement, we’re going to define <code>if cond then else</code> as the application of the condition to the other two parameters:</p>
 <pre><code>if = λ cond then else . cond then else</code></pre>
 <aside>
-<p>Under standard semantics for the lambda calculus, we could simplify this definition further by “<a href="https://en.wikipedia.org/wiki/Lambda_calculus#η-reduction">η-reducing</a>” it, noting that <code>λ x . f x</code> behaves the same as <code>f</code> alone. Nevertheless, we will leave this and likely other definitions in their full, η-long forms for the sake of clarity.</p>
+
+Under standard semantics for the lambda calculus, we could simplify this definition further by “[η-reducing][η-reduction]” it, noting that `λ x . f x` behaves the same as `f` alone. Nevertheless, we will leave this and likely other definitions in their full, η-long forms for the sake of clarity.
+
 </aside>
 <p>This feels strangely like cheating: surely we’ve only moved the problem around. Now instead of <code>if</code> making the decision about which argument to return, we’ve deferred it to <code>cond</code>. But <code>if</code> and <code>cond</code> aren’t the same, semantically; <code>if</code> takes a boolean and two other arguments and returns one of the latter, while <code>cond</code> <em>is</em> a boolean—albeit evidently a boolean represented as a function. Let’s make that precise by writing down <code>if</code>’s type:</p>
 <pre><code>if : Bool -&gt; a -&gt; a -&gt; a</code></pre>
@@ -211,10 +185,17 @@ if = λ cond then else . else</code></pre>
 <p>Working backwards from the type and definition of <code>if</code>, we see that <code>cond</code> is applied to two arguments, and therefore must be a function of two parameters. Further, these are both of type <code>a</code>, and the value it returns must also be of type <code>a</code> for <code>if</code>’s type to hold. Thus, we can define the type <code>Bool</code> like so:</p>
 <pre><code>Bool = ∀ a . a -&gt; a -&gt; a</code></pre>
 <aside>
-<p>I’m making explicit use of the for-all quantifier here to drive home the point that any particular <code>Bool</code> value must be able to be applied to <code>then</code> and <code>else</code> values of any arbitrary type <code>a</code>, defined now or in the future.</p>
-<p>By the same token, we could have written <code>if</code>’s type more explicitly as:</p>
-<pre><code>if : ∀ a . Bool -&gt; a -&gt; a -&gt; a</code></pre>
-<p>Here and in future, local type variables can be assumed to be implicitly generalized in the same manner as Haskell if not otherwise quantified.</p>
+
+I’m making explicit use of the for-all quantifier here to drive home the point that any particular `Bool` value must be able to be applied to `then` and `else` values of any arbitrary type `a`, defined now or in the future.
+
+By the same token, we could have written `if`’s type more explicitly as:
+
+```
+if : ∀ a . Bool -> a -> a -> a
+```
+
+Here and in future, local type variables can be assumed to be implicitly generalized in the same manner as Haskell if not otherwise quantified.
+
 </aside>
 <p>If a given <code>Bool</code> is a function of two arguments of arbitrary type, returning the same type, it must therefore select one of its arguments to return. There are only two distinguishable inhabitants of <code>Bool</code>, <code>true</code> and <code>false</code>, so we can therefore deduce that since <code>if</code> defers the selection of the result to the <code>Bool</code>, for <code>true</code> and <code>false</code> to actually differ they must make opposite selections. In other words, <code>true</code> must return the <code>then</code> parameter, while <code>false</code> must return the <code>else</code> one:</p>
 <pre><code>true, false : Bool
@@ -222,9 +203,15 @@ true  = λ then else . then
 false = λ then else . else</code></pre>
 <p>We didn’t move the problem around after all; we solved it. What we noticed was a deeper insight: this encoding of booleans makes <code>if</code> redundant, since if we can apply <code>if</code> to a <code>Bool</code> and two arguments, we could equally apply the <code>Bool</code> to those arguments directly.</p>
 <aside>
-<p>We chose to define <code>if</code> as applying the <code>Bool</code> to the other arguments in the same order it received them, but we could just as easily have swapped them:</p>
-<pre><code>if = λ cond then else . cond else then</code></pre>
-<p>In this case, <code>if</code> would be more useful since it would preserve our familiar argument ordering. As an exercise for the reader, consider what other effects this difference would have. What are the tradeoffs, syntactically and semantically? When would one or the other definition be more or less convenient?</p>
+
+We chose to define `if` as applying the `Bool` to the other arguments in the same order it received them, but we could just as easily have swapped them:
+
+```
+if = λ cond then else . cond else then
+```
+
+In this case, `if` would be more useful since it would preserve our familiar argument ordering. As an exercise for the reader, consider what other effects this difference would have. What are the tradeoffs, syntactically and semantically? When would one or the other definition be more or less convenient?
+
 </aside>
 <p>It’s frequently convenient to conflate booleans with bits, their minimal representation, but in truth they’re not the same at all. Practically, some programming languages define booleans as a byte in memory, perhaps clamping its values to 0 and 1; others define them as instances of some boolean class, or constructors of an algebraic datatype. Some provide no formal relationship between <code>true</code> and <code>false</code> at all, save for a common interface—duck typing.</p>
 <p>Mathematically, booleans are the values in propositional logic; the upper and lower bounds of a lattice; the zero and one of a semiring; the members of the set with cardinality 2; and many other things in many different contexts.</p>
@@ -236,7 +223,9 @@ not = λ x . ?</code></pre>
 <p>As when defining <code>if</code>, all we can do with a <code>Bool</code> is branch on it:</p>
 <pre><code>not = λ x . if x ? ?</code></pre>
 <aside>
-<p>As discussed in a previous aside, <code>if</code> is operationally redundant—i.e. <code>if x y z</code> is operationally equivalent to <code>x y z</code>—given the ordering of arguments to <code>Bool</code>s which we selected earlier. It is, however, pleasantly evocative, and so is used for clarity and so we can stop talking about that ordering decision.</p>
+
+As discussed in a previous aside, `if` is operationally redundant—i.e. `if x y z` is operationally equivalent to `x y z`—given the ordering of arguments to `Bool`s which we selected earlier. It is, however, pleasantly evocative, and so is used for clarity and so we can stop talking about that ordering decision.
+
 </aside>
 <p>But which arguments should we pass if we wish to return a <code>Bool</code> with the opposite value? Recall the definition of <code>Bool</code> from above:</p>
 <pre><code>Bool = ∀ a . a -&gt; a -&gt; a</code></pre>
@@ -247,12 +236,23 @@ not = λ x . ?</code></pre>
 not false = true</code></pre>
 <p>Which is precisely the meaning we intended <code>not</code> to have.</p>
 <aside>
-<p>Note that this is not the only way that we could have implemented <code>not</code>.</p>
-<p><code>not</code>’s type is <code>Bool -&gt; Bool</code>, which is equivalent to <code>(∀ a . a -&gt; a -&gt; a) -&gt; ∀ a . a -&gt; a -&gt; a</code> Thus, we could also define <code>not</code> by taking the extra arguments that the <em>result</em> <code>Bool</code> will be applied to, and using them directly, though in the opposite order:</p>
-<pre><code>not = λ x then else . if x else then</code></pre>
-<p>Or equivalently, but perhaps <em>slightly</em> more familiar:</p>
-<pre><code>not = λ x . λ then else . if x else then</code></pre>
-<p>This style of definition can be surprising if you’re not used to so-called “curried functions” as commonly used in e.g. Haskell, but it’s operationally equivalent to the definition developed above. As an exercise, try to work out why that equivalence holds.</p>
+
+Note that this is not the only way that we could have implemented `not`.
+
+`not`’s type is `Bool -> Bool`, which is equivalent to `(∀ a . a -> a -> a) -> ∀ a . a -> a -> a` Thus, we could also define `not` by taking the extra arguments that the _result_ `Bool` will be applied to, and using them directly, though in the opposite order:
+
+```
+not = λ x then else . if x else then
+```
+
+Or equivalently, but perhaps _slightly_ more familiar:
+
+```
+not = λ x . λ then else . if x else then
+```
+
+This style of definition can be surprising if you’re not used to so-called “curried functions” as commonly used in e.g. Haskell, but it’s operationally equivalent to the definition developed above. As an exercise, try to work out why that equivalence holds.
+
 </aside>
 <p><code>or</code> and <code>and</code> are closely related to one another, so we’ll define them simultaneously. Both take two <code>Bool</code>s and return a <code>Bool</code>:</p>
 <pre><code>or, and : Bool -&gt; Bool -&gt; Bool
@@ -274,7 +274,9 @@ and = λ x y . if x (if y true false) false</code></pre>
 <pre><code>or  = λ x y . if x true y
 and = λ x y . if x y    false</code></pre>
 <aside>
-<p>As an exercise, define <code>xor : Bool -&gt; Bool -&gt; Bool</code>.</p>
+
+As an exercise, define `xor : Bool -> Bool -> Bool`.
+
 </aside>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this post, we’ve explored defining a ubiquitous programming language feature—booleans—using nothing more than the spartan trappings of the lambda calculus. We’ve emerged with a language which can express not merely functions and their applications, but also fundamental metaphysical concepts such as truth.</p>
