@@ -332,6 +332,9 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             <div class="rule">
               <p><span class="pos">~</span>(<span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup>) ≈ <span class="var neg">B</span><sup class="neg">−</sup> <span class="pos">⤚</span> <span class="var pos">A</span><sup class="pos">+</sup></p>
             </div>
+            <div class="rule">
+              <p><span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup> ≈ <span class="neg">¬</span><span class="var pos">A</span><sup class="pos">+</sup> <span class="neg">⅋</span> <span class="var neg">B</span><sup class="neg">−</sup></p>
+            </div>
           </div>
         </div>
       </td>
