@@ -248,7 +248,9 @@ div.column {
 }
 
 .var.neg,
-.var.pos {
+.var.pos,
+.E,
+.R {
   font-weight: normal;
 }
 

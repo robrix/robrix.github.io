@@ -456,11 +456,11 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           <div class="rule">
             <div class="label"><span class="neg">¬̷</span>⊢</div>
             <div class="inference">
-              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">-</sup>] <span class="context Γ">Γ</span></div>
+              <div class="premise Γ">[<span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
               <div class="premise Δ"><span class="context Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ">[<span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">-</sup>] <span class="context Γ">Γ</span></div>
+              <div class="conclusion Γ">[<span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">−</sup>] <span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
               <div class="conclusion Δ"><span class="context Δ">Δ</span></div>
             </div>
@@ -469,17 +469,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             <div class="inference">
               <div class="premise Γ"><span class="context Γ">Γ</span></div>
               <div class="premise turnstile">⊢</div>
-              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">-</sup></div>
+              <div class="premise Δ"><span class="context Δ">Δ</span>, <span class="var neg">A</span><sup class="neg">−</sup></div>
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="context Γ">Γ</span></div>
               <div class="conclusion turnstile">⊢</div>
-              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">-</sup></div>
+              <div class="conclusion Δ"><span class="context Δ">Δ</span>, <span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">−</sup></div>
             </div>
             <div class="label">⊢<span class="neg">¬̷</span></div>
           </div>
           <div class="connective">
             <div class="rule">
-              <p><span class="pos">~</span><span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">-</sup> ≈ <span class="var neg">A</span><sup class="neg">-</sup></p>
+              <p><span class="pos">~</span><span class="neg">¬̷</span><span class="var neg">A</span><sup class="neg">−</sup> ≈ <span class="var neg">A</span><sup class="neg">−</sup></p>
             </div>
           </div>
         </div>
@@ -554,7 +554,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           </div>
           <div class="connective">
             <div class="rule">
-              <p>(<span class="var">A</span> <span class="neg">→</span> <span class="var">B</span>)<sup>N</sup> = <span class="pos">↓</span>(<span class="var">A</span><sup>N</sup>) <span class="neg">→</span> <span class="var">B</span></p>
+              <p>(<span class="var">A</span> <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup>)<sup class="neg">N</sup> = <span class="pos">↓</span>(<span class="var">A</span><sup class="neg">N</sup>) <span class="neg">→</span> <span class="var neg">B</span><sup class="neg">−</sup></p>
             </div>
           </div>
         </div>
@@ -587,7 +587,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           </div>
           <div class="connective">
             <div class="rule">
-              <p>(<span class="var">A</span> <span class="neg">→</span> <span class="var">B</span>)<sup>V</sup> = <span class="pos">↓</span>(<span class="var">A</span><sup>V</sup> <span class="neg">→</span> <span class="neg">↑</span>(<span class="var">B</span><sup>V</sup>))</p>
+              <p>(<span class="var">A</span> <span class="neg">→</span> <span class="var">B</span>)<sup class="pos">V</sup> = <span class="pos">↓</span>(<span class="var">A</span><sup class="pos">V</sup> <span class="neg">→</span> <span class="neg">↑</span>(<span class="var">B</span><sup class="pos">V</sup>))</p>
             </div>
           </div>
         </div>
