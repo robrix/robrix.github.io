@@ -271,7 +271,7 @@ div.column {
 
 .neg>sup,
 .pos>sup {
-  font-weight: normal;
+  font-weight: bold;
 }
 
 table>tbody>tr>th>h3 {
