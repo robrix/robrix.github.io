@@ -177,6 +177,10 @@ div.axiom {
   grid-column: 1 / -1;
   height: 1.75rem;
   line-height: 1.8rem;
+  text-align: center;
+}
+div.axiom::after {
+  content: "∎"
 }
 
 .rule div.axiom,
