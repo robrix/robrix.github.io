@@ -240,13 +240,10 @@ div.column {
 
 .neg {
   color: rgb(150, 150, 255);;
+  font-weight: bold;
 }
 .pos {
   color: rgb(255, 150, 150);
-}
-
-sup.neg,
-sup.pos {
   font-weight: bold;
 }
 
