@@ -504,10 +504,12 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span><span class="not-untrue"><span class="op">¬̷<span class="var neg">A<sup>−</sup></span></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span>
+        <div><span class="negate"><span class="op">∼</span><span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span></div>
+        <div><span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span> ≈ <span class="implication"><span class="one op E">1</span> <span class="op">→</span> <span class="var neg">A<sup>−</sup></span></span></div>
       </td>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span>
+        <div><span class="not"><span class="op">¬</span><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span></div>
+        <div><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span> ≈ <span class="coimplication"><span class="bottom R"><span class="op">⊥</span></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span></div>
       </td>
     </tr>
   </tbody>
