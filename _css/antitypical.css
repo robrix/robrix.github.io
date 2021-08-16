@@ -23,79 +23,7 @@ figure.connective figcaption {
 
 /* inference rule presentations */
 
-table.rule {
-  float: none;
-  width: auto;
-}
-
-table.rule td sub {
-  font-size: 60%;
-  /* vertical-align: text-bottom; */
-  line-height: 0;
-}
-
-table.rule td.label {
-  font-size: 75%;
-  padding: 6px;
-}
-
-table.rule.left td.turnstile,
-table.rule.right td.turnstile {
-  text-align: center;
-}
-
-
-
-table.connective > tbody:first-child > tr:first-child > td,
-table.rule > tbody:first-child > tr:first-child > td {
-  border-top: 0;
-}
-
-table.rule td {
-  line-height: 1em;
-  padding: 6px 0;
-  border-color: #666;
-  vertical-align: middle;
-}
-
-table.rule.left td {
-  text-align: right;
-}
-
-table.rule.right td {
-  text-align: left;
-}
-
-table.rule td.turnstile {
-  padding: 6px;
-}
-
-table.rule.left td.Δ {
-  text-align: left;
-}
-
-table.rule.right td.Γ {
-  text-align: right;
-}
-
-
-table.connective {
-  float: none;
-  width: auto;
-  margin: 0 auto;
-}
-
-table.connective td.left {
-  text-align: right;
-  float: none;
-}
-
-table.connective td.right {
-  text-align: left;
-  float: none;
-}
-
-table>tbody>tr>th {
+table > tbody > tr > th {
   vertical-align: top;
 }
 
@@ -107,12 +35,6 @@ figure.connective {
   grid-template-columns: repeat(2, auto);
   gap: 24px;
   width: max-content;
-  justify-items: center;
-  margin-bottom: 1em;
-}
-
-.connective .connective {
-  grid-column: 1 / -1;
 }
 
 .rule {
@@ -130,11 +52,16 @@ figure.connective {
   font-family: "Computer Modern Serif", sans-serif;
 }
 
-.rule.left, .rule.right {
-  float: none;
+.equivalence {
+  text-align: center;
 }
 
-div.column .rule+.rule {
+/* .rule.left, .rule.right {
+  float: none;
+} */
+
+div.left .rule + .rule,
+div.right .rule + .rule {
   margin-top: 1em;
 }
 
@@ -226,8 +153,7 @@ div.axiom::after {
 }
 
 /* Hack to workaround pandoc’s insistence on inserting unwanted empty paragraph tags despite being told never to mess with HTML blocks. */
-.rule p:empty,
-.connective p:empty {
+p:empty {
   display: none;
 }
 
@@ -309,6 +235,9 @@ sup.V {
 }
 
 @media screen and (min-width: 92rem) {
+  table.ruleset > tbody > tr > th {
+    padding: 0;
+  }
   table>tbody>tr>th>h3 {
     position: absolute;
     float: left;

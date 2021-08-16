@@ -31,8 +31,8 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
     <tr>
       <td>
         <div class="connective">
-          <div class="column">
-            <div class="rule left">
+          <div class="left">
+            <div class="rule">
               <div class="label"><span class="with op">&amp;</span><sub>1</sub></div>
               <div class="inference">
                 <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
@@ -44,7 +44,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
                 <div class="conclusion Δ"><span class="Δ">Δ</span></div>
               </div>
             </div>
-            <div class="rule left">
+            <div class="rule">
               <div class="label"><span class="with op">&amp;</span><sub>2</sub></div>
               <div class="inference">
                 <div class="premise Γ"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
@@ -68,11 +68,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="with op">&amp;</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="negate"><span class="op">∼</span>(<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="sum op">⊕</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -88,8 +83,8 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="conclusion"><span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
-          <div class="column">
-            <div class="rule right">
+          <div class="right">
+            <div class="rule">
               <div class="inference">
                 <div class="premise Γ"><span class="Γ">Γ</span></div>
                 <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -101,7 +96,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               </div>
               <div class="label"><span class="sum op">⊕</span><sub>1</sub></div>
             </div>
-            <div class="rule right">
+            <div class="rule">
               <div class="inference">
                 <div class="premise Γ"><span class="Γ">Γ</span></div>
                 <div class="premise turnstile"><span class="turnstile">⊢</span></div>
@@ -114,12 +109,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
               <div class="label"><span class="sum op">⊕</span><sub>2</sub></div>
             </div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="not"><span class="op">¬</span>(<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>)</span> ≈ <span class="with"><span class="negate"><span class="op">∼</span><span class="var pos">A<sup>+</sup></span></span> <span class="op">&amp;</span> <span class="negate"><span class="op">∼</span><span class="var pos">B<sup>+</sup></span></span></span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        <span class="not"><span class="op">¬</span>(<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>)</span> ≈ <span class="with"><span class="negate"><span class="op">∼</span><span class="var pos">A<sup>+</sup></span></span> <span class="op">&amp;</span> <span class="negate"><span class="op">∼</span><span class="var pos">B<sup>+</sup></span></span></span>
+      </td>
+      <td class="equivalence">
+        <span class="negate"><span class="op">∼</span>(<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="sum op">⊕</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span>
       </td>
     </tr>
     <tr>
@@ -136,11 +134,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="top">⊤</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="negate"><span class="op">∼</span><span class="top">⊤</span></span> ≈ <span class="zero">0</span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -156,12 +149,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
           <div class="rule right">
             <p>no right rule for <span class="zero">0</span></p>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="not"><span class="op">¬</span><span class="zero">0</span></span> ≈ <span class="top">⊤</span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        <span class="negate"><span class="op">∼</span><span class="top">⊤</span></span> ≈ <span class="zero">0</span>
+      </td>
+      <td class="equivalence">
+        <span class="not"><span class="op">¬</span><span class="zero">0</span></span> ≈ <span class="top">⊤</span>
       </td>
     </tr>
   </tbody>
@@ -197,11 +193,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="par op">⅋</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="negate"><span class="op">∼</span>(<span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="tensor"><span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="op">⊗</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span></span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -229,12 +220,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="tensor op">⊗</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="not"><span class="op">¬</span></span>(<span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>) ≈ <span class="par"><span class="not op">∼</span><span class="var pos">A<sup>+</sup></span> <span class="op">⅋</span> <span class="not op">∼</span><span class="var pos">B<sup>+</sup></span></span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        <span class="negate"><span class="op">∼</span>(<span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="tensor"><span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="op">⊗</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span></span>
+      </td>
+      <td class="equivalence">
+        <span class="not"><span class="op">¬</span></span>(<span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>) ≈ <span class="par"><span class="not op">∼</span><span class="var pos">A<sup>+</sup></span> <span class="op">⅋</span> <span class="not op">∼</span><span class="var pos">B<sup>+</sup></span></span>
       </td>
     </tr>
     <tr>
@@ -260,11 +254,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="bottom op R">⊥</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="negate"><span class="op">∼</span><span class="bottom op R">⊥</span></span> ≈ <span class="one op E">1</span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -289,12 +278,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="one op E">1</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="not"><span class="op">¬</span></span><span class="one op E">1</span> ≈ <span class="bottom op R">⊥</span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        <span class="negate"><span class="op">∼</span><span class="bottom op R">⊥</span></span> ≈ <span class="one op E">1</span>
+      </td>
+      <td class="equivalence">
+        <span class="not"><span class="op">¬</span></span><span class="one op E">1</span> ≈ <span class="bottom op R">⊥</span>
       </td>
     </tr>
   </tbody>
@@ -330,14 +322,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="implication op">→</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="negate"><span class="op">∼</span></span>(<span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>) ≈ <span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>
-            </div>
-            <div class="equivalence">
-              <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span> ≈ <span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span> <span class="par op">⅋</span> <span class="var neg">B<sup>−</sup></span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -365,15 +349,17 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="coimplication op">⤚</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="not"><span class="op">¬</span></span>(<span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>) ≈ <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>
-            </div>
-            <div class="equivalence">
-              <span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var pos">A<sup>+</sup></span> <span class="tensor op">⊗</span> <span class="var neg">B<sup>−</sup></span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        <div><span class="negate"><span class="op">∼</span></span>(<span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>) ≈ <span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span></div>
+        <div><span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span> ≈ <span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span> <span class="par op">⅋</span> <span class="var neg">B<sup>−</sup></span></div>
+      </td>
+      <td class="equivalence">
+        <div><span class="not"><span class="op">¬</span></span>(<span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>) ≈ <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span></div>
+        <div><span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var pos">A<sup>+</sup></span> <span class="tensor op">⊗</span> <span class="var neg">B<sup>−</sup></span></div>
       </td>
     </tr>
   </tbody>
@@ -410,11 +396,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="not"><span class="op">¬</span></span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="negate"><span class="op">∼</span><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -443,12 +424,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="negate"><span class="op">∼</span></span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="not"><span class="op">¬</span><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        <span class="negate"><span class="op">∼</span><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span>
+      </td>
+      <td class="equivalence">
+        <span class="not"><span class="op">¬</span><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span>
       </td>
     </tr>
   </tbody>
@@ -485,11 +469,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="not-untrue op">¬̷</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="negate"><span class="op">∼</span><span class="not-untrue"><span class="op">¬̷<span class="var neg">A<sup>−</sup></span></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -518,12 +497,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="true op">✓</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="not"><span class="op">¬</span><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        <span class="negate"><span class="op">∼</span><span class="not-untrue"><span class="op">¬̷<span class="var neg">A<sup>−</sup></span></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span>
+      </td>
+      <td class="equivalence">
+        <span class="not"><span class="op">¬</span><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span>
       </td>
     </tr>
   </tbody>
@@ -560,11 +542,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="up-shift op">↑</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              (<span class="implication"><span class="var">A</span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>)<sup class="N">N</sup> = <span class="implication"><span class="down-shift"><span class="op">↓</span>(<span class="var">A</span><sup class="N">N</sup>)</span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -593,12 +570,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="down-shift op">↓</span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              (<span class="implication"><span class="var">A</span> <span class="op">→</span> <span class="var">B</span></span>)<sup class="V">V</sup> = <span class="implication"><span class="down-shift"><span class="op">↓</span>(<span class="var">A</span><sup class="V">V</sup> <span class="op">→</span> <span class="up-shift"><span class="op">↑</span>(<span class="var">B</span><sup class="V">V</sup>)</span>)</span></span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        (<span class="implication"><span class="var">A</span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>)<sup class="N">N</sup> = <span class="implication"><span class="down-shift"><span class="op">↓</span>(<span class="var">A</span><sup class="N">N</sup>)</span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>
+      </td>
+      <td class="equivalence">
+        (<span class="implication"><span class="var">A</span> <span class="op">→</span> <span class="var">B</span></span>)<sup class="V">V</sup> = <span class="implication"><span class="down-shift"><span class="op">↓</span>(<span class="var">A</span><sup class="V">V</sup> <span class="op">→</span> <span class="up-shift"><span class="op">↑</span>(<span class="var">B</span><sup class="V">V</sup>)</span>)</span></span>
       </td>
     </tr>
   </tbody>
@@ -634,11 +614,6 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="for-all"><span class="op">∀</span></span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="negate"><span class="op">∼</span>(<span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span>)</span> ≈ <span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span>
-            </div>
-          </div>
         </div>
       </td>
       <td>
@@ -666,12 +641,15 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
             </div>
             <div class="label"><span class="there-exists"><span class="op">∃</span></span></div>
           </div>
-          <div class="connective">
-            <div class="equivalence">
-              <span class="not"><span class="op">¬</span>(<span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>)</span> ≈ <span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span>
-            </div>
-          </div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="equivalence">
+        <span class="negate"><span class="op">∼</span>(<span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span>)</span> ≈ <span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span>
+      </td>
+      <td class="equivalence">
+        <span class="not"><span class="op">¬</span>(<span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>)</span> ≈ <span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span>
       </td>
     </tr>
   </tbody>
