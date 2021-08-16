@@ -484,10 +484,12 @@
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span>
+        <div><span class="negate"><span class="op">∼</span><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span></div>
+        <div><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="bottom op R">⊥</span></span></div>
       </td>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span>
+        <div><span class="not"><span class="op">¬</span><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span></div>
+        <div><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="coimplication"><span class="var neg">A<sup>−</sup></span> <span class="op">⤚</span> <span class="one op E">1</span></span></div>
       </td>
     </tr>
   </tbody>
