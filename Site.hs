@@ -22,6 +22,9 @@ main = hakyllWith defaultConfiguration{ destinationDirectory = "docs" } $ do
   match "_css/*" $
     compile compressCssCompiler
 
+  match "_js/*" $
+    compile copyFileCompiler
+
   create ["css/stylesheet.css"] $ do
     route idRoute
     compile $ do
