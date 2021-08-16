@@ -131,18 +131,14 @@ div.axiom::after {
   text-align: center;
 }
 
-.turnstile.E::after,
-.one.E::after {
+.E::after {
   content: "E";
 }
-.turnstile.R::after,
-.bottom.R::after {
+.R::after {
   content: "R";
 }
-.turnstile.E::after,
-.turnstile.R::after,
-.one.E::after,
-.bottom.R::after {
+.E::after,
+.R::after {
   vertical-align: sub;
   font-size: 60%;
   line-height: 0;
@@ -205,13 +201,12 @@ div.column {
 .top,
 .par.op, .par > .op,
 .bottom.op, .bottom > .op,
-.bottom.R::after,
 .implication.op, .implication > .op,
 .not.op, .not > .op,
 .not-untrue.op, .not-untrue > .op,
 .up-shift.op, .up-shift > .op,
 .for-all.op, .for-all > .op,
-.turnstile.R::after,
+.R::after,
 sub.R,
 sup.N {
   color: rgb(150, 150, 255);;
@@ -222,13 +217,12 @@ sup.N {
 .zero,
 .tensor.op, .tensor > .op,
 .one.op, .one > .op,
-.one.E::after,
 .coimplication.op, .coimplication > .op,
 .negate.op, .negate > .op,
 .true.op, .true > .op,
 .down-shift.op, .down-shift > .op,
 .there-exists.op, .there-exists > .op,
-.turnstile.E::after,
+.E::after,
 sub.E,
 sup.V {
   color: rgb(255, 150, 150);

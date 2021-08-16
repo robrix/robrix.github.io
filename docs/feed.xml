@@ -242,11 +242,11 @@
       <td>
         <div class="connective">
           <div class="rule left">
-            <div class="label"><span class="bottom op R">⊥</span></div>
+            <div class="label"><span class="bottom"><span class="op R">⊥</span></span></div>
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="focus">[<span class="bottom op R">⊥</span>]</span> <span class="Γ">Γ</span> <span class="turnstile R">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="focus">[<span class="bottom"><span class="op R">⊥</span></span>]</span> <span class="Γ">Γ</span> <span class="turnstile R">⊢</span> <span class="Δ">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
@@ -257,22 +257,22 @@
               <span class="line-of-inference"></span>
               <div class="conclusion Γ"><span class="Γ">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile R">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="bottom op R">⊥</span></div>
+              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="bottom"><span class="op R">⊥</span></span></div>
             </div>
-            <div class="label"><span class="bottom op R">⊥</span></div>
+            <div class="label"><span class="bottom"><span class="op R">⊥</span></span></div>
           </div>
         </div>
       </td>
       <td>
         <div class="connective">
           <div class="rule left">
-            <div class="label"><span class="one op E">1</span></div>
+            <div class="label"><span class="one"><span class="op E">1</span></span></div>
             <div class="inference">
               <div class="premise Γ"><span class="Γ">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile E">⊢</span></div>
               <div class="premise Δ"><span class="Δ">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="one op E">1</span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="one"><span class="op E">1</span></span>, <span class="Γ">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile E">⊢</span></div>
               <div class="conclusion Δ"><span class="Δ">Δ</span></div>
             </div>
@@ -281,19 +281,19 @@
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile E">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="one op E">1</span>]</span></div>
+              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile E">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="one"><span class="op E">1</span></span>]</span></div>
             </div>
-            <div class="label"><span class="one op E">1</span></div>
+            <div class="label"><span class="one"><span class="op E">1</span></span></div>
           </div>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span><span class="bottom op R">⊥</span></span> ≈ <span class="one op E">1</span>
+        <span class="negate"><span class="op">∼</span><span class="bottom"><span class="op R">⊥</span></span></span> ≈ <span class="one"><span class="op E">1</span></span>
       </td>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span></span><span class="one op E">1</span> ≈ <span class="bottom op R">⊥</span>
+        <span class="not"><span class="op">¬</span></span><span class="one"><span class="op E">1</span></span> ≈ <span class="bottom"><span class="op R">⊥</span></span>
       </td>
     </tr>
   </tbody>
@@ -437,11 +437,11 @@
     <tr>
       <td class="equivalence">
         <div><span class="negate"><span class="op">∼</span><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span></div>
-        <div><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="bottom op R">⊥</span></span></div>
+        <div><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="bottom"><span class="op R">⊥</span></span></span></div>
       </td>
       <td class="equivalence">
         <div><span class="not"><span class="op">¬</span><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span></div>
-        <div><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="coimplication"><span class="var neg">A<sup>−</sup></span> <span class="op">⤚</span> <span class="one op E">1</span></span></div>
+        <div><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="coimplication"><span class="var neg">A<sup>−</sup></span> <span class="op">⤚</span> <span class="one"><span class="op E">1</span></span></span></div>
       </td>
     </tr>
   </tbody>
@@ -512,7 +512,7 @@
     <tr>
       <td class="equivalence">
         <div><span class="negate"><span class="op">∼</span><span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span></span> ≈ <span class="var neg">A<sup>−</sup></span></div>
-        <div><span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span> ≈ <span class="implication"><span class="one op E">1</span> <span class="op">→</span> <span class="var neg">A<sup>−</sup></span></span></div>
+        <div><span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span> ≈ <span class="implication"><span class="one"><span class="op E">1</span></span> <span class="op">→</span> <span class="var neg">A<sup>−</sup></span></span></div>
       </td>
       <td class="equivalence">
         <div><span class="not"><span class="op">¬</span><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span></span> ≈ <span class="var pos">A<sup>+</sup></span></div>
