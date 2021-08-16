@@ -308,10 +308,12 @@ sup.V {
   color: rgb(255, 150, 150);
 }
 
-table>tbody>tr>th>h3 {
-  position: absolute;
-  float: left;
-  text-align: right;
-  margin-left: -100%;
-  width: 100%;
+@media screen and (min-width: 92rem) {
+  table>tbody>tr>th>h3 {
+    position: absolute;
+    float: left;
+    text-align: right;
+    margin-left: -100%;
+    width: 100%;
+  }
 }
