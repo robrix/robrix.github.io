@@ -11,7 +11,7 @@ Rules for sequent calculus connectives, formatted as a cheat sheet.
 
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
 
-<table class="borderless">
+<table class="borderless ruleset">
   <colgroup>
     <col class="negative">
     <col class="positive">

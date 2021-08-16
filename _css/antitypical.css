@@ -317,3 +317,13 @@ sup.V {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 72rem) {
+  table.ruleset>tbody>tr>td {
+    float: left;
+    width: 100%;
+  }
+  table.ruleset>tbody>tr>td::after {
+    clear: both;
+  }
+}
