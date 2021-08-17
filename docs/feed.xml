@@ -146,21 +146,6 @@
 
 <script type="module" src="../../js/sequent.js"></script>
 
-<details>
-  <div>
-    <seq-inference class="implication" name="→" right neg>
-      <seq-sequent slot="premise">
-        <span class="context" slot="left"><seq-var pos>A</seq-var>, <span class="metavar">Γ</span></span>
-        <span class="context" slot="right"><span class="metavar">Δ</span>, <seq-var neg>B</seq-var></span>
-      </seq-sequent>
-      <seq-sequent slot="conclusion">
-        <span class="context" slot="left"><span class="metavar">Γ</span></span>
-        <span class="context" slot="right"><span class="metavar">Δ</span>, <seq-conn slot="right" class="implication" name="→" neg><seq-var slot="left" pos>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-conn></span>
-      </seq-sequent>
-    </seq-inference>
-  </div>
-</details>
-
 <table class="borderless ruleset">
   <colgroup>
     <col class="negative">
