@@ -77,11 +77,20 @@ categories: logic, plt
     background: #666;
     height: 1px;
   }
+  div.axiom {
+    grid-column: 1 / -1;
+    height: 1.75rem;
+    line-height: 1.8rem;
+    text-align: center;
+  }
+  div.axiom::after {
+    content: "∎"
+  }
   </style>
   <div id="rule">
     <div id="label"><slot name="label"></slot></div>
     <div id="inference">
-      <slot name="premise"></slot>
+      <slot name="premise"><div class="axiom"></div></slot>
       <span id="line-of-inference"></span>
       <slot name="conclusion"></slot>
     </div>
@@ -260,12 +269,13 @@ categories: logic, plt
             <p>no left rule for <span class="top">⊤</span></p>
           </div>
           <div class="rule right">
-            <div class="inference">
-              <div class="axiom"></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>, <span class="top">⊤</span></div>
-            </div>
-            <div class="label"><span class="top">⊤</span></div>
+            <seq-inference name="⊤" right neg>
+              <div class="label" slot="label"><span class="top op">⊤</span></div>
+              <seq-sequent slot="conclusion">
+                <span slot="left"><span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span>, <span class="top">⊤</span></span>
+              </seq-sequent>
+            </seq-inference>
           </div>
         </div>
       </td>
