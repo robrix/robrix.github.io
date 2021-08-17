@@ -35,21 +35,34 @@ figure.connective {
   grid-template-columns: repeat(2, auto);
   gap: 24px;
   width: max-content;
+  align-items: center;
+}
+
+#with {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  width: max-content;
+  align-items: center;
 }
 
 .rule {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
+  display: flex;
+  flex-direction: row;
   gap: 2px;
   width: max-content;
   align-items: center;
 }
 
+:root {
+  --sequent-font: "Computer Modern Serif", sans-serif;
+  --sequent-neg-colour: rgb(150, 150, 255);
+  --sequent-pos-colour: rgb(255, 150, 150);
+}
 .rule, .equivalence {
   font-size: 1.25rem;
   line-height: 1.8rem;
   font-weight: 100;
-  font-family: "Computer Modern Serif", sans-serif;
+  font-family: var(--sequent-font);
 }
 
 .equivalence {
@@ -60,9 +73,10 @@ figure.connective {
   float: none;
 } */
 
-div.left .rule + .rule,
-div.right .rule + .rule {
-  margin-top: 1em;
+div.left-rules, div.right-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .rule div.label {
@@ -76,21 +90,16 @@ div.right .rule + .rule {
 }
 
 div.premises {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 24px;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
   width: max-content;
 }
 
-div.premises~div.conclusion {
+div.premises ~ div.conclusion {
   text-align: center;
-}
-
-.left div.premises~div.conclusion {
-  text-align: right;
-}
-.right div.premises~div.conclusion {
-  text-align: left;
+  grid-column: 1 / -1;
 }
 
 div.inference {
@@ -174,12 +183,11 @@ figure.section {
 
 span.function,
 span.var,
-span.Γ,
-span.Δ {
+span.metavar {
   font-style: italic;
 }
 
-.var>sup {
+.var > sup {
   font-style: normal;
 }
 
@@ -188,11 +196,12 @@ span.Γ, span.Δ {
 }
 
 div.column {
-  display: grid;
-  grid-template-columns: repeat(1, auto);
+  display: flex;
+  flex-direction: column;
   gap: 1em;
   width: 100%;
   justify-items: center;
+  align-items: center;
 }
 
 .neg,
@@ -209,7 +218,7 @@ div.column {
 .R::after,
 sub.R,
 sup.N {
-  color: rgb(150, 150, 255);;
+  color: var(--sequent-neg-colour);
 }
 .pos,
 .pos > sup,
@@ -225,7 +234,7 @@ sup.N {
 .E::after,
 sub.E,
 sup.V {
-  color: rgb(255, 150, 150);
+  color: var(--sequent-pos-colour);
 }
 
 @media screen and (min-width: 92rem) {

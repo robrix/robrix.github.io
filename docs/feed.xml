@@ -8,16 +8,159 @@
         <name>Rob Rix</name>
         <email>rob.rix@me.com</email>
     </author>
-    <updated>2021-08-14T00:00:00Z</updated>
+    <updated>2021-08-14T23:01:02Z</updated>
     <entry>
     <title>Sequent calculus cheat sheet</title>
     <link href="https://antitypical.com/posts/2021-08-14-sequent-calculus-cheat-sheet/index.html" />
     <id>https://antitypical.com/posts/2021-08-14-sequent-calculus-cheat-sheet/index.html</id>
-    <published>2021-08-14T00:00:00Z</published>
-    <updated>2021-08-14T00:00:00Z</updated>
+    <published>2021-08-14T23:01:02Z</published>
+    <updated>2021-08-14T23:01:02Z</updated>
     <summary type="html"><![CDATA[<p>Rules for sequent calculus connectives, formatted as a cheat sheet.</p>
+
 <!--more-->
-<p><link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css"></p>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+
+<template id="seq-var"><style type="text/css">
+  .var {
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.8rem;
+    font-weight: 100;
+    font-family: var(--sequent-font);
+  }
+  :host([neg]) {
+    color: var(--sequent-neg-colour);
+  }
+  :host([pos]) {
+    color: var(--sequent-pos-colour);
+  }
+  sup {
+    font-style: normal;
+    font-size: 60%;
+    line-height: 0;
+  }
+  </style><span class="var"><slot></slot><sup id="polarity"></sup></span></template>
+
+<template id="seq-conn"><style type="text/css">
+  :host([neg]) #op {
+    color: var(--sequent-neg-colour);
+  }
+  :host([pos]) #op {
+    color: var(--sequent-pos-colour);
+  }
+  </style><slot name="left"></slot>
+  <span id="op"></span>
+  <slot name="right"></slot></template>
+
+<template id="seq-rule">
+  <style type="text/css">
+  #rule {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    width: max-content;
+    align-items: center;
+    font-family: var(--sequent-font);
+  }
+  :host([left]) #rule {
+    flex-direction: row;
+  }
+  :host([right]) #rule {
+    flex-direction: row-reverse;
+  }
+  #label {
+    font-size: 75%;
+    padding: 6px;
+  }
+  #inference {
+    font-size: 1.25rem;
+    line-height: 1.8rem;
+    font-weight: 100;
+    display: grid;
+    grid-template-columns: auto max-content auto;
+    gap: 2px 0;
+    width: max-content;
+  }
+  #line-of-inference {
+    grid-column: 1 / -1;
+    background: #666;
+    height: 1px;
+  }
+  </style>
+  <div id="rule">
+    <div id="label"><slot name="label"></slot></div>
+    <div id="inference">
+      <slot name="premise"></slot>
+      <span id="line-of-inference"></span>
+      <slot name="conclusion"></slot>
+    </div>
+  </div>
+</template>
+
+<template id="seq-sequent">
+  <style type="text/css">
+  .sequent {
+    display: grid;
+    grid-template-columns: auto max-content auto;
+    gap: 2px 0;
+    /* width: max-content; */
+    /* justify-items: center;
+    align-items: center;
+    margin: 0 auto; */
+    /* margin: 0 auto; */
+    width: max-content;
+    font-family: var(--sequent-font);
+  }
+  :host([slot]),
+  :host([slot]) .sequent {
+    display: contents;
+  }
+  :host([slot]) #left,
+  :host([slot]) .turnstile,
+  :host([slot]) #right {
+    padding: 2px 4px;
+  }
+  #left, .turnstile, #right {
+    padding: 2px 4px;
+  }
+  #left {
+    text-align: right;
+  }
+  .turnstile {
+    /* width: min-content; */
+    text-align: center;
+  }
+  #right {
+    text-align: left;
+  }
+  </style>
+  <div class="sequent">
+    <span id="left"><slot name="left"></slot></span>
+    <span class="turnstile">⊢</span>
+    <span id="right"><slot name="right"></slot></span>
+  </div>
+</template>
+
+<template id="seq-focus">[<slot></slot>]</template>
+
+<script type="module" src="../../js/sequent.js"></script>
+
+<details>
+  <div>
+    <seq-inference class="implication" name="→" right neg>
+      <seq-sequent slot="premise">
+        <span class="context" slot="left"><seq-var pos>A</seq-var>, <span class="metavar">Γ</span></span>
+        <span class="context" slot="right"><span class="metavar">Δ</span>, <seq-var neg>B</seq-var></span>
+      </seq-sequent>
+      <seq-sequent slot="conclusion">
+        <span class="context" slot="left"><span class="metavar">Γ</span></span>
+        <span class="context" slot="right"><span class="metavar">Δ</span>, <seq-conn slot="right" class="implication" name="→" neg><seq-var slot="left" pos>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-conn></span>
+      </seq-sequent>
+    </seq-inference>
+  </div>
+</details>
+
 <table class="borderless ruleset">
   <colgroup>
     <col class="negative">
@@ -37,94 +180,102 @@
     </tr>
     <tr>
       <td>
-        <div class="connective">
-          <div class="left">
-            <div class="rule">
-              <div class="label"><span class="with op">&amp;</span><sub>1</sub></div>
-              <div class="inference">
-                <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
-                <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-                <div class="premise Δ"><span class="Δ">Δ</span></div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion Γ"><span class="focus">[<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
-                <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-                <div class="conclusion Δ"><span class="Δ">Δ</span></div>
-              </div>
-            </div>
-            <div class="rule">
-              <div class="label"><span class="with op">&amp;</span><sub>2</sub></div>
-              <div class="inference">
-                <div class="premise Γ"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
-                <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-                <div class="premise Δ"><span class="Δ">Δ</span></div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion Γ"><span class="focus">[<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
-                <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-                <div class="conclusion Δ"><span class="Δ">Δ</span></div>
-              </div>
-            </div>
+        <div id="with" class="connective">
+          <div class="left-rules">
+            <seq-inference class="with" name="&amp;" left neg>
+              <div class="label" slot="label"><span class="with op">&amp;</span><sub>1</sub></div>
+              <seq-sequent slot="premise">
+                <span slot="left"><seq-focus slot="left"><seq-var neg>A</seq-var></seq-focus> <span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span></span>
+              </seq-sequent>
+              <seq-sequent slot="conclusion">
+                <span slot="left"><seq-focus slot="left"><seq-conn class="with" name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-conn></seq-focus> <span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span></span>
+              </seq-sequent>
+            </seq-inference>
+            <seq-inference class="with" name="&amp;" left neg>
+              <div class="label" slot="label"><span class="with op">&amp;</span><sub>2</sub></div>
+              <seq-sequent slot="premise">
+                <span slot="left"><seq-focus slot="left"><seq-var neg>B</seq-var></seq-focus> <span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span></span>
+              </seq-sequent>
+              <seq-sequent slot="conclusion">
+                <span slot="left"><seq-focus slot="left"><seq-conn class="with" name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-conn></seq-focus> <span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span></span>
+              </seq-sequent>
+            </seq-inference>
           </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premises">
-                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
-                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="with"><span class="var neg">A<sup>−</sup></span> <span class="op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span></div>
+          <seq-inference class="with" name="&amp;" right neg>
+            <div class="premises" slot="premise">
+              <seq-sequent>
+                <span slot="left"><span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span>, <seq-var neg>A</seq-var></span>
+              </seq-sequent>
+              <seq-sequent>
+                <span slot="left"><span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span>, <seq-var neg>B</seq-var></span>
+              </seq-sequent>
             </div>
-            <div class="label"><span class="with op">&amp;</span></div>
-          </div>
+            <seq-sequent slot="conclusion">
+              <span slot="left"><span class="metavar">Γ</span></span>
+              <span slot="right"><span class="metavar">Δ</span>, <seq-conn class="with" name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-conn></span>
+            </seq-sequent>
+            <div class="label" slot="label"><span class="with op">&amp;</span></div>
+          </seq-inference>
         </div>
       </td>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="sum op">⊕</span></div>
-            <div class="inference">
-              <div class="premises">
-                <div class="premise"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
-                <div class="premise"><span class="var pos">B<sup>+</sup></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+          <seq-inference class="sum" name="⊕" left pos>
+            <div class="label" slot="label"><span class="sum op">⊕</span></div>
+            <div class="premises" slot="premise">
+              <seq-sequent>
+                <span slot="left"><seq-var pos>A</seq-var>, <span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span></span>
+              </seq-sequent>
+              <seq-sequent>
+                <span slot="left"><seq-var pos>B</seq-var>, <span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span></span>
+              </seq-sequent>
             </div>
-          </div>
-          <div class="right">
-            <div class="rule">
-              <div class="inference">
-                <div class="premise Γ"><span class="Γ">Γ</span></div>
-                <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-                <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion Γ"><span class="Γ">Γ</span></div>
-                <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-                <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
-              </div>
-              <div class="label"><span class="sum op">⊕</span><sub>1</sub></div>
-            </div>
-            <div class="rule">
-              <div class="inference">
-                <div class="premise Γ"><span class="Γ">Γ</span></div>
-                <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-                <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">B<sup>+</sup></span>]</span></div>
-                <span class="line-of-inference"></span>
-                <div class="conclusion Γ"><span class="Γ">Γ</span></div>
-                <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-                <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
-              </div>
-              <div class="label"><span class="sum op">⊕</span><sub>2</sub></div>
-            </div>
+            <seq-sequent slot="conclusion">
+              <span slot="left"><seq-conn class="sum" name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-conn>, <span class="metavar">Γ</span></span>
+              <span slot="right"><span class="metavar">Δ</span></span>
+            </seq-sequent>
+          </seq-inference>
+          <div class="right-rules">
+            <seq-inference class="sum" name="⊕" right pos>
+              <seq-sequent slot="premise">
+                <span slot="left"><span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span> <seq-focus slot="left"><seq-var pos>A</seq-var></seq-focus></span>
+              </seq-sequent>
+              <seq-sequent slot="conclusion">
+                <span slot="left"><span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span> <seq-focus slot="left"><seq-conn class="sum" name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-conn></seq-focus></span>
+              </seq-sequent>
+              <div class="label" slot="label"><span class="sum op">⊕</span><sub>1</sub></div>
+            </seq-inference>
+            <seq-inference class="sum" name="⊕" right pos>
+              <seq-sequent slot="premise">
+                <span slot="left"><span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span> <seq-focus slot="left"><seq-var pos>B</seq-var></seq-focus></span>
+              </seq-sequent>
+              <seq-sequent slot="conclusion">
+                <span slot="left"><span class="metavar">Γ</span></span>
+                <span slot="right"><span class="metavar">Δ</span> <seq-focus slot="left"><seq-conn class="sum" name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-conn></seq-focus></span>
+              </seq-sequent>
+              <div class="label" slot="label"><span class="sum op">⊕</span><sub>2</sub></div>
+            </seq-inference>
           </div>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span>(<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>)</span> ≈ <span class="with"><span class="negate"><span class="op">∼</span><span class="var pos">A<sup>+</sup></span></span> <span class="op">&amp;</span> <span class="negate"><span class="op">∼</span><span class="var pos">B<sup>+</sup></span></span></span>
+        <span class="negate"><span class="op">∼</span>(<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="sum op">⊕</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span>
       </td>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span>(<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="sum op">⊕</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span>
+        <span class="not"><span class="op">¬</span>(<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>)</span> ≈ <span class="with"><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span> <span class="op">&amp;</span> <span class="not"><span class="op">¬</span><span class="var pos">B<sup>+</sup></span></span></span>
       </td>
     </tr>
     <tr>
@@ -137,7 +288,7 @@
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="top">⊤</span></div>
+              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>, <span class="top">⊤</span></div>
             </div>
             <div class="label"><span class="top">⊤</span></div>
           </div>
@@ -150,7 +301,7 @@
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="zero">0</span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="zero">0</span>, <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
@@ -181,22 +332,22 @@
             <div class="label"><span class="par op">⅋</span></div>
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
-                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+                <div class="premise"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
+                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="focus">[<span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="focus">[<span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span>, <span class="var neg">B<sup>−</sup></span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span>, <span class="var neg">A<sup>−</sup></span>, <span class="var neg">B<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span></div>
             </div>
             <div class="label"><span class="par op">⅋</span></div>
           </div>
@@ -207,23 +358,23 @@
           <div class="rule left">
             <div class="label"><span class="tensor op">⊗</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="var pos">B<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="var pos">B<sup>+</sup></span>, <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>, <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
-                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">B<sup>+</sup></span>]</span></div>
+                <div class="premise"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+                <div class="premise"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span> <span class="focus">[<span class="var pos">B<sup>+</sup></span>]</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
+              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span> <span class="focus">[<span class="tensor"><span class="var pos">A<sup>+</sup></span> <span class="op">⊗</span> <span class="var pos">B<sup>+</sup></span></span>]</span></div>
             </div>
             <div class="label"><span class="tensor op">⊗</span></div>
           </div>
@@ -246,18 +397,18 @@
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="focus">[<span class="bottom"><span class="op R">⊥</span></span>]</span> <span class="Γ">Γ</span> <span class="turnstile R">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="focus">[<span class="bottom"><span class="op R">⊥</span></span>]</span> <span class="metavar">Γ</span> <span class="turnstile R">⊢</span> <span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile R">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile R">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="bottom"><span class="op R">⊥</span></span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="bottom"><span class="op R">⊥</span></span></div>
             </div>
             <div class="label"><span class="bottom"><span class="op R">⊥</span></span></div>
           </div>
@@ -268,20 +419,20 @@
           <div class="rule left">
             <div class="label"><span class="one"><span class="op E">1</span></span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile E">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="one"><span class="op E">1</span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="one"><span class="op E">1</span></span>, <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile E">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
               <div class="axiom"></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile E">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="one"><span class="op E">1</span></span>]</span></div>
+              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile E">⊢</span> <span class="metavar">Δ</span> <span class="focus">[<span class="one"><span class="op E">1</span></span>]</span></div>
             </div>
             <div class="label"><span class="one"><span class="op E">1</span></span></div>
           </div>
@@ -310,22 +461,22 @@
             <div class="label"><span class="implication op">→</span></div>
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
-                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+                <div class="premise"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="focus">[<span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="focus">[<span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span></div>
             </div>
             <div class="label"><span class="implication op">→</span></div>
           </div>
@@ -336,23 +487,23 @@
           <div class="rule left">
             <div class="label"><span class="coimplication op">⤚</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span>, <span class="var neg">B<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>, <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
-                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+                <div class="premise"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span> <span class="focus">[<span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>]</span></div>
+              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span> <span class="focus">[<span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>]</span></div>
             </div>
             <div class="label"><span class="coimplication op">⤚</span></div>
           </div>
@@ -382,24 +533,24 @@
           <div class="rule left">
             <div class="label"><span class="not op">¬</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="focus">[<span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="focus">[<span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span>]</span> <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span></div>
             </div>
             <div class="label"><span class="not"><span class="op">¬</span></span></div>
           </div>
@@ -410,24 +561,24 @@
           <div class="rule left">
             <div class="label"><span class="negate"><span class="op">∼</span></span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span>, <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span>]</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="negate"><span class="op">∼</span><span class="var neg">A<sup>−</sup></span></span>]</span></div>
             </div>
             <div class="label"><span class="negate"><span class="op">∼</span></span></div>
           </div>
@@ -457,24 +608,24 @@
           <div class="rule left">
             <div class="label"><span class="not-untrue op">¬̷</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="focus">[<span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="focus">[<span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span>]</span> <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="not-untrue"><span class="op">¬̷</span><span class="var neg">A<sup>−</sup></span></span></div>
             </div>
             <div class="label"><span class="not-untrue op">¬̷</span></div>
           </div>
@@ -485,24 +636,24 @@
           <div class="rule left">
             <div class="label"><span class="true op">✓</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span>, <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span>]</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="true"><span class="op">✓</span><span class="var pos">A<sup>+</sup></span></span>]</span></div>
             </div>
             <div class="label"><span class="true op">✓</span></div>
           </div>
@@ -532,24 +683,24 @@
           <div class="rule left">
             <div class="label"><span class="up-shift op">↑</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var pos">A<sup>+</sup></span>, <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="focus">[<span class="up-shift"><span class="op">↑</span><span class="var pos">A<sup>+</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="focus">[<span class="up-shift"><span class="op">↑</span><span class="var pos">A<sup>+</sup></span></span>]</span> <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>]</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="up-shift"><span class="op">↑</span><span class="var pos">A<sup>+</sup></span></span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="up-shift"><span class="op">↑</span><span class="var pos">A<sup>+</sup></span></span></div>
             </div>
             <div class="label"><span class="up-shift op">↑</span></div>
           </div>
@@ -560,24 +711,24 @@
           <div class="rule left">
             <div class="label"><span class="down-shift op">↓</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="down-shift"><span class="op">↓</span><span class="var neg">A<sup>−</sup></span></span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="down-shift"><span class="op">↓</span><span class="var neg">A<sup>−</sup></span></span>, <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="down-shift"><span class="op">↓</span><span class="var neg">A<sup>−</sup></span></span>]</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="down-shift"><span class="op">↓</span><span class="var neg">A<sup>−</sup></span></span>]</span></div>
             </div>
             <div class="label"><span class="down-shift op">↓</span></div>
           </div>
@@ -605,23 +756,23 @@
           <div class="rule left">
             <div class="label"><span class="for-all"><span class="op">∀</span></span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>{<span class="var">B</span>/<span class="var">X</span>}]</span> <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="focus">[<span class="var neg">A<sup>−</sup></span>{<span class="var">B</span>/<span class="var">X</span>}]</span> <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="focus">[<span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span>]</span> <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="focus">[<span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span>]</span> <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
-                <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>)</div>
+                <div class="premise"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>, <span class="var neg">A<sup>−</sup></span></div>
+                <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>)</div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span></div>
+              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>, <span class="for-all"><span class="op">∀</span><span class="var">X</span>.<span class="var neg">A<sup>−</sup></span></span></div>
             </div>
             <div class="label"><span class="for-all"><span class="op">∀</span></span></div>
           </div>
@@ -633,22 +784,22 @@
             <div class="label"><span class="there-exists"><span class="op">∃</span></span></div>
             <div class="inference">
               <div class="premises">
-                <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>)</div>
-                <div class="premise"><span class="var pos">A<sup>+</sup></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+                <div class="side-condition"><span class="var">X</span> ∉ <span class="function">fv</span>(<span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>)</div>
+                <div class="premise"><span class="var pos">A<sup>+</sup></span>, <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>, <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>{<span class="var">B</span>/<span class="var">X</span>}]</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="var pos">A<sup>+</sup></span>{<span class="var">B</span>/<span class="var">X</span>}]</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span> <span class="focus">[<span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>]</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="there-exists"><span class="op">∃</span><span class="var">X</span>.<span class="var pos">A<sup>+</sup></span></span>]</span></div>
             </div>
             <div class="label"><span class="there-exists"><span class="op">∃</span></span></div>
           </div>
@@ -690,11 +841,11 @@
           <div class="rule">
             <div class="inference">
               <div class="premises">
-                <div class="premise"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span>, <span class="var">A</span></div>
-                <div class="premise"><span class="var">A</span>, <span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+                <div class="premise"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>, <span class="var">A</span></div>
+                <div class="premise"><span class="var">A</span>, <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
               </div>
               <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="Γ">Γ</span> <span class="turnstile">⊢</span> <span class="Δ">Δ</span></div>
+              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
             </div>
             <div class="label"><span class="function">cut</span></div>
           </div>
@@ -714,24 +865,24 @@
           <div class="rule left">
             <div class="label"><span class="function">weaken</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="var">A</span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="var">A</span>, <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="var">A</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="var">A</span></div>
             </div>
             <div class="label"><span class="function">weaken</span></div>
           </div>
@@ -742,24 +893,24 @@
           <div class="rule left">
             <div class="label"><span class="function">contract</span></div>
             <div class="inference">
-              <div class="premise Γ"><span class="var">A</span>, <span class="var">A</span>, <span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="var">A</span>, <span class="var">A</span>, <span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="var">A</span>, <span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="var">A</span>, <span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
             </div>
           </div>
           <div class="rule right">
             <div class="inference">
-              <div class="premise Γ"><span class="Γ">Γ</span></div>
+              <div class="premise Γ"><span class="metavar">Γ</span></div>
               <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="Δ">Δ</span>, <span class="var">A</span>, <span class="var">A</span></div>
+              <div class="premise Δ"><span class="metavar">Δ</span>, <span class="var">A</span>, <span class="var">A</span></div>
               <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="Γ">Γ</span></div>
+              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
               <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="Δ">Δ</span>, <span class="var">A</span></div>
+              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="var">A</span></div>
             </div>
             <div class="label"><span class="function">contract</span></div>
           </div>
@@ -767,7 +918,8 @@
       </td>
     </tr>
   </tbody>
-</table>]]></summary>
+</table>
+]]></summary>
 </entry>
 <entry>
     <title>When Howard Met Curry</title>
@@ -1069,6 +1221,7 @@
     <updated>2021-06-07T19:49:02Z</updated>
     <summary type="html"><![CDATA[<p>The rules for a variety of polarized classical connectives, in a focused sequent calculus presentation to reflect a variety of dualities, and interpreted via Curry-Howard.</p>
 <!--more-->
+<p><link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css"></p>
 <h2 id="additive">Additive</h2>
 <figure class="section">
   <div>

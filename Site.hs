@@ -36,9 +36,18 @@ main = hakyllWith defaultConfiguration{ destinationDirectory = "docs" } $ do
     route idRoute
     compile $ makeItem ("antitypical.com" :: String)
 
-  match "posts/*" $ do
+  match "posts/*.md" $ do
     route cleanRoute
     compile $ pandocCompilerWith readerOptions defaultHakyllWriterOptions
+      >>= saveSnapshot "content"
+      >>= loadAndApplyTemplate "_layouts/post.html"    postCtx
+      >>= loadAndApplyTemplate "_layouts/default.html" postCtx
+      >>= relativizeUrls
+      >>= cleanIndexUrls
+
+  match "posts/*.html" $ do
+    route cleanRoute
+    compile $ getResourceBody >>= applyAsTemplate postCtx
       >>= saveSnapshot "content"
       >>= loadAndApplyTemplate "_layouts/post.html"    postCtx
       >>= loadAndApplyTemplate "_layouts/default.html" postCtx
