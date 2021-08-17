@@ -276,13 +276,13 @@
       <td>
         <div class="connective">
           <div class="rule left">
-            <p>no left rule for <span class="top">⊤</span></p>
+            <p>no left rule for <seq-conn class="top" name="⊤" neg></seq-conn></p>
           </div>
           <seq-inference name="⊤" right neg>
-            <div class="label" slot="label"><span class="top op">⊤</span></div>
+            <div class="label" slot="label"><seq-conn class="top" name="⊤" neg></seq-conn></div>
             <seq-sequent slot="conclusion">
               <span slot="left"><span class="metavar">Γ</span></span>
-              <span slot="right"><span class="metavar">Δ</span>, <span class="top">⊤</span></span>
+              <span slot="right"><span class="metavar">Δ</span>, <seq-conn class="top" name="⊤" neg></seq-conn></span>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -290,24 +290,24 @@
       <td>
         <div class="connective">
           <seq-inference name="0" left pos>
-            <div class="label" slot="label"><span class="zero op">0</span></div>
+            <div class="label" slot="label"><seq-conn class="zero" name="0" pos></seq-conn></div>
             <seq-sequent slot="conclusion">
-              <span slot="left"><span class="zero">0</span>, <span class="metavar">Γ</span></span>
+              <span slot="left"><seq-conn class="zero" name="0" pos></seq-conn>, <span class="metavar">Γ</span></span>
               <span slot="right"><span class="metavar">Δ</span></span>
             </seq-sequent>
           </seq-inference>
           <div class="rule right">
-            <p>no right rule for <span class="zero">0</span></p>
+            <p>no right rule for <seq-conn class="zero" name="0" pos></seq-conn></p>
           </div>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span><span class="top">⊤</span></span> ≈ <span class="zero">0</span>
+        <span class="negate"><span class="op">∼</span><seq-conn class="top" name="⊤" neg></seq-conn></span> ≈ <seq-conn class="zero" name="0" pos></seq-conn>
       </td>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span><span class="zero">0</span></span> ≈ <span class="top">⊤</span>
+        <span class="not"><span class="op">¬</span><seq-conn class="zero" name="0" pos></seq-conn></span> ≈ <seq-conn class="top" name="⊤" neg></seq-conn>
       </td>
     </tr>
   </tbody>
