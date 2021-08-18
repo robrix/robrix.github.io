@@ -211,10 +211,8 @@ function template(templateSource) {
 
 function shadow(node) {
   return templateSource => {
-    const templateElement = template(templateSource);
     const shadow = node.attachShadow({ mode: 'open' });
-    const root = templateElement.content.cloneNode(true);
-    shadow.appendChild(root);
+    shadow.appendChild(template(templateSource).content.cloneNode(true));
     return shadow;
   }
 }
