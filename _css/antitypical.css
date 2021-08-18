@@ -237,6 +237,14 @@ sup.V {
   color: var(--sequent-pos-colour);
 }
 
+seq-var[neg] {
+  color: var(--sequent-neg-colour);
+}
+seq-var[pos] {
+  color: var(--sequent-pos-colour);
+}
+
+
 @media screen and (min-width: 92rem) {
   table.ruleset > tbody > tr > th {
     padding: 0;

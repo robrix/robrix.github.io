@@ -22,12 +22,6 @@ var {
   font-weight: 100;
   font-family: var(--sequent-font);
 }
-:host([neg]) {
-  color: var(--sequent-neg-colour);
-}
-:host([pos]) {
-  color: var(--sequent-pos-colour);
-}
 sup {
   font-style: normal;
   font-size: 60%;
