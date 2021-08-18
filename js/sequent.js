@@ -53,12 +53,10 @@ export const SeqInfix = component('seq-infix', SeqInfix => {
 <slot name="right"></slot>
 `;
 
-export const SeqNullfix = component('seq-nullfix', SeqNullfix => {
-  Object.defineProperty(SeqNullfix.prototype, 'name', readwriteAttr('name'));
-  SeqNullfix.prototype.connectedCallback = function () {
-    this.shadowNode.getElementById('op').textContent = this.name;
-  };
-})`
+export class SeqNullfix extends HTMLElement {
+  constructor() {
+    super();
+    this.shadowNode = shadow(this)`
 <style type="text/css">
 :host([neg]) #op {
   color: var(--sequent-neg-colour);
@@ -67,7 +65,22 @@ export const SeqNullfix = component('seq-nullfix', SeqNullfix => {
   color: var(--sequent-pos-colour);
 }
 </style><span id="op"></span>
-`;
+    `;
+  }
+  set opName(name) {
+    this.shadowNode.getElementById('op').textContent = name;
+  }
+  connectedCallback() {
+    this.opName = this.getAttribute('name');
+  }
+  static get observedAttributes() {
+    return ['name'];
+  }
+  attributeChangedCallback(_1, _2, name) {
+    this.opName = name;
+  }
+}
+customElements.define('seq-nullfix', SeqNullfix);
 
 export const SeqPrefix = component('seq-prefix', SeqPrefix => {
   Object.defineProperty(SeqPrefix.prototype, 'name', readwriteAttr('name'));
@@ -88,7 +101,18 @@ export const SeqPrefix = component('seq-prefix', SeqPrefix => {
 
 // inferences
 
-export const SeqInference = component('seq-inference')`
+export const SeqInference = component('seq-inference', SeqInference => {
+  SeqInference.prototype.connectedCallback = function () {
+    const labelOp = this.shadowNode.getElementById('label-op');
+    labelOp.setAttribute('name', this.getAttribute('name'));
+    if (this.hasAttribute('neg')) {
+      labelOp.setAttribute('neg', '');
+    }
+    else if (this.hasAttribute('pos')) {
+      labelOp.setAttribute('pos', '');
+    }
+  };
+})`
 <style type="text/css">
 #rule {
   display: flex;
@@ -133,7 +157,7 @@ div.axiom::after {
 }
 </style>
 <div id="rule">
-  <div id="label"><slot name="label"></slot></div>
+  <div id="label"><slot name="label"><seq-nullfix id="label-op"></seq-nullfix></slot></div>
   <div id="inference">
     <slot name="premise"><div class="axiom"></div></slot>
     <span id="line-of-inference"></span>
