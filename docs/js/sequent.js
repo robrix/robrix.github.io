@@ -263,7 +263,7 @@ customElements.define("seq-delta", SeqDelta);
 // foci
 
 export class SeqFocus extends HTMLElement {
-  connectedCallback() { loadTemplate(this, template`[<slot></slot>]`); }
+  connectedCallback() { shadow(this)`[<slot></slot>]`; }
 }
 
 customElements.define("seq-focus", SeqFocus);
@@ -273,6 +273,16 @@ function template(templateSource) {
   const template = document.createElement('template');
   template.innerHTML = templateSource.join();
   return template;
+}
+
+function shadow(node) {
+  return templateSource => {
+    const templateElement = template(templateSource);
+    const shadow = node.attachShadow({ mode: 'open' });
+    const root = templateElement.content.cloneNode(true);
+    shadow.appendChild(root);
+    return shadow;
+  }
 }
 
 function loadTemplate(node, templateElement, setup) {
