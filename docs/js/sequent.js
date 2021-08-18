@@ -2,8 +2,7 @@
 
 export class SeqVar extends HTMLElement {
   connectedCallback() {
-    const template = document.createElement('template');
-    template.innerHTML = `
+    const shadowNode = shadow(this)`
 <style type="text/css">
 var {
   font-style: italic;
@@ -24,13 +23,12 @@ sup {
   line-height: 0;
 }
 </style><var><slot></slot><sup id="polarity"></sup></var>
-    `.trim();
-    const shadow = loadTemplate(this, template);
+    `;
     if (this.hasAttribute('neg')) {
-      shadow.getElementById('polarity').textContent = '−';
+      shadowNode.getElementById('polarity').textContent = '−';
     }
     else if (this.hasAttribute('pos')) {
-      shadow.getElementById('polarity').textContent = '+';
+      shadowNode.getElementById('polarity').textContent = '+';
     }
   }
 }
@@ -40,20 +38,9 @@ customElements.define("seq-var", SeqVar);
 
 // operators
 
-export class SeqOp extends HTMLElement {
+export class SeqInfix extends HTMLElement {
   connectedCallback() {
-    loadTemplate(this, this.template, root => {
-      root.getElementById('op').textContent = this.getAttribute('name');
-    });
-  }
-}
-
-customElements.define("seq-op", SeqOp);
-
-export class SeqInfix extends SeqOp {
-  connectedCallback() {
-    this.template = document.createElement('template');
-    this.template.innerHTML = `
+    const shadowNode = shadow(this)`
 <style type="text/css">
 :host([neg]) #op {
   color: var(--sequent-neg-colour);
@@ -70,17 +57,16 @@ export class SeqInfix extends SeqOp {
 </style><slot name="left"></slot>
 <span id="op"></span>
 <slot name="right"></slot>
-    `.trim();
-    super.connectedCallback();
+    `;
+    shadowNode.getElementById('op').textContent = this.getAttribute('name');
   }
 }
 
 customElements.define("seq-infix", SeqInfix);
 
-export class SeqNullfix extends SeqOp {
+export class SeqNullfix extends HTMLElement {
   connectedCallback() {
-    this.template = document.createElement('template');
-    this.template.innerHTML = `
+    const shadowNode = shadow(this)`
 <style type="text/css">
 :host([neg]) #op {
   color: var(--sequent-neg-colour);
@@ -89,17 +75,16 @@ export class SeqNullfix extends SeqOp {
   color: var(--sequent-pos-colour);
 }
 </style><span id="op"></span>
-    `.trim();
-    super.connectedCallback();
+    `;
+    shadowNode.getElementById('op').textContent = this.getAttribute('name');
   }
 }
 
 customElements.define("seq-nullfix", SeqNullfix);
 
-export class SeqPrefix extends SeqOp {
+export class SeqPrefix extends HTMLElement {
   connectedCallback() {
-    this.template = document.createElement('template');
-    this.template.innerHTML = `
+    const shadowNode = shadow(this)`
 <style type="text/css">
 :host([neg]) #op {
   color: var(--sequent-neg-colour);
@@ -108,8 +93,8 @@ export class SeqPrefix extends SeqOp {
   color: var(--sequent-pos-colour);
 }
 </style><span id="op"></span><slot></slot>
-    `.trim();
-    super.connectedCallback();
+    `;
+    shadowNode.getElementById('op').textContent = this.getAttribute('name');
   }
 }
 
@@ -120,8 +105,7 @@ customElements.define("seq-prefix", SeqPrefix);
 
 export class SeqInference extends HTMLElement {
   connectedCallback() {
-    const template = document.createElement('template');
-    template.innerHTML = `
+    shadow(this)`
 <style type="text/css">
 #rule {
   display: flex;
@@ -173,8 +157,7 @@ div.axiom::after {
     <slot name="conclusion"></slot>
   </div>
 </div>
-    `.trim();
-    loadTemplate(this, template);
+    `;
   }
 }
 
@@ -185,8 +168,7 @@ customElements.define("seq-inference", SeqInference);
 
 export class SeqSequent extends HTMLElement {
   connectedCallback() {
-    const template = document.createElement('template');
-    template.innerHTML = `
+    shadow(this)`
 <style type="text/css">
 .sequent {
   display: grid;
@@ -217,8 +199,7 @@ export class SeqSequent extends HTMLElement {
   <span class="turnstile">⊢</span>
   <span id="right"><slot name="right"></slot></span>
 </div>
-    `.trim();
-    loadTemplate(this, template);
+    `;
   }
 }
 
@@ -229,15 +210,13 @@ customElements.define("seq-sequent", SeqSequent);
 
 export class SeqGamma extends HTMLElement {
   connectedCallback() {
-    const template = document.createElement('template');
-    template.innerHTML = `
+    shadow(this)`
 <style type="text/css">
 var {
   font-style: italic;
 }
 </style><slot></slot><var>Γ</var>
-    `.trim();
-    loadTemplate(this, template)
+    `;
   }
 }
 
@@ -245,15 +224,13 @@ customElements.define("seq-gamma", SeqGamma);
 
 export class SeqDelta extends HTMLElement {
   connectedCallback() {
-    const template = document.createElement('template');
-    template.innerHTML = `
+    shadow(this)`
 <style type="text/css">
 var {
   font-style: italic;
 }
 </style><var>Δ</var><slot></slot>
-    `.trim();
-    loadTemplate(this, template);
+    `;
   }
 }
 
@@ -283,14 +260,4 @@ function shadow(node) {
     shadow.appendChild(root);
     return shadow;
   }
-}
-
-function loadTemplate(node, templateElement, setup) {
-  const shadow = node.attachShadow({ mode: 'open' });
-  const root = templateElement.content.cloneNode(true);
-  if (typeof setup === "function") {
-    setup(root);
-  }
-  shadow.appendChild(root);
-  return shadow;
 }
