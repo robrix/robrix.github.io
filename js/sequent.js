@@ -18,7 +18,7 @@ customElements.define("seq-var", SeqVar);
 export class SeqOp extends HTMLElement {
   constructor(templateName) { super(); this.templateName = templateName; }
   connectedCallback() {
-    const conn = loadTemplateName(this, this.templateName, root => {
+    loadTemplateName(this, this.templateName, root => {
       root.getElementById('op').textContent = this.getAttribute('name');
     });
   }
