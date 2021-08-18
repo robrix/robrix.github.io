@@ -1,8 +1,15 @@
 // vars
 
-export class SeqVar extends HTMLElement {
-  connectedCallback() {
-    const shadowNode = shadow(this)`
+export const SeqVar = component('seq-var', {
+  didConnect: function () {
+    if (this.hasAttribute('neg')) {
+      this.shadowNode.getElementById('polarity').textContent = '−';
+    }
+    else if (this.hasAttribute('pos')) {
+      this.shadowNode.getElementById('polarity').textContent = '+';
+    }
+  }
+})`
 <style type="text/css">
 var {
   font-style: italic;
@@ -23,24 +30,16 @@ sup {
   line-height: 0;
 }
 </style><var><slot></slot><sup id="polarity"></sup></var>
-    `;
-    if (this.hasAttribute('neg')) {
-      shadowNode.getElementById('polarity').textContent = '−';
-    }
-    else if (this.hasAttribute('pos')) {
-      shadowNode.getElementById('polarity').textContent = '+';
-    }
-  }
-}
-
-customElements.define("seq-var", SeqVar);
+`;
 
 
 // operators
 
-export class SeqInfix extends HTMLElement {
-  connectedCallback() {
-    const shadowNode = shadow(this)`
+export const SeqInfix = component('seq-infix', {
+  didConnect: function () {
+    this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
+  }
+})`
 <style type="text/css">
 :host([neg]) #op {
   color: var(--sequent-neg-colour);
@@ -57,16 +56,13 @@ export class SeqInfix extends HTMLElement {
 </style><slot name="left"></slot>
 <span id="op"></span>
 <slot name="right"></slot>
-    `;
-    shadowNode.getElementById('op').textContent = this.getAttribute('name');
+`;
+
+export const SeqNullfix = component('seq-nullfix', {
+  didConnect: function () {
+    this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
   }
-}
-
-customElements.define("seq-infix", SeqInfix);
-
-export class SeqNullfix extends HTMLElement {
-  connectedCallback() {
-    const shadowNode = shadow(this)`
+})`
 <style type="text/css">
 :host([neg]) #op {
   color: var(--sequent-neg-colour);
@@ -75,16 +71,13 @@ export class SeqNullfix extends HTMLElement {
   color: var(--sequent-pos-colour);
 }
 </style><span id="op"></span>
-    `;
-    shadowNode.getElementById('op').textContent = this.getAttribute('name');
+`;
+
+export const SeqPrefix = component('seq-prefix', {
+  didConnect: function () {
+    this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
   }
-}
-
-customElements.define("seq-nullfix", SeqNullfix);
-
-export class SeqPrefix extends HTMLElement {
-  connectedCallback() {
-    const shadowNode = shadow(this)`
+})`
 <style type="text/css">
 :host([neg]) #op {
   color: var(--sequent-neg-colour);
@@ -93,19 +86,12 @@ export class SeqPrefix extends HTMLElement {
   color: var(--sequent-pos-colour);
 }
 </style><span id="op"></span><slot></slot>
-    `;
-    shadowNode.getElementById('op').textContent = this.getAttribute('name');
-  }
-}
-
-customElements.define("seq-prefix", SeqPrefix);
+`;
 
 
 // inferences
 
-export class SeqInference extends HTMLElement {
-  connectedCallback() {
-    shadow(this)`
+export const SeqInference = component('seq-inference')`
 <style type="text/css">
 #rule {
   display: flex;
@@ -157,18 +143,12 @@ div.axiom::after {
     <slot name="conclusion"></slot>
   </div>
 </div>
-    `;
-  }
-}
-
-customElements.define("seq-inference", SeqInference);
+`;
 
 
 // sequents
 
-export class SeqSequent extends HTMLElement {
-  connectedCallback() {
-    shadow(this)`
+export const SeqSequent = component('seq-sequent')`
 <style type="text/css">
 .sequent {
   display: grid;
@@ -199,51 +179,31 @@ export class SeqSequent extends HTMLElement {
   <span class="turnstile">⊢</span>
   <span id="right"><slot name="right"></slot></span>
 </div>
-    `;
-  }
-}
-
-customElements.define("seq-sequent", SeqSequent);
+`;
 
 
 // contexts
 
-export class SeqGamma extends HTMLElement {
-  connectedCallback() {
-    shadow(this)`
+export const SeqGamma = component('seq-gamma')`
 <style type="text/css">
 var {
   font-style: italic;
 }
 </style><slot></slot><var>Γ</var>
-    `;
-  }
-}
+`;
 
-customElements.define("seq-gamma", SeqGamma);
-
-export class SeqDelta extends HTMLElement {
-  connectedCallback() {
-    shadow(this)`
+export const SeqDelta = component('seq-delta')`
 <style type="text/css">
 var {
   font-style: italic;
 }
 </style><var>Δ</var><slot></slot>
-    `;
-  }
-}
-
-customElements.define("seq-delta", SeqDelta);
+`;
 
 
 // foci
 
-export class SeqFocus extends HTMLElement {
-  connectedCallback() { shadow(this)`[<slot></slot>]`; }
-}
-
-customElements.define("seq-focus", SeqFocus);
+export const SeqFocus = component('seq-focus')`[<slot></slot>]`;
 
 
 function template(templateSource) {
@@ -260,4 +220,27 @@ function shadow(node) {
     shadow.appendChild(root);
     return shadow;
   }
+}
+
+function component(tag, proto) {
+  return templateSource => {
+    const klass = class extends HTMLElement {
+      constructor() {
+        super();
+        if (typeof proto === 'object') {
+          for (const k in proto) {
+            this[k] = proto[k].bind(this);
+          }
+        }
+      }
+      connectedCallback() {
+        this.shadowNode = shadow(this)(templateSource);
+        if (typeof this.didConnect === 'function') {
+          this.didConnect();
+        }
+      }
+    };
+    customElements.define(tag, klass);
+    return klass;
+  };
 }
