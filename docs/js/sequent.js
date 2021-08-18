@@ -1,14 +1,14 @@
 // vars
 
-export const SeqVar = component('seq-var', {
-  didConnect: function () {
+export const SeqVar = component('seq-var', function (SeqVar) {
+  SeqVar.prototype.connectedCallback = function () {
     if (this.hasAttribute('neg')) {
       this.shadowNode.getElementById('polarity').textContent = '−';
     }
     else if (this.hasAttribute('pos')) {
       this.shadowNode.getElementById('polarity').textContent = '+';
     }
-  }
+  };
 })`
 <style type="text/css">
 var {
@@ -35,10 +35,10 @@ sup {
 
 // operators
 
-export const SeqInfix = component('seq-infix', {
-  didConnect: function () {
+export const SeqInfix = component('seq-infix', function (SeqInfix) {
+  SeqInfix.prototype.connectedCallback = function () {
     this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
-  }
+  };
 })`
 <style type="text/css">
 :host([neg]) #op {
@@ -58,10 +58,10 @@ export const SeqInfix = component('seq-infix', {
 <slot name="right"></slot>
 `;
 
-export const SeqNullfix = component('seq-nullfix', {
-  didConnect: function () {
+export const SeqNullfix = component('seq-nullfix', function (SeqNullfix) {
+  SeqNullfix.prototype.connectedCallback = function () {
     this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
-  }
+  };
 })`
 <style type="text/css">
 :host([neg]) #op {
@@ -73,10 +73,10 @@ export const SeqNullfix = component('seq-nullfix', {
 </style><span id="op"></span>
 `;
 
-export const SeqPrefix = component('seq-prefix', {
-  didConnect: function () {
+export const SeqPrefix = component('seq-prefix', function (SeqPrefix) {
+  SeqPrefix.prototype.connectedCallback = function () {
     this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
-  }
+  };
 })`
 <style type="text/css">
 :host([neg]) #op {
@@ -222,24 +222,17 @@ function shadow(node) {
   }
 }
 
-function component(tag, proto) {
+function component(tag, setup) {
   return templateSource => {
     const klass = class extends HTMLElement {
       constructor() {
         super();
-        if (typeof proto === 'object') {
-          for (const k in proto) {
-            this[k] = proto[k].bind(this);
-          }
-        }
-      }
-      connectedCallback() {
         this.shadowNode = shadow(this)(templateSource);
-        if (typeof this.didConnect === 'function') {
-          this.didConnect();
-        }
       }
     };
+    if (typeof setup === 'function') {
+      setup(klass);
+    }
     customElements.define(tag, klass);
     return klass;
   };
