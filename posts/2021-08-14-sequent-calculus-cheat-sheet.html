@@ -12,7 +12,7 @@ categories: logic, plt
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
 
 <template id="seq-var"><style type="text/css">
-  .var {
+  var {
     font-style: italic;
     font-size: 1.25rem;
     line-height: 1.8rem;
@@ -30,7 +30,7 @@ categories: logic, plt
     font-size: 60%;
     line-height: 0;
   }
-  </style><span class="var"><slot></slot><sup id="polarity"></sup></span></template>
+  </style><var><slot></slot><sup id="polarity"></sup></var></template>
 
 <template id="seq-infix"><style type="text/css">
   :host([neg]) #op {
