@@ -3,11 +3,7 @@
 export const SeqVar = component('seq-var', SeqVar => {
   Object.defineProperty(SeqVar.prototype, 'polarity', {
     get() {
-      return this.hasAttribute('neg') ?
-        '−'
-        : this.hasAttribute('pos') ?
-          '+'
-          : null;
+      return this.hasAttribute('neg') ? '−' : this.hasAttribute('pos') ? '+' : null;
     }
   })
   SeqVar.prototype.connectedCallback = function () {
