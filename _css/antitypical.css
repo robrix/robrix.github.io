@@ -116,7 +116,7 @@ div.axiom {
   text-align: center;
 }
 div.axiom::after {
-  content: "∎"
+  content: "∎";
 }
 
 .rule div.axiom,
