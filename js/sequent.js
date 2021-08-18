@@ -34,14 +34,7 @@ sup {
 // operators
 
 export const SeqInfix = component('seq-infix', SeqInfix => {
-  Object.defineProperty(SeqInfix.prototype, 'name', {
-    get() {
-      return this.getAttribute('name');
-    },
-    set(name) {
-      this.setAttribute('name', name);
-    }
-  });
+  Object.defineProperty(SeqInfix.prototype, 'name', readwriteAttr('name'));
   SeqInfix.prototype.connectedCallback = function () {
     this.shadowNode.getElementById('op').textContent = this.name;
   };
@@ -65,14 +58,7 @@ export const SeqInfix = component('seq-infix', SeqInfix => {
 `;
 
 export const SeqNullfix = component('seq-nullfix', SeqNullfix => {
-  Object.defineProperty(SeqNullfix.prototype, 'name', {
-    get() {
-      return this.getAttribute('name');
-    },
-    set(name) {
-      this.setAttribute('name', name);
-    }
-  });
+  Object.defineProperty(SeqNullfix.prototype, 'name', readwriteAttr('name'));
   SeqNullfix.prototype.connectedCallback = function () {
     this.shadowNode.getElementById('op').textContent = this.name;
   };
@@ -88,14 +74,7 @@ export const SeqNullfix = component('seq-nullfix', SeqNullfix => {
 `;
 
 export const SeqPrefix = component('seq-prefix', SeqPrefix => {
-  Object.defineProperty(SeqPrefix.prototype, 'name', {
-    get() {
-      return this.getAttribute('name');
-    },
-    set(name) {
-      this.setAttribute('name', name);
-    }
-  });
+  Object.defineProperty(SeqPrefix.prototype, 'name', readwriteAttr('name'));
   SeqPrefix.prototype.connectedCallback = function () {
     this.shadowNode.getElementById('op').textContent = this.name;
   };
@@ -257,5 +236,16 @@ function component(tag, setup) {
     }
     customElements.define(tag, klass);
     return klass;
+  };
+}
+
+function readwriteAttr(attr) {
+  return {
+    get() {
+      return this.getAttribute(attr);
+    },
+    set(x) {
+      this.setAttribute(attr, x);
+    }
   };
 }
