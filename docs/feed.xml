@@ -189,29 +189,28 @@
     <tr>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="par op">⅋</span></div>
-            <div class="inference">
-              <div class="premises">
-                <div class="premise"><span class="focus">[<span class="var neg">A<sup>−</sup></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
-                <div class="premise"><span class="focus">[<span class="var neg">B<sup>−</sup></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="focus">[<span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span>]</span> <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
+          <seq-inference name="⅋" left neg>
+            <div slot="label" class="label"><seq-nullfix name="⅋" neg></seq-nullfix></div>
+            <div slot="premise" class="premises">
+              <seq-sequent><seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>
+              <seq-sequent><seq-gamma slot="left"><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>
             </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span>, <span class="var neg">A<sup>−</sup></span>, <span class="var neg">B<sup>−</sup></span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="par"><span class="var neg">A<sup>−</sup></span> <span class="op">⅋</span> <span class="var neg">B<sup>−</sup></span></span></div>
-            </div>
-            <div class="label"><span class="par op">⅋</span></div>
-          </div>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-focus><seq-infix name="⅋" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-focus> </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="⅋" right neg>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-var neg>A</seq-var>, <seq-var neg>B</seq-var></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-infix name="⅋" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-delta>
+            </seq-sequent>
+            <div slot="label" class="label"><seq-nullfix name="⅋" neg></seq-nullfix></div>
+          </seq-inference>
         </div>
       </td>
       <td>
@@ -374,7 +373,7 @@
     <tr>
       <td class="equivalence">
         <div><span class="negate"><span class="op">∼</span></span>(<span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span>) ≈ <span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span></div>
-        <div><span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span> ≈ <span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span> <span class="par op">⅋</span> <span class="var neg">B<sup>−</sup></span></div>
+        <div><span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span> ≈ <span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span> <seq-nullfix name="⅋" neg></seq-nullfix> <span class="var neg">B<sup>−</sup></span></div>
       </td>
       <td class="equivalence">
         <div><span class="not"><span class="op">¬</span></span>(<span class="coimplication"><span class="var neg">B<sup>−</sup></span> <span class="op">⤚</span> <span class="var pos">A<sup>+</sup></span></span>) ≈ <span class="implication"><span class="var pos">A<sup>+</sup></span> <span class="op">→</span> <span class="var neg">B<sup>−</sup></span></span></div>
