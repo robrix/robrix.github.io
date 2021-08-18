@@ -59,7 +59,7 @@
   <h1>Sequent calculus cheat sheet</h1>
   <span class="post-meta">Aug 14, 2021</span><br>
   
-  <span class="post-meta small">16 minute read</span>
+  <span class="post-meta small">15 minute read</span>
 </div>
 
 <article class="post-content">
@@ -185,22 +185,12 @@
     display: grid;
     grid-template-columns: auto max-content auto;
     gap: 2px 0;
-    /* width: max-content; */
-    /* justify-items: center;
-    align-items: center;
-    margin: 0 auto; */
-    /* margin: 0 auto; */
     width: max-content;
     font-family: var(--sequent-font);
   }
   :host([slot]),
   :host([slot]) .sequent {
     display: contents;
-  }
-  :host([slot]) #left,
-  :host([slot]) .turnstile,
-  :host([slot]) #right {
-    padding: 2px 4px;
   }
   #left, .turnstile, #right {
     padding: 2px 4px;
@@ -209,7 +199,6 @@
     text-align: right;
   }
   .turnstile {
-    /* width: min-content; */
     text-align: center;
   }
   #right {

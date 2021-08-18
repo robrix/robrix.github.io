@@ -137,22 +137,12 @@
     display: grid;
     grid-template-columns: auto max-content auto;
     gap: 2px 0;
-    /* width: max-content; */
-    /* justify-items: center;
-    align-items: center;
-    margin: 0 auto; */
-    /* margin: 0 auto; */
     width: max-content;
     font-family: var(--sequent-font);
   }
   :host([slot]),
   :host([slot]) .sequent {
     display: contents;
-  }
-  :host([slot]) #left,
-  :host([slot]) .turnstile,
-  :host([slot]) #right {
-    padding: 2px 4px;
   }
   #left, .turnstile, #right {
     padding: 2px 4px;
@@ -161,7 +151,6 @@
     text-align: right;
   }
   .turnstile {
-    /* width: min-content; */
     text-align: center;
   }
   #right {
