@@ -32,6 +32,12 @@ export class SeqInfix extends SeqOp {
 
 customElements.define("seq-infix", SeqInfix);
 
+export class SeqNullfix extends SeqOp {
+  constructor() { super('seq-nullfix'); }
+}
+
+customElements.define("seq-nullfix", SeqNullfix);
+
 export class SeqPrefix extends SeqOp {
   constructor() { super('seq-prefix'); }
 }
