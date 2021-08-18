@@ -3,7 +3,7 @@ export class SeqVar extends HTMLElement {
     super();
   }
   connectedCallback() {
-    const shadow = loadTemplate(this, "seq-var");
+    const shadow = loadTemplateName(this, "seq-var");
     if (this.hasAttribute('neg')) {
       shadow.getElementById('polarity').textContent = '−';
     }
@@ -18,7 +18,7 @@ customElements.define("seq-var", SeqVar);
 export class SeqOp extends HTMLElement {
   constructor(templateName) { super(); this.templateName = templateName; }
   connectedCallback() {
-    const conn = loadTemplate(this, this.templateName, root => {
+    const conn = loadTemplateName(this, this.templateName, root => {
       root.getElementById('op').textContent = this.getAttribute('name');
     });
   }
@@ -48,7 +48,7 @@ export class SeqInference extends HTMLElement {
   constructor() {
     super();
   }
-  connectedCallback() { loadTemplate(this, "seq-rule"); }
+  connectedCallback() { loadTemplateName(this, "seq-rule"); }
 }
 
 customElements.define("seq-inference", SeqInference);
@@ -56,14 +56,14 @@ customElements.define("seq-inference", SeqInference);
 
 export class SeqSequent extends HTMLElement {
   constructor() { super(); }
-  connectedCallback() { loadTemplate(this, "seq-sequent"); }
+  connectedCallback() { loadTemplateName(this, "seq-sequent"); }
 }
 
 customElements.define("seq-sequent", SeqSequent);
 
 export class SeqContext extends HTMLElement {
   constructor(templateName) { super(); this.templateName = templateName; }
-  connectedCallback() { loadTemplate(this, this.templateName, root => { root.getElementById('metavar').textContent = this.getAttribute('name'); }); }
+  connectedCallback() { loadTemplateName(this, this.templateName, root => { root.getElementById('metavar').textContent = this.getAttribute('name'); }); }
 }
 
 customElements.define("seq-context", SeqContext);
@@ -84,12 +84,12 @@ customElements.define("seq-delta", SeqDelta);
 
 export class SeqFocus extends HTMLElement {
   constructor() { super(); }
-  connectedCallback() { loadTemplate(this, "seq-focus"); }
+  connectedCallback() { loadTemplateName(this, "seq-focus"); }
 }
 
 customElements.define("seq-focus", SeqFocus);
 
-function loadTemplate(node, templateName, setup) {
+function loadTemplateName(node, templateName, setup) {
   return loadTemplateElement(node, document.getElementById(templateName), setup);
 }
 
