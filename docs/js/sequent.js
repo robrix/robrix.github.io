@@ -262,15 +262,18 @@ customElements.define("seq-delta", SeqDelta);
 
 // foci
 
-const focusTemplate = document.createElement('template');
-focusTemplate.innerHTML = `[<slot></slot>]`;
-
 export class SeqFocus extends HTMLElement {
-  connectedCallback() { loadTemplate(this, focusTemplate); }
+  connectedCallback() { loadTemplate(this, template`[<slot></slot>]`); }
 }
 
 customElements.define("seq-focus", SeqFocus);
 
+
+function template(templateSource) {
+  const template = document.createElement('template');
+  template.innerHTML = templateSource.join();
+  return template;
+}
 
 function loadTemplate(node, templateElement, setup) {
   const shadow = node.attachShadow({ mode: 'open' });
