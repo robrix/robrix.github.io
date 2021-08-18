@@ -1,3 +1,5 @@
+// vars
+
 export class SeqVar extends HTMLElement {
   constructor() {
     super();
@@ -14,6 +16,9 @@ export class SeqVar extends HTMLElement {
 }
 
 customElements.define("seq-var", SeqVar);
+
+
+// operators
 
 export class SeqOp extends HTMLElement {
   constructor(template) { super(); this.template = template; }
@@ -44,6 +49,9 @@ export class SeqPrefix extends SeqOp {
 
 customElements.define("seq-prefix", SeqPrefix);
 
+
+// inferences
+
 export class SeqInference extends HTMLElement {
   constructor() { super(); }
   connectedCallback() { loadTemplate(this, document.getElementById('seq-rule')); }
@@ -52,12 +60,17 @@ export class SeqInference extends HTMLElement {
 customElements.define("seq-inference", SeqInference);
 
 
+// sequents
+
 export class SeqSequent extends HTMLElement {
   constructor() { super(); }
   connectedCallback() { loadTemplate(this, document.getElementById('seq-sequent')); }
 }
 
 customElements.define("seq-sequent", SeqSequent);
+
+
+// contexts
 
 export class SeqContext extends HTMLElement {
   constructor(template) { super(); this.template = template; }
@@ -79,6 +92,9 @@ export class SeqDelta extends SeqContext {
 }
 
 customElements.define("seq-delta", SeqDelta);
+
+
+// foci
 
 export class SeqFocus extends HTMLElement {
   constructor() { super(); }
