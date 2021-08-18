@@ -3,7 +3,7 @@ export class SeqVar extends HTMLElement {
     super();
   }
   connectedCallback() {
-    const shadow = loadTemplateName(this, "seq-var");
+    const shadow = loadTemplateElement(this, document.getElementById('seq-var'));
     if (this.hasAttribute('neg')) {
       shadow.getElementById('polarity').textContent = '−';
     }
@@ -16,9 +16,9 @@ export class SeqVar extends HTMLElement {
 customElements.define("seq-var", SeqVar);
 
 export class SeqOp extends HTMLElement {
-  constructor(templateName) { super(); this.templateName = templateName; }
+  constructor(template) { super(); this.template = template; }
   connectedCallback() {
-    loadTemplateName(this, this.templateName, root => {
+    loadTemplateElement(this, this.template, root => {
       root.getElementById('op').textContent = this.getAttribute('name');
     });
   }
@@ -27,28 +27,26 @@ export class SeqOp extends HTMLElement {
 customElements.define("seq-op", SeqOp);
 
 export class SeqInfix extends SeqOp {
-  constructor() { super('seq-infix'); }
+  constructor() { super(document.getElementById('seq-infix')); }
 }
 
 customElements.define("seq-infix", SeqInfix);
 
 export class SeqNullfix extends SeqOp {
-  constructor() { super('seq-nullfix'); }
+  constructor() { super(document.getElementById('seq-nullfix')); }
 }
 
 customElements.define("seq-nullfix", SeqNullfix);
 
 export class SeqPrefix extends SeqOp {
-  constructor() { super('seq-prefix'); }
+  constructor() { super(document.getElementById('seq-prefix')); }
 }
 
 customElements.define("seq-prefix", SeqPrefix);
 
 export class SeqInference extends HTMLElement {
-  constructor() {
-    super();
-  }
-  connectedCallback() { loadTemplateName(this, "seq-rule"); }
+  constructor() { super(); }
+  connectedCallback() { loadTemplateElement(this, document.getElementById('seq-rule')); }
 }
 
 customElements.define("seq-inference", SeqInference);
@@ -56,27 +54,27 @@ customElements.define("seq-inference", SeqInference);
 
 export class SeqSequent extends HTMLElement {
   constructor() { super(); }
-  connectedCallback() { loadTemplateName(this, "seq-sequent"); }
+  connectedCallback() { loadTemplateElement(this, document.getElementById('seq-sequent')); }
 }
 
 customElements.define("seq-sequent", SeqSequent);
 
 export class SeqContext extends HTMLElement {
-  constructor(templateName) { super(); this.templateName = templateName; }
-  connectedCallback() { loadTemplateName(this, this.templateName, root => { root.getElementById('metavar').textContent = this.getAttribute('name'); }); }
+  constructor(template) { super(); this.template = template; }
+  connectedCallback() { loadTemplateElement(this, this.template, root => { root.getElementById('metavar').textContent = this.getAttribute('name'); }); }
 }
 
 customElements.define("seq-context", SeqContext);
 
 export class SeqGamma extends SeqContext {
-  constructor() { super('seq-gamma'); }
+  constructor() { super(document.getElementById('seq-gamma')); }
   connectedCallback() { this.setAttribute('name', 'Γ'); super.connectedCallback(); }
 }
 
 customElements.define("seq-gamma", SeqGamma);
 
 export class SeqDelta extends SeqContext {
-  constructor() { super('seq-delta'); }
+  constructor() { super(document.getElementById('seq-delta')); }
   connectedCallback() { this.setAttribute('name', 'Δ'); super.connectedCallback(); }
 }
 
@@ -84,14 +82,11 @@ customElements.define("seq-delta", SeqDelta);
 
 export class SeqFocus extends HTMLElement {
   constructor() { super(); }
-  connectedCallback() { loadTemplateName(this, "seq-focus"); }
+  connectedCallback() { loadTemplateElement(this, document.getElementById('seq-focus')); }
 }
 
 customElements.define("seq-focus", SeqFocus);
 
-function loadTemplateName(node, templateName, setup) {
-  return loadTemplateElement(node, document.getElementById(templateName), setup);
-}
 
 function loadTemplateElement(node, templateElement, setup) {
   const shadow = node.attachShadow({ mode: 'open' });
