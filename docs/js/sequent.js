@@ -271,7 +271,7 @@ customElements.define("seq-focus", SeqFocus);
 
 function template(templateSource) {
   const template = document.createElement('template');
-  template.innerHTML = templateSource.join();
+  template.innerHTML = templateSource.join().trim();
   return template;
 }
 
