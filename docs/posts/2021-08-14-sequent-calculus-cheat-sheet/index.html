@@ -273,10 +273,10 @@
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span>(<span class="par"><seq-var neg>A</seq-var> <span class="op">⅋</span> <seq-var neg>B</seq-var></span>)</span> ≈ <span class="tensor"><span class="negate"><span class="op">∼</span></span><seq-var neg>A</seq-var> <span class="op">⊗</span> <span class="negate"><span class="op">∼</span></span><seq-var neg>B</seq-var></span>
+        <seq-prefix name="∼" pos>(<seq-infix name="⅋" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⊗" pos><seq-prefix slot="left" name="∼" pos><seq-var neg>A</seq-var></seq-prefix><seq-prefix slot="right" name="∼" pos><seq-var neg>B</seq-var></seq-prefix></seq-infix>
       </td>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span></span>(<span class="tensor"><seq-var pos>A</seq-var> <span class="op">⊗</span> <seq-var pos>B</seq-var></span>) ≈ <span class="par"><span class="not op">∼</span><seq-var pos>A</seq-var> <span class="op">⅋</span> <span class="not op">∼</span><seq-var pos>B</seq-var></span>
+        <seq-prefix name="¬" neg>(<seq-infix name="⊗" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⅋" neg><seq-prefix slot="left" name="¬" neg><seq-var pos>A</seq-var></seq-prefix><seq-prefix slot="right" name="¬" neg><seq-var pos>B</seq-var></seq-prefix></seq-infix>
       </td>
     </tr>
     <tr>
