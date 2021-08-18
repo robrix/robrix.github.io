@@ -90,13 +90,7 @@ export class SeqFocus extends HTMLElement {
 customElements.define("seq-focus", SeqFocus);
 
 function loadTemplate(node, templateName, setup) {
-  const shadow = node.attachShadow({ mode: 'open' });
-  const root = document.getElementById(templateName).content.cloneNode(true);
-  if (typeof setup === "function") {
-    setup(root);
-  }
-  shadow.appendChild(root);
-  return shadow;
+  return loadTemplateElement(node, document.getElementById(templateName), setup);
 }
 
 function loadTemplateElement(node, templateElement, setup) {
