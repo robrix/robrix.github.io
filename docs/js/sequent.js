@@ -98,3 +98,13 @@ function loadTemplate(node, templateName, setup) {
   shadow.appendChild(root);
   return shadow;
 }
+
+function loadTemplateElement(node, templateElement, setup) {
+  const shadow = node.attachShadow({ mode: 'open' });
+  const root = templateElement.content.cloneNode(true);
+  if (typeof setup === "function") {
+    setup(root);
+  }
+  shadow.appendChild(root);
+  return shadow;
+}
