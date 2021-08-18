@@ -1,13 +1,17 @@
 // vars
 
-export const SeqVar = component('seq-var', function (SeqVar) {
+export const SeqVar = component('seq-var', SeqVar => {
+  Object.defineProperty(SeqVar.prototype, 'polarity', {
+    get() {
+      return this.hasAttribute('neg') ?
+        '−'
+        : this.hasAttribute('pos') ?
+          '+'
+          : null;
+    }
+  })
   SeqVar.prototype.connectedCallback = function () {
-    if (this.hasAttribute('neg')) {
-      this.shadowNode.getElementById('polarity').textContent = '−';
-    }
-    else if (this.hasAttribute('pos')) {
-      this.shadowNode.getElementById('polarity').textContent = '+';
-    }
+    this.shadowNode.getElementById('polarity').textContent = this.polarity;
   };
 })`
 <style type="text/css">
@@ -35,9 +39,17 @@ sup {
 
 // operators
 
-export const SeqInfix = component('seq-infix', function (SeqInfix) {
+export const SeqInfix = component('seq-infix', SeqInfix => {
+  Object.defineProperty(SeqInfix.prototype, 'name', {
+    get() {
+      return this.getAttribute('name');
+    },
+    set(name) {
+      this.setAttribute('name', name);
+    }
+  });
   SeqInfix.prototype.connectedCallback = function () {
-    this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
+    this.shadowNode.getElementById('op').textContent = this.name;
   };
 })`
 <style type="text/css">
@@ -58,9 +70,17 @@ export const SeqInfix = component('seq-infix', function (SeqInfix) {
 <slot name="right"></slot>
 `;
 
-export const SeqNullfix = component('seq-nullfix', function (SeqNullfix) {
+export const SeqNullfix = component('seq-nullfix', SeqNullfix => {
+  Object.defineProperty(SeqNullfix.prototype, 'name', {
+    get() {
+      return this.getAttribute('name');
+    },
+    set(name) {
+      this.setAttribute('name', name);
+    }
+  });
   SeqNullfix.prototype.connectedCallback = function () {
-    this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
+    this.shadowNode.getElementById('op').textContent = this.name;
   };
 })`
 <style type="text/css">
@@ -73,9 +93,17 @@ export const SeqNullfix = component('seq-nullfix', function (SeqNullfix) {
 </style><span id="op"></span>
 `;
 
-export const SeqPrefix = component('seq-prefix', function (SeqPrefix) {
+export const SeqPrefix = component('seq-prefix', SeqPrefix => {
+  Object.defineProperty(SeqPrefix.prototype, 'name', {
+    get() {
+      return this.getAttribute('name');
+    },
+    set(name) {
+      this.setAttribute('name', name);
+    }
+  });
   SeqPrefix.prototype.connectedCallback = function () {
-    this.shadowNode.getElementById('op').textContent = this.getAttribute('name');
+    this.shadowNode.getElementById('op').textContent = this.name;
   };
 })`
 <style type="text/css">
