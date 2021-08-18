@@ -3,7 +3,7 @@ export class SeqVar extends HTMLElement {
     super();
   }
   connectedCallback() {
-    const shadow = loadTemplateElement(this, document.getElementById('seq-var'));
+    const shadow = loadTemplate(this, document.getElementById('seq-var'));
     if (this.hasAttribute('neg')) {
       shadow.getElementById('polarity').textContent = '−';
     }
@@ -18,7 +18,7 @@ customElements.define("seq-var", SeqVar);
 export class SeqOp extends HTMLElement {
   constructor(template) { super(); this.template = template; }
   connectedCallback() {
-    loadTemplateElement(this, this.template, root => {
+    loadTemplate(this, this.template, root => {
       root.getElementById('op').textContent = this.getAttribute('name');
     });
   }
@@ -46,7 +46,7 @@ customElements.define("seq-prefix", SeqPrefix);
 
 export class SeqInference extends HTMLElement {
   constructor() { super(); }
-  connectedCallback() { loadTemplateElement(this, document.getElementById('seq-rule')); }
+  connectedCallback() { loadTemplate(this, document.getElementById('seq-rule')); }
 }
 
 customElements.define("seq-inference", SeqInference);
@@ -54,14 +54,14 @@ customElements.define("seq-inference", SeqInference);
 
 export class SeqSequent extends HTMLElement {
   constructor() { super(); }
-  connectedCallback() { loadTemplateElement(this, document.getElementById('seq-sequent')); }
+  connectedCallback() { loadTemplate(this, document.getElementById('seq-sequent')); }
 }
 
 customElements.define("seq-sequent", SeqSequent);
 
 export class SeqContext extends HTMLElement {
   constructor(template) { super(); this.template = template; }
-  connectedCallback() { loadTemplateElement(this, this.template, root => { root.getElementById('metavar').textContent = this.getAttribute('name'); }); }
+  connectedCallback() { loadTemplate(this, this.template, root => { root.getElementById('metavar').textContent = this.getAttribute('name'); }); }
 }
 
 customElements.define("seq-context", SeqContext);
@@ -82,13 +82,13 @@ customElements.define("seq-delta", SeqDelta);
 
 export class SeqFocus extends HTMLElement {
   constructor() { super(); }
-  connectedCallback() { loadTemplateElement(this, document.getElementById('seq-focus')); }
+  connectedCallback() { loadTemplate(this, document.getElementById('seq-focus')); }
 }
 
 customElements.define("seq-focus", SeqFocus);
 
 
-function loadTemplateElement(node, templateElement, setup) {
+function loadTemplate(node, templateElement, setup) {
   const shadow = node.attachShadow({ mode: 'open' });
   const root = templateElement.content.cloneNode(true);
   if (typeof setup === "function") {
