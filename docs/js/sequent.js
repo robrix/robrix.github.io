@@ -15,18 +15,28 @@ export class SeqVar extends HTMLElement {
 
 customElements.define("seq-var", SeqVar);
 
-export class SeqConn extends HTMLElement {
-  constructor() {
-    super();
-  }
+export class SeqOp extends HTMLElement {
+  constructor(templateName) { super(); this.templateName = templateName; }
   connectedCallback() {
-    const conn = loadTemplate(this, "seq-conn", conn => {
-      conn.getElementById('op').textContent = this.getAttribute('name');
+    const conn = loadTemplate(this, this.templateName, root => {
+      root.getElementById('op').textContent = this.getAttribute('name');
     });
   }
 }
 
-customElements.define("seq-conn", SeqConn);
+customElements.define("seq-op", SeqOp);
+
+export class SeqInfix extends SeqOp {
+  constructor() { super('seq-infix'); }
+}
+
+customElements.define("seq-infix", SeqInfix);
+
+export class SeqPrefix extends SeqOp {
+  constructor() { super('seq-prefix'); }
+}
+
+customElements.define("seq-prefix", SeqPrefix);
 
 export class SeqInference extends HTMLElement {
   constructor() {
@@ -44,6 +54,27 @@ export class SeqSequent extends HTMLElement {
 }
 
 customElements.define("seq-sequent", SeqSequent);
+
+export class SeqContext extends HTMLElement {
+  constructor(templateName) { super(); this.templateName = templateName; }
+  connectedCallback() { loadTemplate(this, this.templateName, root => { root.getElementById('metavar').textContent = this.getAttribute('name'); }); }
+}
+
+customElements.define("seq-context", SeqContext);
+
+export class SeqGamma extends SeqContext {
+  constructor() { super('seq-gamma'); }
+  connectedCallback() { this.setAttribute('name', 'Γ'); super.connectedCallback(); }
+}
+
+customElements.define("seq-gamma", SeqGamma);
+
+export class SeqDelta extends SeqContext {
+  constructor() { super('seq-delta'); }
+  connectedCallback() { this.setAttribute('name', 'Δ'); super.connectedCallback(); }
+}
+
+customElements.define("seq-delta", SeqDelta);
 
 export class SeqFocus extends HTMLElement {
   constructor() { super(); }

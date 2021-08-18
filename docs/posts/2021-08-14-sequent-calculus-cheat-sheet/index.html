@@ -59,7 +59,7 @@
   <h1>Sequent calculus cheat sheet</h1>
   <span class="post-meta">Aug 14, 2021</span><br>
   
-  <span class="post-meta small">16 minute read</span>
+  <span class="post-meta small">15 minute read</span>
 </div>
 
 <article class="post-content">
@@ -90,7 +90,7 @@
   }
   </style><span class="var"><slot></slot><sup id="polarity"></sup></span></template>
 
-<template id="seq-conn"><style type="text/css">
+<template id="seq-infix"><style type="text/css">
   :host([neg]) #op {
     color: var(--sequent-neg-colour);
   }
@@ -100,6 +100,15 @@
   </style><slot name="left"></slot>
   <span id="op"></span>
   <slot name="right"></slot></template>
+
+<template id="seq-prefix"><style type="text/css">
+  :host([neg]) #op {
+    color: var(--sequent-neg-colour);
+  }
+  :host([pos]) #op {
+    color: var(--sequent-pos-colour);
+  }
+  </style><span id="op"></span><slot></slot></template>
 
 <template id="seq-rule">
   <style type="text/css">
@@ -199,6 +208,14 @@
   </div>
 </template>
 
+<template id="seq-gamma">
+  <slot></slot><em id="metavar" class="metavar"></em>
+</template>
+
+<template id="seq-delta">
+  <em id="metavar" class="metavar"></em><slot></slot>
+</template>
+
 <template id="seq-focus">[<slot></slot>]</template>
 
 <script type="module" src="../../js/sequent.js"></script>
@@ -224,43 +241,43 @@
       <td>
         <div id="with" class="connective">
           <div class="left-rules">
-            <seq-inference class="with" name="&amp;" left neg>
+            <seq-inference name="&amp;" left neg>
               <div class="label" slot="label"><span class="with op">&amp;</span><sub>1</sub></div>
               <seq-sequent slot="premise">
-                <span slot="left"><seq-focus slot="left"><seq-var neg>A</seq-var></seq-focus> <span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span></span>
+                <seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
+                <seq-delta slot="right"></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <span slot="left"><seq-focus slot="left"><seq-conn class="with" name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-conn></seq-focus> <span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span></span>
+                <seq-gamma slot="left"><seq-focus><seq-infix name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-focus> </seq-gamma>
+                <seq-delta slot="right"></seq-delta>
               </seq-sequent>
             </seq-inference>
-            <seq-inference class="with" name="&amp;" left neg>
+            <seq-inference name="&amp;" left neg>
               <div class="label" slot="label"><span class="with op">&amp;</span><sub>2</sub></div>
               <seq-sequent slot="premise">
-                <span slot="left"><seq-focus slot="left"><seq-var neg>B</seq-var></seq-focus> <span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span></span>
+                <seq-gamma slot="left"><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma>
+                <seq-delta slot="right"></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <span slot="left"><seq-focus slot="left"><seq-conn class="with" name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-conn></seq-focus> <span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span></span>
+                <seq-gamma slot="left"><seq-focus><seq-infix name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-focus> </seq-gamma>
+                <seq-delta slot="right"></seq-delta>
               </seq-sequent>
             </seq-inference>
           </div>
           <seq-inference class="with" name="&amp;" right neg>
             <div class="premises" slot="premise">
               <seq-sequent>
-                <span slot="left"><span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span>, <seq-var neg>A</seq-var></span>
+                <seq-gamma slot="left"></seq-gamma>
+                <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <span slot="left"><span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span>, <seq-var neg>B</seq-var></span>
+                <seq-gamma slot="left"></seq-gamma>
+                <seq-delta slot="right">, <seq-var neg>B</seq-var></seq-delta>
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <span slot="left"><span class="metavar">Γ</span></span>
-              <span slot="right"><span class="metavar">Δ</span>, <seq-conn class="with" name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-conn></span>
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-infix name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-delta>
             </seq-sequent>
             <div class="label" slot="label"><span class="with op">&amp;</span></div>
           </seq-inference>
@@ -272,39 +289,39 @@
             <div class="label" slot="label"><span class="sum op">⊕</span></div>
             <div class="premises" slot="premise">
               <seq-sequent>
-                <span slot="left"><seq-var pos>A</seq-var>, <span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span></span>
+                <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
+                <seq-delta slot="right"></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <span slot="left"><seq-var pos>B</seq-var>, <span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span></span>
+                <seq-gamma slot="left"><seq-var pos>B</seq-var>, </seq-gamma>
+                <seq-delta slot="right"></seq-delta>
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <span slot="left"><seq-conn class="sum" name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-conn>, <span class="metavar">Γ</span></span>
-              <span slot="right"><span class="metavar">Δ</span></span>
+              <seq-gamma slot="left"><seq-infix name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix>, </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
           <div class="right-rules">
-            <seq-inference class="sum" name="⊕" right pos>
+            <seq-inference name="⊕" right pos>
               <seq-sequent slot="premise">
-                <span slot="left"><span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span> <seq-focus slot="left"><seq-var pos>A</seq-var></seq-focus></span>
+                <seq-gamma slot="left"></seq-gamma>
+                <seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <span slot="left"><span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span> <seq-focus slot="left"><seq-conn class="sum" name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-conn></seq-focus></span>
+                <seq-gamma slot="left"></seq-gamma>
+                <seq-delta slot="right"> <seq-focus><seq-infix name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix></seq-focus></seq-delta>
               </seq-sequent>
               <div class="label" slot="label"><span class="sum op">⊕</span><sub>1</sub></div>
             </seq-inference>
-            <seq-inference class="sum" name="⊕" right pos>
+            <seq-inference name="⊕" right pos>
               <seq-sequent slot="premise">
-                <span slot="left"><span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span> <seq-focus slot="left"><seq-var pos>B</seq-var></seq-focus></span>
+                <seq-gamma slot="left"></seq-gamma>
+                <seq-delta slot="right"> <seq-focus><seq-var pos>B</seq-var></seq-focus></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <span slot="left"><span class="metavar">Γ</span></span>
-                <span slot="right"><span class="metavar">Δ</span> <seq-focus slot="left"><seq-conn class="sum" name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-conn></seq-focus></span>
+                <seq-gamma slot="left"></seq-gamma>
+                <seq-delta slot="right"> <seq-focus><seq-infix name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix></seq-focus></seq-delta>
               </seq-sequent>
               <div class="label" slot="label"><span class="sum op">⊕</span><sub>2</sub></div>
             </seq-inference>
@@ -314,23 +331,24 @@
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span>(<span class="with"><span class="var neg">A<sup>−</sup></span> <span class="with op">&amp;</span> <span class="var neg">B<sup>−</sup></span></span>)</span> ≈ <span class="negate"><span class="op">∼</span></span><span class="var neg">A<sup>−</sup></span> <span class="sum op">⊕</span> <span class="negate"><span class="op">∼</span></span><span class="var neg">B<sup>−</sup></span>
+        <seq-prefix name="∼" pos>(<seq-infix name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⊕" pos><seq-prefix slot="left" name="∼" pos><seq-var neg>A</seq-var></seq-prefix><seq-prefix slot="right" name="∼" pos><seq-var neg>B</seq-var></seq-prefix></seq-infix>
       </td>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span>(<span class="sum"><span class="var pos">A<sup>+</sup></span> <span class="op">⊕</span> <span class="var pos">B<sup>+</sup></span></span>)</span> ≈ <span class="with"><span class="not"><span class="op">¬</span><span class="var pos">A<sup>+</sup></span></span> <span class="op">&amp;</span> <span class="not"><span class="op">¬</span><span class="var pos">B<sup>+</sup></span></span></span>
+        <seq-prefix name="¬" neg>(<seq-infix name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix>)</seq-prefix> ≈
+        <seq-infix name="&amp;" neg><seq-prefix slot="left" name="¬" neg><seq-var pos>A</seq-var></seq-prefix><seq-prefix slot="right" name="¬" neg><seq-var pos>B</seq-var></seq-prefix></seq-infix>
       </td>
     </tr>
     <tr>
       <td>
         <div class="connective">
           <div class="rule left">
-            <p>no left rule for <seq-conn class="top" name="⊤" neg></seq-conn></p>
+            <p>no left rule for <seq-infix class="top" name="⊤" neg></seq-infix></p>
           </div>
           <seq-inference name="⊤" right neg>
-            <div class="label" slot="label"><seq-conn class="top" name="⊤" neg></seq-conn></div>
+            <div class="label" slot="label"><seq-infix class="top" name="⊤" neg></seq-infix></div>
             <seq-sequent slot="conclusion">
-              <span slot="left"><span class="metavar">Γ</span></span>
-              <span slot="right"><span class="metavar">Δ</span>, <seq-conn class="top" name="⊤" neg></seq-conn></span>
+              <seq-gamma slot="left"></seq-gamma>
+              <span slot="right"><span class="metavar">Δ</span>, <seq-infix class="top" name="⊤" neg></seq-infix></span>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -338,24 +356,24 @@
       <td>
         <div class="connective">
           <seq-inference name="0" left pos>
-            <div class="label" slot="label"><seq-conn class="zero" name="0" pos></seq-conn></div>
+            <div class="label" slot="label"><seq-infix class="zero" name="0" pos></seq-infix></div>
             <seq-sequent slot="conclusion">
-              <span slot="left"><seq-conn class="zero" name="0" pos></seq-conn>, <span class="metavar">Γ</span></span>
-              <span slot="right"><span class="metavar">Δ</span></span>
+              <span slot="left"><seq-infix class="zero" name="0" pos></seq-infix>, <span class="metavar">Γ</span></span>
+              <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
           <div class="rule right">
-            <p>no right rule for <seq-conn class="zero" name="0" pos></seq-conn></p>
+            <p>no right rule for <seq-infix class="zero" name="0" pos></seq-infix></p>
           </div>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span><seq-conn class="top" name="⊤" neg></seq-conn></span> ≈ <seq-conn class="zero" name="0" pos></seq-conn>
+        <span class="negate"><span class="op">∼</span><seq-infix class="top" name="⊤" neg></seq-infix></span> ≈ <seq-infix class="zero" name="0" pos></seq-infix>
       </td>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span><seq-conn class="zero" name="0" pos></seq-conn></span> ≈ <seq-conn class="top" name="⊤" neg></seq-conn>
+        <span class="not"><span class="op">¬</span><seq-infix class="zero" name="0" pos></seq-infix></span> ≈ <seq-infix class="top" name="⊤" neg></seq-infix>
       </td>
     </tr>
   </tbody>
