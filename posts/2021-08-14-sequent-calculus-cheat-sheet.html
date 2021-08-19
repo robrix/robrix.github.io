@@ -249,35 +249,36 @@ categories: logic, plt
       </td>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="one"><span class="op E">1</span></span></div>
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile E">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="one"><span class="op E">1</span></span>, <span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile E">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
-            </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="axiom"></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile E">⊢</span> <span class="metavar">Δ</span> <span class="focus">[<span class="one"><span class="op E">1</span></span>]</span></div>
-            </div>
-            <div class="label"><span class="one"><span class="op E">1</span></span></div>
-          </div>
+          <seq-inference name="1" pos left>
+            <sub slot="label-decoration" class="pos">E</sub>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <sub slot="turnstile-decoration" class="pos">E</sub>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-op name="1" pos><sub slot="op-decoration" class="pos">E</sub></seq-op>, </seq-gamma>
+              <sub slot="turnstile-decoration" class="pos">E</sub>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="1" pos right>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <sub slot="turnstile-decoration" class="pos">E</sub>
+              <seq-delta slot="right"> <seq-focus><seq-op name="1" pos><sub slot="op-decoration" class="pos">E</sub></seq-op></seq-focus></seq-delta>
+            </seq-sequent>
+            <sub slot="label-decoration" class="pos">E</sub>
+          </seq-inference>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span><span class="bottom"><span class="op R">⊥</span></span></span> ≈ <span class="one"><span class="op E">1</span></span>
+        <seq-op name="∼" pos><seq-op name="⊥" neg><sub slot="op-decoration" class="neg">R</sub></seq-op></seq-op> ≈ <seq-op name="1" pos><sub slot="op-decoration" class="pos">E</sub></seq-op>
       </td>
       <td class="equivalence">
-        <span class="not"><span class="op">¬</span></span><span class="one"><span class="op E">1</span></span> ≈ <span class="bottom"><span class="op R">⊥</span></span>
+        <span class="not"><span class="op">¬</span></span><seq-op name="1" pos><sub slot="op-decoration" class="pos">E</sub></seq-op> ≈ <seq-op name="⊥" neg><sub slot="op-decoration" class="neg">R</sub></seq-op>
       </td>
     </tr>
   </tbody>
@@ -421,11 +422,11 @@ categories: logic, plt
     <tr>
       <td class="equivalence">
         <div><span class="negate"><span class="op">∼</span><span class="not"><span class="op">¬</span><seq-var pos>A</seq-var></span></span> ≈ <seq-var pos>A</seq-var></div>
-        <div><span class="not"><span class="op">¬</span><seq-var pos>A</seq-var></span></span> ≈ <span class="implication"><seq-var pos>A</seq-var> <span class="op">→</span> <span class="bottom"><span class="op R">⊥</span></span></span></div>
+        <div><span class="not"><span class="op">¬</span><seq-var pos>A</seq-var></span></span> ≈ <span class="implication"><seq-var pos>A</seq-var> <span class="op">→</span> <seq-op name="⊥" neg><sub slot="op-decoration" class="neg">R</sub></seq-op></span></div>
       </td>
       <td class="equivalence">
         <div><span class="not"><span class="op">¬</span><span class="negate"><span class="op">∼</span><seq-var neg>A</seq-var></span></span> ≈ <seq-var neg>A</seq-var></div>
-        <div><span class="negate"><span class="op">∼</span><seq-var neg>A</seq-var></span></span> ≈ <span class="coimplication"><seq-var neg>A</seq-var> <span class="op">⤚</span> <span class="one"><span class="op E">1</span></span></span></div>
+        <div><span class="negate"><span class="op">∼</span><seq-var neg>A</seq-var></span></span> ≈ <span class="coimplication"><seq-var neg>A</seq-var> <span class="op">⤚</span> <seq-op name="1" pos><sub slot="op-decoration" class="pos">E</sub></seq-op></span></div>
       </td>
     </tr>
   </tbody>
@@ -496,11 +497,11 @@ categories: logic, plt
     <tr>
       <td class="equivalence">
         <div><span class="negate"><span class="op">∼</span><span class="not-untrue"><span class="op">¬̷</span><seq-var neg>A</seq-var></span></span> ≈ <seq-var neg>A</seq-var></div>
-        <div><span class="not-untrue"><span class="op">¬̷</span><seq-var neg>A</seq-var></span> ≈ <span class="implication"><span class="one"><span class="op E">1</span></span> <span class="op">→</span> <seq-var neg>A</seq-var></span></div>
+        <div><span class="not-untrue"><span class="op">¬̷</span><seq-var neg>A</seq-var></span> ≈ <span class="implication"><seq-op name="1" pos><sub slot="op-decoration" class="pos">E</sub></seq-op> <span class="op">→</span> <seq-var neg>A</seq-var></span></div>
       </td>
       <td class="equivalence">
         <div><span class="not"><span class="op">¬</span><span class="true"><span class="op">✓</span><seq-var pos>A</seq-var></span></span> ≈ <seq-var pos>A</seq-var></div>
-        <div><span class="true"><span class="op">✓</span><seq-var pos>A</seq-var></span> ≈ <span class="coimplication"><span class="bottom R"><span class="op">⊥</span></span> <span class="op">⤚</span> <seq-var pos>A</seq-var></span></div>
+        <div><span class="true"><span class="op">✓</span><seq-var pos>A</seq-var></span> ≈ <span class="coimplication"><seq-op name="⊥" neg><sub slot="op-decoration" class="neg">R</sub></seq-op> <span class="op">⤚</span> <seq-var pos>A</seq-var></span></div>
       </td>
     </tr>
   </tbody>
