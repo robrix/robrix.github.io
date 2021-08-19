@@ -75,6 +75,22 @@ export function infix(tag, symbol, polarity, setup) {
   return klass;
 }
 
+export function prefix(tag, symbol, polarity, setup) {
+  const klass = class extends HTMLElement {
+    constructor() {
+      super();
+      this.shadowNode = shadow(this)`
+<seq-symbol ${polarity}>${symbol}</seq-symbol><slot></slot>
+      `;
+    }
+  };
+  if (typeof setup === 'function') {
+    setup(klass);
+  }
+  customElements.define(tag, klass);
+  return klass;
+}
+
 
 export class SeqOp extends HTMLElement {
   constructor(opName, polarity) {
