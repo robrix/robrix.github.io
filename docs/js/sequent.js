@@ -77,7 +77,7 @@ export class SeqOp extends HTMLElement {
   static get observedAttributes() {
     return ['name'];
   }
-  attributeDidChangeCallback(_1, _2, name) {
+  attributeChangedCallback(_1, _2, name) {
     this.opName = name;
   }
 }
