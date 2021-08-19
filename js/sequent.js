@@ -71,51 +71,6 @@ export const SeqOp = component('seq-op', SeqOp => {
 <slot></slot>
 `;
 
-export class SeqNullfix extends HTMLElement {
-  constructor() {
-    super();
-    this.shadowNode = shadow(this)`
-<style type="text/css">
-:host([neg]) #op {
-  color: var(--sequent-neg-colour);
-}
-:host([pos]) #op {
-  color: var(--sequent-pos-colour);
-}
-</style><span id="op"></span>
-    `;
-  }
-  set opName(name) {
-    this.shadowNode.getElementById('op').textContent = name;
-  }
-  connectedCallback() {
-    this.opName = this.getAttribute('name');
-  }
-  static get observedAttributes() {
-    return ['name'];
-  }
-  attributeChangedCallback(_1, _2, name) {
-    this.opName = name;
-  }
-}
-customElements.define('seq-nullfix', SeqNullfix);
-
-export const SeqPrefix = component('seq-prefix', SeqPrefix => {
-  Object.defineProperty(SeqPrefix.prototype, 'name', readwriteAttr('name'));
-  SeqPrefix.prototype.connectedCallback = function () {
-    this.shadowNode.getElementById('op').textContent = this.name;
-  };
-})`
-<style type="text/css">
-:host([neg]) #op {
-  color: var(--sequent-neg-colour);
-}
-:host([pos]) #op {
-  color: var(--sequent-pos-colour);
-}
-</style><span id="op"></span><slot></slot>
-`;
-
 
 // inferences
 
