@@ -12,3 +12,5 @@ export const SeqImplication = component('seq-impl')`<seq-op name="→" neg><slot
 export const SeqCoimplication = component('seq-coimpl')`<seq-op name="⤚" pos><slot></slot></seq-op>`;
 export const SeqNot = component('seq-not')`<seq-op name="¬" neg><slot></slot></seq-op>`;
 export const SeqNegate = component('seq-negate')`<seq-op name="∼" pos><slot></slot></seq-op>`;
+export const SeqNotUntrue = component('seq-not-untrue')`<seq-op name="¬̷" neg><slot></slot></seq-op>`;
+export const SeqTrue = component('seq-true')`<seq-op name="✓" pos><slot></slot></seq-op>`;
