@@ -143,12 +143,12 @@
       <td>
         <div class="connective">
           <div class="rule left">
-            <p>no left rule for <seq-nullfix class="top" name="⊤" neg></seq-nullfix></p>
+            <p>no left rule for <seq-nullfix name="⊤" neg></seq-nullfix></p>
           </div>
           <seq-inference name="⊤" right neg>
             <seq-sequent slot="conclusion">
               <seq-gamma slot="left"></seq-gamma>
-              <span slot="right"><span class="metavar">Δ</span>, <seq-nullfix class="top" name="⊤" neg></seq-nullfix></span>
+              <span slot="right"><span class="metavar">Δ</span>, <seq-nullfix name="⊤" neg></seq-nullfix></span>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -157,22 +157,22 @@
         <div class="connective">
           <seq-inference name="0" left pos>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-nullfix class="zero" name="0" pos></seq-nullfix>, </seq-gamma>
+              <seq-gamma slot="left"><seq-nullfix name="0" pos></seq-nullfix>, </seq-gamma>
               <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
           <div class="rule right">
-            <p>no right rule for <seq-nullfix class="zero" name="0" pos></seq-nullfix></p>
+            <p>no right rule for <seq-nullfix name="0" pos></seq-nullfix></p>
           </div>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <seq-prefix name="∼" pos><seq-nullfix class="top" name="⊤" neg></seq-nullfix></seq-prefix> ≈ <seq-nullfix class="zero" name="0" pos></seq-nullfix>
+        <seq-prefix name="∼" pos><seq-nullfix name="⊤" neg></seq-nullfix></seq-prefix> ≈ <seq-nullfix name="0" pos></seq-nullfix>
       </td>
       <td class="equivalence">
-        <seq-prefix name="¬" neg><seq-nullfix class="zero" name="0" pos></seq-nullfix></seq-prefix> ≈ <seq-nullfix class="top" name="⊤" neg></seq-nullfix>
+        <seq-prefix name="¬" neg><seq-nullfix name="0" pos></seq-nullfix></seq-prefix> ≈ <seq-nullfix name="⊤" neg></seq-nullfix>
       </td>
     </tr>
   </tbody>
