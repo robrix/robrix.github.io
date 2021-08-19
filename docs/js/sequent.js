@@ -32,7 +32,25 @@ sup {
 export const SeqInfix = component('seq-infix', SeqInfix => {
   Object.defineProperty(SeqInfix.prototype, 'name', readwriteAttr('name'));
   SeqInfix.prototype.connectedCallback = function () {
-    this.shadowNode.getElementById('op').textContent = this.name;
+    const op = this.shadowNode.getElementById('op');
+    op.textContent = this.name;
+    this.slotChangeListener = event => {
+      // FIXME: this is incorrect for any kind of slot change other than a single, complete bulk insertion at load time.
+      if (event.target.name === '') {
+        const [x, y, ...rest] = Array.from(event.target.assignedElements());
+        if (x && y && rest.length === 0) {
+          x.slot = 'left';
+          y.slot = 'right';
+        }
+        else if (x) {
+          x.slot = 'right';
+        }
+      }
+    };
+    this.shadowRoot.addEventListener('slotchange', this.slotChangeListener);
+  };
+  SeqInfix.prototype.disconnectedCallback = function () {
+    this.shadowRoot.removeEventListener('slotchange', this.slotChangeListener);
   };
 })`
 <style type="text/css">
@@ -48,9 +66,11 @@ export const SeqInfix = component('seq-infix', SeqInfix => {
   gap: 6px;
   width: auto;
 }
-</style><slot name="left"></slot>
+</style>
+<slot name="left"></slot>
 <span id="op"></span>
 <slot name="right"></slot>
+<slot></slot>
 `;
 
 export class SeqNullfix extends HTMLElement {

@@ -99,7 +99,7 @@
                 <seq-delta slot="right"></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <seq-gamma slot="left"><seq-focus><seq-infix name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-focus> </seq-gamma>
+                <seq-gamma slot="left"><seq-focus><seq-infix name="&amp;" neg><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-infix></seq-focus> </seq-gamma>
                 <seq-delta slot="right"></seq-delta>
               </seq-sequent>
             </seq-inference>
@@ -110,7 +110,7 @@
                 <seq-delta slot="right"></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <seq-gamma slot="left"><seq-focus><seq-infix name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-focus> </seq-gamma>
+                <seq-gamma slot="left"><seq-focus><seq-infix name="&amp;" neg><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-infix></seq-focus> </seq-gamma>
                 <seq-delta slot="right"></seq-delta>
               </seq-sequent>
             </seq-inference>
@@ -128,7 +128,7 @@
             </div>
             <seq-sequent slot="conclusion">
               <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-infix name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-delta>
+              <seq-delta slot="right">, <seq-infix name="&amp;" neg><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-infix></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -147,7 +147,7 @@
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-infix name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix>, </seq-gamma>
+              <seq-gamma slot="left"><seq-infix name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-infix>, </seq-gamma>
               <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
@@ -159,7 +159,7 @@
               </seq-sequent>
               <seq-sequent slot="conclusion">
                 <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-infix name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix></seq-focus></seq-delta>
+                <seq-delta slot="right"> <seq-focus><seq-infix name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-infix></seq-focus></seq-delta>
               </seq-sequent>
               <div class="label" slot="label"><seq-nullfix name="⊕" pos></seq-nullfix><sub>1</sub></div>
             </seq-inference>
@@ -170,7 +170,7 @@
               </seq-sequent>
               <seq-sequent slot="conclusion">
                 <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-infix name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix></seq-focus></seq-delta>
+                <seq-delta slot="right"> <seq-focus><seq-infix name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-infix></seq-focus></seq-delta>
               </seq-sequent>
               <div class="label" slot="label"><seq-nullfix name="⊕" pos></seq-nullfix><sub>2</sub></div>
             </seq-inference>
@@ -180,11 +180,11 @@
     </tr>
     <tr>
       <td class="equivalence">
-        <seq-prefix name="∼" pos>(<seq-infix name="&amp;" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⊕" pos><seq-prefix slot="left" name="∼" pos><seq-var neg>A</seq-var></seq-prefix><seq-prefix slot="right" name="∼" pos><seq-var neg>B</seq-var></seq-prefix></seq-infix>
+        <seq-prefix name="∼" pos>(<seq-infix name="&amp;" neg><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⊕" pos><seq-prefix name="∼" pos><seq-var neg>A</seq-var></seq-prefix><seq-prefix name="∼" pos><seq-var neg>B</seq-var></seq-prefix></seq-infix>
       </td>
       <td class="equivalence">
-        <seq-prefix name="¬" neg>(<seq-infix name="⊕" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix>)</seq-prefix> ≈
-        <seq-infix name="&amp;" neg><seq-prefix slot="left" name="¬" neg><seq-var pos>A</seq-var></seq-prefix><seq-prefix slot="right" name="¬" neg><seq-var pos>B</seq-var></seq-prefix></seq-infix>
+        <seq-prefix name="¬" neg>(<seq-infix name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-infix>)</seq-prefix> ≈
+        <seq-infix name="&amp;" neg><seq-prefix name="¬" neg><seq-var pos>A</seq-var></seq-prefix><seq-prefix name="¬" neg><seq-var pos>B</seq-var></seq-prefix></seq-infix>
       </td>
     </tr>
     <tr>
@@ -250,7 +250,7 @@
             </seq-sequent>
             <seq-sequent slot="conclusion">
               <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-infix name="⅋" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix></seq-delta>
+              <seq-delta slot="right">, <seq-infix name="⅋" neg><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-infix></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -266,17 +266,17 @@
               <seq-sequent><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta></seq-sequent>
               <seq-sequent><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"> <seq-focus><seq-var pos>B</seq-var></seq-focus></seq-delta></seq-sequent>
             </div>
-            <seq-sequent slot="conclusion"><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"> <seq-focus><seq-infix name="⊗" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix></seq-focus></seq-delta></seq-sequent>
+            <seq-sequent slot="conclusion"><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"> <seq-focus><seq-infix name="⊗" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-infix></seq-focus></seq-delta></seq-sequent>
           </seq-inference>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <seq-prefix name="∼" pos>(<seq-infix name="⅋" neg><seq-var slot="left" neg>A</seq-var><seq-var slot="right" neg>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⊗" pos><seq-prefix slot="left" name="∼" pos><seq-var neg>A</seq-var></seq-prefix><seq-prefix slot="right" name="∼" pos><seq-var neg>B</seq-var></seq-prefix></seq-infix>
+        <seq-prefix name="∼" pos>(<seq-infix name="⅋" neg><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⊗" pos><seq-prefix name="∼" pos><seq-var neg>A</seq-var></seq-prefix><seq-prefix name="∼" pos><seq-var neg>B</seq-var></seq-prefix></seq-infix>
       </td>
       <td class="equivalence">
-        <seq-prefix name="¬" neg>(<seq-infix name="⊗" pos><seq-var slot="left" pos>A</seq-var><seq-var slot="right" pos>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⅋" neg><seq-prefix slot="left" name="¬" neg><seq-var pos>A</seq-var></seq-prefix><seq-prefix slot="right" name="¬" neg><seq-var pos>B</seq-var></seq-prefix></seq-infix>
+        <seq-prefix name="¬" neg>(<seq-infix name="⊗" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-infix>)</seq-prefix> ≈ <seq-infix name="⅋" neg><seq-prefix name="¬" neg><seq-var pos>A</seq-var></seq-prefix><seq-prefix name="¬" neg><seq-var pos>B</seq-var></seq-prefix></seq-infix>
       </td>
     </tr>
     <tr>
