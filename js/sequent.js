@@ -27,12 +27,58 @@ sup {
 `;
 
 
+export const SeqSymbol = component('seq-symbol')`
+<style type="text/css">
+var {
+  font-style: normal;
+  font-size: 1.25rem;
+  line-height: 1.8rem;
+  font-weight: 100;
+  font-family: var(--sequent-font);
+}
+:host([neg]) {
+  color: var(--sequent-neg-colour);
+}
+:host([pos]) {
+  color: var(--sequent-pos-colour);
+}
+</style><var><slot></slot></var>
+`;
+
+
 // operators
 
-export class SeqOp extends HTMLElement {
-  constructor() {
+export class SeqInfix extends HTMLElement {
+  constructor(symbol, polarity) {
     super();
-    // FIXME: prefix operators shouldn’t have gaps like that
+    this.shadowNode = shadow(this)`
+<slot name="lhs"></slot> <seq-symbol ${polarity}>${symbol}</seq-symbol> <slot name="rhs"></slot><slot id="slot"></slot>
+    `;
+  }
+  connectedCallback() {
+    const [lhs, rhs] = this.shadowRoot.getElementById('slot').assignedElements();
+    lhs.slot = 'lhs';
+    rhs.slot = 'rhs';
+  }
+}
+
+export function infix(tag, symbol, polarity, setup) {
+  const klass = class extends SeqInfix {
+    constructor() {
+      super(symbol, polarity);
+    }
+  };
+  if (typeof setup === 'function') {
+    setup(klass);
+  }
+  customElements.define(tag, klass);
+  return klass;
+}
+
+
+export class SeqOp extends HTMLElement {
+  constructor(opName, polarity) {
+    super();
     this.shadowNode = shadow(this)`
 <style type="text/css">
 :host([neg]) #op {
@@ -44,27 +90,18 @@ export class SeqOp extends HTMLElement {
 :host {
   display: inline-flex;
   flex-direction: row;
-  gap: 6px;
   width: auto;
 }
 </style>
 <slot id="lhs" name="left"></slot>
-<span><span id="op"></span><slot name="op-decoration"></slot></span>
+<span><seq-symbol id="op"></seq-symbol><slot name="op-decoration"></slot></span>
 <slot></slot>
 <slot id="rhs" name="right"></slot>
     `;
-  }
-  set opName(name) {
-    this.shadowNode.getElementById('op').textContent = name;
-  }
-  connectedCallback() {
-    this.opName = this.getAttribute('name');
-  }
-  static get observedAttributes() {
-    return ['name'];
-  }
-  attributeChangedCallback(_1, _2, name) {
-    this.opName = name;
+    this.shadowNode.getElementById('op').textContent = opName || this.getAttribute('name');
+    if (polarity === 'neg' || polarity === 'pos') {
+      this.setAttribute(polarity, '');
+    }
   }
 }
 customElements.define('seq-op', SeqOp);
@@ -74,13 +111,13 @@ customElements.define('seq-op', SeqOp);
 
 export const SeqInference = component('seq-inference', SeqInference => {
   SeqInference.prototype.connectedCallback = function () {
-    const labelOp = this.shadowNode.getElementById('label-op');
-    labelOp.setAttribute('name', this.getAttribute('name'));
+    const labelVar = this.shadowNode.getElementById('label-var');
+    labelVar.textContent = this.getAttribute('name');
     if (this.hasAttribute('neg')) {
-      labelOp.setAttribute('neg', '');
+      labelVar.setAttribute('neg', '');
     }
     else if (this.hasAttribute('pos')) {
-      labelOp.setAttribute('pos', '');
+      labelVar.setAttribute('pos', '');
     }
   };
 })`
@@ -128,7 +165,7 @@ div.axiom::after {
 }
 </style>
 <div id="rule">
-  <div id="label"><slot name="label"><seq-op id="label-op"></seq-op><slot name="label-decoration"></slot></slot></div>
+  <div id="label"><slot name="label"><seq-symbol id="label-var"></seq-symbol><slot name="label-decoration"></slot></slot></div>
   <div id="sequents">
     <slot name="premise"><div class="axiom"></div></slot>
     <span id="line-of-inference"></span>
@@ -198,26 +235,26 @@ var {
 export const SeqFocus = component('seq-focus')`[<slot></slot>]`;
 
 
-export function template(templateSource) {
+export function template(templateSources, ...rest) {
   const template = document.createElement('template');
-  template.innerHTML = templateSource.join().trim();
+  template.innerHTML = rest.reduce((accum, each, ix) => { accum.push(each); accum.push(templateSources[ix + 1]); return accum; }, [templateSources[0]]).join('').trim();
   return template;
 }
 
 export function shadow(node) {
-  return templateSource => {
+  return (templateSource, ...rest) => {
     const shadow = node.attachShadow({ mode: 'open' });
-    shadow.appendChild(template(templateSource).content.cloneNode(true));
+    shadow.appendChild(template(templateSource, ...rest).content.cloneNode(true));
     return shadow;
   }
 }
 
 export function component(tag, setup) {
-  return templateSource => {
+  return (templateSource, ...rest) => {
     const klass = class extends HTMLElement {
       constructor() {
         super();
-        this.shadowNode = shadow(this)(templateSource);
+        this.shadowNode = shadow(this)(templateSource, ...rest);
       }
     };
     if (typeof setup === 'function') {

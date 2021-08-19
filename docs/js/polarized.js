@@ -1,11 +1,11 @@
-import { component } from './sequent.js';
+import { component, infix } from './sequent.js';
 
-export const SeqWith = component('seq-with')`<seq-op name="&amp;" neg><slot></slot></seq-op>`;
-export const SeqSum = component('seq-sum')`<seq-op name="⊕" pos><slot></slot></seq-op>`;
+export const SeqWith = infix('seq-with', '&amp;', 'neg');
+export const SeqSum = infix('seq-sum', '⊕', 'pos');
 export const SeqTop = component('seq-top')`<seq-op name="⊤" neg><slot></slot></seq-op>`;
 export const SeqZero = component('seq-zero')`<seq-op name="0" pos><slot></slot></seq-op>`;
-export const SeqPar = component('seq-par')`<seq-op name="⅋" neg><slot></slot></seq-op>`;
-export const SeqTensor = component('seq-tensor')`<seq-op name="⊗" pos><slot></slot></seq-op>`;
+export const SeqPar = infix('seq-par', '⅋', 'neg');
+export const SeqTensor = infix('seq-tensor', '⊗', 'pos');
 export const SeqBottom = component('seq-bottom')`
 <style type="text/css">
 sub {
@@ -26,8 +26,8 @@ sub {
 }
 </style><seq-op name="1" pos><sub slot="op-decoration" class="pos">E</sub><slot></slot></seq-op>
 `;
-export const SeqImplication = component('seq-impl')`<seq-op name="→" neg><slot></slot></seq-op>`;
-export const SeqCoimplication = component('seq-coimpl')`<seq-op name="⤚" pos><slot></slot></seq-op>`;
+export const SeqImplication = infix('seq-impl', '→', 'neg');
+export const SeqCoimplication = infix('seq-coimpl', '⤚', 'pos');
 export const SeqNot = component('seq-not')`<seq-op name="¬" prefix neg><slot></slot></seq-op>`;
 export const SeqNegate = component('seq-negate')`<seq-op name="∼" prefix pos><slot></slot></seq-op>`;
 export const SeqNotUntrue = component('seq-not-untrue')`<seq-op name="¬̷" prefix neg><slot></slot></seq-op>`;
