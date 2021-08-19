@@ -562,58 +562,50 @@
     <tr>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="up-shift op">↑</span></div>
-            <div class="inference">
-              <div class="premise Γ"><seq-var pos>A</seq-var>, <span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="focus">[<span class="up-shift"><span class="op">↑</span><seq-var pos>A</seq-var></span>]</span> <span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
-            </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span> <span class="focus">[<seq-var pos>A</seq-var>]</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="up-shift"><span class="op">↑</span><seq-var pos>A</seq-var></span></div>
-            </div>
-            <div class="label"><span class="up-shift op">↑</span></div>
-          </div>
+          <seq-inference name="↑" neg left>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-focus><seq-up><seq-var pos>A</seq-var></seq-up></seq-focus> </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="↑" neg right>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-up><seq-var pos>A</seq-var></seq-up></seq-delta>
+            </seq-sequent>
+          </seq-inference>
         </div>
       </td>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="down-shift op">↓</span></div>
-            <div class="inference">
-              <div class="premise Γ"><span class="focus">[<seq-var neg>A</seq-var>]</span> <span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="down-shift"><span class="op">↓</span><seq-var neg>A</seq-var></span>, <span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
-            </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span>, <seq-var neg>A</seq-var></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="down-shift"><span class="op">↓</span><seq-var neg>A</seq-var></span>]</span></div>
-            </div>
-            <div class="label"><span class="down-shift op">↓</span></div>
-          </div>
+          <seq-inference name="↓" pos left>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-down><seq-var neg>A</seq-var></seq-down>, </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="↓" pos right>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right"> <seq-focus><seq-down><seq-var neg>A</seq-var></seq-down></seq-focus></seq-delta>
+            </seq-sequent>
+          </seq-inference>
         </div>
       </td>
     </tr>
