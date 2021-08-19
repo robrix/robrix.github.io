@@ -52,7 +52,7 @@ export class SeqInfix extends HTMLElement {
   constructor(symbol, polarity) {
     super();
     this.shadowNode = shadow(this)`
-<slot name="lhs"></slot> <seq-symbol ${polarity}>${symbol}</seq-symbol> <slot name="rhs"></slot><slot id="slot"></slot>
+<slot name="lhs"></slot> <seq-symbol ${polarity}>${symbol}</seq-symbol><slot name="op-decoration"></slot> <slot name="rhs"></slot><slot id="slot"></slot>
     `;
   }
   connectedCallback() {
@@ -80,7 +80,7 @@ export function prefix(tag, symbol, polarity, setup) {
     constructor() {
       super();
       this.shadowNode = shadow(this)`
-<seq-symbol ${polarity}>${symbol}</seq-symbol><slot></slot>
+<seq-symbol ${polarity}>${symbol}</seq-symbol><slot name="op-decoration"></slot><slot></slot>
       `;
     }
   };
