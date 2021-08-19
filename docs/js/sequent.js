@@ -142,7 +142,7 @@ div.axiom::after {
 }
 </style>
 <div id="rule">
-  <div id="label"><slot name="label"><seq-op id="label-op"></seq-op></slot></div>
+  <div id="label"><slot name="label"><seq-op id="label-op"><slot name="label-decoration"></slot></seq-op></slot></div>
   <div id="sequents">
     <slot name="premise"><div class="axiom"></div></slot>
     <span id="line-of-inference"></span>
