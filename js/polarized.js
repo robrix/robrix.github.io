@@ -14,7 +14,7 @@ sub {
   line-height: 0;
   color: var(--sequent-neg-colour);
 }
-</style><seq-op name="⊥" neg><sub slot="op-decoration" class="neg">R</sub><slot></slot></seq-op>
+</style><seq-symbol neg>⊥<sub class="neg">R</sub><slot></slot></seq-symbol>
 `;
 export const SeqOne = component('seq-one')`
 <style type="text/css">
@@ -24,7 +24,7 @@ sub {
   line-height: 0;
   color: var(--sequent-pos-colour);
 }
-</style><seq-op name="1" pos><sub slot="op-decoration" class="pos">E</sub><slot></slot></seq-op>
+</style><seq-symbol pos>1<sub class="pos">E</sub><slot></slot></seq-symbol>
 `;
 export const SeqImplication = infix('seq-impl', '→', 'neg');
 export const SeqCoimplication = infix('seq-coimpl', '⤚', 'pos');
