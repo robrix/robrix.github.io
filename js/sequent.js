@@ -23,7 +23,7 @@ sup {
   font-size: 60%;
   line-height: 0;
 }
-</style><var><slot></slot><sup id="polarity"></sup></var>
+</style><var><slot></slot><sup id="polarity"></sup></var><slot name="decoration"></slot>
 `;
 
 

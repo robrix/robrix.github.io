@@ -563,10 +563,10 @@
     </tr>
     <tr>
       <td class="equivalence">
-        (<span class="implication"><seq-var>A</seq-var> <span class="op">→</span> <seq-var neg>B</seq-var></span>)<sup class="N">N</sup> = <span class="implication"><span class="down-shift"><span class="op">↓</span>(<seq-var>A</seq-var><sup class="N">N</sup>)</span> <span class="op">→</span> <seq-var neg>B</seq-var></span>
+        (<seq-impl><seq-var>A</seq-var><seq-var neg>B</seq-var></seq-impl>)<sup class="N">N</sup> = <seq-impl><seq-down>(<seq-var>A<sup slot="decoration"class="N">N</sup></seq-var>)</seq-down><seq-var neg>B</seq-var></seq-impl>
       </td>
       <td class="equivalence">
-        (<span class="implication"><seq-var>A</seq-var> <span class="op">→</span> <seq-var>B</seq-var></span>)<sup class="V">V</sup> = <span class="implication"><span class="down-shift"><span class="op">↓</span>(<seq-var>A</seq-var><sup class="V">V</sup> <span class="op">→</span> <span class="up-shift"><span class="op">↑</span>(<seq-var>B</seq-var><sup class="V">V</sup>)</span>)</span></span>
+        (<seq-impl><seq-var>A</seq-var><seq-var>B</seq-var></seq-impl>)<sup class="V">V</sup> = <seq-down>(<seq-impl><seq-var>A<sup slot="decoration" class="V">V</sup></seq-var><seq-up>(<seq-var>B<sup slot="decoration" class="V">V</sup></seq-var>)</seq-up></seq-impl>)</seq-down>
       </td>
     </tr>
   </tbody>
