@@ -92,37 +92,6 @@ export function prefix(tag, symbol, polarity, setup) {
 }
 
 
-export class SeqOp extends HTMLElement {
-  constructor(opName, polarity) {
-    super();
-    this.shadowNode = shadow(this)`
-<style type="text/css">
-:host([neg]) #op {
-  color: var(--sequent-neg-colour);
-}
-:host([pos]) #op {
-  color: var(--sequent-pos-colour);
-}
-:host {
-  display: inline-flex;
-  flex-direction: row;
-  width: auto;
-}
-</style>
-<slot id="lhs" name="left"></slot>
-<span><seq-symbol id="op"></seq-symbol><slot name="op-decoration"></slot></span>
-<slot></slot>
-<slot id="rhs" name="right"></slot>
-    `;
-    this.shadowNode.getElementById('op').textContent = opName || this.getAttribute('name');
-    if (polarity === 'neg' || polarity === 'pos') {
-      this.setAttribute(polarity, '');
-    }
-  }
-}
-customElements.define('seq-op', SeqOp);
-
-
 // inferences
 
 export const SeqInference = component('seq-inference', SeqInference => {
