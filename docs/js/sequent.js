@@ -49,7 +49,7 @@ export class SeqOp extends HTMLElement {
 }
 </style>
 <slot name="left"></slot>
-<span id="op"></span>
+<span><span id="op"></span><slot name="op-decoration"></slot></span>
 <slot name="right"></slot>
 <slot></slot>
     `;
