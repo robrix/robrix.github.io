@@ -2,8 +2,8 @@ import { component, infix, prefix } from './sequent.js';
 
 export const SeqWith = infix('seq-with', '&amp;', 'neg');
 export const SeqSum = infix('seq-sum', '⊕', 'pos');
-export const SeqTop = component('seq-top')`<seq-symbol neg>⊤<slot></slot></seq-symbol>`;
-export const SeqZero = component('seq-zero')`<seq-symbol pos>0<slot></slot></seq-symbol>`;
+export const SeqTop = prefix('seq-top', '⊤', 'neg');
+export const SeqZero = prefix('seq-zero', '0', 'pos');
 export const SeqPar = infix('seq-par', '⅋', 'neg');
 export const SeqTensor = infix('seq-tensor', '⊗', 'pos');
 export const SeqBottom = component('seq-bottom')`
