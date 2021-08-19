@@ -45,7 +45,7 @@
         <div id="with" class="connective">
           <div class="left-rules">
             <seq-inference name="&amp;" left neg>
-              <div class="label" slot="label"><seq-op name="&amp;" neg></seq-op><sub>1</sub></div>
+              <sub slot="label-decoration">1</sub>
               <seq-sequent slot="premise">
                 <seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
                 <seq-delta slot="right"></seq-delta>
@@ -56,7 +56,7 @@
               </seq-sequent>
             </seq-inference>
             <seq-inference name="&amp;" left neg>
-              <div class="label" slot="label"><seq-op name="&amp;" neg></seq-op><sub>2</sub></div>
+              <sub slot="label-decoration">2</sub>
               <seq-sequent slot="premise">
                 <seq-gamma slot="left"><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma>
                 <seq-delta slot="right"></seq-delta>
@@ -113,7 +113,7 @@
                 <seq-gamma slot="left"></seq-gamma>
                 <seq-delta slot="right"> <seq-focus><seq-op name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-op></seq-focus></seq-delta>
               </seq-sequent>
-              <div class="label" slot="label"><seq-op name="⊕" pos></seq-op><sub>1</sub></div>
+              <sub slot="label-decoration">1</sub>
             </seq-inference>
             <seq-inference name="⊕" right pos>
               <seq-sequent slot="premise">
@@ -124,7 +124,7 @@
                 <seq-gamma slot="left"></seq-gamma>
                 <seq-delta slot="right"> <seq-focus><seq-op name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-op></seq-focus></seq-delta>
               </seq-sequent>
-              <div class="label" slot="label"><seq-op name="⊕" pos></seq-op><sub>2</sub></div>
+              <sub slot="label-decoration">2</sub>
             </seq-inference>
           </div>
         </div>
