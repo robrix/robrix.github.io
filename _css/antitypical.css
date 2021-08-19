@@ -244,6 +244,27 @@ seq-var[pos] {
   color: var(--sequent-pos-colour);
 }
 
+:where(seq-with,
+seq-sum,
+seq-top,
+seq-zero,
+seq-par,
+seq-tensor,
+seq-bottom,
+seq-one,
+seq-impl,
+seq-coimpl,
+seq-not,
+seq-negate,
+seq-not-untrue,
+seq-true,
+seq-up,
+seq-down,
+seq-forall,
+seq-exists):hover {
+  background-color: rgba(50, 50, 50, 0.05);
+}
+
 
 @media screen and (min-width: 92rem) {
   table.ruleset > tbody > tr > th {
