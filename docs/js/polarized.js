@@ -6,5 +6,7 @@ export const SeqTop = component('seq-top')`<seq-op name="⊤" neg><slot></slot><
 export const SeqZero = component('seq-zero')`<seq-op name="0" pos><slot></slot></seq-op>`;
 export const SeqPar = component('seq-par')`<seq-op name="⅋" neg><slot></slot></seq-op>`;
 export const SeqTensor = component('seq-tensor')`<seq-op name="⊗" pos><slot></slot></seq-op>`;
+export const SeqBottom = component('seq-bottom')`<seq-op name="⊥" neg><slot></slot></seq-op>`;
+export const SeqOne = component('seq-one')`<seq-op name="1" pos><slot></slot></seq-op>`;
 export const SeqNot = component('seq-not')`<seq-op name="¬" neg><slot></slot></seq-op>`;
 export const SeqNegate = component('seq-negate')`<seq-op name="∼" pos><slot></slot></seq-op>`;
