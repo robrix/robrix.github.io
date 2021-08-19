@@ -22,6 +22,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
 
 <script type="module" src="../../js/sequent.js"></script>
+<script type="module" src="../../js/polarized.js"></script>
 
 <table class="borderless ruleset">
   <colgroup>
