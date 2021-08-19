@@ -29,9 +29,9 @@ sup {
 
 // operators
 
-export const SeqInfix = component('seq-infix', SeqInfix => {
-  Object.defineProperty(SeqInfix.prototype, 'name', readwriteAttr('name'));
-  SeqInfix.prototype.connectedCallback = function () {
+export const SeqOp = component('seq-op', SeqOp => {
+  Object.defineProperty(SeqOp.prototype, 'name', readwriteAttr('name'));
+  SeqOp.prototype.connectedCallback = function () {
     const op = this.shadowNode.getElementById('op');
     op.textContent = this.name;
     this.slotChangeListener = event => {
@@ -42,16 +42,14 @@ export const SeqInfix = component('seq-infix', SeqInfix => {
           x.slot = 'left';
           y.slot = 'right';
         }
-        else if (x) {
-          x.slot = 'right';
-        }
       }
     };
     this.shadowRoot.addEventListener('slotchange', this.slotChangeListener);
   };
-  SeqInfix.prototype.disconnectedCallback = function () {
+  SeqOp.prototype.disconnectedCallback = function () {
     this.shadowRoot.removeEventListener('slotchange', this.slotChangeListener);
   };
+  // FIXME: prefix operators shouldn’t have spacing like that
 })`
 <style type="text/css">
 :host([neg]) #op {
