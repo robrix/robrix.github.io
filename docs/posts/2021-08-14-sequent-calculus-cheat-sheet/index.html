@@ -282,26 +282,27 @@
     <tr>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="bottom"><span class="op R">⊥</span></span></div>
-            <div class="inference">
-              <div class="axiom"></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="focus">[<span class="bottom"><span class="op R">⊥</span></span>]</span> <span class="metavar">Γ</span> <span class="turnstile R">⊢</span> <span class="metavar">Δ</span></div>
-            </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile R">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile R">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span>, <span class="bottom"><span class="op R">⊥</span></span></div>
-            </div>
-            <div class="label"><span class="bottom"><span class="op R">⊥</span></span></div>
-          </div>
+          <seq-inference name="⊥" neg left>
+            <sub slot="label-decoration" class="neg">R</sub>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-focus><seq-op name="⊥" neg><sub slot="op-decoration" class="neg">R</sub></seq-op></seq-focus> </seq-gamma>
+              <sub slot="turnstile-decoration" class="neg">R</sub>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="⊥" neg right>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <sub slot="turnstile-decoration" class="neg">R</sub>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <sub slot="turnstile-decoration" class="neg">R</sub>
+              <seq-delta slot="right">, <seq-op name="⊥" neg><sub slot="op-decoration" class="neg">R</sub></seq-op></seq-delta>
+            </seq-sequent>
+            <sub slot="label-decoration" class="neg">R</sub>
+          </seq-inference>
         </div>
       </td>
       <td>
