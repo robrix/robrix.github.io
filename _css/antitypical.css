@@ -84,7 +84,7 @@ div.left-rules, div.right-rules {
   padding: 6px;
 }
 
-.rule sub, .rule sup, .equivalence sub, .equivalence sup {
+seq-inference sub, .rule sub, .rule sup, .equivalence sub, .equivalence sup {
   font-size: 60%;
   line-height: 0;
 }
