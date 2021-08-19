@@ -48,10 +48,10 @@ export class SeqOp extends HTMLElement {
   width: auto;
 }
 </style>
-<slot name="left"></slot>
+<slot id="lhs" name="left"></slot>
 <span><span id="op"></span><slot name="op-decoration"></slot></span>
-<slot name="right"></slot>
 <slot></slot>
+<slot id="rhs" name="right"></slot>
     `;
   }
   set opName(name) {
@@ -59,20 +59,6 @@ export class SeqOp extends HTMLElement {
   }
   connectedCallback() {
     this.opName = this.getAttribute('name');
-    this.slotChangeListener = event => {
-      // FIXME: this is incorrect for any kind of slot change other than a single, complete bulk insertion at load time.
-      if (event.target.name === '') {
-        const [x, y, ...rest] = Array.from(event.target.assignedElements());
-        if (x && y && rest.length === 0) {
-          x.slot = 'left';
-          y.slot = 'right';
-        }
-      }
-    };
-    this.shadowNode.addEventListener('slotchange', this.slotChangeListener);
-  }
-  disconnectedCallback = function () {
-    this.shadowNode.removeEventListener('slotchange', this.slotChangeListener);
   }
   static get observedAttributes() {
     return ['name'];
