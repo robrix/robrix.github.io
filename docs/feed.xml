@@ -410,7 +410,7 @@
               <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-negate><seq-var neg>A</seq-var></seq-negate></seq-gamma>
+              <seq-gamma slot="left"><seq-negate><seq-var neg>A</seq-var></seq-negate>, </seq-gamma>
               <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
