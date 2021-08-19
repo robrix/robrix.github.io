@@ -182,7 +182,7 @@ export const SeqSequent = component('seq-sequent')`
 </style>
 <div class="sequent">
   <span id="left"><slot name="left"></slot></span>
-  <span class="turnstile">⊢</span>
+  <span class="turnstile">⊢<slot name="turnstile-decoration"></slot></span>
   <span id="right"><slot name="right"></slot></span>
 </div>
 `;
