@@ -14,3 +14,7 @@ export const SeqNot = component('seq-not')`<seq-op name="¬" neg><slot></slot></
 export const SeqNegate = component('seq-negate')`<seq-op name="∼" pos><slot></slot></seq-op>`;
 export const SeqNotUntrue = component('seq-not-untrue')`<seq-op name="¬̷" neg><slot></slot></seq-op>`;
 export const SeqTrue = component('seq-true')`<seq-op name="✓" pos><slot></slot></seq-op>`;
+export const SeqUpShift = component('seq-up')`<seq-op name="↑" neg><slot></slot></seq-op>`;
+export const SeqDownShift = component('seq-down')`<seq-op name="↓" pos><slot></slot></seq-op>`;
+export const SeqForAll = component('seq-forall')`<seq-op name="∀" neg><slot></slot></seq-op>`;
+export const SeqExists = component('seq-exists')`<seq-op name="∃" pos><slot></slot></seq-op>`;
