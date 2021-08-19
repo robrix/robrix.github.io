@@ -29,28 +29,11 @@ sup {
 
 // operators
 
-export const SeqOp = component('seq-op', SeqOp => {
-  Object.defineProperty(SeqOp.prototype, 'name', readwriteAttr('name'));
-  SeqOp.prototype.connectedCallback = function () {
-    const op = this.shadowNode.getElementById('op');
-    op.textContent = this.name;
-    this.slotChangeListener = event => {
-      // FIXME: this is incorrect for any kind of slot change other than a single, complete bulk insertion at load time.
-      if (event.target.name === '') {
-        const [x, y, ...rest] = Array.from(event.target.assignedElements());
-        if (x && y && rest.length === 0) {
-          x.slot = 'left';
-          y.slot = 'right';
-        }
-      }
-    };
-    this.shadowRoot.addEventListener('slotchange', this.slotChangeListener);
-  };
-  SeqOp.prototype.disconnectedCallback = function () {
-    this.shadowRoot.removeEventListener('slotchange', this.slotChangeListener);
-  };
-  // FIXME: prefix operators shouldn’t have spacing like that
-})`
+export class SeqOp extends HTMLElement {
+  constructor() {
+    super();
+    // FIXME: prefix operators shouldn’t have gaps like that
+    this.shadowNode = shadow(this)`
 <style type="text/css">
 :host([neg]) #op {
   color: var(--sequent-neg-colour);
@@ -69,7 +52,36 @@ export const SeqOp = component('seq-op', SeqOp => {
 <span id="op"></span>
 <slot name="right"></slot>
 <slot></slot>
-`;
+    `;
+  }
+  set opName(name) {
+    this.shadowNode.getElementById('op').textContent = name;
+  }
+  connectedCallback() {
+    this.opName = this.getAttribute('name');
+    this.slotChangeListener = event => {
+      // FIXME: this is incorrect for any kind of slot change other than a single, complete bulk insertion at load time.
+      if (event.target.name === '') {
+        const [x, y, ...rest] = Array.from(event.target.assignedElements());
+        if (x && y && rest.length === 0) {
+          x.slot = 'left';
+          y.slot = 'right';
+        }
+      }
+    };
+    this.shadowNode.addEventListener('slotchange', this.slotChangeListener);
+  }
+  disconnectedCallback = function () {
+    this.shadowNode.removeEventListener('slotchange', this.slotChangeListener);
+  }
+  static get observedAttributes() {
+    return ['name'];
+  }
+  attributeDidChangeCallback(_1, _2, name) {
+    this.opName = name;
+  }
+}
+customElements.define('seq-op', SeqOp);
 
 
 // inferences
@@ -130,7 +142,7 @@ div.axiom::after {
 }
 </style>
 <div id="rule">
-  <div id="label"><slot name="label"><seq-nullfix id="label-op"></seq-nullfix></slot></div>
+  <div id="label"><slot name="label"><seq-op id="label-op"></seq-op></slot></div>
   <div id="sequents">
     <slot name="premise"><div class="axiom"></div></slot>
     <span id="line-of-inference"></span>
