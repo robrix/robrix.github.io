@@ -212,13 +212,13 @@ var {
 export const SeqFocus = component('seq-focus')`[<slot></slot>]`;
 
 
-function template(templateSource) {
+export function template(templateSource) {
   const template = document.createElement('template');
   template.innerHTML = templateSource.join().trim();
   return template;
 }
 
-function shadow(node) {
+export function shadow(node) {
   return templateSource => {
     const shadow = node.attachShadow({ mode: 'open' });
     shadow.appendChild(template(templateSource).content.cloneNode(true));
@@ -226,7 +226,7 @@ function shadow(node) {
   }
 }
 
-function component(tag, setup) {
+export function component(tag, setup) {
   return templateSource => {
     const klass = class extends HTMLElement {
       constructor() {
@@ -242,7 +242,7 @@ function component(tag, setup) {
   };
 }
 
-function readwriteAttr(attr) {
+export function readwriteAttr(attr) {
   return {
     get() {
       return this.getAttribute(attr);
