@@ -105,7 +105,7 @@ export const SeqInference = component('seq-inference', SeqInference => {
   font-size: 75%;
   padding: 6px;
 }
-#inference {
+#sequents {
   font-size: 1.25rem;
   line-height: 1.8rem;
   font-weight: 100;
@@ -131,7 +131,7 @@ div.axiom::after {
 </style>
 <div id="rule">
   <div id="label"><slot name="label"><seq-nullfix id="label-op"></seq-nullfix></slot></div>
-  <div id="inference">
+  <div id="sequents">
     <slot name="premise"><div class="axiom"></div></slot>
     <span id="line-of-inference"></span>
     <slot name="conclusion"></slot>
