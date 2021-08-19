@@ -59,7 +59,7 @@
   <h1>Sequent calculus cheat sheet</h1>
   <span class="post-meta">Aug 14, 2021</span><br>
   
-  <span class="post-meta small">10 minute read</span>
+  <span class="post-meta small">9 minute read</span>
 </div>
 
 <article class="post-content">
@@ -544,12 +544,12 @@
     </tr>
     <tr>
       <td class="equivalence">
-        <div><span class="negate"><span class="op">∼</span><span class="not-untrue"><span class="op">¬̷</span><seq-var neg>A</seq-var></span></span> ≈ <seq-var neg>A</seq-var></div>
-        <div><span class="not-untrue"><span class="op">¬̷</span><seq-var neg>A</seq-var></span> ≈ <span class="implication"><seq-one></seq-one> <span class="op">→</span> <seq-var neg>A</seq-var></span></div>
+        <div><seq-negate><seq-not-untrue><seq-var neg>A</seq-var></seq-not-untrue></seq-negate> ≈ <seq-var neg>A</seq-var></div>
+        <div><seq-not-untrue><seq-var neg>A</seq-var></seq-not-untrue> ≈ <seq-impl><seq-one></seq-one><seq-var neg>A</seq-var></seq-impl></div>
       </td>
       <td class="equivalence">
-        <div><seq-not><span class="true"><span class="op">✓</span><seq-var pos>A</seq-var></span></seq-not> ≈ <seq-var pos>A</seq-var></div>
-        <div><span class="true"><span class="op">✓</span><seq-var pos>A</seq-var></span> ≈ <span class="coimplication"><seq-bottom></seq-bottom> <span class="op">⤚</span> <seq-var pos>A</seq-var></span></div>
+        <div><seq-not><seq-true><seq-var pos>A</seq-var></seq-true></seq-not> ≈ <seq-var pos>A</seq-var></div>
+        <div><seq-true><seq-var pos>A</seq-var></seq-true> ≈ <seq-coimpl><seq-bottom></seq-bottom><seq-var pos>A</seq-var></seq-coimpl></div>
       </td>
     </tr>
   </tbody>
