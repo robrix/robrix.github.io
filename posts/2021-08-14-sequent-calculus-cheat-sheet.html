@@ -90,7 +90,7 @@ categories: logic, plt
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-op name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-op>, </seq-gamma>
+              <seq-gamma slot="left"><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum>, </seq-gamma>
               <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
@@ -102,7 +102,7 @@ categories: logic, plt
               </seq-sequent>
               <seq-sequent slot="conclusion">
                 <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-op name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-op></seq-focus></seq-delta>
+                <seq-delta slot="right"> <seq-focus><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum></seq-focus></seq-delta>
               </seq-sequent>
               <sub slot="label-decoration">1</sub>
             </seq-inference>
@@ -113,7 +113,7 @@ categories: logic, plt
               </seq-sequent>
               <seq-sequent slot="conclusion">
                 <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-op name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-op></seq-focus></seq-delta>
+                <seq-delta slot="right"> <seq-focus><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum></seq-focus></seq-delta>
               </seq-sequent>
               <sub slot="label-decoration">2</sub>
             </seq-inference>
@@ -126,19 +126,19 @@ categories: logic, plt
         <seq-negate>(<seq-with><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-with>)</seq-negate> ≈ <seq-sum><seq-negate><seq-var neg>A</seq-var></seq-negate><seq-negate><seq-var neg>B</seq-var></seq-negate></seq-sum>
       </td>
       <td class="equivalence">
-        <seq-not>(<seq-op name="⊕" pos><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-op>)</seq-not> ≈ <seq-op name="&amp;" neg><seq-not><seq-var pos>A</seq-var></seq-not><seq-not><seq-var pos>B</seq-var></seq-not></seq-op>
+        <seq-not>(<seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum>)</seq-not> ≈ <seq-with><seq-not><seq-var pos>A</seq-var></seq-not><seq-not><seq-var pos>B</seq-var></seq-not></seq-with>
       </td>
     </tr>
     <tr>
       <td>
         <div class="connective">
           <div class="rule left">
-            <p>no left rule for <seq-op name="⊤" neg></seq-op></p>
+            <p>no left rule for <seq-top></seq-top></p>
           </div>
           <seq-inference name="⊤" right neg>
             <seq-sequent slot="conclusion">
               <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-op name="⊤" neg></seq-op></seq-delta>
+              <seq-delta slot="right">, <seq-top></seq-top></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -147,22 +147,22 @@ categories: logic, plt
         <div class="connective">
           <seq-inference name="0" left pos>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-op name="0" pos></seq-op>, </seq-gamma>
+              <seq-gamma slot="left"><seq-zero></seq-zero>, </seq-gamma>
               <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
           <div class="rule right">
-            <p>no right rule for <seq-op name="0" pos></seq-op></p>
+            <p>no right rule for <seq-zero></seq-zero></p>
           </div>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <seq-op name="∼" pos><seq-op name="⊤" neg></seq-op></seq-op> ≈ <seq-op name="0" pos></seq-op>
+        <seq-negate><seq-top></seq-top></seq-negate> ≈ <seq-zero></seq-zero>
       </td>
       <td class="equivalence">
-        <seq-not><seq-op name="0" pos></seq-op></seq-not> ≈ <seq-op name="⊤" neg></seq-op>
+        <seq-not><seq-zero></seq-zero></seq-not> ≈ <seq-top></seq-top>
       </td>
     </tr>
   </tbody>
@@ -275,7 +275,7 @@ categories: logic, plt
     </tr>
     <tr>
       <td class="equivalence">
-        <seq-op name="∼" pos><seq-bottom></seq-bottom></seq-op> ≈ <seq-one></seq-one>
+        <seq-negate><seq-bottom></seq-bottom></seq-negate> ≈ <seq-one></seq-one>
       </td>
       <td class="equivalence">
         <seq-not><seq-one></seq-one></seq-not> ≈ <seq-bottom></seq-bottom>
@@ -303,7 +303,7 @@ categories: logic, plt
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-focus><seq-not><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-not></seq-focus> </seq-gamma>
+              <seq-gamma slot="left"><seq-focus><seq-impl><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl></seq-not></seq-focus> </seq-gamma>
               <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
@@ -314,7 +314,7 @@ categories: logic, plt
             </seq-sequent>
             <seq-sequent slot="conclusion">
               <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-op name="→" neg><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-op></seq-delta>
+              <seq-delta slot="right">, <seq-impl><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -327,7 +327,7 @@ categories: logic, plt
               <seq-delta slot="right">, <seq-var neg>B</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-op name="⤚" pos><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-op>, </seq-gamma>
+              <seq-gamma slot="left"><seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl>, </seq-gamma>
               <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
@@ -344,7 +344,7 @@ categories: logic, plt
             </div>
             <seq-sequent slot="conclusion">
               <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-op name="⤚" pos><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-op></seq-focus></seq-delta>
+              <seq-delta slot="right"> <seq-focus><seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl></seq-focus></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -352,12 +352,12 @@ categories: logic, plt
     </tr>
     <tr>
       <td class="equivalence">
-        <div><seq-op name="∼" pos>(<seq-op name="→" neg><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-op>)</seq-op> ≈ <seq-op name="⤚" pos><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-op></div>
-        <div><seq-op name="→" neg><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-op> ≈ <seq-op name="⅋" neg><seq-not><seq-var pos>A</seq-var></seq-not><seq-var neg>B</seq-var></seq-op></div>
+        <div><seq-negate>(<seq-impl><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl>)</seq-negate> ≈ <seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl></div>
+        <div><seq-impl name="→" neg><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl> ≈ <seq-par><seq-not><seq-var pos>A</seq-var></seq-not><seq-var neg>B</seq-var></seq-par></div>
       </td>
       <td class="equivalence">
-        <div><seq-not>(<seq-op name="⤚" pos><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-op>)</seq-not> ≈ <seq-op name="→" neg><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-op></div>
-        <div><seq-op name="⤚" pos><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-op> ≈ <seq-op name="⊗" pos><seq-var pos>A</seq-var><seq-op name="∼" pos><seq-var neg>B</seq-var></seq-op></seq-op></div>
+        <div><seq-not>(<seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl>)</seq-not> ≈ <seq-impl><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl></div>
+        <div><seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl> ≈ <seq-tensor><seq-var pos>A</seq-var><seq-negate><seq-var neg>B</seq-var></seq-negate></seq-tensor></div>
       </td>
     </tr>
   </tbody>
@@ -400,7 +400,7 @@ categories: logic, plt
               <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-op name="∼" pos><seq-var neg>A</seq-var></seq-op></seq-gamma>
+              <seq-gamma slot="left"><seq-negate><seq-var neg>A</seq-var></seq-negate></seq-gamma>
               <seq-delta slot="right"></seq-delta>
             </seq-sequent>
           </seq-inference>
@@ -411,7 +411,7 @@ categories: logic, plt
             </seq-sequent>
             <seq-sequent slot="conclusion">
               <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-op name="∼" pos><seq-var neg>A</seq-var></seq-op></seq-focus></seq-delta>
+              <seq-delta slot="right"> <seq-focus><seq-negate><seq-var neg>A</seq-var></seq-negate></seq-focus></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -419,12 +419,12 @@ categories: logic, plt
     </tr>
     <tr>
       <td class="equivalence">
-        <div><seq-op name="∼" pos><seq-not><seq-var pos>A</seq-var></seq-not></seq-op> ≈ <seq-var pos>A</seq-var></div>
-        <div><seq-not><seq-var pos>A</seq-var></seq-not> ≈ <seq-op name="→" neg><seq-var pos>A</seq-var><seq-bottom></seq-bottom></seq-op></div>
+        <div><seq-negate><seq-not><seq-var pos>A</seq-var></seq-not></seq-negate> ≈ <seq-var pos>A</seq-var></div>
+        <div><seq-not><seq-var pos>A</seq-var></seq-not> ≈ <seq-impl><seq-var pos>A</seq-var><seq-bottom></seq-bottom></seq-impl></div>
       </td>
       <td class="equivalence">
-        <div><seq-not><seq-op name="∼" pos><seq-var neg>A</seq-var></seq-op></seq-not> ≈ <seq-var neg>A</seq-var></div>
-        <div><seq-op name="∼" pos><seq-var neg>A</seq-var></seq-op> ≈ <seq-op name="⤚" pos><seq-var neg>A</seq-var><seq-one></seq-one></seq-op></div>
+        <div><seq-not><seq-negate><seq-var neg>A</seq-var></seq-negate></seq-not> ≈ <seq-var neg>A</seq-var></div>
+        <div><seq-negate><seq-var neg>A</seq-var></seq-negate> ≈ <seq-coimpl><seq-var neg>A</seq-var><seq-one></seq-one></seq-coimpl></div>
       </td>
     </tr>
   </tbody>
