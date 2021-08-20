@@ -1,32 +1,5 @@
 // vars
 
-export const SeqVar = component('seq-var', SeqVar => {
-  Object.defineProperty(SeqVar.prototype, 'polarity', {
-    get() {
-      return this.hasAttribute('neg') ? '−' : this.hasAttribute('pos') ? '+' : null;
-    }
-  })
-  SeqVar.prototype.connectedCallback = function () {
-    this.shadowNode.getElementById('polarity').textContent = this.polarity;
-  };
-})`
-<style type="text/css">
-var {
-  font-style: italic;
-  font-size: 1.25rem;
-  line-height: 1.8rem;
-  font-weight: 100;
-  font-family: var(--sequent-font);
-}
-sup {
-  font-style: normal;
-  font-size: 60%;
-  line-height: 0;
-}
-</style><var><slot></slot><sup id="polarity"></sup></var><slot name="decoration"></slot>
-`;
-
-
 export const SeqSymbol = component('seq-symbol')`
 <style type="text/css">
 var {
