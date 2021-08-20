@@ -640,31 +640,34 @@ categories: logic, plt
     <tr>
       <td>
         <div class="connective">
-          <div class="rule">
-            <div class="inference">
-              <div class="axiom"></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><seq-var>A</seq-var></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><seq-var>A</seq-var></div>
-            </div>
-            <div class="label"><span class="function">init</span></div>
-          </div>
+          <seq-inference name="init">
+            <span class="function" slot="label">init</span>
+            <seq-sequent slot="conclusion">
+              <seq-var slot="left">A</seq-var>
+              <seq-var slot="right">A</seq-var>
+            </seq-sequent>
+          </seq-inference>
         </div>
       </td>
       <td>
         <div class="connective">
-          <div class="rule">
-            <div class="inference">
-              <div class="premises">
-                <div class="premise"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>, <seq-var>A</seq-var></div>
-                <div class="premise"><seq-var>A</seq-var>, <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
+          <seq-inference name="cut">
+            <span class="function" slot="label">cut</span>
+            <div slot="premise" class="premises">
+              <seq-sequent>
+                <seq-gamma slot="left"></seq-gamma>
+                <seq-delta slot="right">, <seq-var>A</seq-var></seq-delta>
+              </seq-sequent>
+              <seq-sequent>
+                <seq-gamma slot="left"><seq-var>A</seq-var>, </seq-gamma>
+                <seq-delta slot="right"></seq-delta>
+              </seq-sequent>
             </div>
-            <div class="label"><span class="function">cut</span></div>
-          </div>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
         </div>
       </td>
     </tr>
@@ -678,58 +681,54 @@ categories: logic, plt
     <tr>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="function">weaken</span></div>
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><seq-var>A</seq-var>, <span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
-            </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span>, <seq-var>A</seq-var></div>
-            </div>
-            <div class="label"><span class="function">weaken</span></div>
-          </div>
+          <seq-inference name="weaken" left>
+            <span class="function" slot="label">weaken</span>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-var>A</seq-var>, </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="weaken" right>
+            <span class="function" slot="label">weaken</span>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-var>A</seq-var></seq-delta>
+            </seq-sequent>
+          </seq-inference>
         </div>
       </td>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="function">contract</span></div>
-            <div class="inference">
-              <div class="premise Γ"><seq-var>A</seq-var>, <seq-var>A</seq-var>, <span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><seq-var>A</seq-var>, <span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
-            </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span>, <seq-var>A</seq-var>, <seq-var>A</seq-var></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span>, <seq-var>A</seq-var></div>
-            </div>
-            <div class="label"><span class="function">contract</span></div>
-          </div>
+          <seq-inference name="contract" left>
+            <span class="function" slot="label">contract</span>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"><seq-var>A</seq-var>, <seq-var>A</seq-var>, </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-var>A</seq-var>, </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="contract" right>
+            <span class="function" slot="label">contract</span>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-var>A</seq-var>, <seq-var>A</seq-var></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-var>A</seq-var></seq-delta>
+            </seq-sequent>
+          </seq-inference>
         </div>
       </td>
     </tr>
