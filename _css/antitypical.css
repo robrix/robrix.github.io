@@ -302,6 +302,15 @@ fieldset {
   border: 0;
 }
 
+tfoot fieldset {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
 
 @media screen and (min-width: 92rem) {
   table.ruleset > tbody > tr > th {
