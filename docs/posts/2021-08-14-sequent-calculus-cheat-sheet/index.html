@@ -805,7 +805,7 @@
       <td>
         <div class="connective">
           <seq-inference name="weaken" left>
-            <span class="function" slot="label">weaken</span>
+            <span slot="label"><var>weaken</var><seq-turnstile></seq-turnstile></span>
             <seq-sequent slot="premise">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
@@ -818,7 +818,7 @@
             </seq-sequent>
           </seq-inference>
           <seq-inference name="weaken" right>
-            <span class="function" slot="label">weaken</span>
+            <span slot="label"><seq-turnstile></seq-turnstile><var>weaken</var></span>
             <seq-sequent slot="premise">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
@@ -835,7 +835,7 @@
       <td>
         <div class="connective">
           <seq-inference name="contract" left>
-            <span class="function" slot="label">contract</span>
+            <span slot="label"><var>contract</var><seq-turnstile></seq-turnstile></span>
             <seq-sequent slot="premise">
               <seq-gamma><seq-var>A</seq-var>, <seq-var>A</seq-var>, </seq-gamma>
               <seq-turnstile></seq-turnstile>
@@ -848,7 +848,7 @@
             </seq-sequent>
           </seq-inference>
           <seq-inference name="contract" right>
-            <span class="function" slot="label">contract</span>
+            <span slot="label"><seq-turnstile></seq-turnstile><var>contract</var></span>
             <seq-sequent slot="premise">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
