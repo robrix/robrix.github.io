@@ -241,10 +241,12 @@ sup.V {
   color: var(--sequent-pos-colour);
 }
 
-seq-var[neg] {
+seq-var[neg],
+var[neg] {
   color: var(--sequent-neg-colour);
 }
-seq-var[pos] {
+seq-var[pos],
+var[pos] {
   color: var(--sequent-pos-colour);
 }
 
@@ -267,7 +269,8 @@ seq-down,
 seq-forall,
 seq-exists,
 seq-var,
-seq-sequent):hover {
+seq-sequent,
+var):hover {
   background-color: rgba(50, 50, 50, 0.05);
 }
 
