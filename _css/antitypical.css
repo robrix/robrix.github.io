@@ -247,12 +247,17 @@ var[pos]::after {
   vertical-align: super;
   font-size: 60%;
   line-height: 0;
+  display: none;
 }
 var[neg]::after {
   content: '−';
 }
 var[pos]::after {
   content: '+';
+}
+.show-polarities var[neg]::after,
+.show-polarities var[pos]::after {
+  display: inline;
 }
 
 seq-var[neg],

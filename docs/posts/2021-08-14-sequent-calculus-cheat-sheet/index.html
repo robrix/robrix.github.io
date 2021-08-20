@@ -72,7 +72,7 @@
 <script type="module" src="../../js/sequent.js"></script>
 <script type="module" src="../../js/polarized.js"></script>
 
-<table class="borderless ruleset">
+<table id="ruleset" class="borderless ruleset show-polarities">
   <colgroup>
     <col class="negative">
     <col class="positive">
@@ -868,12 +868,24 @@
     <tr>
       <td colspan="2">
         <fieldset>
-          <p><label><input name="show-polarities" type="checkbox" checked> Show polarities</label></p>
+          <p><label><input id="show-polarities" name="show-polarities" type="checkbox" checked> Show polarities</label></p>
         </fieldset>
       </td>
     </tr>
   </tfoot>
 </table>
+
+<script type="text/javascript">
+const showPolarities = document.getElementById('show-polarities')
+showPolarities.onchange = event => {
+  const ruleset = document.getElementById('ruleset');
+  if (showPolarities.checked) {
+    ruleset.classList.add('show-polarities');
+  } else {
+    ruleset.classList.remove('show-polarities');
+  }
+};
+</script>
 
 </article>
 
