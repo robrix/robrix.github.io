@@ -89,6 +89,16 @@ seq-inference sub, .rule sub, .rule sup, .equivalence sub, .equivalence sup {
   line-height: 0;
 }
 
+
+span.context {
+  /* grid-column: 1 / -1; */
+  display: inline-flex;
+  flex-direction: row;
+  gap: 20px;
+  width: max-content;
+}
+
+
 div.premises {
   grid-column: 1 / -1;
   display: flex;

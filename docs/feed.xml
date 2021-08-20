@@ -645,14 +645,14 @@
             </seq-sequent>
           </seq-inference>
           <seq-inference name="∀" neg right>
-            <div slot="premise" class="premises">
-              <seq-sequent>
-                <seq-gamma></seq-gamma>
-                <seq-turnstile></seq-turnstile>
+            <seq-sequent slot="premise">
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <span class="context">
                 <seq-delta>, <var neg>A</var></seq-delta>
-              </seq-sequent>
-              <div class="side-condition"><var>X</var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>)</div>
-            </div>
+                <div class="side-condition"><var>X</var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>)</div>
+              </span>
+            </seq-sequent>
             <seq-sequent slot="conclusion">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
@@ -664,14 +664,14 @@
       <td>
         <div class="connective">
           <seq-inference name="∃" pos left>
-            <div slot="premise" class="premises">
-              <div class="side-condition"><var>X</var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>)</div>
-              <seq-sequent>
+            <seq-sequent slot="premise">
+              <span class="context">
+                <div class="side-condition"><var>X</var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>)</div>
                 <seq-gamma><var pos>A</var>, </seq-gamma>
-                <seq-turnstile></seq-turnstile>
-                <seq-delta></seq-delta>
-              </seq-sequent>
-            </div>
+              </span>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
+            </seq-sequent>
             <seq-sequent slot="conclusion">
               <seq-gamma><seq-exists><var>X</var>.<var pos>A</var></seq-exists>, </seq-gamma>
               <seq-turnstile></seq-turnstile>
