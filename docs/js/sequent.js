@@ -186,7 +186,7 @@ export const SeqSequent = component('seq-sequent')`
 #right {
   text-align: left;
 }
-</style><span class="sequent"><span id="left"><slot name="left"></slot></span><span class="turnstile"> ⊢<slot name="turnstile-decoration"></slot> </span><span id="right"><slot name="right"></slot></span></span>
+</style><span class="sequent"><slot></slot></span>
 `;
 
 
@@ -197,7 +197,18 @@ export const SeqGamma = component('seq-gamma')`
 var {
   font-style: italic;
 }
-</style><slot></slot><var>Γ</var>
+:host {
+  text-align: right;
+}
+</style><span class="context"><slot></slot><var>Γ</var></span>
+`;
+
+export const SeqTurnstile = component('seq-turnstile')`
+<style type="text/css">
+#turnstile {
+  white-space: pre;
+}
+</style><span id="turnstile"> ⊢<slot name="decoration"></slot> </span>
 `;
 
 export const SeqDelta = component('seq-delta')`
@@ -205,7 +216,10 @@ export const SeqDelta = component('seq-delta')`
 var {
   font-style: italic;
 }
-</style><var>Δ</var><slot></slot>
+:host {
+  text-align: left;
+}
+</style><span class="context"><var>Δ</var><slot></slot></span>
 `;
 
 

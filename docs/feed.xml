@@ -48,40 +48,47 @@
             <seq-inference name="&amp;" left neg>
               <sub slot="label-decoration">1</sub>
               <seq-sequent slot="premise">
-                <seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <seq-gamma slot="left"><seq-focus><seq-with><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-with></seq-focus> </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-focus><seq-with><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-with></seq-focus> </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
             </seq-inference>
             <seq-inference name="&amp;" left neg>
               <sub slot="label-decoration">2</sub>
               <seq-sequent slot="premise">
-                <seq-gamma slot="left"><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <seq-gamma slot="left"><seq-focus><seq-with><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-with></seq-focus> </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-focus><seq-with><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-with></seq-focus> </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
             </seq-inference>
           </div>
           <seq-inference class="with" name="&amp;" right neg>
             <div class="premises" slot="premise">
               <seq-sequent>
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta>, <seq-var neg>A</seq-var></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right">, <seq-var neg>B</seq-var></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta>, <seq-var neg>B</seq-var></seq-delta>
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-with><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-with></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-with><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-with></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -91,39 +98,46 @@
           <seq-inference class="sum" name="⊕" left pos>
             <div class="premises" slot="premise">
               <seq-sequent>
-                <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-var pos>A</seq-var>, </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <seq-gamma slot="left"><seq-var pos>B</seq-var>, </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-var pos>B</seq-var>, </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <div class="right-rules">
             <seq-inference name="⊕" right pos>
               <seq-sequent slot="premise">
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum></seq-focus></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta> <seq-focus><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum></seq-focus></seq-delta>
               </seq-sequent>
               <sub slot="label-decoration">1</sub>
             </seq-inference>
             <seq-inference name="⊕" right pos>
               <seq-sequent slot="premise">
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-var pos>B</seq-var></seq-focus></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta> <seq-focus><seq-var pos>B</seq-var></seq-focus></seq-delta>
               </seq-sequent>
               <seq-sequent slot="conclusion">
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum></seq-focus></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta> <seq-focus><seq-sum><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-sum></seq-focus></seq-delta>
               </seq-sequent>
               <sub slot="label-decoration">2</sub>
             </seq-inference>
@@ -147,8 +161,9 @@
           </div>
           <seq-inference name="⊤" right neg>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-top></seq-top></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-top></seq-top></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -157,8 +172,9 @@
         <div class="connective">
           <seq-inference name="0" left pos>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-zero></seq-zero>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-zero></seq-zero>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <div class="rule right">
@@ -187,22 +203,25 @@
         <div class="connective">
           <seq-inference name="⅋" left neg>
             <div slot="premise" class="premises">
-              <seq-sequent><seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>
-              <seq-sequent><seq-gamma slot="left"><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>
+              <seq-sequent><seq-gamma><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>
+              <seq-sequent><seq-gamma><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-focus><seq-par><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-par></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-par><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-par></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="⅋" right neg>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-var neg>A</seq-var>, <seq-var neg>B</seq-var></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var neg>A</seq-var>, <seq-var neg>B</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-par><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-par></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-par><seq-var neg>A</seq-var><seq-var neg>B</seq-var></seq-par></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -210,15 +229,15 @@
       <td>
         <div class="connective">
           <seq-inference name="⊗" pos left>
-            <seq-sequent slot="premise"><seq-gamma slot="left"><seq-var pos>A</seq-var>, <seq-var pos>B</seq-var>, </seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>
-            <seq-sequent slot="conclusion"><seq-gamma slot="left"><seq-tensor><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-tensor>, </seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>
+            <seq-sequent slot="premise"><seq-gamma><seq-var pos>A</seq-var>, <seq-var pos>B</seq-var>, </seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>
+            <seq-sequent slot="conclusion"><seq-gamma><seq-tensor><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-tensor>, </seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>
           </seq-inference>
           <seq-inference name="⊗" pos right>
             <div class="premises" slot="premise">
-              <seq-sequent><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta></seq-sequent>
-              <seq-sequent><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"> <seq-focus><seq-var pos>B</seq-var></seq-focus></seq-delta></seq-sequent>
+              <seq-sequent><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta></seq-sequent>
+              <seq-sequent><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta> <seq-focus><seq-var pos>B</seq-var></seq-focus></seq-delta></seq-sequent>
             </div>
-            <seq-sequent slot="conclusion"><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"> <seq-focus><seq-tensor><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-tensor></seq-focus></seq-delta></seq-sequent>
+            <seq-sequent slot="conclusion"><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta> <seq-focus><seq-tensor><seq-var pos>A</seq-var><seq-var pos>B</seq-var></seq-tensor></seq-focus></seq-delta></seq-sequent>
           </seq-inference>
         </div>
       </td>
@@ -237,21 +256,21 @@
           <seq-inference name="⊥" neg left>
             <sub slot="label-decoration" class="neg">R</sub>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-focus><seq-bottom></seq-bottom></seq-focus> </seq-gamma>
-              <sub slot="turnstile-decoration" class="neg">R</sub>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-bottom></seq-bottom></seq-focus> </seq-gamma>
+              <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="⊥" neg right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <sub slot="turnstile-decoration" class="neg">R</sub>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <sub slot="turnstile-decoration" class="neg">R</sub>
-              <seq-delta slot="right">, <seq-bottom></seq-bottom></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+              <seq-delta>, <seq-bottom></seq-bottom></seq-delta>
             </seq-sequent>
             <sub slot="label-decoration" class="neg">R</sub>
           </seq-inference>
@@ -262,21 +281,21 @@
           <seq-inference name="1" pos left>
             <sub slot="label-decoration" class="pos">E</sub>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <sub slot="turnstile-decoration" class="pos">E</sub>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-one></seq-one>, </seq-gamma>
-              <sub slot="turnstile-decoration" class="pos">E</sub>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-one></seq-one>, </seq-gamma>
+              <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="1" pos right>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <sub slot="turnstile-decoration" class="pos">E</sub>
-              <seq-delta slot="right"> <seq-focus><seq-one></seq-one></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+              <seq-delta> <seq-focus><seq-one></seq-one></seq-focus></seq-delta>
             </seq-sequent>
             <sub slot="label-decoration" class="pos">E</sub>
           </seq-inference>
@@ -304,27 +323,32 @@
           <seq-inference name="→" neg left>
             <div class="premises" slot="premise">
               <seq-sequent>
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <seq-gamma slot="left"><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-focus><seq-impl><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl></seq-not></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-impl><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl></seq-not></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="→" neg right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
-              <seq-delta slot="right">, <seq-var neg>B</seq-var></seq-delta>
+              <seq-gamma><seq-var pos>A</seq-var>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var neg>B</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-impl><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-impl><seq-var pos>A</seq-var><seq-var neg>B</seq-var></seq-impl></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -333,28 +357,33 @@
         <div class="connective">
           <seq-inference name="⤚" pos left>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
-              <seq-delta slot="right">, <seq-var neg>B</seq-var></seq-delta>
+              <seq-gamma><seq-var pos>A</seq-var>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var neg>B</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="⤚" pos right>
             <div class="premises" slot="premise">
               <seq-sequent>
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <seq-gamma slot="left"><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-focus><seq-var neg>B</seq-var></seq-focus> </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-coimpl><seq-var neg>B</seq-var><seq-var pos>A</seq-var></seq-coimpl></seq-focus></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -382,22 +411,26 @@
         <div class="connective">
           <seq-inference name="¬" neg left>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-focus><seq-not><seq-var pos>A</seq-var></seq-not></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-not><seq-var pos>A</seq-var></seq-not></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="¬" neg right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-var pos>A</seq-var>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-not><seq-var pos>A</seq-var></seq-not></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-not><seq-var pos>A</seq-var></seq-not></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -406,22 +439,26 @@
         <div class="connective">
           <seq-inference name="∼" pos left>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var neg>A</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-negate><seq-var neg>A</seq-var></seq-negate>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-negate><seq-var neg>A</seq-var></seq-negate>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="∼" pos right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-negate><seq-var neg>A</seq-var></seq-negate></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-negate><seq-var neg>A</seq-var></seq-negate></seq-focus></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -449,22 +486,26 @@
         <div class="connective">
           <seq-inference name='¬̷' neg left>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-focus><seq-not-untrue><seq-var neg>A</seq-var></seq-not-untrue></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-not-untrue><seq-var neg>A</seq-var></seq-not-untrue></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name='¬̷' neg right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var neg>A</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-not-untrue><seq-var neg>A</seq-var></seq-not-untrue></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-not-untrue><seq-var neg>A</seq-var></seq-not-untrue></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -473,22 +514,26 @@
         <div class="connective">
           <seq-inference name="✓" pos left>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-var pos>A</seq-var>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-true><seq-var pos>A</seq-var></seq-true>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-true><seq-var pos>A</seq-var></seq-true>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="✓" pos right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-true><seq-var pos>A</seq-var></seq-true></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-true><seq-var pos>A</seq-var></seq-true></seq-focus></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -516,22 +561,26 @@
         <div class="connective">
           <seq-inference name="↑" neg left>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-var pos>A</seq-var>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-focus><seq-up><seq-var pos>A</seq-var></seq-up></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-up><seq-var pos>A</seq-var></seq-up></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="↑" neg right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-var pos>A</seq-var></seq-focus></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-up><seq-var pos>A</seq-var></seq-up></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-up><seq-var pos>A</seq-var></seq-up></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -540,22 +589,26 @@
         <div class="connective">
           <seq-inference name="↓" pos left>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-var neg>A</seq-var></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-down><seq-var neg>A</seq-var></seq-down>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-down><seq-var neg>A</seq-var></seq-down>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="↓" pos right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var neg>A</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-down><seq-var neg>A</seq-var></seq-down></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-down><seq-var neg>A</seq-var></seq-down></seq-focus></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -581,25 +634,29 @@
         <div class="connective">
           <seq-inference name="∀" neg left>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-focus><seq-var neg>A<span class="substitution" slot="decoration">{<var>B</var>/<var>X</var>}</span></seq-var></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-var neg>A<span class="substitution" slot="decoration">{<var>B</var>/<var>X</var>}</span></seq-var></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-focus><seq-forall><seq-var>X</seq-var>.<seq-var neg>A</seq-var></seq-forall></seq-focus> </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-focus><seq-forall><seq-var>X</seq-var>.<seq-var neg>A</seq-var></seq-forall></seq-focus> </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="∀" neg right>
-            <div class="premises" slot="premise">
+            <div slot="premise" class="premises">
               <seq-sequent>
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta>, <seq-var neg>A</seq-var></seq-delta>
               </seq-sequent>
-              <div class="side-condition"><seq-var>X</seq-var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>)</div>
+              <div class="side-condition"><seq-var>X</seq-var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>)</div>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-forall><seq-var>X</seq-var>.<seq-var neg>A</seq-var></seq-forall></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-forall><seq-var>X</seq-var>.<seq-var neg>A</seq-var></seq-forall></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -607,26 +664,30 @@
       <td>
         <div class="connective">
           <seq-inference name="∃" pos left>
-            <div class="premises" slot="premise">
-              <div class="side-condition"><seq-var>X</seq-var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>)</div>
+            <div slot="premise" class="premises">
+              <div class="side-condition"><seq-var>X</seq-var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma></seq-gamma><seq-turnstile></seq-turnstile><seq-delta></seq-delta></seq-sequent>)</div>
               <seq-sequent>
-                <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-var pos>A</seq-var>, </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-exists><seq-var>X</seq-var>.<seq-var pos>A</seq-var></seq-exists>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-exists><seq-var>X</seq-var>.<seq-var pos>A</seq-var></seq-exists>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="∃" pos right>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-var pos>A<span class="substitution" slot="decoration">{<var>B</var>/<var>X</var>}</span></seq-var></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-var pos>A<span class="substitution" slot="decoration">{<var>B</var>/<var>X</var>}</span></seq-var></seq-focus></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"> <seq-focus><seq-exists><seq-var>X</seq-var>.<seq-var pos>A</seq-var></seq-exists></seq-focus></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta> <seq-focus><seq-exists><seq-var>X</seq-var>.<seq-var pos>A</seq-var></seq-exists></seq-focus></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -653,8 +714,9 @@
           <seq-inference name="init">
             <span class="function" slot="label">init</span>
             <seq-sequent slot="conclusion">
-              <seq-var slot="left">A</seq-var>
-              <seq-var slot="right">A</seq-var>
+              <seq-var>A</seq-var>
+              <seq-turnstile></seq-turnstile>
+              <seq-var>A</seq-var>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -665,17 +727,20 @@
             <span class="function" slot="label">cut</span>
             <div slot="premise" class="premises">
               <seq-sequent>
-                <seq-gamma slot="left"></seq-gamma>
-                <seq-delta slot="right">, <seq-var>A</seq-var></seq-delta>
+                <seq-gamma></seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta>, <seq-var>A</seq-var></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <seq-gamma slot="left"><seq-var>A</seq-var>, </seq-gamma>
-                <seq-delta slot="right"></seq-delta>
+                <seq-gamma><seq-var>A</seq-var>, </seq-gamma>
+                <seq-turnstile></seq-turnstile>
+                <seq-delta></seq-delta>
               </seq-sequent>
             </div>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -694,23 +759,27 @@
           <seq-inference name="weaken" left>
             <span class="function" slot="label">weaken</span>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-var>A</seq-var>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-var>A</seq-var>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="weaken" right>
             <span class="function" slot="label">weaken</span>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-var>A</seq-var></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var>A</seq-var></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -720,23 +789,27 @@
           <seq-inference name="contract" left>
             <span class="function" slot="label">contract</span>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"><seq-var>A</seq-var>, <seq-var>A</seq-var>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-var>A</seq-var>, <seq-var>A</seq-var>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"><seq-var>A</seq-var>, </seq-gamma>
-              <seq-delta slot="right"></seq-delta>
+              <seq-gamma><seq-var>A</seq-var>, </seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta></seq-delta>
             </seq-sequent>
           </seq-inference>
           <seq-inference name="contract" right>
             <span class="function" slot="label">contract</span>
             <seq-sequent slot="premise">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-var>A</seq-var>, <seq-var>A</seq-var></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var>A</seq-var>, <seq-var>A</seq-var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma slot="left"></seq-gamma>
-              <seq-delta slot="right">, <seq-var>A</seq-var></seq-delta>
+              <seq-gamma></seq-gamma>
+              <seq-turnstile></seq-turnstile>
+              <seq-delta>, <seq-var>A</seq-var></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
