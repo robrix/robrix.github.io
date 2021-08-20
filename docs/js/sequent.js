@@ -99,7 +99,7 @@ export const SeqInference = component('seq-inference', SeqInference => {
     const labelVar = this.shadowNode.getElementById('label-var');
     labelVar.textContent = this.getAttribute('name');
     if (this.hasAttribute('left')) {
-      labelVar.insertAdjacentElement('afterend', document.createElement('seq-turnstile'));
+      this.shadowNode.getElementById('label-decoration').insertAdjacentElement('afterend', document.createElement('seq-turnstile'));
     }
     else if (this.hasAttribute('right')) {
       labelVar.insertAdjacentElement('beforebegin', document.createElement('seq-turnstile'));
@@ -156,7 +156,7 @@ div.axiom::after {
 }
 </style>
 <div id="rule">
-  <div id="label"><slot name="label"><seq-symbol id="label-var"></seq-symbol><slot name="label-decoration"></slot></slot></div>
+  <div id="label"><slot name="label"><seq-symbol id="label-var"></seq-symbol><slot id="label-decoration" name="label-decoration"></slot></slot></div>
   <div id="sequents">
     <slot name="premise"><div class="axiom"></div></slot>
     <span id="line-of-inference"></span>
