@@ -309,7 +309,6 @@ fieldset {
   }
   table>tbody>tr>th>h3 {
     position: absolute;
-    float: left;
     text-align: right;
     margin-left: -100%;
     width: 100%;
