@@ -873,7 +873,7 @@ showPolarities.onchange = event => {
 <p>Earlier, we judged <code>r</code> a fitting substitute for <code>Void</code> because it behaved compatibly with respect to control. In contrast, <code>()</code> doesn’t <em>behave</em> in any way at all.</p>
 <p><code>r</code>’s abstraction of <code>Void</code> is determined entirely by Curry-Howard: <code>r</code> abstracts <code>Void</code> insofar as <code>Void</code> corresponds to ⊥ and its logical rules. The left rule has this sequent as an axiom:</p>
 <div class="connective">
-<p><div class="rule"> <div class="label">⊥⊢</div> <div class="inference"> <div class="axiom"></div> <span class="line-of-inference"></span> <div class="conclusion Γ">⊥, Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ, ⊥</div> </div> </div></p>
+<p><div class="rule"> <div class="label">⊥⊢</div> <div class="inference"> <div class="axiom"></div> <span class="line-of-inference"></span> <div class="conclusion Γ">⊥, Γ</div> <div class="conclusion turnstile">⊢</div> <div class="conclusion Δ">Δ</div> </div> </div></p>
 </div>
 <p>This gives us ex falso quodlibet: ⊥ on the left suffices to prove <em>any</em> sequent. As we saw, <code>Void</code> provides this via <code>absurd</code>. For <code>r</code>, imagine a type representing sequents implemented using <code>Cont</code>. If your arguments contain an <code>r</code>, there’s no need to consider any other arguments or what values you could compute and return; in fact, you don’t need the continuation at all. Just return the argument of type <code>r</code> and you’re done.</p>
 <p>The right rule is instead:</p>

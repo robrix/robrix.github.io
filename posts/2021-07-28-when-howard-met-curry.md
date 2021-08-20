@@ -73,7 +73,7 @@ Earlier, we judged `r` a fitting substitute for `Void` because it behaved compat
       <span class="line-of-inference"></span>
       <div class="conclusion Γ">⊥, Γ</div>
       <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ, ⊥</div>
+      <div class="conclusion Δ">Δ</div>
     </div>
   </div>
 </div>
