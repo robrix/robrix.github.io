@@ -241,6 +241,20 @@ sup.V {
   color: var(--sequent-pos-colour);
 }
 
+var[neg]::after,
+var[pos]::after {
+  font-style: normal;
+  vertical-align: super;
+  font-size: 60%;
+  line-height: 0;
+}
+var[neg]::after {
+  content: '−';
+}
+var[pos]::after {
+  content: '+';
+}
+
 seq-var[neg],
 var[neg] {
   color: var(--sequent-neg-colour);
