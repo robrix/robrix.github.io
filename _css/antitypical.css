@@ -266,7 +266,8 @@ seq-up,
 seq-down,
 seq-forall,
 seq-exists,
-seq-var):hover {
+seq-var,
+seq-sequent):hover {
   background-color: rgba(50, 50, 50, 0.05);
 }
 
