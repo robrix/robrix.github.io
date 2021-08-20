@@ -165,34 +165,28 @@ div.axiom::after {
 export const SeqSequent = component('seq-sequent')`
 <style type="text/css">
 .sequent {
-  display: grid;
+  display: inline-grid;
   grid-template-columns: auto max-content auto;
   gap: 2px 0;
   width: max-content;
   font-family: var(--sequent-font);
+  text-align: center;
 }
 :host([slot]),
 :host([slot]) .sequent {
   display: contents;
 }
-#left, .turnstile, #right {
-  padding: 2px 4px;
-}
 #left {
   text-align: right;
 }
 .turnstile {
+  white-space: pre;
   text-align: center;
 }
 #right {
   text-align: left;
 }
-</style>
-<div class="sequent">
-  <span id="left"><slot name="left"></slot></span>
-  <span class="turnstile">⊢<slot name="turnstile-decoration"></slot></span>
-  <span id="right"><slot name="right"></slot></span>
-</div>
+</style><span class="sequent"><span id="left"><slot name="left"></slot></span><span class="turnstile"> ⊢<slot name="turnstile-decoration"></slot> </span><span id="right"><slot name="right"></slot></span></span>
 `;
 
 

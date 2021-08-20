@@ -579,65 +579,65 @@
     <tr>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="for-all"><span class="op">∀</span></span></div>
-            <div class="inference">
-              <div class="premise Γ"><span class="focus">[<seq-var neg>A</seq-var>{<seq-var>B</seq-var>/<seq-var>X</seq-var>}]</span> <span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="focus">[<span class="for-all"><span class="op">∀</span><seq-var>X</seq-var>.<seq-var neg>A</seq-var></span>]</span> <span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span></div>
+          <seq-inference name="∀" neg left>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"><seq-focus><seq-var neg>A<span class="substitution" slot="decoration">{<var>B</var>/<var>X</var>}</span></seq-var></seq-focus> </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-focus><seq-forall><seq-var>X</seq-var>.<seq-var neg>A</seq-var></seq-forall></seq-focus> </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="∀" neg right>
+            <div class="premises" slot="premise">
+              <seq-sequent>
+                <seq-gamma slot="left"></seq-gamma>
+                <seq-delta slot="right">, <seq-var neg>A</seq-var></seq-delta>
+              </seq-sequent>
+              <div class="side-condition"><seq-var>X</seq-var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>)</div>
             </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premises">
-                <div class="premise"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>, <seq-var neg>A</seq-var></div>
-                <div class="side-condition"><seq-var>X</seq-var> ∉ <span class="function">fv</span>(<span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>)</div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>, <span class="for-all"><span class="op">∀</span><seq-var>X</seq-var>.<seq-var neg>A</seq-var></span></div>
-            </div>
-            <div class="label"><span class="for-all"><span class="op">∀</span></span></div>
-          </div>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right">, <seq-forall><seq-var>X</seq-var>.<seq-var neg>A</seq-var></seq-forall></seq-delta>
+            </seq-sequent>
+          </seq-inference>
         </div>
       </td>
       <td>
         <div class="connective">
-          <div class="rule left">
-            <div class="label"><span class="there-exists"><span class="op">∃</span></span></div>
-            <div class="inference">
-              <div class="premises">
-                <div class="side-condition"><seq-var>X</seq-var> ∉ <span class="function">fv</span>(<span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span>)</div>
-                <div class="premise"><seq-var pos>A</seq-var>, <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
-              </div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion"><span class="there-exists"><span class="op">∃</span><seq-var>X</seq-var>.<seq-var pos>A</seq-var></span>, <span class="metavar">Γ</span> <span class="turnstile">⊢</span> <span class="metavar">Δ</span></div>
+          <seq-inference name="∃" pos left>
+            <div class="premises" slot="premise">
+              <div class="side-condition"><seq-var>X</seq-var> ∉ <span class="function">fv</span>(<seq-sequent><seq-gamma slot="left"></seq-gamma><seq-delta slot="right"></seq-delta></seq-sequent>)</div>
+              <seq-sequent>
+                <seq-gamma slot="left"><seq-var pos>A</seq-var>, </seq-gamma>
+                <seq-delta slot="right"></seq-delta>
+              </seq-sequent>
             </div>
-          </div>
-          <div class="rule right">
-            <div class="inference">
-              <div class="premise Γ"><span class="metavar">Γ</span></div>
-              <div class="premise turnstile"><span class="turnstile">⊢</span></div>
-              <div class="premise Δ"><span class="metavar">Δ</span> <span class="focus">[<seq-var pos>A</seq-var>{<seq-var>B</seq-var>/<seq-var>X</seq-var>}]</span></div>
-              <span class="line-of-inference"></span>
-              <div class="conclusion Γ"><span class="metavar">Γ</span></div>
-              <div class="conclusion turnstile"><span class="turnstile">⊢</span></div>
-              <div class="conclusion Δ"><span class="metavar">Δ</span> <span class="focus">[<span class="there-exists"><span class="op">∃</span><seq-var>X</seq-var>.<seq-var pos>A</seq-var></span>]</span></div>
-            </div>
-            <div class="label"><span class="there-exists"><span class="op">∃</span></span></div>
-          </div>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"><seq-exists><seq-var>X</seq-var>.<seq-var pos>A</seq-var></seq-exists>, </seq-gamma>
+              <seq-delta slot="right"></seq-delta>
+            </seq-sequent>
+          </seq-inference>
+          <seq-inference name="∃" pos right>
+            <seq-sequent slot="premise">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right"> <seq-focus><seq-var pos>A<span class="substitution" slot="decoration">{<var>B</var>/<var>X</var>}</span></seq-var></seq-focus></seq-delta>
+            </seq-sequent>
+            <seq-sequent slot="conclusion">
+              <seq-gamma slot="left"></seq-gamma>
+              <seq-delta slot="right"> <seq-focus><seq-exists><seq-var>X</seq-var>.<seq-var pos>A</seq-var></seq-exists></seq-focus></seq-delta>
+            </seq-sequent>
+          </seq-inference>
         </div>
       </td>
     </tr>
     <tr>
       <td class="equivalence">
-        <span class="negate"><span class="op">∼</span>(<span class="for-all"><span class="op">∀</span><seq-var>X</seq-var>.<seq-var neg>A</seq-var></span>)</span> ≈ <span class="there-exists"><span class="op">∃</span><seq-var>X</seq-var>.<span class="negate"><span class="op">∼</span><seq-var neg>A</seq-var></span></span>
+        <seq-negate>(<seq-forall><seq-var>X</seq-var>.<seq-var neg>A</seq-var></seq-forall>)</seq-negate> ≈ <seq-exists><seq-var>X</seq-var>.<seq-negate><seq-var neg>A</seq-var></seq-negate></seq-exists>
       </td>
       <td class="equivalence">
-        <seq-not>(<span class="there-exists"><span class="op">∃</span><seq-var>X</seq-var>.<seq-var pos>A</seq-var></span>)</seq-not> ≈ <span class="for-all"><span class="op">∀</span><seq-var>X</seq-var>.<seq-not><seq-var pos>A</seq-var></seq-not></span>
+        <seq-not>(<seq-exists><seq-var>X</seq-var>.<seq-var pos>A</seq-var></seq-exists>)</seq-not> ≈ <seq-forall><seq-var>X</seq-var>.<seq-not><seq-var pos>A</seq-var></seq-not></seq-forall>
       </td>
     </tr>
   </tbody>

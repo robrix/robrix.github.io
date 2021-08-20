@@ -102,6 +102,10 @@ div.premises ~ div.conclusion {
   grid-column: 1 / -1;
 }
 
+div.side-condition {
+  white-space: pre;
+}
+
 div.inference {
   display: grid;
   grid-template-columns: repeat(3, auto);
@@ -263,6 +267,10 @@ seq-down,
 seq-forall,
 seq-exists):hover {
   background-color: rgba(50, 50, 50, 0.05);
+}
+
+.substitution {
+  color: initial;
 }
 
 
