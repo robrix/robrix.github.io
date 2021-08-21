@@ -11,21 +11,36 @@ Sometimes the road takes us to unexpected places. Here’s a trip I’ve been on
 
 <!--more-->
 
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+
+<script type="module" src="../../js/sequent.js"></script>
+<script type="module" src="../../js/polarized.js"></script>
+
+<style type="text/css">
+div.connective {
+  margin-bottom: 1em;
+}
+var[neg]::after,
+var[pos]::after {
+  display: inline;
+}
+</style>
+
 ## Double negation
 
-I’ve been working on a language named [`sequoia`][], which embeds polarized classical logic in Haskell. Of course, Haskell corresponds to an intuitionistic logic, so we can’t just bring arbitrary classical proofs over directly. We have to use a double-negation translation, importing classical propositions A as intuitionistic propositions ¬¬A. There are several such translations named (and infinitely more possible), differing in how many negations are placed where, but they all get the job done.
+I’ve been working on a language named [`sequoia`][], which embeds polarized classical logic in Haskell. Of course, Haskell corresponds to an intuitionistic logic, so we can’t just bring arbitrary classical proofs over directly. We have to use a double-negation translation, importing classical propositions <var>A</var> as intuitionistic propositions <seq-not><seq-not><var>A</var></seq-not></seq-not>. There are several such translations named (and infinitely more possible), differing in how many negations are placed where, but they all get the job done.
 
-Curry-Howard tells us a translation for negations, but we can work this one out ourselves with a little logical knowledge: a negation ¬A can also be encoded as the implication A → ⊥. It’s straightforward enough: “A implies falsehood” means the same thing as “not A.”
+Curry-Howard tells us a translation for negations, but we can work this one out ourselves with a little logical knowledge: a negation <seq-not><var>A</var></seq-not> can also be encoded as the implication <seq-impl><var>A</var><seq-bottom></seq-bottom></seq-impl>. It’s straightforward enough: “<var>A</var> implies falsehood” means the same thing as “not <var>A</var>.”
 
-Implications translate to functions, but what about ⊥? That simplest, yet perhaps initially baffling, of algebraic datatypes, the empty type. We can define these for ourselves, but there’s a standard definition in the `Data.Void` module:
+Implications translate to functions, but what about <seq-bottom></seq-bottom>? That simplest, yet perhaps initially baffling, of algebraic datatypes, the empty type. We can define these for ourselves, but there’s a standard definition in the `Data.Void` module:
 
 ```haskell
 data Void
 ```
 
-Having no constructors, `Void` also has no inhabitants—no proof terms—just like ⊥. So `Void` indeed corresponds to ⊥. So what kind of thing is `A -> Void`? A function returning `Void` is a function that _cannot_ return; it can only pass control along to _another_ function returning `Void`. In other words, `A -> Void` is just what Curry-Howard tells us: a continuation.
+Having no constructors, `Void` also has no inhabitants—no proof terms—just like <seq-bottom></seq-bottom>. So `Void` indeed corresponds to <seq-bottom></seq-bottom>. So what kind of thing is `a -> Void`? A function returning `Void` is a function that _cannot_ return; it can only pass control along to _another_ function returning `Void`. In other words, `a -> Void` is just what Curry-Howard tells us: a continuation.
 
-Thus, the double negation ¬¬A becomes a continuation from a continuation:
+Thus, the double negation <seq-not><seq-not><var>A</var></seq-not></seq-not> becomes a continuation from a continuation:
 
 ```haskell
 type DoubleNegation a = (a -> Void) -> Void
@@ -33,14 +48,14 @@ type DoubleNegation a = (a -> Void) -> Void
 
 which is a shape also known as continuation-passing style. Classical _languages_ embed into intuitionistic ones via CPS.
 
-As discussed, modelling ⊥ with `Void` extends to modelling negations ¬A (encoded A → ⊥) with continuations. Further opens the door to using logical reasoning principles relating to ⊥. For example, we can use the function `absurd`, defined as:
+As discussed, modelling <seq-bottom></seq-bottom> with `Void` extends to modelling negations <seq-not><var>A</var></seq-not> (encoded <seq-impl><var>A</var><seq-bottom></seq-bottom></seq-impl>) with continuations. Further opens the door to using logical reasoning principles relating to <seq-bottom></seq-bottom>. For example, we can use the function `absurd`, defined as:
 
 ```haskell
 absurd :: Void -> a
 absurd v = case v of {}
 ```
 
-to supply proofs using the principle of explosion, or ex falso quodlibet. And `Void` is an appropriately abortive substitute for ⊥, since there’s no way for control to pass through a type with no inhabitants.
+to supply proofs using the principle of explosion, or ex falso quodlibet. And `Void` is an appropriately abortive substitute for <seq-bottom></seq-bottom>, since there’s no way for control to pass through a type with no inhabitants.
 
 However good a fit `Void` might be initially, it’s quite inconvenient when embedding a language within another, whether by encoding or interpretation. You typically _want_ control to return, and to run code afterwards, and to collect results, to continue with the next iteration of a REPL, or to print, save, or transmit computed values, clean up acquired resources, and so on. Absent tricks like throwing values up the stack with exception handlers, you simply can’t: nothing returns from the `Void`.
 
@@ -57,140 +72,134 @@ By replacing `Void` with a type parameter `r` (the traditional name, perhaps for
 
 ## Beginnings and endings
 
-I recently wrote a post about what I termed [environment-passing style][]. A series of observations arrives at (in some sense) dual translations of `a -> b` as `(b -> r) -> (a -> r)` and `(e -> a) -> (e -> b)` (shapes that you start seeing everywhere once you learn to think of them this way, e.g. in folds and unfolds, in Mendler-style algebras and coalgebras, in lambda encodings, etc.). Here, just as above, `r` substitutes for—indeed, it _abstracts_—⊥. What about `e`?
+I recently wrote a post about what I termed [environment-passing style][]. A series of observations arrives at (in some sense) dual translations of `a -> b` as `(b -> r) -> (a -> r)` and `(e -> a) -> (e -> b)` (shapes that you start seeing everywhere once you learn to think of them this way, e.g. in folds and unfolds, in Mendler-style algebras and coalgebras, in lambda encodings, etc.). Here, just as above, `r` substitutes for—indeed, it _abstracts_—<seq-bottom></seq-bottom>. What about `e`?
 
-The common theme running throughout the sequent calculus is duality. `r` abstracts `Void`, `Void` corresponds to ⊥, ⊥ (negative falsity) dualizes to 1 (positive truth), 1 corresponds to `()`, `()` is abstracted to `e`. (Back and forth ’cross the Curry-Howard bridge!)
+The common theme running throughout the sequent calculus is duality. `r` abstracts `Void`, `Void` corresponds to <seq-bottom></seq-bottom>, <seq-bottom></seq-bottom> (negative falsity) dualizes to <seq-one></seq-one> (positive truth), <seq-one></seq-one> corresponds to `()`, `()` is abstracted to `e`. (Back and forth ’cross the Curry-Howard bridge!)
 
 Earlier, we judged `r` a fitting substitute for `Void` because it behaved compatibly with respect to control. In contrast, `()` doesn’t _behave_ in any way at all.
 
-`r`’s abstraction of `Void` is determined entirely by Curry-Howard: `r` abstracts `Void` insofar as `Void` corresponds to ⊥ and its logical rules. The left rule has this sequent as an axiom:
+`r`’s abstraction of `Void` is determined entirely by Curry-Howard: `r` abstracts `Void` insofar as `Void` corresponds to <seq-bottom></seq-bottom> and its logical rules. The left rule has this sequent as an axiom:
 
 <div class="connective">
-  <div class="rule">
-    <div class="label">⊥⊢</div>
-    <div class="inference">
-      <div class="axiom"></div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">⊥, Γ</div>
-      <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ</div>
-    </div>
-  </div>
+  <seq-inference name="⊥" neg left>
+    <seq-sequent slot="conclusion">
+      <seq-gamma><seq-bottom></seq-bottom>, </seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+  </seq-inference>
 </div>
 
-This gives us ex falso quodlibet: ⊥ on the left suffices to prove _any_ sequent. As we saw, `Void` provides this via `absurd`. For `r`, imagine a type representing sequents implemented using `Cont`. If your arguments contain an `r`, there’s no need to consider any other arguments or what values you could compute and return; in fact, you don’t need the continuation at all. Just return the argument of type `r` and you’re done.
+This gives us ex falso quodlibet: <seq-bottom></seq-bottom> on the left suffices to prove _any_ sequent. As we saw, `Void` provides this via `absurd`. For `r`, imagine a type representing sequents implemented using `Cont`. If your arguments contain an `r`, there’s no need to consider any other arguments or what values you could compute and return; in fact, you don’t need the continuation at all. Just return the argument of type `r` and you’re done.
 
 The right rule is instead:
 
 <div class="connective">
-  <div class="rule">
-    <div class="inference">
-      <div class="premise Γ">Γ</div>
-      <div class="premise turnstile">⊢</div>
-      <div class="premise Δ">Δ</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">Γ</div>
-      <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ, ⊥</div>
-    </div>
-    <div class="label">⊢⊥</div>
-  </div>
+  <seq-inference name="⊥" neg right>
+    <seq-sequent slot="premise">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta>, <seq-bottom></seq-bottom></seq-delta>
+    </seq-sequent>
+  </seq-inference>
 </div>
 
-This instead says that you can construct it along any sequent which was provable anyway; or, working bottom-up, ⊥ adds no information to a proof, and so can be discarded at any time. This one is a little stranger; we can’t construct a `Void`, period; but if we could, it certainly wouldn’t add any information. On the other hand, `r` _is_ inhabited, so we can certainly follow the analogy: we can construct an `r` if we can return without it anyway; in fact, we do, by applying the return continuation.
+This instead says that you can construct it along any sequent which was provable anyway; or, working bottom-up, <seq-bottom></seq-bottom> adds no information to a proof, and so can be discarded at any time. This one is a little stranger; we can’t construct a `Void`, period; but if we could, it certainly wouldn’t add any information. On the other hand, `r` _is_ inhabited, so we can certainly follow the analogy: we can construct an `r` if we can return without it anyway; in fact, we do, by applying the return continuation.
 
-For `e` we instead need to trace its relationships with 1. 1’s rules are dual, mirror images of the ones for ⊥. Again, we start with the left rule, which corresponds closely to the right rule for ⊥:
+For `e` we instead need to trace its relationships with <seq-one></seq-one>. <seq-one></seq-one>’s rules are dual, mirror images of the ones for <seq-bottom></seq-bottom>. Again, we start with the left rule, which corresponds closely to the right rule for <seq-bottom></seq-bottom>:
 
 <div class="connective">
-  <div class="rule">
-    <div class="label">1⊢</div>
-    <div class="inference">
-      <div class="premise Γ">Γ</div>
-      <div class="premise turnstile">⊢</div>
-      <div class="premise Δ">Δ</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">1, Γ</div>
-      <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ</div>
-    </div>
-  </div>
+  <seq-inference name="1" pos left>
+    <seq-sequent slot="premise">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma><seq-one></seq-one>, </seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+  </seq-inference>
 </div>
 
-Left rules can be read by recalling that a sequent is sort of like a function: we can build a function to eliminate 1 and Γ into Δ by means of a funciton eliminating Γ into Δ. Put another way, 1 doesn’t give us any power to prove things that we didn’t have without it, and so we can always introduce it as a hypothetical. `()` works much the same way: adding an argument of type `()` won’t help you construct anything, since you could have just introduced it as a literal. `e` therefore must work the same way, but we’re going to weaken our informal restatement of this down to: you are free to ignore an argument of type `e`. Of course, we aren’t in an e.g. linear setting, so we’re free to ignore _every_ argument. But even if we were in a linear setting, `e` should still be discardable.
+Left rules can be read by recalling that a sequent is sort of like a function: we can build a function to eliminate <seq-one></seq-one> and Γ into Δ by means of a funciton eliminating Γ into Δ. Put another way, <seq-one></seq-one> doesn’t give us any power to prove things that we didn’t have without it, and so we can always introduce it as a hypothetical. `()` works much the same way: adding an argument of type `()` won’t help you construct anything, since you could have just introduced it as a literal. `e` therefore must work the same way, but we’re going to weaken our informal restatement of this down to: you are free to ignore an argument of type `e`. Of course, we aren’t in an e.g. linear setting, so we’re free to ignore _every_ argument. But even if we were in a linear setting, `e` should still be discardable.
 
 On the right:
 
 <div class="connective">
-  <div class="rule">
-    <div class="inference">
-      <div class="axiom"></div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">Γ</div>
-      <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ, 1</div>
-    </div>
-    <div class="label">⊢1</div>
-  </div>
+  <seq-inference name="1" pos right>
+    <seq-sequent slot="conclusion">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta>, <seq-one></seq-one></seq-delta>
+    </seq-sequent>
+  </seq-inference>
 </div>
 
-You can always make a 1. Ditto `()`; it’s what makes it discardable. (1, a positive connective, is indeed defined by its right rule.) `e`, then, must also be freely introduced, ambiently, ubiquitously.
+You can always make a <seq-one></seq-one>. Ditto `()`; it’s what makes it discardable. (<seq-one></seq-one>, a positive connective, is indeed defined by its right rule.) `e`, then, must also be freely introduced, ambiently, ubiquitously.
 
-Considering that we started with the humble ⊥ and 1, the combined consequences of these rules and equivalences for our purposes are surprisingly useful. Expressed as derived rules, on the ⊥ side, if we have an A, we can use it to eliminate an A → ⊥<sub>R</sub>—a continuation—at any time; likwise, we can introduce a continuation from A to satisfy a demand for a A:
+Considering that we started with the humble <seq-bottom></seq-bottom> and <seq-one></seq-one>, the combined consequences of these rules and equivalences for our purposes are surprisingly useful. Expressed as derived rules, on the <seq-bottom></seq-bottom> side, if we have an A, we can use it to eliminate an <seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>—a continuation—at any time; likwise, we can introduce a continuation from A to satisfy a demand for a A:
 
 <div class="connective">
-  <div class="rule">
-    <div class="label">→⊥<sub>R</sub>⊢</div>
-    <div class="inference">
-      <div class="premise Γ">Γ</div>
-      <div class="premise turnstile">⊢<sub>R</sub></div>
-      <div class="premise Δ">Δ, A</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">A → ⊥<sub>R</sub>, Γ</div>
-      <div class="conclusion turnstile">⊢<sub>R</sub></div>
-      <div class="conclusion Δ">Δ</div>
-    </div>
-  </div>
-  <div class="rule">
-    <div class="inference">
-      <div class="premise Γ">A, Γ</div>
-      <div class="premise turnstile">⊢<sub>R</sub></div>
-      <div class="premise Δ">Δ</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">Γ</div>
-      <div class="conclusion turnstile">⊢<sub>R</sub></div>
-      <div class="conclusion Δ">Δ, A → ⊥<sub>R</sub></div>
-    </div>
-    <div class="label">⊢→⊥<sub>R</sub></div>
-  </div>
+  <seq-inference left>
+    <seq-sequent slot="premise">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+      <seq-delta>, <var pos>A</var></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma><seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>, </seq-gamma>
+      <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+  </seq-inference>
+  <seq-inference right>
+    <seq-sequent slot="premise">
+      <seq-gamma><var pos>A</var>, </seq-gamma>
+      <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+      <seq-delta>, <seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl></seq-delta>
+    </seq-sequent>
+  </seq-inference>
 </div>
 
-Dually, demand for 1<sub>E</sub> → A is satisfied by demand for A; and we can always turn A into 1<sub>E</sub> → A:
+Dually, demand for <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl> is satisfied by demand for <var neg>A</var>; and we can always turn <var neg>A</var> into <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl>:
 
 <div class="connective">
-  <div class="rule">
-    <div class="label">1<sub>E</sub>→⊢</div>
-    <div class="inference">
-      <div class="premise Γ">A, Γ</div>
-      <div class="premise turnstile">⊢<sub>E</sub></div>
-      <div class="premise Δ">Δ</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">1<sub>E</sub> → A, Γ</div>
-      <div class="conclusion turnstile">⊢<sub>E</sub></div>
-      <div class="conclusion Δ">Δ</div>
-    </div>
-  </div>
-  <div class="rule">
-    <div class="inference">
-      <div class="premise Γ">Γ</div>
-      <div class="premise turnstile">⊢<sub>E</sub></div>
-      <div class="premise Δ">Δ, A</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">Γ</div>
-      <div class="conclusion turnstile">⊢<sub>E</sub></div>
-      <div class="conclusion Δ">Δ, 1<sub>E</sub> → A</div>
-    </div>
-    <div class="label">⊢1<sub>E</sub>→</div>
-  </div>
+  <seq-inference left>
+    <seq-sequent slot="premise">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+      <seq-delta>, <var pos>A</var></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma><seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl>, </seq-gamma>
+      <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+  </seq-inference>
+  <seq-inference right>
+    <seq-sequent slot="premise">
+      <seq-gamma><var pos>A</var>, </seq-gamma>
+      <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+      <seq-delta>, <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl></seq-delta>
+    </seq-sequent>
+  </seq-inference>
 </div>
 
 
@@ -198,49 +207,49 @@ Dually, demand for 1<sub>E</sub> → A is satisfied by demand for A; and we can 
 
 R represents the ubiquitously available ability to jump to the end of the program and abort. E, on the other hand, represents the ubiquitously available ability to summon (already globally-available) information out of thin air: the environment (hence the name E). Neither of these give us anything _really_ new—after all, we could always pass information inwards, threading it through all the intervening calls, or abort and return outwards by means of `Maybe` or the like. But doing either in a single step _without_ changing the rest of the code base is pretty handy.
 
-Further, `Cont r a` gives us some tools that ¬¬A alone does not, including delimited continuations. Delimited continuations allow us to jump not only to the end of the program, but to some designated intermediate position(s)—often called prompts—introduced by `reset`, and even to resume control at the point at which we jumped afterwards. This in turn allows us to encode arbitrary effects and handlers.
+Further, `Cont r a` gives us some tools that <seq-not><seq-not><var>A</var></seq-not></seq-not> alone does not, including delimited continuations. Delimited continuations allow us to jump not only to the end of the program, but to some designated intermediate position(s)—often called prompts—introduced by `reset`, and even to resume control at the point at which we jumped afterwards. This in turn allows us to encode arbitrary effects and handlers.
 
 In much the same way, the dual structure—probably a comonad—gives us local environments, sandboxing, and coeffects.
 
-If `Cont r a` is ¬¬A, then what is this dual structure? Following the thread backwards, `Cont r a` is ¬¬A because `Cont r a` is (A → ⊥<sub>R</sub>) → ⊥<sub>R</sub>, which is an encoding of ¬¬A. Our encoding of 1<sub>E</sub> → A, on the other hand, doesn’t correspond to any connective—yet. So let’s introduce one: ¬̷, pronounced “not untrue,” is an _assertion_ (some relation to the logical notion, no relation to the computational one), dual to a negation, and works just like our encoding above:
+If `Cont r a` is ¬¬A, then what is this dual structure? Following the thread backwards, `Cont r a` is <seq-not><seq-not><var>A</var></seq-not></seq-not> because `Cont r a` is <seq-impl><span>(<seq-impl><var>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>)</span><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>, which is an encoding of <seq-not><seq-not><var>A</var></seq-not></seq-not>. Our encoding of <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl>, on the other hand, doesn’t correspond to any connective—yet. So let’s introduce one: <seq-not-untrue></seq-not-untrue>, pronounced “not untrue,” is an _assertion_ (some relation to the logical notion, no relation to the computational one), dual to a negation, and works just like our encoding above:
 
 <div class="connective">
-  <div class="rule left">
-    <div class="label">¬̷⊢</div>
-    <div class="inference">
-      <div class="premise Γ">A, Γ</div>
-      <div class="premise turnstile">⊢</div>
-      <div class="premise Δ">Δ</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">¬̷A, Γ</div>
-      <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ</div>
-    </div>
-  </div>
-  <div class="rule right">
-    <div class="inference">
-      <div class="premise Γ">Γ</div>
-      <div class="premise turnstile">⊢</div>
-      <div class="premise Δ">Δ, A</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">Γ</div>
-      <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ, ¬̷A</div>
-    </div>
-    <div class="label">⊢¬̷</div>
-  </div>
+  <seq-inference name='¬̷' neg left>
+    <seq-sequent slot="premise">
+      <seq-gamma><seq-focus><var neg>A</var></seq-focus> </seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma><seq-focus><seq-not-untrue><var neg>A</var></seq-not-untrue></seq-focus> </seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+  </seq-inference>
+  <seq-inference name='¬̷' neg right>
+    <seq-sequent slot="premise">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta>, <var neg>A</var></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta>, <seq-not-untrue><var neg>A</var></seq-not-untrue></seq-delta>
+    </seq-sequent>
+  </seq-inference>
 </div>
 
-Unlike ¬, the composition of ¬̷ on itself is surprisingly boring. If ¬̷ encodes as 1 → A, then all we’ve got is 1 → 1 → A, which gives us nothing the single instance didn’t. I thought these things were supposed to be dual; what gives?
+Unlike <seq-not></seq-not>, the composition of <seq-not-untrue></seq-not-untrue> on itself is surprisingly boring. If <seq-not-untrue></seq-not-untrue> encodes as <seq-one></seq-one> → A, then all we’ve got is <seq-one></seq-one> → <seq-one></seq-one> → A, which gives us nothing the single instance didn’t. I thought these things were supposed to be dual; what gives?
 
 
 ## Polarization
 
 I mentioned before that `sequoia` embeds _polarized_ classical logic. Thus, the above tells only half the story, because we have two different negations: the negative negation ¬ (“not”), and the positive negation ~ (“negate”). They further accept propositions of the opposite polarity, i.e. ¬ takes a positive proposition and ~ takes a negative one, and are involutive, cancelling each other out. ¬~A<sup>-</sup> ≈ A<sup>-</sup>, and ~¬A<sup>+</sup> ≈ A<sup>+</sup>.
 
-Likewise, there are actually two different assertions. ¬̷, which we saw above, is the negative one, while the positive one is stranger still. We arrived at the negative assertion by considering the negative negation, maybe we can find the positive one by a similar route.
+Likewise, there are actually two different assertions. <seq-not-untrue></seq-not-untrue>, which we saw above, is the negative one, while the positive one is stranger still. We arrived at the negative assertion by considering the negative negation, maybe we can find the positive one by a similar route.
 
-The encoding of ¬A as A → ⊥ which we saw earlier wouldn’t be well-polarized for the positive negation ~A. Instead, ~A is encoded as 1 − A, where A − B (“A without B”) is (categorically) a coexponential, (logically) a coimplicaiton or subtraction, and (computationally) a calling context. (Downen has called it a call stack, but I dislike that name, as it’s more like a single frame than an entire stack.)
+The encoding of ¬A as A → <seq-bottom></seq-bottom> which we saw earlier wouldn’t be well-polarized for the positive negation ~A. Instead, ~A is encoded as <seq-one></seq-one> − A, where A − B (“A without B”) is (categorically) a coexponential, (logically) a coimplicaiton or subtraction, and (computationally) a calling context. (Downen has called it a call stack, but I dislike that name, as it’s more like a single frame than an entire stack.)
 
 While the logical rules for its introduction and elimination offer some insight into what its representation must hold, it’s perhaps clearest under a different set of encodings: this time, encoding → and − in terms of disjunction/conjunction and negations. Classically, A → B can be encoded as ¬A ∨ B, while A − B can be encoded as A ∧ ¬B (i.e. “A and not B,” hence the pronunciation of − as “without”). If A − B could be encoded as a conjunction of A and the negation of B, then what does Curry-Howard have to say about that? Conjunctions are product types; negations are still continuations; A − B is isomorphic to a pair of an A and a continuation from B.
 
@@ -248,9 +257,9 @@ We can see now that A → B and A - B are dual: A − B holds both the argument 
 
 Thus far our encodings of the two negations and our single assertion are:
 
-- ¬A ≈ A → ⊥
-- ~A ≈ 1 - A
-- ¬̷A = 1 → A
+- <seq-not><var pos>A</var></seq-not> ≈ <seq-impl><var pos>A</var><seq-bottom></seq-bottom></seq-impl>
+- <seq-negate><var neg>A</var></seq-negate> ≈ <seq-coimpl><seq-one></seq-one><var neg>A</var></seq-coimpl>
+- <seq-not-untrue><var neg>A</var></seq-not-untrue> = <seq-impl><seq-one></seq-one><var neg>A</var></seq-impl>
 
 We can further organize these by polarity and purpose:
 
@@ -273,10 +282,10 @@ We can further organize these by polarity and purpose:
         negation
       </th>
       <td>
-        ¬A ≈ A → ⊥
+        <seq-not><var pos>A</var></seq-not> ≈ <seq-impl><var pos>A</var><seq-bottom></seq-bottom></seq-impl>
       </td>
       <td>
-        ~A ≈ 1 - A
+        <seq-negate><var neg>A</var></seq-negate> ≈ <seq-coimpl><seq-one></seq-one><var neg>A</var></seq-coimpl>
       </td>
     </tr>
     <tr>
@@ -284,7 +293,7 @@ We can further organize these by polarity and purpose:
         assertion
       </th>
       <td>
-        ¬̷A = 1 → A
+        <seq-not-untrue><var neg>A</var></seq-not-untrue> = <seq-impl><seq-one></seq-one><var neg>A</var></seq-impl>
       </td>
       <td>
         …?
@@ -314,10 +323,10 @@ The negations both invert polarity, whereas ¬̷ maintains it. Further, the nega
         negation
       </th>
       <td>
-        ¬A ≈ A → ⊥
+        <seq-not><var pos>A</var></seq-not> ≈ <seq-impl><var pos>A</var><seq-bottom></seq-bottom></seq-impl>
       </td>
       <td>
-        ~A ≈ 1 − A
+        <seq-negate><var neg>A</var></seq-negate> ≈ <seq-coimpl><seq-one></seq-one><var neg>A</var></seq-coimpl>
       </td>
     </tr>
     <tr>
@@ -325,10 +334,10 @@ The negations both invert polarity, whereas ¬̷ maintains it. Further, the nega
         assertion
       </th>
       <td>
-        ¬̷A = 1 → A
+        <seq-not-untrue><var neg>A</var></seq-not-untrue> = <seq-impl><seq-one></seq-one><var neg>A</var></seq-impl>
       </td>
       <td>
-        ✓A ≈ A − ⊥
+        <seq-true><var pos>A</var></seq-true> ≈ <seq-coimpl><var pos>A</var><seq-bottom></seq-bottom></seq-coimpl>
       </td>
     </tr>
   </tbody>
@@ -337,35 +346,35 @@ The negations both invert polarity, whereas ¬̷ maintains it. Further, the nega
 ✓, pronounced “true,” is truly dual to ¬, and ¬̷ is dual to ~. ✓’s encoding gives us the following rules:
 
 <div class="connective">
-  <div class="rule">
-    <div class="label">✓⊢</div>
-    <div class="inference">
-      <div class="premise Γ">A, Γ</div>
-      <div class="premise turnstile">⊢</div>
-      <div class="premise Δ">Δ</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">✓A, Γ</div>
-      <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ</div>
-    </div>
-  </div>
-  <div class="rule">
-    <div class="inference">
-      <div class="premise Γ">Γ</div>
-      <div class="premise turnstile">⊢</div>
-      <div class="premise Δ">Δ, A</div>
-      <span class="line-of-inference"></span>
-      <div class="conclusion Γ">Γ</div>
-      <div class="conclusion turnstile">⊢</div>
-      <div class="conclusion Δ">Δ, ✓A</div>
-    </div>
-    <div class="label">⊢✓</div>
-  </div>
+  <seq-inference name="✓" pos left>
+    <seq-sequent slot="premise">
+      <seq-gamma><var pos>A</var>, </seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma><seq-true><var pos>A</var></seq-true>, </seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta></seq-delta>
+    </seq-sequent>
+  </seq-inference>
+  <seq-inference name="✓" pos right>
+    <seq-sequent slot="premise">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta> <seq-focus><var pos>A</var></seq-focus></seq-delta>
+    </seq-sequent>
+    <seq-sequent slot="conclusion">
+      <seq-gamma></seq-gamma>
+      <seq-turnstile></seq-turnstile>
+      <seq-delta> <seq-focus><seq-true><var pos>A</var></seq-true></seq-focus></seq-delta>
+    </seq-sequent>
+  </seq-inference>
 </div>
 
 So far, so… disappointing. These are precisely the same rules as we found for ¬̷; only the symbols and the polarities have been swapped. And what’s worse, the same was already true of the rules for the negations.
 
-Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as 1 − A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive _negation_ ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?
+Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as <seq-one></seq-one> − A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive _negation_ ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?
 
 It was in precisely such a mood that I happened to open Paul Downen & Zena Ariola’s recent paper _[Compiling with Classical Connectives][]_ to where I’d last left off, on a page starting with this paragraph:
 
@@ -374,7 +383,7 @@ It was in precisely such a mood that I happened to open Paul Downen & Zena Ariol
   <figcaption><cite><a href="https://lmcs.episciences.org/6740">Compiling with Classical Connectives</a></cite>, Paul Downen, Zena M. Ariola</figcaption>
 </figure>
 
-In short, you don’t use the same representation of continuations under two different names; you use two different representations, each with their own strengths. I was delighted to read this, because it reflects something about ~ that I’d only just noticed a day or two prior: the reason representing ¬A with continuations `a -> r` _works_ is that we’re consistent about it. Shouldn’t we be consistent about our treatment of 1, too? In which case, we should revisit our table:
+In short, you don’t use the same representation of continuations under two different names; you use two different representations, each with their own strengths. I was delighted to read this, because it reflects something about ~ that I’d only just noticed a day or two prior: the reason representing ¬A with continuations `a -> r` _works_ is that we’re consistent about it. Shouldn’t we be consistent about our treatment of <seq-one></seq-one>, too? In which case, we should revisit our table:
 
 <table>
   <thead>
@@ -395,10 +404,10 @@ In short, you don’t use the same representation of continuations under two dif
         negation
       </th>
       <td>
-        ¬A ≈ A → ⊥<sub>R</sub>
+        ¬A ≈ A → <seq-bottom></seq-bottom><sub>R</sub>
       </td>
       <td>
-        ~A ≈ 1<sub>E</sub> - A
+        ~A ≈ <seq-one></seq-one><sub>E</sub> - A
       </td>
     </tr>
     <tr>
@@ -406,10 +415,10 @@ In short, you don’t use the same representation of continuations under two dif
         assertion
       </th>
       <td>
-        ¬̷A = 1<sub>E</sub> → A
+        ¬̷A = <seq-one></seq-one><sub>E</sub> → A
       </td>
       <td>
-        ✓A ≈ A - ⊥<sub>R</sub>
+        ✓A ≈ A - <seq-bottom></seq-bottom><sub>R</sub>
       </td>
     </tr>
   </tbody>

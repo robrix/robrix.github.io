@@ -70,12 +70,15 @@ export function prefix(tag, symbol, polarity, setup) {
 export const SeqInference = component('seq-inference', SeqInference => {
   SeqInference.prototype.connectedCallback = function () {
     const labelVar = this.shadowNode.getElementById('label-var');
-    labelVar.textContent = this.getAttribute('name');
-    if (this.hasAttribute('left')) {
-      this.shadowNode.getElementById('label-decoration').insertAdjacentElement('afterend', document.createElement('seq-turnstile'));
-    }
-    else if (this.hasAttribute('right')) {
-      labelVar.insertAdjacentElement('beforebegin', document.createElement('seq-turnstile'));
+    const name = this.getAttribute('name');
+    if (name && name.length > 0) {
+      labelVar.textContent = name;
+      if (this.hasAttribute('left')) {
+        this.shadowNode.getElementById('label-decoration').insertAdjacentElement('afterend', document.createElement('seq-turnstile'));
+      }
+      else if (this.hasAttribute('right')) {
+        labelVar.insertAdjacentElement('beforebegin', document.createElement('seq-turnstile'));
+      }
     }
     if (this.hasAttribute('neg')) {
       labelVar.setAttribute('neg', '');
