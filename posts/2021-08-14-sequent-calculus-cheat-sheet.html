@@ -260,7 +260,7 @@ categories: logic, plt
           <seq-inference name="⊥" neg left>
             <sub slot="label-decoration" class="neg">R</sub>
             <seq-sequent slot="conclusion">
-              <seq-gamma><seq-focus><seq-bottom></seq-bottom></seq-focus> </seq-gamma>
+              <seq-gamma><seq-focus><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-focus> </seq-gamma>
               <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
               <seq-delta></seq-delta>
             </seq-sequent>
@@ -274,7 +274,7 @@ categories: logic, plt
             <seq-sequent slot="conclusion">
               <seq-gamma></seq-gamma>
               <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
-              <seq-delta>, <seq-bottom></seq-bottom></seq-delta>
+              <seq-delta>, <seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-delta>
             </seq-sequent>
             <sub slot="label-decoration" class="neg">R</sub>
           </seq-inference>
@@ -290,7 +290,7 @@ categories: logic, plt
               <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma><seq-one></seq-one>, </seq-gamma>
+              <seq-gamma><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one>, </seq-gamma>
               <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
               <seq-delta></seq-delta>
             </seq-sequent>
@@ -299,7 +299,7 @@ categories: logic, plt
             <seq-sequent slot="conclusion">
               <seq-gamma></seq-gamma>
               <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
-              <seq-delta> <seq-focus><seq-one></seq-one></seq-focus></seq-delta>
+              <seq-delta> <seq-focus><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one></seq-focus></seq-delta>
             </seq-sequent>
             <sub slot="label-decoration" class="pos">E</sub>
           </seq-inference>
@@ -308,10 +308,10 @@ categories: logic, plt
     </tr>
     <tr>
       <td class="equivalence">
-        <seq-negate><seq-bottom></seq-bottom></seq-negate> ≈ <seq-one></seq-one>
+        <seq-negate><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-negate> ≈ <seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one>
       </td>
       <td class="equivalence">
-        <seq-not><seq-one></seq-one></seq-not> ≈ <seq-bottom></seq-bottom>
+        <seq-not><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one></seq-not> ≈ <seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom>
       </td>
     </tr>
   </tbody>
@@ -471,11 +471,11 @@ categories: logic, plt
     <tr>
       <td class="equivalence">
         <div><seq-negate><seq-not><var pos>A</var></seq-not></seq-negate> ≈ <var pos>A</var></div>
-        <div><seq-not><var pos>A</var></seq-not> ≈ <seq-impl><var pos>A</var><seq-bottom></seq-bottom></seq-impl></div>
+        <div><seq-not><var pos>A</var></seq-not> ≈ <seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl></div>
       </td>
       <td class="equivalence">
         <div><seq-not><seq-negate><var neg>A</var></seq-negate></seq-not> ≈ <var neg>A</var></div>
-        <div><seq-negate><var neg>A</var></seq-negate> ≈ <seq-coimpl><var neg>A</var><seq-one></seq-one></seq-coimpl></div>
+        <div><seq-negate><var neg>A</var></seq-negate> ≈ <seq-coimpl><var neg>A</var><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one></seq-coimpl></div>
       </td>
     </tr>
   </tbody>
@@ -546,11 +546,11 @@ categories: logic, plt
     <tr>
       <td class="equivalence">
         <div><seq-negate><seq-not-untrue><var neg>A</var></seq-not-untrue></seq-negate> ≈ <var neg>A</var></div>
-        <div><seq-not-untrue><var neg>A</var></seq-not-untrue> ≈ <seq-impl><seq-one></seq-one><var neg>A</var></seq-impl></div>
+        <div><seq-not-untrue><var neg>A</var></seq-not-untrue> ≈ <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl></div>
       </td>
       <td class="equivalence">
         <div><seq-not><seq-true><var pos>A</var></seq-true></seq-not> ≈ <var pos>A</var></div>
-        <div><seq-true><var pos>A</var></seq-true> ≈ <seq-coimpl><seq-bottom></seq-bottom><var pos>A</var></seq-coimpl></div>
+        <div><seq-true><var pos>A</var></seq-true> ≈ <seq-coimpl><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom><var pos>A</var></seq-coimpl></div>
       </td>
     </tr>
   </tbody>
