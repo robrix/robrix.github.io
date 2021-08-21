@@ -321,8 +321,28 @@ tfoot fieldset {
   align-items: center;
 }
 
+nav.table-of-contents {
+  margin-left: 100%;
+  height: 0;
+  position: sticky;
+  top: 0;
+}
+nav.table-of-contents menu {
+  width: 100%;
+  padding-top: 48px;
+  margin-left: 1em;
+  height: 0;
+  list-style: none;
+}
+nav.table-of-contents menu li {
+  font-size: 1rem;
+  line-height: 2rem;
+}
 
 @media screen and (min-width: 92rem) {
+  table.ruleset {
+    table-layout: fixed;
+  }
   table.ruleset > tbody > tr > th {
     padding: 0;
   }
