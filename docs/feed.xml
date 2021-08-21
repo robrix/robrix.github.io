@@ -1831,61 +1831,63 @@ showPolarities.onchange = event => {
     <p>Note that the customary exchange rule is not required as this presentation’s contexts are unordered.</p>
   </figcaption>
   <div>
-    <div class="connective">
-      <seq-inference name="weaken" left>
-        <span slot="label"><var>weaken</var><seq-turnstile></seq-turnstile></span>
-        <seq-sequent slot="premise">
-          <seq-gamma></seq-gamma>
-          <seq-turnstile></seq-turnstile>
-          <seq-delta></seq-delta>
-        </seq-sequent>
-        <seq-sequent slot="conclusion">
-          <seq-gamma><var>A</var>, </seq-gamma>
-          <seq-turnstile></seq-turnstile>
-          <seq-delta></seq-delta>
-        </seq-sequent>
-      </seq-inference>
-      <seq-inference name="weaken" right>
-        <span slot="label"><seq-turnstile></seq-turnstile><var>weaken</var></span>
-        <seq-sequent slot="premise">
-          <seq-gamma></seq-gamma>
-          <seq-turnstile></seq-turnstile>
-          <seq-delta></seq-delta>
-        </seq-sequent>
-        <seq-sequent slot="conclusion">
-          <seq-gamma></seq-gamma>
-          <seq-turnstile></seq-turnstile>
-          <seq-delta>, <var>A</var></seq-delta>
-        </seq-sequent>
-      </seq-inference>
-    </div>
-    <div class="connective">
-      <seq-inference name="contract" left>
-        <span slot="label"><var>contract</var><seq-turnstile></seq-turnstile></span>
-        <seq-sequent slot="premise">
-          <seq-gamma><var>A</var>, <var>A</var>, </seq-gamma>
-          <seq-turnstile></seq-turnstile>
-          <seq-delta></seq-delta>
-        </seq-sequent>
-        <seq-sequent slot="conclusion">
-          <seq-gamma><var>A</var>, </seq-gamma>
-          <seq-turnstile></seq-turnstile>
-          <seq-delta></seq-delta>
-        </seq-sequent>
-      </seq-inference>
-      <seq-inference name="contract" right>
-        <span slot="label"><seq-turnstile></seq-turnstile><var>contract</var></span>
-        <seq-sequent slot="premise">
-          <seq-gamma></seq-gamma>
-          <seq-turnstile></seq-turnstile>
-          <seq-delta>, <var>A</var>, <var>A</var></seq-delta>
-        </seq-sequent>
-        <seq-sequent slot="conclusion">
-          <seq-gamma></seq-gamma>
-          <seq-turnstile></seq-turnstile>
-          <seq-delta>, <var>A</var></seq-delta>
-        </seq-sequent>
-      </seq-inference>
+    <div class="column">
+      <div class="connective">
+        <seq-inference name="weaken" left>
+          <span slot="label"><var>weaken</var><seq-turnstile></seq-turnstile></span>
+          <seq-sequent slot="premise">
+            <seq-gamma></seq-gamma>
+            <seq-turnstile></seq-turnstile>
+            <seq-delta></seq-delta>
+          </seq-sequent>
+          <seq-sequent slot="conclusion">
+            <seq-gamma><var>A</var>, </seq-gamma>
+            <seq-turnstile></seq-turnstile>
+            <seq-delta></seq-delta>
+          </seq-sequent>
+        </seq-inference>
+        <seq-inference name="weaken" right>
+          <span slot="label"><seq-turnstile></seq-turnstile><var>weaken</var></span>
+          <seq-sequent slot="premise">
+            <seq-gamma></seq-gamma>
+            <seq-turnstile></seq-turnstile>
+            <seq-delta></seq-delta>
+          </seq-sequent>
+          <seq-sequent slot="conclusion">
+            <seq-gamma></seq-gamma>
+            <seq-turnstile></seq-turnstile>
+            <seq-delta>, <var>A</var></seq-delta>
+          </seq-sequent>
+        </seq-inference>
+      </div>
+      <div class="connective">
+        <seq-inference name="contract" left>
+          <span slot="label"><var>contract</var><seq-turnstile></seq-turnstile></span>
+          <seq-sequent slot="premise">
+            <seq-gamma><var>A</var>, <var>A</var>, </seq-gamma>
+            <seq-turnstile></seq-turnstile>
+            <seq-delta></seq-delta>
+          </seq-sequent>
+          <seq-sequent slot="conclusion">
+            <seq-gamma><var>A</var>, </seq-gamma>
+            <seq-turnstile></seq-turnstile>
+            <seq-delta></seq-delta>
+          </seq-sequent>
+        </seq-inference>
+        <seq-inference name="contract" right>
+          <span slot="label"><seq-turnstile></seq-turnstile><var>contract</var></span>
+          <seq-sequent slot="premise">
+            <seq-gamma></seq-gamma>
+            <seq-turnstile></seq-turnstile>
+            <seq-delta>, <var>A</var>, <var>A</var></seq-delta>
+          </seq-sequent>
+          <seq-sequent slot="conclusion">
+            <seq-gamma></seq-gamma>
+            <seq-turnstile></seq-turnstile>
+            <seq-delta>, <var>A</var></seq-delta>
+          </seq-sequent>
+        </seq-inference>
+      </div>
     </div>
   </div>
 </figure>]]></summary>
