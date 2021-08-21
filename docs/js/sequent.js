@@ -113,10 +113,12 @@ export const SeqInference = component('seq-inference', SeqInference => {
   gap: 2px 0;
   width: max-content;
 }
-#line-of-inference {
+hr {
   grid-column: 1 / -1;
   background: #666;
   height: 1px;
+  margin: 0;
+  border: 0;
 }
 div.axiom {
   grid-column: 1 / -1;
@@ -132,7 +134,7 @@ div.axiom::after {
   <div id="label"><slot name="label"><seq-symbol id="label-var"></seq-symbol><slot id="label-decoration" name="label-decoration"></slot></slot></div>
   <div id="sequents">
     <slot name="premise"><div class="axiom"></div></slot>
-    <span id="line-of-inference"></span>
+    <hr>
     <slot name="conclusion"></slot>
   </div>
 </div>
