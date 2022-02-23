@@ -376,4 +376,8 @@ nav.table-of-contents menu li {
   table.ruleset>tbody>tr>td::after {
     clear: both;
   }
+  table.ruleset>tbody>tr>td>section.column-2 {
+    display: grid;
+    grid-template-columns: repeat(1, 100%);
+  }
 }
