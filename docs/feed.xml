@@ -728,9 +728,9 @@
           <seq-inference name="init">
             <span class="function" slot="label">init</span>
             <seq-sequent slot="conclusion">
-              <var>A</var>
+              <var neg pos>A</var>
               <seq-turnstile></seq-turnstile>
-              <var>A</var>
+              <var neg pos>A</var>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -743,10 +743,10 @@
               <seq-sequent>
                 <seq-gamma></seq-gamma>
                 <seq-turnstile></seq-turnstile>
-                <seq-delta>, <var>A</var></seq-delta>
+                <seq-delta>, <var neg pos>A</var></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <seq-gamma><var>A</var>, </seq-gamma>
+                <seq-gamma><var neg pos>A</var>, </seq-gamma>
                 <seq-turnstile></seq-turnstile>
                 <seq-delta></seq-delta>
               </seq-sequent>
@@ -778,7 +778,7 @@
               <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma><var>A</var>, </seq-gamma>
+              <seq-gamma><var neg pos>A</var>, </seq-gamma>
               <seq-turnstile></seq-turnstile>
               <seq-delta></seq-delta>
             </seq-sequent>
@@ -793,7 +793,7 @@
             <seq-sequent slot="conclusion">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
-              <seq-delta>, <var>A</var></seq-delta>
+              <seq-delta>, <var neg pos>A</var></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -803,12 +803,12 @@
           <seq-inference name="contract" left>
             <span slot="label"><var>contract</var><seq-turnstile></seq-turnstile></span>
             <seq-sequent slot="premise">
-              <seq-gamma><var>A</var>, <var>A</var>, </seq-gamma>
+              <seq-gamma><var neg pos>A</var>, <var neg pos>A</var>, </seq-gamma>
               <seq-turnstile></seq-turnstile>
               <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma><var>A</var>, </seq-gamma>
+              <seq-gamma><var neg pos>A</var>, </seq-gamma>
               <seq-turnstile></seq-turnstile>
               <seq-delta></seq-delta>
             </seq-sequent>
@@ -818,12 +818,12 @@
             <seq-sequent slot="premise">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
-              <seq-delta>, <var>A</var>, <var>A</var></seq-delta>
+              <seq-delta>, <var neg pos>A</var>, <var neg pos>A</var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
-              <seq-delta>, <var>A</var></seq-delta>
+              <seq-delta>, <var neg pos>A</var></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -833,9 +833,17 @@
   <tfoot>
     <tr>
       <td colspan="2">
-        <fieldset>
-          <p><label><input id="show-polarities" name="show-polarities" type="checkbox" checked> Show polarities</label></p>
-        </fieldset>
+        <h4>Legend</h4>
+        <section class="column-2">
+          <ul>
+            <li><var neg>A</var>: negative variable</li>
+            <li><var pos>A</var>: positive variable</li>
+            <li><var neg pos>A</var>: arbitrary polarity variable</li>
+          </ul>
+          <fieldset>
+            <p><label><input id="show-polarities" name="show-polarities" type="checkbox" checked> Show polarities</label></p>
+          </fieldset>
+        </section>
       </td>
     </tr>
   </tfoot>
