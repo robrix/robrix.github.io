@@ -59,7 +59,7 @@ figure.connective {
   --sequent-pos-colour: rgb(255, 150, 150);
   --sequent-neg-pos-colour: rgb(237, 150, 255);
 }
-.rule, .equivalence {
+.rule, .equivalence, .equivalence section {
   font-size: 1.25rem;
   line-height: 1.8rem;
   font-weight: 100;
