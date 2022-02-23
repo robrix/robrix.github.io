@@ -306,6 +306,9 @@ seq-down,
 seq-forall,
 seq-exists,
 seq-var,
+seq-focus,
+seq-gamma,
+seq-delta,
 seq-sequent,
 var):hover {
   background-color: rgba(50, 50, 50, 0.05);
