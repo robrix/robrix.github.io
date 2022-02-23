@@ -57,6 +57,7 @@ figure.connective {
   --sequent-font: "Computer Modern Serif", sans-serif;
   --sequent-neg-colour: rgb(150, 150, 255);
   --sequent-pos-colour: rgb(255, 150, 150);
+  --sequent-neg-pos-colour: rgb(237, 150, 255);
 }
 .rule, .equivalence {
   font-size: 1.25rem;
@@ -265,6 +266,9 @@ var[neg]::after {
 var[pos]::after {
   content: '+';
 }
+var[neg][pos]::after {
+  content: '±';
+}
 .show-polarities var[neg]::after,
 .show-polarities var[pos]::after {
   display: inline;
@@ -277,6 +281,10 @@ var[neg] {
 seq-var[pos],
 var[pos] {
   color: var(--sequent-pos-colour);
+}
+seq-var[neg][pos],
+var[neg][pos] {
+  color: var(--sequent-neg-pos-colour);
 }
 
 :where(seq-with,

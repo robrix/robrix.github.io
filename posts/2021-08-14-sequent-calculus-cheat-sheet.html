@@ -718,9 +718,9 @@ categories: logic, plt
           <seq-inference name="init">
             <span class="function" slot="label">init</span>
             <seq-sequent slot="conclusion">
-              <var>A</var>
+              <var neg pos>A</var>
               <seq-turnstile></seq-turnstile>
-              <var>A</var>
+              <var neg pos>A</var>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -733,10 +733,10 @@ categories: logic, plt
               <seq-sequent>
                 <seq-gamma></seq-gamma>
                 <seq-turnstile></seq-turnstile>
-                <seq-delta>, <var>A</var></seq-delta>
+                <seq-delta>, <var neg pos>A</var></seq-delta>
               </seq-sequent>
               <seq-sequent>
-                <seq-gamma><var>A</var>, </seq-gamma>
+                <seq-gamma><var neg pos>A</var>, </seq-gamma>
                 <seq-turnstile></seq-turnstile>
                 <seq-delta></seq-delta>
               </seq-sequent>
@@ -768,7 +768,7 @@ categories: logic, plt
               <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma><var>A</var>, </seq-gamma>
+              <seq-gamma><var neg pos>A</var>, </seq-gamma>
               <seq-turnstile></seq-turnstile>
               <seq-delta></seq-delta>
             </seq-sequent>
@@ -783,7 +783,7 @@ categories: logic, plt
             <seq-sequent slot="conclusion">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
-              <seq-delta>, <var>A</var></seq-delta>
+              <seq-delta>, <var neg pos>A</var></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
@@ -793,12 +793,12 @@ categories: logic, plt
           <seq-inference name="contract" left>
             <span slot="label"><var>contract</var><seq-turnstile></seq-turnstile></span>
             <seq-sequent slot="premise">
-              <seq-gamma><var>A</var>, <var>A</var>, </seq-gamma>
+              <seq-gamma><var neg pos>A</var>, <var neg pos>A</var>, </seq-gamma>
               <seq-turnstile></seq-turnstile>
               <seq-delta></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
-              <seq-gamma><var>A</var>, </seq-gamma>
+              <seq-gamma><var neg pos>A</var>, </seq-gamma>
               <seq-turnstile></seq-turnstile>
               <seq-delta></seq-delta>
             </seq-sequent>
@@ -808,12 +808,12 @@ categories: logic, plt
             <seq-sequent slot="premise">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
-              <seq-delta>, <var>A</var>, <var>A</var></seq-delta>
+              <seq-delta>, <var neg pos>A</var>, <var neg pos>A</var></seq-delta>
             </seq-sequent>
             <seq-sequent slot="conclusion">
               <seq-gamma></seq-gamma>
               <seq-turnstile></seq-turnstile>
-              <seq-delta>, <var>A</var></seq-delta>
+              <seq-delta>, <var neg pos>A</var></seq-delta>
             </seq-sequent>
           </seq-inference>
         </div>
