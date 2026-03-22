@@ -117,6 +117,18 @@ table>tfoot>tr>td {
   border-top: 1px solid #aaa;
 }
 
+@media (prefers-color-scheme: dark) {
+
+  table>thead>tr>th,
+  table>tbody>tr>th,
+  table>tfoot>tr>th,
+  table>thead>tr>td,
+  table>tbody>tr>td,
+  table>tfoot>tr>td {
+    border-top: 1px solid #333;
+  }
+}
+
 table>tbody>tr>th {
   vertical-align: top;
   text-align: left;
@@ -126,6 +138,12 @@ table>tbody>tr>th {
 table>thead>tr>th {
   vertical-align: bottom;
   border-bottom: 1px solid #aaa;
+}
+
+@media (prefers-color-scheme: dark) {
+  table>thead>tr>th {
+    border-bottom: 1px solid #333;
+  }
 }
 
 /* Remove top border from thead by default */
@@ -158,9 +176,20 @@ table>tbody+tbody {
   border-top: 1px dotted #aaa;
 }
 
+@media (prefers-color-scheme: dark) {
+  table>tbody+tbody {
+    border-top: 1px dotted #333;
+  }
+}
 
 .related-post-title {
   border-bottom: thin solid #f3f3f3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .related-post-title {
+    border-bottom: thin solid #0f0f0f;
+  }
 }
 
 .posts {
@@ -171,6 +200,12 @@ table>tbody+tbody {
   margin-bottom: 0.75em;
   padding-bottom: .375em;
   border-bottom: thin solid #f3f3f3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .posts .post {
+    border-bottom: thin solid #0f0f0f;
+  }
 }
 
 .posts .post:last-child {
