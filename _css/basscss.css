@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /*
 
   BASSCSS
@@ -9,21 +10,48 @@
   MIT License http://opensource.org/licenses/MIT
 
 */
-body, button, input, select, textarea, pre {
+body,
+button,
+input,
+select,
+textarea,
+pre {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p, dl, ol, ul {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+ol,
+ul {
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   font-size: 100%;
 }
 
-article, aside, details, figcaption, figure, footer, header, main, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section,
+summary {
   display: block;
 }
 
@@ -33,27 +61,43 @@ body {
   font-weight: 400;
 }
 
-h1, .h1, .f1 {
+h1,
+.h1,
+.f1 {
   font-size: 2rem;
   line-height: 2.5rem;
 }
 
-h2, .h2, .f2 {
+h2,
+.h2,
+.f2 {
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
-h3, .h3, .f3 {
+h3,
+.h3,
+.f3 {
   font-size: 1.25rem;
   line-height: 1.5rem;
 }
 
-p, .p, .f4, h4, h5, h6, dl, ol, ul {
+p,
+.p,
+.f4,
+h4,
+h5,
+h6,
+dl,
+ol,
+ul {
   font-size: 1.125rem;
   line-height: 1.5rem;
 }
 
-small, .small, .f5 {
+small,
+.small,
+.f5 {
   font-size: .875rem;
   line-height: 1.5rem;
 }
@@ -83,6 +127,7 @@ small, .small, .f5 {
     font-size: 1rem;
   }
 }
+
 @media screen and (min-width: 64em) {
   .h1 {
     font-size: 6rem;
@@ -94,7 +139,9 @@ small, .small, .f5 {
     line-height: 3.5rem;
   }
 }
-strong, .bold {
+
+strong,
+.bold {
   font-weight: bold;
 }
 
@@ -285,6 +332,7 @@ strong, .bold {
     margin-left: 3rem;
   }
 }
+
 @media screen and (min-width: 64em) {
   .m-responsive {
     margin: 4rem;
@@ -306,6 +354,7 @@ strong, .bold {
     margin-left: 4rem;
   }
 }
+
 .p1 {
   padding: 1rem;
 }
@@ -391,6 +440,7 @@ strong, .bold {
     padding-bottom: 3rem;
   }
 }
+
 @media screen and (min-width: 64em) {
   .p-responsive {
     padding: 4rem;
@@ -406,6 +456,7 @@ strong, .bold {
     padding-bottom: 4rem;
   }
 }
+
 .inline {
   display: inline;
 }
@@ -430,10 +481,12 @@ strong, .bold {
   float: right;
 }
 
-.clearfix:before, .clearfix:after {
+.clearfix:before,
+.clearfix:after {
   content: " ";
   display: table;
 }
+
 .clearfix:after {
   clear: both;
 }
@@ -455,6 +508,7 @@ strong, .bold {
 }
 
 @media screen and (max-width: 48em) {
+
   .mobile-show,
   .mobile-block {
     display: block;
@@ -472,6 +526,7 @@ strong, .bold {
     text-align: center;
   }
 }
+
 .button {
   font-family: inherit;
   font-weight: bold;
@@ -534,6 +589,7 @@ strong, .bold {
   display: block;
   width: 100%;
 }
+
 .form-stacked .input,
 .form-stacked .select,
 .form-stacked .radio,
@@ -554,6 +610,7 @@ strong, .bold {
   list-style: none;
   padding-left: 0;
 }
+
 .list-inline li {
   display: inline;
   white-space: nowrap;
@@ -681,10 +738,18 @@ body {
   background-color: #fff;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #cccccc;
+    background-color: #050505;
+  }
+}
+
 a:link {
   color: #0096cc;
   text-decoration: none;
 }
+
 a:hover {
   color: #007199;
 }
@@ -693,8 +758,9 @@ a:hover {
   border-radius: .25rem;
   transition-duration: .2s;
   transition-timing-function: ease;
-  transition-property: box-shadow , background-color;
+  transition-property: box-shadow, background-color;
 }
+
 .button:focus {
   outline: none;
   box-shadow: 0 0 0 2px white, 0 0 1px 4px rgba(0, 150, 204, 0.5);
@@ -704,6 +770,7 @@ a:hover {
   color: #fff;
   background-color: #0096cc;
 }
+
 .button-blue:hover {
   color: #fff;
   background-color: #004b66;
@@ -713,6 +780,7 @@ a:hover {
   color: #fff;
   background-color: #777777;
 }
+
 .button-gray:hover {
   color: #fff;
   background-color: #444444;
@@ -724,6 +792,7 @@ a:hover {
   transition: box-shadow .2s ease;
   border-color: #777777;
 }
+
 .form-light .input:focus,
 .form-light .textarea:focus,
 .form-light .select:focus {
@@ -731,15 +800,18 @@ a:hover {
   border-color: #0096cc;
   box-shadow: 0 0 0.125rem rgba(0, 150, 204, 0.5);
 }
+
 .form-light .radio input,
 .form-light .checkbox input {
   transition: box-shadow .2s ease;
 }
+
 .form-light .radio input:focus,
 .form-light .checkbox input:focus {
   outline: none;
   box-shadow: 0 0 0 2px white, 0 0 1px 4px rgba(0, 150, 204, 0.5);
 }
+
 .form-light .radio input {
   border-radius: 50%;
 }

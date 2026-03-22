@@ -6,7 +6,9 @@
     <id>https://antitypical.com/feed.xml</id>
     <author>
         <name>Rob Rix</name>
+        
         <email>rob.rix@me.com</email>
+        
     </author>
     <updated>2021-08-14T23:01:02Z</updated>
     <entry>
@@ -915,18 +917,18 @@ var[pos]::after {
 <p>I’ve been working on a language named <a href="https://github.com/robrix/sequoia"><code>sequoia</code></a>, which embeds polarized classical logic in Haskell. Of course, Haskell corresponds to an intuitionistic logic, so we can’t just bring arbitrary classical proofs over directly. We have to use a double-negation translation, importing classical propositions <var>A</var> as intuitionistic propositions <seq-not><seq-not><var>A</var></seq-not></seq-not>. There are several such translations named (and infinitely more possible), differing in how many negations are placed where, but they all get the job done.</p>
 <p>Curry-Howard tells us a translation for negations, but we can work this one out ourselves with a little logical knowledge: a negation <seq-not><var>A</var></seq-not> can also be encoded as the implication <seq-impl><var>A</var><seq-bottom></seq-bottom></seq-impl>. It’s straightforward enough: “<var>A</var> implies falsehood” means the same thing as “not <var>A</var>.”</p>
 <p>Implications translate to functions, but what about <seq-bottom></seq-bottom>? That simplest, yet perhaps initially baffling, of algebraic datatypes, the empty type. We can define these for ourselves, but there’s a standard definition in the <code>Data.Void</code> module:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Void</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Void</span></span></code></pre></div>
 <p>Having no constructors, <code>Void</code> also has no inhabitants—no proof terms—just like <seq-bottom></seq-bottom>. So <code>Void</code> indeed corresponds to <seq-bottom></seq-bottom>. So what kind of thing is <code>a -&gt; Void</code>? A function returning <code>Void</code> is a function that <em>cannot</em> return; it can only pass control along to <em>another</em> function returning <code>Void</code>. In other words, <code>a -&gt; Void</code> is just what Curry-Howard tells us: a continuation.</p>
 <p>Thus, the double negation <seq-not><seq-not><var>A</var></seq-not></seq-not> becomes a continuation from a continuation:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">type</span> <span class="dt">DoubleNegation</span> a <span class="ot">=</span> (a <span class="ot">-&gt;</span> <span class="dt">Void</span>) <span class="ot">-&gt;</span> <span class="dt">Void</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">DoubleNegation</span> a <span class="ot">=</span> (a <span class="ot">-&gt;</span> <span class="dt">Void</span>) <span class="ot">-&gt;</span> <span class="dt">Void</span></span></code></pre></div>
 <p>which is a shape also known as continuation-passing style. Classical <em>languages</em> embed into intuitionistic ones via CPS.</p>
 <p>As discussed, modelling <seq-bottom></seq-bottom> with <code>Void</code> extends to modelling negations <seq-not><var>A</var></seq-not> (encoded <seq-impl><var>A</var><seq-bottom></seq-bottom></seq-impl>) with continuations. Further opens the door to using logical reasoning principles relating to <seq-bottom></seq-bottom>. For example, we can use the function <code>absurd</code>, defined as:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ot">absurd ::</span> <span class="dt">Void</span> <span class="ot">-&gt;</span> a</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>absurd v <span class="ot">=</span> <span class="kw">case</span> v <span class="kw">of</span> {}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">absurd ::</span> <span class="dt">Void</span> <span class="ot">-&gt;</span> a</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>absurd v <span class="ot">=</span> <span class="kw">case</span> v <span class="kw">of</span> {}</span></code></pre></div>
 <p>to supply proofs using the principle of explosion, or ex falso quodlibet. And <code>Void</code> is an appropriately abortive substitute for <seq-bottom></seq-bottom>, since there’s no way for control to pass through a type with no inhabitants.</p>
 <p>However good a fit <code>Void</code> might be initially, it’s quite inconvenient when embedding a language within another, whether by encoding or interpretation. You typically <em>want</em> control to return, and to run code afterwards, and to collect results, to continue with the next iteration of a REPL, or to print, save, or transmit computed values, clean up acquired resources, and so on. Absent tricks like throwing values up the stack with exception handlers, you simply can’t: nothing returns from the <code>Void</code>.</p>
 <p>We don’t necessarily have to use <code>Void</code> itself, however, but merely something which gives us the same proprties w.r.t. control. In particular, we can substitute <code>Void</code> out for another type, often a parameter, in our definition of <code>DoubleNegation</code>. I mentioned earlier that <code>DoubleNegation</code> is continuation-passing style, so I’m going to go ahead and spoil the punchline by renaming the type to <code>Cont</code> at the same time:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">newtype</span> <span class="dt">Cont</span> r a <span class="ot">=</span> <span class="dt">Cont</span> {<span class="ot"> runCont ::</span> (a <span class="ot">-&gt;</span> r) <span class="ot">-&gt;</span> r }</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">Cont</span> r a <span class="ot">=</span> <span class="dt">Cont</span> {<span class="ot"> runCont ::</span> (a <span class="ot">-&gt;</span> r) <span class="ot">-&gt;</span> r }</span></code></pre></div>
 <p>Control-wise, the main feature of <code>Void</code> is abortive control—it can never return, so it can only pass control to something else with the same property. <code>Cont</code> offers us the same behaviour, in that normal control flow is represented as applications of the continuation, passing control along to the next computation, while abortive control is possible by returning <code>r</code> directly.</p>
 <p>By replacing <code>Void</code> with a type parameter <code>r</code> (the traditional name, perhaps for “result,”, or “return”), particularly one visible at the type level (vs. universally quantified over as with <code>Codensity</code>), we’ve also opened the door to more interesting control tricks like multi-prompt delimited control, and therefore to arbitrary effects. Handy tricks to have up your sleeve when implementing a language, to say the least.</p>
 <h2 id="beginnings-and-endings">Beginnings and endings</h2>
@@ -935,31 +937,111 @@ var[pos]::after {
 <p>Earlier, we judged <code>r</code> a fitting substitute for <code>Void</code> because it behaved compatibly with respect to control. In contrast, <code>()</code> doesn’t <em>behave</em> in any way at all.</p>
 <p><code>r</code>’s abstraction of <code>Void</code> is determined entirely by Curry-Howard: <code>r</code> abstracts <code>Void</code> insofar as <code>Void</code> corresponds to <seq-bottom></seq-bottom> and its logical rules. The left rule has this sequent as an axiom:</p>
 <div class="connective">
-<p><seq-inference name="⊥" neg left> <seq-sequent slot="conclusion"> <seq-gamma><seq-bottom></seq-bottom>, </seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> </seq-inference></p>
+<p><seq-inference name="⊥" neg left>
+<seq-sequent slot="conclusion">
+<seq-gamma><seq-bottom></seq-bottom>, </seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+</seq-inference></p>
 </div>
 <p>This gives us ex falso quodlibet: <seq-bottom></seq-bottom> on the left suffices to prove <em>any</em> sequent. As we saw, <code>Void</code> provides this via <code>absurd</code>. For <code>r</code>, imagine a type representing sequents implemented using <code>Cont</code>. If your arguments contain an <code>r</code>, there’s no need to consider any other arguments or what values you could compute and return; in fact, you don’t need the continuation at all. Just return the argument of type <code>r</code> and you’re done.</p>
 <p>The right rule is instead:</p>
 <div class="connective">
-<p><seq-inference name="⊥" neg right> <seq-sequent slot="premise"> <seq-gamma></seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma></seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta>, <seq-bottom></seq-bottom></seq-delta> </seq-sequent> </seq-inference></p>
+<p><seq-inference name="⊥" neg right>
+<seq-sequent slot="premise">
+<seq-gamma></seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma></seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta>, <seq-bottom></seq-bottom></seq-delta>
+</seq-sequent>
+</seq-inference></p>
 </div>
 <p>This instead says that you can construct it along any sequent which was provable anyway; or, working bottom-up, <seq-bottom></seq-bottom> adds no information to a proof, and so can be discarded at any time. This one is a little stranger; we can’t construct a <code>Void</code>, period; but if we could, it certainly wouldn’t add any information. On the other hand, <code>r</code> <em>is</em> inhabited, so we can certainly follow the analogy: we can construct an <code>r</code> if we can return without it anyway; in fact, we do, by applying the return continuation.</p>
 <p>For <code>e</code> we instead need to trace its relationships with <seq-one></seq-one>. <seq-one></seq-one>’s rules are dual, mirror images of the ones for <seq-bottom></seq-bottom>. Again, we start with the left rule, which corresponds closely to the right rule for <seq-bottom></seq-bottom>:</p>
 <div class="connective">
-<p><seq-inference name="1" pos left> <seq-sequent slot="premise"> <seq-gamma></seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma><seq-one></seq-one>, </seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> </seq-inference></p>
+<p><seq-inference name="1" pos left>
+<seq-sequent slot="premise">
+<seq-gamma></seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma><seq-one></seq-one>, </seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+</seq-inference></p>
 </div>
 <p>Left rules can be read by recalling that a sequent is sort of like a function: we can build a function to eliminate <seq-one></seq-one> and Γ into Δ by means of a funciton eliminating Γ into Δ. Put another way, <seq-one></seq-one> doesn’t give us any power to prove things that we didn’t have without it, and so we can always introduce it as a hypothetical. <code>()</code> works much the same way: adding an argument of type <code>()</code> won’t help you construct anything, since you could have just introduced it as a literal. <code>e</code> therefore must work the same way, but we’re going to weaken our informal restatement of this down to: you are free to ignore an argument of type <code>e</code>. Of course, we aren’t in an e.g. linear setting, so we’re free to ignore <em>every</em> argument. But even if we were in a linear setting, <code>e</code> should still be discardable.</p>
 <p>On the right:</p>
 <div class="connective">
-<p><seq-inference name="1" pos right> <seq-sequent slot="conclusion"> <seq-gamma></seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta>, <seq-one></seq-one></seq-delta> </seq-sequent> </seq-inference></p>
+<p><seq-inference name="1" pos right>
+<seq-sequent slot="conclusion">
+<seq-gamma></seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta>, <seq-one></seq-one></seq-delta>
+</seq-sequent>
+</seq-inference></p>
 </div>
 <p>You can always make a <seq-one></seq-one>. Ditto <code>()</code>; it’s what makes it discardable. (<seq-one></seq-one>, a positive connective, is indeed defined by its right rule.) <code>e</code>, then, must also be freely introduced, ambiently, ubiquitously.</p>
 <p>Considering that we started with the humble <seq-bottom></seq-bottom> and <seq-one></seq-one>, the combined consequences of these rules and equivalences for our purposes are surprisingly useful. Expressed as derived rules, on the <seq-bottom></seq-bottom> side, if we have an A, we can use it to eliminate an <seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>—a continuation—at any time; likwise, we can introduce a continuation from A to satisfy a demand for a A:</p>
 <div class="connective">
-<p><seq-inference left> <seq-sequent slot="premise"> <seq-gamma></seq-gamma> <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile> <seq-delta>, <var pos>A</var></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma><seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>, </seq-gamma> <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> </seq-inference> <seq-inference right> <seq-sequent slot="premise"> <seq-gamma><var pos>A</var>, </seq-gamma> <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma></seq-gamma> <seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile> <seq-delta>, <seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl></seq-delta> </seq-sequent> </seq-inference></p>
+<p><seq-inference left>
+<seq-sequent slot="premise">
+<seq-gamma></seq-gamma>
+<seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+<seq-delta>, <var pos>A</var></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma><seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>, </seq-gamma>
+<seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+</seq-inference>
+<seq-inference right>
+<seq-sequent slot="premise">
+<seq-gamma><var pos>A</var>, </seq-gamma>
+<seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma></seq-gamma>
+<seq-turnstile><sub slot="decoration" class="neg">R</sub></seq-turnstile>
+<seq-delta>, <seq-impl><var pos>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl></seq-delta>
+</seq-sequent>
+</seq-inference></p>
 </div>
 <p>Dually, demand for <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl> is satisfied by demand for <var neg>A</var>; and we can always turn <var neg>A</var> into <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl>:</p>
 <div class="connective">
-<p><seq-inference left> <seq-sequent slot="premise"> <seq-gamma></seq-gamma> <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile> <seq-delta>, <var pos>A</var></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma><seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl>, </seq-gamma> <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> </seq-inference> <seq-inference right> <seq-sequent slot="premise"> <seq-gamma><var pos>A</var>, </seq-gamma> <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma></seq-gamma> <seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile> <seq-delta>, <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl></seq-delta> </seq-sequent> </seq-inference></p>
+<p><seq-inference left>
+<seq-sequent slot="premise">
+<seq-gamma></seq-gamma>
+<seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+<seq-delta>, <var pos>A</var></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma><seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl>, </seq-gamma>
+<seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+</seq-inference>
+<seq-inference right>
+<seq-sequent slot="premise">
+<seq-gamma><var pos>A</var>, </seq-gamma>
+<seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma></seq-gamma>
+<seq-turnstile><sub slot="decoration" class="pos">E</sub></seq-turnstile>
+<seq-delta>, <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl></seq-delta>
+</seq-sequent>
+</seq-inference></p>
 </div>
 <h2 id="assertive-negativity">Assertive negativity</h2>
 <p>R represents the ubiquitously available ability to jump to the end of the program and abort. E, on the other hand, represents the ubiquitously available ability to summon (already globally-available) information out of thin air: the environment (hence the name E). Neither of these give us anything <em>really</em> new—after all, we could always pass information inwards, threading it through all the intervening calls, or abort and return outwards by means of <code>Maybe</code> or the like. But doing either in a single step <em>without</em> changing the rest of the code base is pretty handy.</p>
@@ -967,7 +1049,30 @@ var[pos]::after {
 <p>In much the same way, the dual structure—probably a comonad—gives us local environments, sandboxing, and coeffects.</p>
 <p>If <code>Cont r a</code> is ¬¬A, then what is this dual structure? Following the thread backwards, <code>Cont r a</code> is <seq-not><seq-not><var>A</var></seq-not></seq-not> because <code>Cont r a</code> is <seq-impl><span>(<seq-impl><var>A</var><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>)</span><seq-bottom><sub slot="op-decoration" class="neg">R</sub></seq-bottom></seq-impl>, which is an encoding of <seq-not><seq-not><var>A</var></seq-not></seq-not>. Our encoding of <seq-impl><seq-one><sub slot="op-decoration" class="pos">E</sub></seq-one><var neg>A</var></seq-impl>, on the other hand, doesn’t correspond to any connective—yet. So let’s introduce one: <seq-not-untrue></seq-not-untrue>, pronounced “not untrue,” is an <em>assertion</em> (some relation to the logical notion, no relation to the computational one), dual to a negation, and works just like our encoding above:</p>
 <div class="connective">
-<p><seq-inference name='¬̷' neg left> <seq-sequent slot="premise"> <seq-gamma><seq-focus><var neg>A</var></seq-focus> </seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma><seq-focus><seq-not-untrue><var neg>A</var></seq-not-untrue></seq-focus> </seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> </seq-inference> <seq-inference name='¬̷' neg right> <seq-sequent slot="premise"> <seq-gamma></seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta>, <var neg>A</var></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma></seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta>, <seq-not-untrue><var neg>A</var></seq-not-untrue></seq-delta> </seq-sequent> </seq-inference></p>
+<p><seq-inference name='¬̷' neg left>
+<seq-sequent slot="premise">
+<seq-gamma><seq-focus><var neg>A</var></seq-focus> </seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma><seq-focus><seq-not-untrue><var neg>A</var></seq-not-untrue></seq-focus> </seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+</seq-inference>
+<seq-inference name='¬̷' neg right>
+<seq-sequent slot="premise">
+<seq-gamma></seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta>, <var neg>A</var></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma></seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta>, <seq-not-untrue><var neg>A</var></seq-not-untrue></seq-delta>
+</seq-sequent>
+</seq-inference></p>
 </div>
 <p>Unlike <seq-not></seq-not>, the composition of <seq-not-untrue></seq-not-untrue> on itself is surprisingly boring. If <seq-not-untrue></seq-not-untrue> encodes as <seq-one></seq-one> → A, then all we’ve got is <seq-one></seq-one> → <seq-one></seq-one> → A, which gives us nothing the single instance didn’t. I thought these things were supposed to be dual; what gives?</p>
 <h2 id="polarization">Polarization</h2>
@@ -1062,7 +1167,30 @@ var[pos]::after {
 </table>
 <p>✓, pronounced “true,” is truly dual to ¬, and ¬̷ is dual to ~. ✓’s encoding gives us the following rules:</p>
 <div class="connective">
-<p><seq-inference name="✓" pos left> <seq-sequent slot="premise"> <seq-gamma><var pos>A</var>, </seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma><seq-true><var pos>A</var></seq-true>, </seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta></seq-delta> </seq-sequent> </seq-inference> <seq-inference name="✓" pos right> <seq-sequent slot="premise"> <seq-gamma></seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta> <seq-focus><var pos>A</var></seq-focus></seq-delta> </seq-sequent> <seq-sequent slot="conclusion"> <seq-gamma></seq-gamma> <seq-turnstile></seq-turnstile> <seq-delta> <seq-focus><seq-true><var pos>A</var></seq-true></seq-focus></seq-delta> </seq-sequent> </seq-inference></p>
+<p><seq-inference name="✓" pos left>
+<seq-sequent slot="premise">
+<seq-gamma><var pos>A</var>, </seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma><seq-true><var pos>A</var></seq-true>, </seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta></seq-delta>
+</seq-sequent>
+</seq-inference>
+<seq-inference name="✓" pos right>
+<seq-sequent slot="premise">
+<seq-gamma></seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta> <seq-focus><var pos>A</var></seq-focus></seq-delta>
+</seq-sequent>
+<seq-sequent slot="conclusion">
+<seq-gamma></seq-gamma>
+<seq-turnstile></seq-turnstile>
+<seq-delta> <seq-focus><seq-true><var pos>A</var></seq-true></seq-focus></seq-delta>
+</seq-sequent>
+</seq-inference></p>
 </div>
 <p>So far, so… disappointing. These are precisely the same rules as we found for ¬̷; only the symbols and the polarities have been swapped. And what’s worse, the same was already true of the rules for the negations.</p>
 <p>Speaking of which, the encoding for ~ seems circular: the positive continuation ~A can be encoded as <seq-one></seq-one> − A, itself represented as a pair of a unit value and … a continuation from A? But no, it’s the positive <em>negation</em> ~A that can be encoded thus. Just the same, that distinction alone isn’t satisfying: one wonders what the point of ~ is, polarity aside. We’ve already got a continuation connective in ¬; what do we need another one for?</p>
@@ -2032,16 +2160,16 @@ var[pos]::after {
 <p>Likewise, lambdas are also the only way to introduce variables—there’s no standard library, built-ins, primitives, prelude, or global environment to provide common definitions. We’re truly baking the apple pie from scratch.</p>
 <p>All of this raises the question: how do you <em>do</em> anything when you don’t even have <code>true</code> and <code>false</code>? Lambdas and variables don’t <em>do</em>, they merely <em>are</em>, so that leaves application. When all you have is application, everything looks like a lambda abstraction, so we’ll represent booleans using lambdas.</p>
 <p>Of course, it’s not <em>just</em> booleans we’re after; <code>true</code> and <code>false</code> aren’t much use without <code>and</code>, <code>or</code>, <code>not</code>, <code>if</code>, and all the rest. To be useful, our representation of booleans should therefore suffice to define these, as well. But how do you define <code>if</code> without using <code>if</code>? In a lazy language like Haskell, we might define <code>if</code> as a function something like so:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ot">if_ ::</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>if_ cond then_ else_ <span class="ot">=</span> <span class="kw">if</span> cond <span class="kw">then</span> then_ <span class="kw">else</span> else_</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">if_ ::</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>if_ cond then_ else_ <span class="ot">=</span> <span class="kw">if</span> cond <span class="kw">then</span> then_ <span class="kw">else</span> else_</span></code></pre></div>
 <p>In a strict language like JavaScript, we’d instead take functions for the alternatives:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">if_</span>(cond<span class="op">,</span> then_<span class="op">,</span> else_) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="cf">if</span> (cond) {</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="fu">then_</span>()<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="fu">else_</span>()<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>  }</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">if_</span>(cond<span class="op">,</span> then_<span class="op">,</span> else_) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (cond) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">then_</span>()<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">else_</span>()<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Both these definitions use the language’s native booleans and <code>if</code> syntax (a tactic for implementing embedded DSLs known as “meta-circularity”), and thus aren’t viable in the lambda calculus. However, they do give us a hint: in both cases we have a function taking a condition, consequence, and alternative, and using the first to select one of the latter two. In the lambda calculus, we might start by writing:</p>
 <pre><code>if = λ cond then else . ?</code></pre>
 <p>(Note: there aren’t any keywords in the lambda calculus, so there’s nothing stopping me from naming variables things like <code>if</code>, a fact which I will take free advantage of.)</p>
@@ -2154,11 +2282,11 @@ and = λ x y . if x y    false</code></pre>
     <summary type="html"><![CDATA[<p>Swift’s value types are <em>almost</em> able to represent algebraic data types. Unfortunately, they fall short of the mark when it comes to recursion, and while they’ve announced that their solution, indirect <code>case</code>s, will ship in a later build of Swift 2, there’s still reason to want them today.</p>
 <!--more-->
 <p>The standard solution is to use <code>Box&lt;T&gt;</code>, a function, or some other reference type to manually force an indirection for the recursive cases:</p>
-<pre class="swift"><code>enum Expression {
-	case Variable(String)
-	case Abstraction(String, Box&lt;Expression&gt;)
-	case Application(Box&lt;Expression&gt;, Box&lt;Expression&gt;)
-}</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Expression <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>	<span class="cf">case</span> Variable<span class="op">(</span>String<span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>	<span class="cf">case</span> Abstraction<span class="op">(</span>String<span class="op">,</span> Box<span class="op">&lt;</span>Expression<span class="op">&gt;)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>	<span class="cf">case</span> Application<span class="op">(</span>Box<span class="op">&lt;</span>Expression<span class="op">&gt;,</span> Box<span class="op">&lt;</span>Expression<span class="op">&gt;)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Unfortunately, this has a few significant warts:</p>
 <ul>
 <li>Clients of the API have to know about <code>Box&lt;T&gt;</code>; it can’t be a private implementation detail. This can in turn lead to ambiguities if APIs aren’t using a common dependency to provide the <code>Box&lt;T&gt;</code> type. Further, they have to box and unbox the values themselves.</li>
@@ -2166,161 +2294,161 @@ and = λ x y . if x y    false</code></pre>
 </ul>
 <p>Indirect cases will (I believe) resolve both of these issues, but there’s another solution we can apply today which solves both <em>and</em> provides a significant increase in the expressiveness of the type, at the expense of introducing a (useful) intermediary type.</p>
 <p>To begin with, note that in Swift 2, it’s no longer necessary to box elements of parameterized types in enum cases. This suggests a straightforward refactoring: replace <code>Expression</code>’s recursive instances with elements of a type parameter:</p>
-<pre class="swift"><code>enum Expression&lt;Recur&gt; {
-	case Variable(String)
-	case Abstraction(String, Recur)
-	case Application(Recur, Recur)
-}</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Expression<span class="op">&lt;</span><span class="dt">Recur</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>	<span class="cf">case</span> Variable<span class="op">(</span>String<span class="op">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>	<span class="cf">case</span> Abstraction<span class="op">(</span>String<span class="op">,</span> Recur<span class="op">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>	<span class="cf">case</span> Application<span class="op">(</span>Recur<span class="op">,</span> Recur<span class="op">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Now we’ve got an <code>Expression</code> type that can be instantiated with a given type parameter to recur. But if we try to describe the type of a recursive instance of it, we immediately run into a wall:</p>
-<pre class="swift"><code>let expression: Expression&lt;Expression&lt;Expression&lt;…&gt;&gt;&gt;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="va">expression</span><span class="op">:</span> Expression<span class="op">&lt;</span>Expression<span class="op">&lt;</span>Expression<span class="op">&lt;</span>…<span class="op">&gt;&gt;&gt;</span></span></code></pre></div>
 <p>It would seem we’ve simply moved the problem from the <code>case</code>s to the type, and can now see more clearly why Swift doesn’t allow <code>case</code>s to recur directly: it amounts to an infinite type. Some indirection is required, <em>somewhere</em>, and by allowing the programmer to place it (whether by explicit boxing or an <code>indirect</code> keyword), the performance implications are somewhat under their control, rather than the compiler’s.</p>
 <p>We need some way to tie <code>Expression</code> into a knot (as it were), looping back around into itself, but without requiring us to write out an infinite list of nested type parameters. If we were writing a function instead of a type, we could use the <a href="https://github.com/robrix/Prelude#fix"><code>fix</code></a> function, which computes the <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator#Strict_fixed_point_combinator">least fixed point</a> of a function, to lift a nonrecursive function into a recursive one:</p>
-<pre class="swift"><code>let factorial = fix { recur in
-    { n in n &gt; 0 ? n * recur(n - 1) : 1 }
-}</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="va">factorial</span> <span class="op">=</span> fix <span class="op">{</span> recur <span class="cf">in</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span> n <span class="cf">in</span> n <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> n <span class="op">*</span> recur<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">:</span> <span class="dv">1</span> <span class="op">}</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Instead of making a recursive function, we make a nonrecursive function taking a function as a parameter, and return an inner function which calls through it in order to recur. <code>fix</code> calls the outer function with a closure which calls back into <code>fix</code>, tying the knot. Is there an analogous fixed point for types? If there were, we would expect it to have the same overall shape: it would apply a type constructor like <code>Expression&lt;T&gt;</code> to a type which itself provides the connection back to <code>Expression&lt;T&gt;</code>.</p>
 <p>I’ll let you in on a secret: types are functions, too. <code>Expression&lt;T&gt;</code> is actually a function, abstracted over a parameter <code>T</code> to a concrete instance of <code>Expression</code> with <code>Recur</code> instantiated to <code>T</code>. And it turns out that, like other functions, types also have fixed points.</p>
 <p>In Haskell (the inevitable destination of any discussion of fixed points in programming languages), we could write this <code>Fix</code> type of a parameter type <code>f</code> like so:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Fix</span> f <span class="ot">=</span> <span class="dt">Fix</span> (f (<span class="dt">Fix</span> f))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Fix</span> f <span class="ot">=</span> <span class="dt">Fix</span> (f (<span class="dt">Fix</span> f))</span></code></pre></div>
 <p>This is Haskell notation approaching its densest form, so let’s compare it with how <code>fix</code> (the least fixed point of functions) is defined in Swift:</p>
-<pre class="swift"><code>public func fix&lt;A, B&gt;(f: (A -&gt; B) -&gt; A -&gt; B) -&gt; A -&gt; B {
-	return { f(fix(f))($0) }
-}</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">func</span> <span class="fu">fix</span><span class="op">&lt;</span><span class="dt">A</span>, <span class="dt">B</span><span class="op">&gt;(</span><span class="va">f</span><span class="op">:</span> <span class="op">(</span><span class="dt">A</span> <span class="op">-&gt;</span> <span class="dt">B</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="dt">A</span> -&gt; <span class="va">B</span><span class="op">)</span> -&gt; <span class="fu">A</span> -&gt; <span class="fu">B</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">return</span> <span class="op">{</span> f<span class="op">(</span>fix<span class="op">(</span>f<span class="op">))(</span>$<span class="dv">0</span><span class="op">)</span> <span class="op">}</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>The <code>fix</code> function applies <code>f</code>, the function parameter passed to <code>fix</code>, to the result of applying <code>fix</code> recursively to <code>f</code> again. It wraps this up in another closure to avoid infinite looping.</p>
 <p>Analogously, the <code>Fix</code> type applies <code>f</code>, the type parameter passed to <code>fix</code>, to the result of applying <code>Fix</code> recursively to <code>f</code> again. Haskell is lazily-evaluated, so it doesn’t need to wrap the lot of it up again.</p>
 <p>Let’s try writing <code>Fix</code> in Swift. It only has one <code>case</code>, so it can be a struct instead of an <code>enum</code>.</p>
-<pre class="swift"><code>struct Fix {}</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Fix <span class="op">{}</span></span></code></pre></div>
 <p>Now it needs to have a type parameter, <code>F</code>.</p>
-<pre class="swift"><code>struct Fix&lt;F&gt; {}</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Fix<span class="op">&lt;</span><span class="dt">F</span><span class="op">&gt;</span> <span class="op">{}</span></span></code></pre></div>
 <p>So far so good. Now we need to apply <code>F</code> to itself, recursively. But doesn’t that cause the infinite sequence of nested types again? <code>Fix&lt;F&lt;Fix&lt;F&lt;…&gt;&gt;&gt;&gt;</code> is no improvement on <code>Expression&lt;Expression&lt;Expression&lt;…&gt;&gt;&gt;</code>.</p>
 <p>Fortunately, Swift allows you to refer to a type without reference to its type parameters in its body:</p>
-<pre class="swift"><code>struct Fix&lt;F&gt; {
-	let body: F&lt;Fix&gt;
-}</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Fix<span class="op">&lt;</span><span class="dt">F</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">let</span> <span class="va">body</span><span class="op">:</span> F<span class="op">&lt;</span>Fix<span class="op">&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Unfortunately, while <code>Fix</code> is a complete reference inside the body of this type, Swift doesn’t know that <code>F</code> can accept type parameters, and thus rejects this. We can be sneaky and use a <code>protocol</code> with a <code>typealias</code> to work around this:</p>
-<pre class="swift"><code>protocol Fixable {
-	typealias Recur
-}
-
-struct Fix&lt;F: Fixable&gt; {
-	let body: F
-}</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">protocol</span> Fixable <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">typealias</span> Recur</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Fix<span class="op">&lt;</span><span class="dt">F</span><span class="op">:</span> <span class="dt">Fixable</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>	<span class="kw">let</span> <span class="va">body</span><span class="op">:</span> F</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>But now when we add the constraint to tie <code>F</code> into a knot, we run into a new issue: <code>swiftc</code> crashes. (<a href="http://www.openradar.appspot.com/20000145">rdar://20000145</a>).</p>
-<pre class="swift"><code>protocol Fixable {
-	typealias Recur
-}
-
-struct Fix&lt;F: Fixable where F.Recur == Fix&gt; {
-	let body: F
-}
-// =&gt; fish: Job 1, &#39;swift boom.swift&#39; terminated by signal SIGSEGV (Address boundary error)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">protocol</span> Fixable <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">typealias</span> Recur</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Fix<span class="op">&lt;</span><span class="dt">F</span><span class="op">:</span> <span class="dt">Fixable</span> <span class="kw">where</span> <span class="dt">F</span>.<span class="dt">Recur</span> == <span class="dt">Fix</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>	<span class="kw">let</span> <span class="va">body</span><span class="op">:</span> F</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">// =&gt; fish: Job 1, &#39;swift boom.swift&#39; terminated by signal SIGSEGV (Address boundary error)</span></span></code></pre></div>
 <p>Fortunately, while Swift can’t express a <em>generic</em> <code>Fix</code> over any arbitrary fixable type, it <em>can</em> express a fixed point of <code>Expression</code> <em>specifically</em>. Let’s call this new type <code>Term</code>. Once again, it’s a <code>struct</code>, and its body holds an <code>Expression</code> instantiated to itself. This one errors out, but it’s clear we’re getting closer:</p>
-<pre class="swift"><code>struct Term {
-	let body: Expression&lt;Term&gt;
-}
-// =&gt; error: recursive value type &#39;Term&#39; is not allowed</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Term <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">let</span> <span class="va">body</span><span class="op">:</span> Expression<span class="op">&lt;</span>Term<span class="op">&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">// =&gt; error: recursive value type &#39;Term&#39; is not allowed</span></span></code></pre></div>
 <p><code>Term</code> is recursive because it holds an <code>Expression</code> which in turn holds (in some of its cases) a <code>Recur</code>, which we’ve instantiated to <code>Term</code>. We need to reintroduce an indirection via a reference type like <code>Box&lt;T&gt;</code> or a function.</p>
 <p>Haven’t we just moved the problem around again? Well, sort of. Certainly we still need to box the values, but now we can do it in one and only one place—<code>Term</code>—and additionally we can make it <code>private</code>, avoiding exposing our implementation details to our consumers. Our constructor and getter can handle the boxing and unboxing for us:</p>
-<pre class="swift"><code>struct Term {
-	init(body: Expression&lt;Term&gt;) {
-		boxedBody = Box(body)
-	}
-
-	var body: Expression&lt;Term&gt; {
-		return boxedBody.value
-	}
-
-	private let boxedBody: Box&lt;Expression&lt;Term&gt;&gt;
-}</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Term <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">init</span><span class="op">(</span>body<span class="op">:</span> Expression<span class="op">&lt;</span>Term<span class="op">&gt;)</span> <span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>		boxedBody <span class="op">=</span> Box<span class="op">(</span>body<span class="op">)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>	<span class="kw">var</span> <span class="va">body</span><span class="op">:</span> Expression<span class="op">&lt;</span>Term<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>		<span class="kw">return</span> boxedBody<span class="op">.</span>value</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>	<span class="kw">private</span> <span class="kw">let</span> <span class="va">boxedBody</span><span class="op">:</span> Box<span class="op">&lt;</span>Expression<span class="op">&lt;</span>Term<span class="op">&gt;&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>That’s a pretty decent reason to use this approach right now (if you can’t wait for indirect cases). But it only solves one of the problems we mentioned initially; we still can’t pattern match recursively. For example, if we wanted to evaluate application expressions, we would want to write something like this:</p>
-<pre class="swift"><code>switch expression {
-case let .Application(.Abstraction(variable, body), argument):
-	// substitute argument for variable in body
-default:
-	// throw an error
-}</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span> expression <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">let</span> .<span class="va">Application</span><span class="op">(.</span>Abstraction<span class="op">(</span>variable<span class="op">,</span> body<span class="op">),</span> argument<span class="op">):</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>	<span class="co">// substitute argument for variable in body</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">default</span><span class="op">:</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>	<span class="co">// throw an error</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>But because of the <code>Term</code> and <code>Box</code>, neither of which can be matched through, we would have to write this instead:</p>
-<pre class="swift"><code>switch expression {
-case let .Application(abstraction, argument):
-	switch abstraction.body {
-	case let .Abstraction(variable, body):
-		// substitute argument for variable in body
-	default:
-		break
-	}
-	fallthrough
-default:
-	// throw an error
-}</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span> expression <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">let</span> .<span class="va">Application</span><span class="op">(</span>abstraction<span class="op">,</span> argument<span class="op">):</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>	<span class="cf">switch</span> abstraction<span class="op">.</span>body <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>	<span class="cf">case</span> <span class="kw">let</span> .<span class="va">Abstraction</span><span class="op">(</span>variable<span class="op">,</span> body<span class="op">):</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>		<span class="co">// substitute argument for variable in body</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>	<span class="kw">default</span><span class="op">:</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>		<span class="cf">break</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>	<span class="cf">fallthrough</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="kw">default</span><span class="op">:</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>	<span class="co">// throw an error</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>If we could flatten out the type, we could pattern match. Flattening out the type would put us straight back into the infinite sequence of <code>Expression&lt;…&gt;</code>s; but maybe we can only <em>partially</em> flatten it?</p>
 <p>We don’t need to pattern match against arbitrarily-nested terms for this example; we just want to match against a single nested layer. Therefore, we really only need to flatten out a single step of the recursive type. We’d need to apply this for each appearance of <code>Recur</code> in <code>Expression</code>, replacing it with <code>Expression&lt;Recur&gt;</code>.</p>
 <p>Replacing each instance of a type parameter with an instance of another type parameter sounds like a job for a <code>map</code> function. In Haskell, this function is known as <code>fmap</code>, for functor map, where functors are a kind of mathematical object with some specific shape, and where map preserves this shape. For example, the <code>Array.map</code> method, given some function <code>transform</code>, produces a new array with the same number of elements and in the same order (i.e. preserving the structure of the array), but with each element replaced by applying <code>transform</code>. Array, then, is a functor; and it turns out, so is our <code>Expression</code> tree.</p>
 <p>In our case, <code>map</code> should replace the <code>Recur</code> instances with the result of applying some function to them. There are no instances of <code>Recur</code> in <code>Variable</code> cases, so it should just re-wrap the variable name in the resulting type; the <code>Abstraction</code> and <code>Application</code> cases will apply <code>transform</code>:</p>
-<pre class="swift"><code>enum Expression&lt;Recur&gt; {
-	…
-	func map&lt;Other&gt;(transform: Recur -&gt; Other) -&gt; Expression&lt;Other&gt; {
-		switch self {
-		case let .Variable(x):
-			return .Variable(x)
-		case let .Abstraction(x, body):
-			return .Abstraction(x, transform(body))
-		case let .Application(a, b):
-			return .Application(transform(a), transform(b))
-		}
-	}
-}</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Expression<span class="op">&lt;</span><span class="dt">Recur</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>	…</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>	<span class="kw">func</span> <span class="fu">map</span><span class="op">&lt;</span><span class="dt">Other</span><span class="op">&gt;(</span><span class="va">transform</span><span class="op">:</span> <span class="dt">Recur</span> -&gt; <span class="va">Other</span><span class="op">)</span> -&gt; <span class="fu">Expression</span><span class="op">&lt;</span><span class="dt">Other</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>		<span class="cf">switch</span> <span class="kw">self</span> <span class="op">{</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>		<span class="cf">case</span> <span class="kw">let</span> .<span class="va">Variable</span><span class="op">(</span>x<span class="op">):</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>			<span class="kw">return</span> <span class="op">.</span>Variable<span class="op">(</span>x<span class="op">)</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>		<span class="cf">case</span> <span class="kw">let</span> .<span class="va">Abstraction</span><span class="op">(</span>x<span class="op">,</span> body<span class="op">):</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>			<span class="kw">return</span> <span class="op">.</span>Abstraction<span class="op">(</span>x<span class="op">,</span> transform<span class="op">(</span>body<span class="op">))</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>		<span class="cf">case</span> <span class="kw">let</span> .<span class="va">Application</span><span class="op">(</span>a<span class="op">,</span> b<span class="op">):</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>			<span class="kw">return</span> <span class="op">.</span>Application<span class="op">(</span>transform<span class="op">(</span>a<span class="op">),</span> transform<span class="op">(</span>b<span class="op">))</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>		<span class="op">}</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>We can use this to implement <a href="http://patrickthomson.ghost.io/an-introduction-to-recursion-schemes/">recursion schemes</a>, improving our confidence in recursive functions over the type, but for now we’ll limit ourselves to enabling pattern matching. Given an <code>Expression&lt;Recur&gt;</code>, we want to replace each <code>Recur</code> with its recursive instantiation, <code>Expression&lt;Recur&gt;</code>. Otherwise put, we need a function of type <code>Expression&lt;Recur&gt; -&gt; Expression&lt;Expression&lt;Recur&gt;&gt;</code>. Let’s implement this as a method, and call it destructure (since it decomposes the structure of the type):</p>
-<pre class="swift"><code>enum Expression&lt;Recur&gt; {
-	…
-	func destructure() -&gt; Expression&lt;Expression&lt;Recur&gt;&gt; {
-		return map {
-			// what do we do here?
-		}
-	}
-}</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Expression<span class="op">&lt;</span><span class="dt">Recur</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>	…</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>	<span class="kw">func</span> <span class="fu">destructure</span><span class="op">()</span> -&gt; <span class="fu">Expression</span><span class="op">&lt;</span><span class="dt">Expression</span><span class="op">&lt;</span><span class="dt">Recur</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>		<span class="kw">return</span> map <span class="op">{</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>			<span class="co">// what do we do here?</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>		<span class="op">}</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>…but we can’t! To implement a function of type <code>Expression&lt;Recur&gt; -&gt; Expression&lt;Expression&lt;Recur&gt;&gt;</code> using <code>map</code>, we’d need a function of type <code>Recur -&gt; Expression&lt;Recur&gt;</code> to pass to it. There is no useful function that can do this; without knowing a <em>specific</em> (and actually recursive) type for <code>Recur</code>, we have no way to recover the <code>Expression&lt;Recur&gt;</code> that we want to return.</p>
 <p>Instead, let’s use a constrained extension to limit ourselves to <code>Expression&lt;Term&gt;</code>. Unfortunately it’s not <em>quite</em> that simple, because Swift, for reasons beyond my knowledge (<a href="http://www.openradar.appspot.com/21512469">rdar://21512469</a>), forbids the obvious thing:</p>
-<pre class="swift"><code>extension Expression where Recur == Term { … }
-// =&gt; error: same-type requirement makes generic parameter &#39;Recur&#39; non-generic</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">extension</span> Expression <span class="kw">where</span> Recur <span class="op">==</span> Term <span class="op">{</span> … <span class="op">}</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">// =&gt; error: same-type requirement makes generic parameter &#39;Recur&#39; non-generic</span></span></code></pre></div>
 <p>We’ll work around this using a protocol, <code>FixpointType</code>:</p>
-<pre class="swift"><code>protocol FixpointType {
-	typealias Fixed
-}
-
-extension Term: FixpointType {
-	typealias Fixed = Expression&lt;Term&gt;
-}</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">protocol</span> FixpointType <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">typealias</span> Fixed</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">extension</span> Term<span class="op">:</span> <span class="dt">FixpointType</span> <span class="op">{</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>	<span class="kw">typealias</span> Fixed <span class="op">=</span> Expression<span class="op">&lt;</span>Term<span class="op">&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Now we can constrain the extension to <code>FixpointType</code> like we want:</p>
-<pre class="swift"><code>extension Expression where Recur : FixpointType, Recur.Fixed == Expression&lt;Recur&gt; {
-	func destructure() -&gt; Expression&lt;Expression&lt;Recur&gt;&gt; {
-		return map {
-			// what do we do here?
-		}
-	}
-}</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">extension</span> Expression <span class="kw">where</span> Recur <span class="op">:</span> <span class="dt">FixpointType</span><span class="op">,</span> <span class="dt">Recur</span><span class="op">.</span>Fixed <span class="op">==</span> Expression<span class="op">&lt;</span>Recur<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">func</span> <span class="fu">destructure</span><span class="op">()</span> -&gt; <span class="fu">Expression</span><span class="op">&lt;</span><span class="dt">Expression</span><span class="op">&lt;</span><span class="dt">Recur</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>		<span class="kw">return</span> map <span class="op">{</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>			<span class="co">// what do we do here?</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>		<span class="op">}</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>There are two problems remaining with this implementation:</p>
 <ol type="1">
 <li>We still don’t have a way to get an <code>Expression&lt;Recur&gt;</code> from a <code>Recur</code>.</li>
 <li><code>swiftc</code> crashes. (<a href="http://openradar.appspot.com/21328632">rdar://21328632</a>)</li>
 </ol>
 <p>Fortunately, we can resolve the former by adding a property to the protocol:</p>
-<pre class="swift"><code>protocol FixpointType {
-	typealias Fixed
-	var body: Fixed { get }
-}</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">protocol</span> FixpointType <span class="op">{</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">typealias</span> Fixed</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>	<span class="kw">var</span> <span class="va">body</span><span class="op">:</span> Fixed <span class="op">{</span> <span class="kw">get</span> <span class="op">}</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>With that out of the way, we can work around the crash by loosening the constraints slightly; we don’t actually require that <code>Recur.Fixed</code> be recursive; we just need to be able to name it. Now we can give the return type of <code>destructure</code> as <code>Expression&lt;Recur.Fixed&gt;</code>, and implement it in the obvious way, mapping each term to its body:</p>
-<pre class="swift"><code>extension Expression where Recur : FixpointType {
-	func destructure() -&gt; Expression&lt;Recur.Fixed&gt; {
-		return map { term in term.body }
-	}
-}</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">extension</span> Expression <span class="kw">where</span> Recur <span class="op">:</span> <span class="dt">FixpointType</span> <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>	<span class="kw">func</span> <span class="fu">destructure</span><span class="op">()</span> -&gt; <span class="fu">Expression</span><span class="op">&lt;</span><span class="dt">Recur</span>.<span class="dt">Fixed</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>		<span class="kw">return</span> map <span class="op">{</span> term <span class="cf">in</span> term<span class="op">.</span>body <span class="op">}</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Now we can use <code>destructure</code> to implement evaluation of well-formed <code>.Application</code> expressions, using exactly the pattern matching we wanted in the first place:</p>
-<pre class="swift"><code>switch expression.destructure() {
-case let .Application(.Abstraction(variable, body), argument):
-	// substitute argument for variable in body
-default:
-	// throw an error
-}</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode swift"><code class="sourceCode swift"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span> expression<span class="op">.</span>destructure<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">let</span> .<span class="va">Application</span><span class="op">(.</span>Abstraction<span class="op">(</span>variable<span class="op">,</span> body<span class="op">),</span> argument<span class="op">):</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>	<span class="co">// substitute argument for variable in body</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">default</span><span class="op">:</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>	<span class="co">// throw an error</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p><a href="https://gist.github.com/robrix/4696ec3c117aac97ef0b">Full code listing</a>.</p>]]></summary>
 </entry>
 <entry>

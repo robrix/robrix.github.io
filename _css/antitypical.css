@@ -5,6 +5,12 @@ aside {
   margin-bottom: 1em;
 }
 
+@media (prefers-color-scheme: dark) {
+  aside {
+    background-color: #0f0f0f;
+  }
+}
+
 caption {
   caption-side: bottom;
   font-size: .875rem;
@@ -23,7 +29,7 @@ figure.connective figcaption {
 
 /* inference rule presentations */
 
-table > tbody > tr > th {
+table>tbody>tr>th {
   vertical-align: top;
 }
 
@@ -59,7 +65,10 @@ figure.connective {
   --sequent-pos-colour: rgb(255, 150, 150);
   --sequent-neg-pos-colour: rgb(237, 150, 255);
 }
-.rule, .equivalence, .equivalence section {
+
+.rule,
+.equivalence,
+.equivalence section {
   font-size: 1.25rem;
   line-height: 1.8rem;
   font-weight: 100;
@@ -74,7 +83,8 @@ figure.connective {
   float: none;
 } */
 
-div.left-rules, div.right-rules {
+div.left-rules,
+div.right-rules {
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -85,7 +95,11 @@ div.left-rules, div.right-rules {
   padding: 6px;
 }
 
-seq-inference sub, .rule sub, .rule sup, .equivalence sub, .equivalence sup {
+seq-inference sub,
+.rule sub,
+.rule sup,
+.equivalence sub,
+.equivalence sup {
   font-size: 60%;
   line-height: 0;
 }
@@ -108,7 +122,7 @@ div.premises {
   width: max-content;
 }
 
-div.premises ~ div.conclusion {
+div.premises~div.conclusion {
   text-align: center;
   grid-column: 1 / -1;
 }
@@ -130,6 +144,7 @@ div.axiom {
   line-height: 1.8rem;
   text-align: center;
 }
+
 div.axiom::after {
   content: "∎";
 }
@@ -158,9 +173,11 @@ div.axiom::after {
 .E::after {
   content: "E";
 }
+
 .R::after {
   content: "R";
 }
+
 .E::after,
 .R::after {
   vertical-align: sub;
@@ -202,12 +219,21 @@ span.metavar {
   font-style: italic;
 }
 
-.var > sup {
+.var>sup {
   font-style: normal;
 }
 
-span.Γ, span.Δ {
+span.Γ,
+span.Δ {
   color: rgb(100, 100, 100);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  span.Γ,
+  span.Δ {
+    color: rgb(155, 155, 155);
+  }
 }
 
 div.column {
@@ -220,32 +246,49 @@ div.column {
 }
 
 .neg,
-.neg > sup,
-.with.op, .with > .op,
+.neg>sup,
+.with.op,
+.with>.op,
 .top,
-.par.op, .par > .op,
-.bottom.op, .bottom > .op,
-.implication.op, .implication > .op,
-.not.op, .not > .op,
-.not-untrue.op, .not-untrue > .op,
-.up-shift.op, .up-shift > .op,
-.for-all.op, .for-all > .op,
+.par.op,
+.par>.op,
+.bottom.op,
+.bottom>.op,
+.implication.op,
+.implication>.op,
+.not.op,
+.not>.op,
+.not-untrue.op,
+.not-untrue>.op,
+.up-shift.op,
+.up-shift>.op,
+.for-all.op,
+.for-all>.op,
 .R::after,
 sub.R,
 sup.N {
   color: var(--sequent-neg-colour);
 }
+
 .pos,
-.pos > sup,
-.sum.op, .sum > .op,
+.pos>sup,
+.sum.op,
+.sum>.op,
 .zero,
-.tensor.op, .tensor > .op,
-.one.op, .one > .op,
-.coimplication.op, .coimplication > .op,
-.negate.op, .negate > .op,
-.true.op, .true > .op,
-.down-shift.op, .down-shift > .op,
-.there-exists.op, .there-exists > .op,
+.tensor.op,
+.tensor>.op,
+.one.op,
+.one>.op,
+.coimplication.op,
+.coimplication>.op,
+.negate.op,
+.negate>.op,
+.true.op,
+.true>.op,
+.down-shift.op,
+.down-shift>.op,
+.there-exists.op,
+.there-exists>.op,
 .E::after,
 sub.E,
 sup.V {
@@ -260,15 +303,19 @@ var[pos]::after {
   line-height: 0;
   display: none;
 }
+
 var[neg]::after {
   content: '−';
 }
+
 var[pos]::after {
   content: '+';
 }
+
 var[neg][pos]::after {
   content: '±';
 }
+
 .show-polarities var[neg]::after,
 .show-polarities var[pos]::after {
   display: inline;
@@ -278,39 +325,41 @@ seq-var[neg],
 var[neg] {
   color: var(--sequent-neg-colour);
 }
+
 seq-var[pos],
 var[pos] {
   color: var(--sequent-pos-colour);
 }
+
 seq-var[neg][pos],
 var[neg][pos] {
   color: var(--sequent-neg-pos-colour);
 }
 
 :where(seq-with,
-seq-sum,
-seq-top,
-seq-zero,
-seq-par,
-seq-tensor,
-seq-bottom,
-seq-one,
-seq-impl,
-seq-coimpl,
-seq-not,
-seq-negate,
-seq-not-untrue,
-seq-true,
-seq-up,
-seq-down,
-seq-forall,
-seq-exists,
-seq-var,
-seq-focus,
-seq-gamma,
-seq-delta,
-seq-sequent,
-var):hover {
+  seq-sum,
+  seq-top,
+  seq-zero,
+  seq-par,
+  seq-tensor,
+  seq-bottom,
+  seq-one,
+  seq-impl,
+  seq-coimpl,
+  seq-not,
+  seq-negate,
+  seq-not-untrue,
+  seq-true,
+  seq-up,
+  seq-down,
+  seq-forall,
+  seq-exists,
+  seq-var,
+  seq-focus,
+  seq-gamma,
+  seq-delta,
+  seq-sequent,
+  var):hover {
   background-color: rgba(50, 50, 50, 0.05);
 }
 
@@ -344,6 +393,7 @@ nav.table-of-contents {
   position: sticky;
   top: 0;
 }
+
 nav.table-of-contents menu {
   width: 100%;
   padding-top: 48px;
@@ -351,6 +401,7 @@ nav.table-of-contents menu {
   height: 0;
   list-style: none;
 }
+
 nav.table-of-contents menu li {
   font-size: 1rem;
   line-height: 2rem;
@@ -360,9 +411,11 @@ nav.table-of-contents menu li {
   table.ruleset {
     table-layout: fixed;
   }
-  table.ruleset > tbody > tr > th {
+
+  table.ruleset>tbody>tr>th {
     padding: 0;
   }
+
   table>tbody>tr>th>h3 {
     position: absolute;
     text-align: right;
@@ -376,9 +429,11 @@ nav.table-of-contents menu li {
     float: left;
     width: 100%;
   }
+
   table.ruleset>tbody>tr>td::after {
     clear: both;
   }
+
   table.ruleset>tbody>tr>td>section.column-2 {
     display: grid;
     grid-template-columns: repeat(1, 100%);
