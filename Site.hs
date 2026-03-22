@@ -116,7 +116,10 @@ antitypicalContext
 defaultContext :: Context String
 defaultContext
   =  antitypicalContext
-  <> Hakyll.defaultContext
+  <> bodyField "body"
+  <> metadataField
+  <> urlField "url"
+  <> pathField "path"
   <> constField "measure" "measure"
 
 feedConfig :: FeedConfiguration
